@@ -1,26 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant evening (&:where(.evening, .evening *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-sans: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --background: #f0f4f9;
+    --foreground: #09090b;
+  }
+  .dark {
+    --background: #07090e;
+    --foreground: #f4f4f5;
+  }
+  .evening {
+    --background: #0a1128;
+    --foreground: #f8fafc;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'tnum';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tabular figures for clocks to prevent digit jitter */
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Observatory Cosmic Dot Grid */
+.cosmic-grid {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.dark .cosmic-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Subtle modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Micro-animations */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes sonar-wave {
+  0% {
+    r: 4;
+    opacity: 0.9;
+    stroke-width: 2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    r: 26;
+    opacity: 0;
+    stroke-width: 0.5;
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(1100px);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes colon-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-radar {
+  animation: radar-pulse 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.animate-sonar {
+  animation: sonar-wave 2.2s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+}
+
+.animate-dash-flow {
+  animation: dash-flow 1.8s linear infinite;
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 12s linear infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 2.5s ease-in-out infinite;
+}
+
+.animate-colon {
+  animation: colon-blink 1s ease-in-out infinite;
+}
+
+/* Linear/Raycast modern card physics */
+.modern-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+.modern-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Evening Theme (Navy Blue Shade Palette)
+   ========================================================================== */
+
+html.evening {
+  --background: #0a1128;
+  --foreground: #f8fafc;
+}
+
+html.evening body {
+  background-color: #0a1128 !important;
+  color: #f8fafc !important;
+}
+
+/* Header and Navigation Bar */
+html.evening header {
+  background-color: rgba(10, 17, 40, 0.95) !important;
+  border-color: #1a2c61 !important;
+}
+
+/* Footer */
+html.evening footer {
+  background-color: #070d1f !important;
+  border-color: #1a2c61 !important;
+}
+
+/* Surface Containers & Cards in Evening Navy Mode */
+html.evening .dark\:bg-slate-900,
+html.evening .dark\:bg-slate-950,
+html.evening .dark\:bg-\[\#0b0f19\],
+html.evening .dark\:bg-\[\#07090e\] {
+  background-color: #0e193c !important;
+}
+
+html.evening .dark\:bg-slate-800,
+html.evening .dark\:bg-slate-800\/80,
+html.evening .dark\:bg-slate-800\/60,
+html.evening .dark\:bg-slate-800\/50,
+html.evening .dark\:bg-slate-800\/40 {
+  background-color: #142453 !important;
+}
+
+html.evening .dark\:bg-slate-700,
+html.evening .dark\:bg-slate-700\/60 {
+  background-color: #1a2e68 !important;
+}
+
+/* Borders in Evening Navy Mode */
+html.evening .dark\:border-slate-800,
+html.evening .dark\:border-slate-800\/80,
+html.evening .dark\:border-slate-800\/70,
+html.evening .dark\:border-slate-700,
+html.evening .dark\:border-slate-700\/80,
+html.evening .dark\:border-slate-700\/60 {
+  border-color: #1d3674 !important;
+}
+
+/* Hover States in Evening Navy Mode */
+html.evening .dark\:hover\:bg-slate-800:hover,
+html.evening .dark\:hover\:bg-slate-700:hover,
+html.evening .dark\:hover\:bg-slate-800\/80:hover {
+  background-color: #1b306b !important;
+}
+
+html.evening .dark\:hover\:border-slate-700:hover,
+html.evening .dark\:hover\:border-slate-600:hover {
+  border-color: #2b4ba3 !important;
+}
+
+/* Breadcrumbs in Evening Navy Mode */
+html.evening nav[aria-label="Breadcrumb"] {
+  background-color: rgba(20, 36, 83, 0.9) !important;
+  border-color: #24418f !important;
+}
+
+/* Cosmic grid in Evening Navy Mode */
+html.evening .cosmic-grid {
+  background-image: radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px) !important;
+  background-size: 28px 28px;
 }

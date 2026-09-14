@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: '/moon-phase/:city*',
+        destination: '/moon/:city*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
