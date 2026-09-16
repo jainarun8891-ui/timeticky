@@ -145,7 +145,7 @@ export function ConvertComboClient({ fromTz, toTz, comboSlug }: Props) {
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
               {fromTz.primaryName}
             </h2>
-            <div className="text-5xl sm:text-6xl font-mono font-black tracking-tight text-slate-900 dark:text-white my-4">
+            <div className="text-5xl sm:text-6xl font-mono font-black tracking-tight text-slate-900 dark:text-white my-4" suppressHydrationWarning>
               {fromLiveTime}
             </div>
           </div>
@@ -168,7 +168,7 @@ export function ConvertComboClient({ fromTz, toTz, comboSlug }: Props) {
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
               {toTz.primaryName}
             </h2>
-            <div className="text-5xl sm:text-6xl font-mono font-black tracking-tight text-emerald-600 dark:text-emerald-400 my-4">
+            <div className="text-5xl sm:text-6xl font-mono font-black tracking-tight text-emerald-600 dark:text-emerald-400 my-4" suppressHydrationWarning>
               {toLiveTime}
             </div>
           </div>

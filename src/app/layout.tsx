@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/lib/config/site.config";
@@ -54,10 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
+        <Script id="gt-theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `(function() {
                 try {
                   var saved = localStorage.getItem('gt_theme');
                   var html = document.documentElement;

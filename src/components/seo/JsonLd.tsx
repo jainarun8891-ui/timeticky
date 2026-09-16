@@ -1,4 +1,3 @@
-"use client";
 
 import React from 'react';
 import { siteConfig } from '@/lib/config/site.config';
@@ -94,6 +93,7 @@ export function JsonLd({ type, data }: JsonLdProps) {
   return (
     <script
       type="application/ld+json"
+      suppressHydrationWarning
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );

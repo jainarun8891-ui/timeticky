@@ -69,8 +69,7 @@ export default function ConvertDirectoryPage() {
       <RelatedLinksHub />
 
       {/* Schema.org WebApplication structured data */}
-      <script
-        type="application/ld+json"
+      <script type="application/ld+json" suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",

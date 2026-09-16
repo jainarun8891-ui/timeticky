@@ -35,6 +35,7 @@ export function Breadcrumbs({ items, className = '', showHomeIcon = true }: Prop
       {/* Search Engine Schema.org BreadcrumbList Structured Data for Google Indexing */}
       <script
         type="application/ld+json"
+        suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 

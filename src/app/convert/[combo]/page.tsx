@@ -105,8 +105,7 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
       <RelatedLinksHub />
 
       {/* Schema.org WebApplication & FAQPage JSON-LD */}
-      <script
-        type="application/ld+json"
+      <script type="application/ld+json" suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -124,8 +123,7 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
           })
         }}
       />
-      <script
-        type="application/ld+json"
+      <script type="application/ld+json" suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
