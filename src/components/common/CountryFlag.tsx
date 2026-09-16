@@ -123,6 +123,51 @@ export function CountryFlag({ code, className = "w-5 h-3.5", title }: CountryFla
           <circle cx="15" cy="10" r="4.2" fill="#002776" />
         </svg>
       );
+    case 'KR': // South Korea
+      return (
+        <svg viewBox="0 0 30 20" className={baseClasses} aria-label={title || "South Korea"} role="img">
+          <rect width="30" height="20" fill="#FFFFFF" />
+          <circle cx="15" cy="10" r="5" fill="#C60C30" />
+          <path d="M 10 10 A 2.5 2.5 0 0 0 15 10 A 2.5 2.5 0 0 1 20 10 A 5 5 0 0 1 10 10" fill="#003478" />
+        </svg>
+      );
+    case 'PT': // Portugal
+      return (
+        <svg viewBox="0 0 30 20" className={baseClasses} aria-label={title || "Portugal"} role="img">
+          <rect width="12" height="20" fill="#046A38" />
+          <rect x="12" width="18" height="20" fill="#DA291C" />
+          <circle cx="12" cy="10" r="3.5" fill="#FED100" />
+        </svg>
+      );
+    case 'GR': // Greece
+      return (
+        <svg viewBox="0 0 30 20" className={baseClasses} aria-label={title || "Greece"} role="img">
+          <rect width="30" height="20" fill="#0D5EAF" />
+          <rect y="2.2" width="30" height="2.2" fill="#FFFFFF" />
+          <rect y="6.6" width="30" height="2.2" fill="#FFFFFF" />
+          <rect y="11.1" width="30" height="2.2" fill="#FFFFFF" />
+          <rect y="15.5" width="30" height="2.2" fill="#FFFFFF" />
+          <rect width="10" height="10" fill="#0D5EAF" />
+          <rect x="3.8" width="2.4" height="10" fill="#FFFFFF" />
+          <rect y="3.8" width="10" height="2.4" fill="#FFFFFF" />
+        </svg>
+      );
+    case 'ES': // Spain
+      return (
+        <svg viewBox="0 0 30 20" className={baseClasses} aria-label={title || "Spain"} role="img">
+          <rect width="30" height="5" fill="#AA151B" />
+          <rect y="5" width="30" height="10" fill="#F1BF00" />
+          <rect y="15" width="30" height="5" fill="#AA151B" />
+        </svg>
+      );
+    case 'IT': // Italy
+      return (
+        <svg viewBox="0 0 30 20" className={baseClasses} aria-label={title || "Italy"} role="img">
+          <rect width="10" height="20" fill="#009246" />
+          <rect x="10" width="10" height="20" fill="#FFFFFF" />
+          <rect x="20" width="10" height="20" fill="#CE2B37" />
+        </svg>
+      );
     case 'CH': // Switzerland
       return (
         <svg viewBox="0 0 20 20" className={baseClasses} aria-label={title || "Switzerland"} role="img">
