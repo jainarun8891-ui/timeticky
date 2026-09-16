@@ -280,6 +280,222 @@ export const COMMON_TIMEZONE_ABBREVIATIONS: Record<string, TimezoneAbbrDefinitio
         description: 'Eastern Australian standard time.'
       }
     ]
+  },
+  mst: {
+    abbr: 'MST',
+    slug: 'mst',
+    primaryName: 'Mountain Standard Time',
+    primaryIana: 'America/Denver',
+    offsetStr: 'UTC -7',
+    hasDst: true,
+    notes: 'Standard winter time across the Mountain West region of North America. Switches to MDT (UTC-6) in summer.',
+    meanings: [
+      {
+        name: 'Mountain Standard Time',
+        offsetStr: 'UTC -7',
+        iana: 'America/Denver',
+        regions: ['United States (Colorado, Utah, Montana, New Mexico)', 'Canada (Alberta)', 'Mexico'],
+        description: 'Standard winter time for Denver, Salt Lake City, Calgary, and Edmonton.'
+      }
+    ]
+  },
+  mdt: {
+    abbr: 'MDT',
+    slug: 'mdt',
+    primaryName: 'Mountain Daylight Time',
+    primaryIana: 'America/Denver',
+    offsetStr: 'UTC -6',
+    hasDst: true,
+    notes: 'Daylight saving time observed across the US and Canadian Mountain regions from March to November.',
+    meanings: [
+      {
+        name: 'Mountain Daylight Time',
+        offsetStr: 'UTC -6',
+        iana: 'America/Denver',
+        regions: ['United States (Colorado, Utah, Montana)', 'Canada (Alberta)'],
+        description: 'Summer daylight saving time for Denver, Salt Lake City, Calgary, and Edmonton.'
+      }
+    ]
+  },
+  wet: {
+    abbr: 'WET',
+    slug: 'wet',
+    primaryName: 'Western European Time',
+    primaryIana: 'Europe/Lisbon',
+    offsetStr: 'UTC +0',
+    hasDst: true,
+    notes: 'Standard winter time observed in Portugal, the Canary Islands, the Faroe Islands, and Iceland. Switches to WEST (UTC+1) in summer.',
+    meanings: [
+      {
+        name: 'Western European Time',
+        offsetStr: 'UTC +0',
+        iana: 'Europe/Lisbon',
+        regions: ['Portugal', 'Canary Islands (Spain)', 'Faroe Islands', 'Iceland (year-round)'],
+        description: 'Standard civil time for Lisbon, Porto, Funchal, and Las Palmas during autumn/winter.'
+      }
+    ]
+  },
+  west: {
+    abbr: 'WEST',
+    slug: 'west',
+    primaryName: 'Western European Summer Time',
+    primaryIana: 'Europe/Lisbon',
+    offsetStr: 'UTC +1',
+    hasDst: true,
+    notes: 'Daylight saving time observed in Portugal, Madeira, and the Canary Islands from late March to late October.',
+    meanings: [
+      {
+        name: 'Western European Summer Time',
+        offsetStr: 'UTC +1',
+        iana: 'Europe/Lisbon',
+        regions: ['Portugal', 'Madeira', 'Canary Islands'],
+        description: 'Summer daylight saving time for Lisbon, Porto, and Las Palmas.'
+      }
+    ]
+  },
+  eet: {
+    abbr: 'EET',
+    slug: 'eet',
+    primaryName: 'Eastern European Time',
+    primaryIana: 'Europe/Athens',
+    offsetStr: 'UTC +2',
+    hasDst: true,
+    notes: 'Standard winter time across Finland, Greece, Romania, Bulgaria, Ukraine, and the Baltic states. Switches to EEST (UTC+3) in summer.',
+    meanings: [
+      {
+        name: 'Eastern European Time',
+        offsetStr: 'UTC +2',
+        iana: 'Europe/Athens',
+        regions: ['Greece', 'Finland', 'Romania', 'Bulgaria', 'Baltic States', 'Cyprus', 'Egypt'],
+        description: 'Standard winter time for Athens, Helsinki, Bucharest, Sofia, Tallinn, Riga, and Vilnius.'
+      }
+    ]
+  },
+  eest: {
+    abbr: 'EEST',
+    slug: 'eest',
+    primaryName: 'Eastern European Summer Time',
+    primaryIana: 'Europe/Athens',
+    offsetStr: 'UTC +3',
+    hasDst: true,
+    notes: 'Daylight saving time observed across Eastern European nations from late March to late October.',
+    meanings: [
+      {
+        name: 'Eastern European Summer Time',
+        offsetStr: 'UTC +3',
+        iana: 'Europe/Athens',
+        regions: ['Greece', 'Finland', 'Romania', 'Bulgaria', 'Baltic States', 'Cyprus', 'Ukraine'],
+        description: 'Summer daylight saving time for Athens, Helsinki, Bucharest, Sofia, and Kyiv.'
+      }
+    ]
+  },
+  bst: {
+    abbr: 'BST',
+    slug: 'bst',
+    primaryName: 'British Summer Time',
+    primaryIana: 'Europe/London',
+    offsetStr: 'UTC +1',
+    hasDst: true,
+    notes: 'Daylight saving time observed in the United Kingdom from the last Sunday in March to the last Sunday in October (UTC+1).',
+    meanings: [
+      {
+        name: 'British Summer Time',
+        offsetStr: 'UTC +1',
+        iana: 'Europe/London',
+        regions: ['United Kingdom', 'Isle of Man', 'Guernsey', 'Jersey'],
+        description: 'Summer daylight saving time for London, Manchester, Edinburgh, Cardiff, and Belfast.'
+      }
+    ]
+  },
+  awst: {
+    abbr: 'AWST',
+    slug: 'awst',
+    primaryName: 'Australian Western Standard Time',
+    primaryIana: 'Australia/Perth',
+    offsetStr: 'UTC +8',
+    hasDst: false,
+    notes: 'Standard time observed throughout the state of Western Australia. Does not observe daylight saving time.',
+    meanings: [
+      {
+        name: 'Australian Western Standard Time',
+        offsetStr: 'UTC +8',
+        iana: 'Australia/Perth',
+        regions: ['Western Australia'],
+        description: 'Standard time for Perth, Fremantle, and the entire state of Western Australia.'
+      }
+    ]
+  },
+  aedt: {
+    abbr: 'AEDT',
+    slug: 'aedt',
+    primaryName: 'Australian Eastern Daylight Time',
+    primaryIana: 'Australia/Sydney',
+    offsetStr: 'UTC +11',
+    hasDst: true,
+    notes: 'Daylight saving time observed in southeastern Australia (Sydney, Melbourne, Hobart, Canberra) from October to April.',
+    meanings: [
+      {
+        name: 'Australian Eastern Daylight Time',
+        offsetStr: 'UTC +11',
+        iana: 'Australia/Sydney',
+        regions: ['New South Wales', 'Victoria', 'Tasmania', 'Australian Capital Territory'],
+        description: 'Summer daylight saving time for Sydney, Melbourne, Hobart, and Canberra.'
+      }
+    ]
+  },
+  acst: {
+    abbr: 'ACST',
+    slug: 'acst',
+    primaryName: 'Australian Central Standard Time',
+    primaryIana: 'Australia/Adelaide',
+    offsetStr: 'UTC +9:30',
+    hasDst: true,
+    notes: 'Standard time observed in South Australia and the Northern Territory. South Australia switches to ACDT (UTC+10:30) in summer.',
+    meanings: [
+      {
+        name: 'Australian Central Standard Time',
+        offsetStr: 'UTC +9:30',
+        iana: 'Australia/Adelaide',
+        regions: ['South Australia', 'Northern Territory', 'Broken Hill'],
+        description: 'Standard time for Adelaide, Darwin, and Alice Springs.'
+      }
+    ]
+  },
+  acdt: {
+    abbr: 'ACDT',
+    slug: 'acdt',
+    primaryName: 'Australian Central Daylight Time',
+    primaryIana: 'Australia/Adelaide',
+    offsetStr: 'UTC +10:30',
+    hasDst: true,
+    notes: 'Daylight saving time observed in South Australia and Broken Hill from October to April.',
+    meanings: [
+      {
+        name: 'Australian Central Daylight Time',
+        offsetStr: 'UTC +10:30',
+        iana: 'Australia/Adelaide',
+        regions: ['South Australia', 'Broken Hill'],
+        description: 'Summer daylight saving time for Adelaide and South Australia.'
+      }
+    ]
+  },
+  kst: {
+    abbr: 'KST',
+    slug: 'kst',
+    primaryName: 'Korea Standard Time',
+    primaryIana: 'Asia/Seoul',
+    offsetStr: 'UTC +9',
+    hasDst: false,
+    notes: 'Standard time observed throughout the Republic of Korea (South Korea) and North Korea year-round with no daylight saving time.',
+    meanings: [
+      {
+        name: 'Korea Standard Time',
+        offsetStr: 'UTC +9',
+        iana: 'Asia/Seoul',
+        regions: ['South Korea', 'North Korea'],
+        description: 'Standard civil time for Seoul, Busan, Incheon, Daegu, and Pyongyang.'
+      }
+    ]
   }
 };
 
@@ -346,4 +562,24 @@ export function getLocationsForOffset(formattedOffset: string) {
     return matchingZones.some(z => z.id === c.timezone || (z.id === 'Asia/Calcutta' && c.timezone === 'Asia/Kolkata'));
   });
   return { zones: matchingZones, cities: matchingCities };
+}
+
+export const CANONICAL_CONVERTER_ABBREVIATIONS = [
+  'gmt', 'est', 'edt', 'cst', 'cdt', 'mst', 'mdt', 'pst', 'pdt',
+  'wet', 'west', 'cet', 'cest', 'eet', 'eest', 'bst', 'awst',
+  'aest', 'aedt', 'acst', 'acdt', 'ist', 'utc', 'kst'
+] as const;
+
+export type CanonicalConverterAbbr = typeof CANONICAL_CONVERTER_ABBREVIATIONS[number];
+
+export function getAllConverterCombos(): string[] {
+  const combos: string[] = [];
+  for (const from of CANONICAL_CONVERTER_ABBREVIATIONS) {
+    for (const to of CANONICAL_CONVERTER_ABBREVIATIONS) {
+      if (from !== to) {
+        combos.push(`${from}-to-${to}`);
+      }
+    }
+  }
+  return combos;
 }

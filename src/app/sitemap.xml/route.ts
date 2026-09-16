@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { POPULAR_CITIES } from '@/lib/geo/cities';
 import { getAllCountries } from '@/lib/geo/countries';
 import { BLOG_ARTICLES } from '@/lib/blog/articles';
-import { COMMON_TIMEZONE_ABBREVIATIONS } from '@/lib/time/timezone-lookup';
+import { COMMON_TIMEZONE_ABBREVIATIONS, getAllConverterCombos } from '@/lib/time/timezone-lookup';
 
 export async function GET() {
   const baseUrl = 'https://globaltime.org';
@@ -28,6 +28,7 @@ export async function GET() {
     '/world-clock',
     '/world-clock-wall',
     '/time-converter',
+    '/convert',
     '/meeting-planner',
     '/countdown',
     '/countdown/new-year',
@@ -92,34 +93,7 @@ export async function GET() {
   ];
 
     // Programmatic Time Zone Conversion Combos
-  const conversionCombos = [
-    '/convert/est-to-pst',
-    '/convert/pst-to-est',
-    '/convert/utc-to-ist',
-    '/convert/ist-to-utc',
-    '/convert/gmt-to-est',
-    '/convert/est-to-gmt',
-    '/convert/cst-to-est',
-    '/convert/est-to-cst',
-    '/convert/utc-to-est',
-    '/convert/est-to-utc',
-    '/convert/gmt-to-ist',
-    '/convert/ist-to-gmt',
-    '/convert/cet-to-est',
-    '/convert/est-to-cet',
-    '/convert/gmt-to-pst',
-    '/convert/pst-to-gmt',
-    '/convert/utc-to-pst',
-    '/convert/pst-to-utc',
-    '/convert/cst-to-pst',
-    '/convert/pst-to-cst',
-    '/convert/utc-to-gmt',
-    '/convert/gmt-to-utc',
-    '/convert/est-to-jst',
-    '/convert/jst-to-est',
-    '/convert/utc-to-cst',
-    '/convert/cst-to-utc',
-  ];
+  const conversionCombos = getAllConverterCombos().map(c => `/convert/${c}`);
 
   // Time differences
   const timeDifferenceUrls = [
