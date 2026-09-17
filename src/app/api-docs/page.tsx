@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'TimeNumbers REST API Reference — Interactive OpenAPI Documentation (v1)',
   description: 'Interactive API reference for the TimeNumbers REST platform. Test live endpoints for current time, timezones, city coordinates, solar ephemeris, and multi-zone time conversions.',
   alternates: {
-    canonical: 'https://timenumbers.com/api-docs',
+    canonical: 'https://www.timenumbers.com/api-docs',
   },
   openGraph: {
     title: 'TimeNumbers REST API Reference',
     description: 'Interactive documentation for atomic time, astronomical, and timezone APIs.',
-    url: 'https://timenumbers.com/api-docs',
+    url: 'https://www.timenumbers.com/api-docs',
   },
 };
 
@@ -25,13 +25,13 @@ export default function ApiDocsPage() {
     '@type': 'WebPage',
     name: 'TimeNumbers REST API Reference',
     description: 'Interactive API Reference for TimeNumbers v1 REST endpoints.',
-    url: 'https://timenumbers.com/api-docs',
+    url: 'https://www.timenumbers.com/api-docs',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Developers', item: 'https://timenumbers.com/developers' },
-        { '@type': 'ListItem', position: 3, name: 'API Reference', item: 'https://timenumbers.com/api-docs' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Developers', item: 'https://www.timenumbers.com/developers' },
+        { '@type': 'ListItem', position: 3, name: 'API Reference', item: 'https://www.timenumbers.com/api-docs' },
       ],
     },
   };

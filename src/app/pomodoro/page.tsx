@@ -55,7 +55,7 @@ export default function PomodoroPage() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "TimeNumbers Pomodoro Timer",
-            "url": "https://timenumbers.com/pomodoro",
+            "url": "https://www.timenumbers.com/pomodoro",
             "applicationCategory": "ProductivityApplication",
             "operatingSystem": "All",
             "offers": {

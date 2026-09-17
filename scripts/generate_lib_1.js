@@ -29,8 +29,8 @@ export const siteConfig: SiteConfig = {
   name: "TimeNumbers",
   tagline: "A more connected world",
   secondaryTagline: "The world's time, clearly.",
-  url: "https://timenumbers.com",
-  ogImage: "https://timenumbers.com/og.png",
+  url: "https://www.timenumbers.com",
+  ogImage: "https://www.timenumbers.com/og.png",
   description: "Accurate, lightweight, and modern global time platform. Live synchronized world clocks, timezone converter, meeting planner, sunrise & sunset tracking, and calendar tools.",
   links: {
     github: "https://github.com/timenumbers",

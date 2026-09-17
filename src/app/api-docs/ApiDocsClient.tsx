@@ -221,7 +221,7 @@ export function ApiDocsClient() {
   };
 
   const copyCurl = () => {
-    const curl = `curl -X GET "https://timenumbers.com${ep.exampleUrl}"`;
+    const curl = `curl -X GET "https://www.timenumbers.com${ep.exampleUrl}"`;
     if (typeof window !== 'undefined') {
       navigator.clipboard.writeText(curl);
       setCopied(true);

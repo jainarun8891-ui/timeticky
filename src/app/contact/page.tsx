@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Contact TimeNumbers — Corrections, Inquiries & Technical Support',
   description: 'Contact the TimeNumbers team for timezone corrections, developer API partnerships, civil DST decree updates, and horological feature requests.',
   alternates: {
-    canonical: 'https://timenumbers.com/contact',
+    canonical: 'https://www.timenumbers.com/contact',
   },
   openGraph: {
     title: 'Contact TimeNumbers Desk',
     description: 'Get in touch with the TimeNumbers engineering and editorial team.',
-    url: 'https://timenumbers.com/contact',
+    url: 'https://www.timenumbers.com/contact',
   },
 };
 
@@ -25,12 +25,12 @@ export default function ContactPage() {
     '@type': 'ContactPage',
     name: 'Contact TimeNumbers',
     description: 'Get in touch for timezone corrections and developer inquiries.',
-    url: 'https://timenumbers.com/contact',
+    url: 'https://www.timenumbers.com/contact',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://timenumbers.com/contact' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://www.timenumbers.com/contact' },
       ],
     },
   };

@@ -111,7 +111,7 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": `Convert ${fromTz.abbr} to ${toTz.abbr} Time Converter`,
-            "url": `https://timenumbers.com/convert/${cleanSlug}`,
+            "url": `https://www.timenumbers.com/convert/${cleanSlug}`,
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "browserRequirements": "Requires JavaScript. Requires HTML5.",

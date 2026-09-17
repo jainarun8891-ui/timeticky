@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Interactive World Time Zone Map — Live Global Clock Bands',
   description: 'Explore the interactive world time zone map. Visualise 24 international longitudinal time bands, live UTC offsets, local time, and major cities across every time zone.',
   alternates: {
-    canonical: 'https://timenumbers.com/timezone-map',
+    canonical: 'https://www.timenumbers.com/timezone-map',
   },
   openGraph: {
     title: 'Interactive World Time Zone Map — TimeNumbers',
     description: 'Explore world time zones by longitudinal meridian, UTC offset, and major metropolitan clusters in real time.',
-    url: 'https://timenumbers.com/timezone-map',
+    url: 'https://www.timenumbers.com/timezone-map',
   },
 };
 
@@ -25,13 +25,13 @@ export default function TimezoneMapPage() {
     '@type': 'WebPage',
     name: 'Interactive World Time Zone Map',
     description: 'Live interactive world map displaying longitudinal time zone bands and current local times.',
-    url: 'https://timenumbers.com/timezone-map',
+    url: 'https://www.timenumbers.com/timezone-map',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Time Zones', item: 'https://timenumbers.com/time-zones' },
-        { '@type': 'ListItem', position: 3, name: 'Time Zone Map', item: 'https://timenumbers.com/timezone-map' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Time Zones', item: 'https://www.timenumbers.com/time-zones' },
+        { '@type': 'ListItem', position: 3, name: 'Time Zone Map', item: 'https://www.timenumbers.com/timezone-map' },
       ],
     },
   };

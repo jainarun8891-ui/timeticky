@@ -32,12 +32,12 @@ export default function WidgetBuilderPage() {
 
   const selectedCity = CITIES.find(c => c.slug === slug) || CITIES[0];
 
-  const clockIframeUrl = `https://timenumbers.com/embed/clock?city=${slug}&theme=${theme}&format=${format}&seconds=${showSeconds}`;
+  const clockIframeUrl = `https://www.timenumbers.com/embed/clock?city=${slug}&theme=${theme}&format=${format}&seconds=${showSeconds}`;
   const previewClockUrl = `/embed/clock?city=${slug}&theme=${theme}&format=${format}&seconds=${showSeconds}`;
 
   const countdownTarget = countdownEvent === 'new-year' ? '2027-01-01T00:00:00Z' : '2026-12-25T00:00:00Z';
   const countdownName = countdownEvent === 'new-year' ? 'New Year 2027' : 'Christmas Day';
-  const countdownIframeUrl = `https://timenumbers.com/embed/countdown?event=${encodeURIComponent(countdownName)}&target=${countdownTarget}&theme=${theme}`;
+  const countdownIframeUrl = `https://www.timenumbers.com/embed/countdown?event=${encodeURIComponent(countdownName)}&target=${countdownTarget}&theme=${theme}`;
   const previewCountdownUrl = `/embed/countdown?event=${encodeURIComponent(countdownName)}&target=${countdownTarget}&theme=${theme}`;
 
   // Engineered SEO Backlink Snippet
@@ -54,7 +54,7 @@ export default function WidgetBuilderPage() {
   </iframe>
   <!-- The SEO Backlink -->
   <p style="font-size: 11px; margin-top: 6px; color: #64748b;">
-    Powered by <a href="https://timenumbers.com/time/${slug}" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 600; text-decoration: none;">TimeNumbers</a>
+    Powered by <a href="https://www.timenumbers.com/time/${slug}" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 600; text-decoration: none;">TimeNumbers</a>
   </p>
 </div>`;
 
@@ -71,7 +71,7 @@ export default function WidgetBuilderPage() {
   </iframe>
   <!-- The SEO Backlink -->
   <p style="font-size: 11px; margin-top: 6px; color: #64748b;">
-    Powered by <a href="https://timenumbers.com/countdown" target="_blank" rel="noopener" style="color: #e11d48; font-weight: 600; text-decoration: none;">TimeNumbers Countdown</a>
+    Powered by <a href="https://www.timenumbers.com/countdown" target="_blank" rel="noopener" style="color: #e11d48; font-weight: 600; text-decoration: none;">TimeNumbers Countdown</a>
   </p>
 </div>`;
 

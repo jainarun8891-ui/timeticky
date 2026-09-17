@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Cities in ${country.name} — Current Local Time & Major Clocks`,
     description: `Current local time in major cities across ${country.name}. Capital time in ${country.capital}, timezone offsets, and daylight saving status.`,
     alternates: {
-      canonical: `https://timenumbers.com/cities/${slug}`,
+      canonical: `https://www.timenumbers.com/cities/${slug}`,
     },
     openGraph: {
       title: `Cities in ${country.name} — TimeNumbers`,
       description: `Explore major cities in ${country.name} with live synchronized clocks and time difference.`,
-      url: `https://timenumbers.com/cities/${slug}`,
+      url: `https://www.timenumbers.com/cities/${slug}`,
     },
   };
 }
@@ -56,13 +56,13 @@ export default async function CountryCitiesPage({ params }: Props) {
     '@type': 'WebPage',
     name: `Cities in ${country.name}`,
     description: `Metropolitan cities and current clocks in ${country.name}.`,
-    url: `https://timenumbers.com/cities/${slug}`,
+    url: `https://www.timenumbers.com/cities/${slug}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Cities', item: 'https://timenumbers.com/cities' },
-        { '@type': 'ListItem', position: 3, name: country.name, item: `https://timenumbers.com/cities/${slug}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Cities', item: 'https://www.timenumbers.com/cities' },
+        { '@type': 'ListItem', position: 3, name: country.name, item: `https://www.timenumbers.com/cities/${slug}` },
       ],
     },
   };

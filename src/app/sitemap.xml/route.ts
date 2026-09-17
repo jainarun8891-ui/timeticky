@@ -5,7 +5,7 @@ import { BLOG_ARTICLES } from '@/lib/blog/articles';
 import { COMMON_TIMEZONE_ABBREVIATIONS, getAllConverterCombos } from '@/lib/time/timezone-lookup';
 
 export async function GET() {
-  const baseUrl = 'https://timenumbers.com';
+  const baseUrl = 'https://www.timenumbers.com';
 
   const staticUrls = [
     '',

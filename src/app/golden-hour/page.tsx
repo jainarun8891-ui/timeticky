@@ -55,7 +55,7 @@ export default function GoldenHourPage() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "TimeNumbers Golden Hour Calculator",
-            "url": "https://timenumbers.com/golden-hour",
+            "url": "https://www.timenumbers.com/golden-hour",
             "applicationCategory": "PhotographyApplication",
             "operatingSystem": "All",
             "offers": {

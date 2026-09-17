@@ -84,12 +84,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${item.name} — Online Countdown Timer with Sound`,
     description: item.description,
     alternates: {
-      canonical: `https://timenumbers.com/timer/${duration.toLowerCase()}`,
+      canonical: `https://www.timenumbers.com/timer/${duration.toLowerCase()}`,
     },
     openGraph: {
       title: `${item.name} — TimeNumbers`,
       description: item.description,
-      url: `https://timenumbers.com/timer/${duration.toLowerCase()}`,
+      url: `https://www.timenumbers.com/timer/${duration.toLowerCase()}`,
     },
   };
 }
@@ -107,13 +107,13 @@ export default async function TimerDurationPage({ params }: Props) {
     '@type': 'WebPage',
     name: item.name,
     description: item.description,
-    url: `https://timenumbers.com/timer/${duration.toLowerCase()}`,
+    url: `https://www.timenumbers.com/timer/${duration.toLowerCase()}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Timer', item: 'https://timenumbers.com/timer' },
-        { '@type': 'ListItem', position: 3, name: item.label, item: `https://timenumbers.com/timer/${duration.toLowerCase()}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Timer', item: 'https://www.timenumbers.com/timer' },
+        { '@type': 'ListItem', position: 3, name: item.label, item: `https://www.timenumbers.com/timer/${duration.toLowerCase()}` },
       ],
     },
   };

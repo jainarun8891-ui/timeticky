@@ -77,12 +77,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Countdown to ${item.name} — Exact Days, Hours & Minutes Remaining`,
     description: item.description,
     alternates: {
-      canonical: `https://timenumbers.com/countdown/${event.toLowerCase()}`,
+      canonical: `https://www.timenumbers.com/countdown/${event.toLowerCase()}`,
     },
     openGraph: {
       title: `Countdown to ${item.name} — TimeNumbers`,
       description: item.description,
-      url: `https://timenumbers.com/countdown/${event.toLowerCase()}`,
+      url: `https://www.timenumbers.com/countdown/${event.toLowerCase()}`,
     },
   };
 }
@@ -100,13 +100,13 @@ export default async function CountdownEventPage({ params }: Props) {
     '@type': 'WebPage',
     name: `Countdown to ${item.name}`,
     description: item.description,
-    url: `https://timenumbers.com/countdown/${event.toLowerCase()}`,
+    url: `https://www.timenumbers.com/countdown/${event.toLowerCase()}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Countdown', item: 'https://timenumbers.com/countdown' },
-        { '@type': 'ListItem', position: 3, name: item.name, item: `https://timenumbers.com/countdown/${event.toLowerCase()}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Countdown', item: 'https://www.timenumbers.com/countdown' },
+        { '@type': 'ListItem', position: 3, name: item.name, item: `https://www.timenumbers.com/countdown/${event.toLowerCase()}` },
       ],
     },
   };

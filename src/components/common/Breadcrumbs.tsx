@@ -26,7 +26,7 @@ export function Breadcrumbs({ items, className = '', showHomeIcon = true }: Prop
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.url.startsWith('http') ? item.url : `https://timenumbers.com${item.url}`,
+      item: item.url.startsWith('http') ? item.url : `https://www.timenumbers.com${item.url}`,
     })),
   };
 

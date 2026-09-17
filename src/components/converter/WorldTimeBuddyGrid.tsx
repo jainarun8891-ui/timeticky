@@ -251,7 +251,7 @@ export function WorldTimeBuddyGrid({ fromTz, toTz, comboSlug }: WorldTimeBuddyGr
       const diffTag = rt.dayDiff > 0 ? ` (+${rt.dayDiff}d)` : rt.dayDiff < 0 ? ` (${rt.dayDiff}d)` : '';
       text += `• ${timeDisplay}${diffTag} ${rt.abbr} (${row?.subtitle})\n`;
     });
-    text += `\nShared via TimeNumbers: https://timenumbers.com/convert/${comboSlug}?h=${selectedHour}`;
+    text += `\nShared via TimeNumbers: https://www.timenumbers.com/convert/${comboSlug}?h=${selectedHour}`;
 
     navigator.clipboard.writeText(text);
     setIsCopied(true);

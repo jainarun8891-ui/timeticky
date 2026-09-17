@@ -57,12 +57,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Current Time in ${parsed.formattedOffset} — Clocks, Zones & Cities`,
     description: `Exact current time in ${parsed.formattedOffset} timezone band. Compare cities, explore IANA zones, verify Daylight Saving changes, and check difference from your local time.`,
     alternates: {
-      canonical: `https://timenumbers.com/utc-offset/${offset.toLowerCase()}`,
+      canonical: `https://www.timenumbers.com/utc-offset/${offset.toLowerCase()}`,
     },
     openGraph: {
       title: `${parsed.formattedOffset} Time Zone — TimeNumbers`,
       description: `Live atomic clock and member cities in ${parsed.formattedOffset}.`,
-      url: `https://timenumbers.com/utc-offset/${offset.toLowerCase()}`,
+      url: `https://www.timenumbers.com/utc-offset/${offset.toLowerCase()}`,
     },
   };
 }
@@ -85,13 +85,13 @@ export default async function UtcOffsetPage({ params }: Props) {
     '@type': 'WebPage',
     name: `${parsed.formattedOffset} Time Zone & Clocks`,
     description: `Current time in ${parsed.formattedOffset}. Member cities, IANA zones, and time difference.`,
-    url: `https://timenumbers.com/utc-offset/${offset.toLowerCase()}`,
+    url: `https://www.timenumbers.com/utc-offset/${offset.toLowerCase()}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Time Zones', item: 'https://timenumbers.com/time-zones' },
-        { '@type': 'ListItem', position: 3, name: parsed.formattedOffset, item: `https://timenumbers.com/utc-offset/${offset.toLowerCase()}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Time Zones', item: 'https://www.timenumbers.com/time-zones' },
+        { '@type': 'ListItem', position: 3, name: parsed.formattedOffset, item: `https://www.timenumbers.com/utc-offset/${offset.toLowerCase()}` },
       ],
     },
   };

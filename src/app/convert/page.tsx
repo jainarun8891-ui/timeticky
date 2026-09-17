@@ -75,7 +75,7 @@ export default function ConvertDirectoryPage() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "TimeNumbers Timezone Converters Directory",
-            "url": "https://timenumbers.com/convert",
+            "url": "https://www.timenumbers.com/convert",
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "offers": {

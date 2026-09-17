@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Moon Phase in ${city.name}, ${city.country} Today — Lunar Illumination & Calendar`,
     description: `Current moon phase, illumination percentage, and lunar calendar for ${city.name} (${city.country}). View next Full Moon and New Moon dates.`,
     alternates: {
-      canonical: `https://timenumbers.com/moon/${rawSlug}`,
+      canonical: `https://www.timenumbers.com/moon/${rawSlug}`,
     },
     openGraph: {
       title: `Moon Phase in ${city.name} — TimeNumbers`,
       description: `Today's moon phase, illumination %, and lunar calendar in ${city.name}.`,
-      url: `https://timenumbers.com/moon/${rawSlug}`,
+      url: `https://www.timenumbers.com/moon/${rawSlug}`,
       type: 'website',
     },
   };

@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Sunrise and Sunset Times in ${city.name}, ${city.country} — Today's Dawn & Dusk`,
     description: `Exact sunrise, sunset, dawn, dusk, civil twilight times, and day length for ${city.name} (${city.country}). Updated daily using high-precision NOAA solar formulas.`,
     alternates: {
-      canonical: `https://timenumbers.com/sunrise-sunset/${rawSlug}`,
+      canonical: `https://www.timenumbers.com/sunrise-sunset/${rawSlug}`,
     },
     openGraph: {
       title: `Sunrise and Sunset in ${city.name} — TimeNumbers`,
       description: `Today's solar hours, solar noon, and twilight phases in ${city.name}.`,
-      url: `https://timenumbers.com/sunrise-sunset/${rawSlug}`,
+      url: `https://www.timenumbers.com/sunrise-sunset/${rawSlug}`,
       type: 'website',
     },
   };

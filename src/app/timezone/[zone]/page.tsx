@@ -47,12 +47,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Current Time in ${titleName} — Live Clock, Offset & Cities`,
     description: `Exact current time in ${titleName}. Standard offset ${offset}, Daylight Saving Time status, IANA identifier, and live synchronized clocks for major cities worldwide.`,
     alternates: {
-      canonical: `https://timenumbers.com/timezone/${slug}`,
+      canonical: `https://www.timenumbers.com/timezone/${slug}`,
     },
     openGraph: {
       title: `${titleName} Time — Live Clock & Offset`,
       description: `Exact time in ${titleName}. UTC offset ${offset}, DST rules, and member cities.`,
-      url: `https://timenumbers.com/timezone/${slug}`,
+      url: `https://www.timenumbers.com/timezone/${slug}`,
     },
   };
 }
@@ -98,13 +98,13 @@ export default async function TimezonePage({ params }: Props) {
     '@type': 'WebPage',
     name: `${title} Live Time & Offset`,
     description: `Accurate atomic time for ${title}. Offset ${offsetStr}.`,
-    url: `https://timenumbers.com/timezone/${slug}`,
+    url: `https://www.timenumbers.com/timezone/${slug}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Time Zones', item: 'https://timenumbers.com/time-zones' },
-        { '@type': 'ListItem', position: 3, name: title, item: `https://timenumbers.com/timezone/${slug}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Time Zones', item: 'https://www.timenumbers.com/time-zones' },
+        { '@type': 'ListItem', position: 3, name: title, item: `https://www.timenumbers.com/timezone/${slug}` },
       ],
     },
   };

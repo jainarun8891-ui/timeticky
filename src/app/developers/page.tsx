@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: 'TimeNumbers Developer Platform — Free World Time & Astronomy API',
   description: 'Integrate global atomic chronometry, IANA time zones, solar ephemeris, and precision time conversions into your applications. Free anonymous tier, zero dependencies, JSON REST API.',
   alternates: {
-    canonical: 'https://timenumbers.com/developers',
+    canonical: 'https://www.timenumbers.com/developers',
   },
   openGraph: {
     title: 'TimeNumbers Developer Platform & API',
     description: 'High-precision REST APIs for timezones, cities, solar calculations, and time conversions.',
-    url: 'https://timenumbers.com/developers',
+    url: 'https://www.timenumbers.com/developers',
   },
 };
 
@@ -24,12 +24,12 @@ export default function DevelopersPage() {
     '@type': 'WebPage',
     name: 'TimeNumbers Developer Platform',
     description: 'World Time & Astronomy REST API Documentation and Quickstart.',
-    url: 'https://timenumbers.com/developers',
+    url: 'https://www.timenumbers.com/developers',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Developers', item: 'https://timenumbers.com/developers' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Developers', item: 'https://www.timenumbers.com/developers' },
       ],
     },
   };
@@ -126,7 +126,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">1. Fetch Current Atomic UTC Time</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://timenumbers.com/api/v1/time&quot;</code>
+              <code>curl -X GET &quot;https://www.timenumbers.com/api/v1/time&quot;</code>
             </div>
           </div>
 
@@ -134,7 +134,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">2. Inspect Specific IANA Timezone</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://timenumbers.com/api/v1/timezone/Asia/Kolkata&quot;</code>
+              <code>curl -X GET &quot;https://www.timenumbers.com/api/v1/timezone/Asia/Kolkata&quot;</code>
             </div>
           </div>
 
@@ -142,7 +142,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">3. Calculate Solar Ephemeris for City</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://timenumbers.com/api/v1/sun/delhi&quot;</code>
+              <code>curl -X GET &quot;https://www.timenumbers.com/api/v1/sun/delhi&quot;</code>
             </div>
           </div>
 
@@ -150,7 +150,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">4. Convert Time Between Multiple International Zones</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://timenumbers.com/api/v1/convert?from=Asia/Kolkata&amp;to=America/New_York,Europe/London&amp;time=14:30&quot;</code>
+              <code>curl -X GET &quot;https://www.timenumbers.com/api/v1/convert?from=Asia/Kolkata&amp;to=America/New_York,Europe/London&amp;time=14:30&quot;</code>
             </div>
           </div>
         </div>

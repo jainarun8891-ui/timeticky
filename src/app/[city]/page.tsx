@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Current Time in ${city.name}, ${city.country} — Live Clock & Time Zone`,
     description: `Exact current local time in ${city.name}, ${city.country}. Includes ${city.timezone} time zone, UTC offset, sunrise, sunset, day length, and live global time difference comparisons.`,
     alternates: {
-      canonical: `https://timenumbers.com/${cleanSlug}`,
+      canonical: `https://www.timenumbers.com/${cleanSlug}`,
     },
     openGraph: {
       title: `Current Time in ${city.name} — TimeNumbers`,
       description: `Check precision local time in ${city.name} (${city.country}) with live seconds and atomic clock synchronization.`,
-      url: `https://timenumbers.com/${cleanSlug}`,
+      url: `https://www.timenumbers.com/${cleanSlug}`,
       type: 'website',
     },
   };

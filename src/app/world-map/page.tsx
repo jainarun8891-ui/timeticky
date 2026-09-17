@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Interactive World Time Map — Live Global Clocks, Day/Night Terminator & Timezones | TimeNumbers',
   description: 'Explore real-time global time on a high-precision interactive world map. Hover over 46 global cities to inspect live digital clocks, solar terminator boundaries, day/night illumination, and great-circle time sync arcs.',
   alternates: {
-    canonical: 'https://timenumbers.com/world-map',
+    canonical: 'https://www.timenumbers.com/world-map',
   },
   openGraph: {
     title: 'Interactive World Time Map — Live Global Clocks & Day/Night Boundary',
     description: 'Explore real-time global time on a high-precision interactive world map with 46 live city clocks and solar terminator.',
-    url: 'https://timenumbers.com/world-map',
+    url: 'https://www.timenumbers.com/world-map',
     siteName: 'TimeNumbers',
     type: 'website',
   },
@@ -54,7 +54,7 @@ export default function WorldMapPage() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'TimeNumbers Interactive World Time Map',
-    url: 'https://timenumbers.com/world-map',
+    url: 'https://www.timenumbers.com/world-map',
     description: 'High-precision interactive world time map featuring real-time solar terminator, live clocks across 46 global cities, day/night boundary, and time zone meridians.',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All'

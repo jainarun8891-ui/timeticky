@@ -20,7 +20,7 @@ export default function WidgetBuilderPage() {
   const [theme, setTheme] = useState('light');
   const [copied, setCopied] = useState(false);
 
-  const snippet = \`<iframe src="https://timenumbers.com/embed/clock?city=\${slug}&theme=\${theme}" width="320" height="130" frameborder="0" style="border-radius: 16px; overflow: hidden;" title="TimeNumbers Widget"></iframe>\`;
+  const snippet = \`<iframe src="https://www.timenumbers.com/embed/clock?city=\${slug}&theme=\${theme}" width="320" height="130" frameborder="0" style="border-radius: 16px; overflow: hidden;" title="TimeNumbers Widget"></iframe>\`;
 
   const copy = () => {
     navigator.clipboard.writeText(snippet);
@@ -190,7 +190,7 @@ export default function TermsPage() {
 write('app/robots.txt/route.ts', `
 import { NextResponse } from 'next/server';
 export async function GET() {
-  const robots = ['User-agent: *', 'Allow: /', 'Disallow: /api/', 'Disallow: /embed/', '', 'Sitemap: https://timenumbers.com/sitemap.xml'].join('\\n');
+  const robots = ['User-agent: *', 'Allow: /', 'Disallow: /api/', 'Disallow: /embed/', '', 'Sitemap: https://www.timenumbers.com/sitemap.xml'].join('\\n');
   return new NextResponse(robots, { headers: { 'Content-Type': 'text/plain' } });
 }
 `);
@@ -211,7 +211,7 @@ export async function GET() {
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...all.map(u => \`  <url><loc>https://timenumbers.com\${u}</loc><changefreq>daily</changefreq></url>\`),
+    ...all.map(u => \`  <url><loc>https://www.timenumbers.com\${u}</loc><changefreq>daily</changefreq></url>\`),
     '</urlset>'
   ].join('\\n');
 

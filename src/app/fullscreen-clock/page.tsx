@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: 'Full Screen Digital Clock — Distraction-Free Kiosk & Office Display',
   description: 'Full-screen precision online digital clock. Auto-hiding controls, high-contrast typography, millisecond precision, and keyboard shortcuts for meetings, classrooms, and kiosks.',
   alternates: {
-    canonical: 'https://timenumbers.com/fullscreen-clock',
+    canonical: 'https://www.timenumbers.com/fullscreen-clock',
   },
   openGraph: {
     title: 'Full Screen Clock — TimeNumbers',
     description: 'Clean full screen clock display with auto-hiding controls and dark mode.',
-    url: 'https://timenumbers.com/fullscreen-clock',
+    url: 'https://www.timenumbers.com/fullscreen-clock',
   },
 };
 

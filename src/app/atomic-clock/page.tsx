@@ -59,7 +59,7 @@ export default function AtomicClockPage() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "TimeNumbers Online Atomic Clock",
-            "url": "https://timenumbers.com/atomic-clock",
+            "url": "https://www.timenumbers.com/atomic-clock",
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "offers": {

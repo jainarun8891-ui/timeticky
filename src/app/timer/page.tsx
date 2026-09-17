@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Online Timer — Full Screen Accurate Countdown Clock with Alarm Sound',
   description: 'Free online countdown timer with loud audio alarm, full-screen mode, and background tab accuracy. Shortcut presets for 1 min, 5 min, 10 min, 15 min, 30 min, and 1 hour.',
   alternates: {
-    canonical: 'https://timenumbers.com/timer',
+    canonical: 'https://www.timenumbers.com/timer',
   },
   openGraph: {
     title: 'Online Timer — TimeNumbers',
     description: 'Accurate online countdown timer with audio chime and presets.',
-    url: 'https://timenumbers.com/timer',
+    url: 'https://www.timenumbers.com/timer',
   },
 };
 
@@ -25,12 +25,12 @@ export default function TimerPage() {
     '@type': 'WebPage',
     name: 'Online Timer',
     description: 'Precision online countdown timer with audio chime and background accuracy.',
-    url: 'https://timenumbers.com/timer',
+    url: 'https://www.timenumbers.com/timer',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Timer', item: 'https://timenumbers.com/timer' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Timer', item: 'https://www.timenumbers.com/timer' },
       ],
     },
   };
