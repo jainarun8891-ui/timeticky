@@ -129,8 +129,9 @@ export function Header() {
   ];
 
   return (
-    <header className="w-full bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/90 dark:border-slate-800 sticky top-0 z-50 backdrop-blur-md transition-colors shadow-2xs">
-      <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between gap-3 sm:gap-4">
+    <>
+      <header className="w-full bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/90 dark:border-slate-800 sticky top-0 z-40 backdrop-blur-md transition-colors shadow-2xs">
+        <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between gap-3 sm:gap-4">
         {/* Left: Brand Logo & Tagline */}
         <Link
           href="/"
@@ -381,8 +382,11 @@ export function Header() {
           <button
             type="button"
             id="mobile-menu-toggle"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="lg:hidden w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center transition-colors cursor-pointer border border-slate-200/90 dark:border-slate-700/90 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={(e) => {
+              e.stopPropagation();
+              setMobileMenuOpen((prev) => !prev);
+            }}
+            className="lg:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center transition-colors cursor-pointer border border-slate-200/90 dark:border-slate-700/90 focus:outline-none focus:ring-2 focus:ring-blue-500 shrink-0"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -394,21 +398,59 @@ export function Header() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile Drawer / Navigation Panel */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-x-0 top-16 bottom-0 z-50 lg:hidden flex flex-col">
-          {/* Semi-transparent Backdrop Overlay */}
-          <div
-            onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 top-16 bg-slate-950/60 backdrop-blur-xs -z-10 animate-in fade-in duration-200"
-            aria-hidden="true"
-          />
+    {/* Mobile Side Navigation Drawer (Rendered outside <header> to prevent backdrop-filter containing block trap) */}
+    {mobileMenuOpen && (
+      <div className="fixed inset-0 z-[100] lg:hidden" id="mobile-side-nav">
+        {/* Semi-transparent Backdrop Overlay */}
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity duration-300 animate-in fade-in"
+          aria-hidden="true"
+        />
 
-          {/* Drawer Content */}
-          <div className="w-full h-full bg-white dark:bg-slate-900 border-b border-slate-200/90 dark:border-slate-800 shadow-2xl overflow-y-auto flex flex-col divide-y divide-slate-100 dark:divide-slate-800 animate-in slide-in-from-top-2 fade-in duration-200">
-            {/* Quick Search Trigger inside Drawer */}
-            <div className="p-3.5 sm:p-4 bg-slate-50/60 dark:bg-slate-950/40 shrink-0">
+        {/* Slide-out Side Nav Panel (from right edge) */}
+        <div
+          className="fixed inset-y-0 right-0 w-[88vw] max-w-sm h-full bg-white dark:bg-slate-900 border-l border-slate-200/90 dark:border-slate-800 shadow-2xl flex flex-col z-[101] animate-in slide-in-from-right duration-300 ease-out"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation Menu"
+        >
+          {/* Side Nav Top Bar with Brand & Close Button */}
+          <div className="h-16 px-4 flex items-center justify-between border-b border-slate-200/90 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 shrink-0">
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-xs">
+                <Globe className="w-4 h-4 stroke-[2.2]" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                  {siteConfig.name}
+                </span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium leading-none">
+                  A more connected world
+                </span>
+              </div>
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center transition-colors cursor-pointer border border-slate-200/90 dark:border-slate-700/90 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Close navigation"
+            >
+              <X className="w-5 h-5 text-slate-800 dark:text-white" />
+            </button>
+          </div>
+
+          {/* Scrollable Side Nav Body */}
+          <div className="flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
+            {/* Quick Search Trigger inside Side Nav */}
+            <div className="p-3.5 bg-slate-50/60 dark:bg-slate-950/40 shrink-0">
               <button
                 type="button"
                 onClick={() => {
@@ -419,17 +461,17 @@ export function Header() {
                       input.focus();
                       input.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
-                  }, 100);
+                  }, 150);
                 }}
                 className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-slate-800/90 border border-slate-200/90 dark:border-slate-700/80 text-xs text-slate-400 dark:text-slate-400 shadow-xs text-left group hover:border-blue-400 dark:hover:border-blue-500 transition-colors cursor-pointer"
               >
                 <Search className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors shrink-0" />
-                <span className="truncate">Search 50,000+ cities, countries & timezones...</span>
+                <span className="truncate">Search 50,000+ cities & zones...</span>
               </button>
             </div>
 
             {/* Navigation Options List */}
-            <nav className="p-3 sm:p-4 space-y-1.5 text-sm font-semibold text-slate-700 dark:text-slate-200 flex-1">
+            <nav className="p-3 space-y-1.5 text-sm font-semibold text-slate-700 dark:text-slate-200">
               {/* World Clock */}
               <Link
                 href="/"
@@ -446,6 +488,33 @@ export function Header() {
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
                       Real-time world clocks & time differences
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+
+              {/* United States Time Now */}
+              <Link
+                href="/united-states-time-now"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        USA Time Now
+                      </span>
+                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-bold">
+                        All US Zones
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-slate-400 font-normal">
+                      Eastern, Central, Mountain, Pacific, Alaska & Hawaii
                     </div>
                   </div>
                 </div>
@@ -474,7 +543,7 @@ export function Header() {
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-normal">
-                        Visual timeline grid & timezone converter pairs
+                        Visual timeline grid & converter pairs
                       </div>
                     </div>
                   </div>
@@ -511,7 +580,7 @@ export function Header() {
                     >
                       <span className="flex items-center gap-2">
                         <Layers className="w-3.5 h-3.5" />
-                        <span>Browse All 552 Timezone Combinations</span>
+                        <span>Browse All 552 Combinations</span>
                       </span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
@@ -539,7 +608,7 @@ export function Header() {
                       </span>
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Solar terminator, day/night boundary & 46 live clocks
+                      Solar terminator & 46 live clocks
                     </div>
                   </div>
                 </div>
@@ -566,7 +635,7 @@ export function Header() {
                       </span>
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Canonical IANA timezones, offsets & regions
+                      Canonical IANA timezones & offsets
                     </div>
                   </div>
                 </div>
@@ -588,7 +657,7 @@ export function Header() {
                       Wall Clock
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Trading floor kiosk display with Swiss dials
+                      Trading floor kiosk with Swiss dials
                     </div>
                   </div>
                 </div>
@@ -610,7 +679,7 @@ export function Header() {
                       Astronomy
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Sunrise, sunset, twilight & moon phases
+                      Sunrise, sunset & moon phases
                     </div>
                   </div>
                 </div>
@@ -635,7 +704,7 @@ export function Header() {
                           Tools & Calculators
                         </span>
                         <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-teal-100 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 font-bold border border-teal-200/50 dark:border-teal-800">
-                          9 Tools
+                          {featureTools.length} Tools
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-normal">
@@ -697,6 +766,28 @@ export function Header() {
                 <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
               </Link>
 
+              {/* Country Directory */}
+              <Link
+                href="/country"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+                    <Globe className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      Country Directory
+                    </div>
+                    <div className="text-[11px] text-slate-400 font-normal">
+                      240+ countries & territories with clocks
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+
               {/* Learn */}
               <Link
                 href="/learn"
@@ -742,7 +833,7 @@ export function Header() {
               </Link>
             </nav>
 
-            {/* Mobile Footer Area */}
+            {/* Side Nav Footer Area */}
             <div className="p-4 bg-slate-50/70 dark:bg-slate-950/50 space-y-3 shrink-0">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Theme</span>
@@ -791,7 +882,8 @@ export function Header() {
             </div>
           </div>
         </div>
-      )}
-    </header>
-  );
+      </div>
+    )}
+  </>
+);
 }
