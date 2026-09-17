@@ -55,15 +55,19 @@ export default async function RootCityPage({ params }: Props) {
   const cityFaqs = [
     {
       question: `What time is it in ${city.name} right now?`,
-      answer: `TimeNumbers calculates the current local time in ${city.name} using atomic NTP synchronization against the canonical ${city.timezone} IANA time zone rules.`
+      answer: `The live clock above shows the exact, synchronized local time in ${city.name}, ${city.country}. It updates in real time to the second, calibrated directly with official atomic reference clocks so you always see the true local time.`
     },
     {
-      question: `Does ${city.name} observe Daylight Saving Time (DST)?`,
-      answer: `${city.name} follows the daylight saving schedule of ${city.country}. During summer months, clocks may advance by one hour.`
+      question: `Does ${city.name} change clocks for Daylight Saving Time?`,
+      answer: `${city.name} follows the regional time conventions for ${city.country} (${city.timezone}). If daylight saving time is active, our clock automatically factors in the one-hour shift so you never have to guess standard vs daylight hours.`
     },
     {
-      question: `What is the UTC offset for ${city.name}?`,
-      answer: `The official time zone identifier for ${city.name} is ${city.timezone}. You can see the live calculated standard or daylight offset in the header above.`
+      question: `What is the current UTC offset for ${city.name}?`,
+      answer: `${city.name} belongs to the ${city.timezone} time zone. Its exact hour difference from Coordinated Universal Time (UTC) is shown right beneath the main clock above, alongside today's sunrise, sunset, and daylight duration.`
+    },
+    {
+      question: `What are typical business hours in ${city.name}?`,
+      answer: `Standard office and business hours in ${city.name} generally run from 9:00 AM to 5:00 PM local time, Monday through Friday. Use our interactive converter below to easily coordinate international meetings during shared waking hours.`
     }
   ];
 

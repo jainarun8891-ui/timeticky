@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test src/tests/time.test.ts"
+    "test": "node --experimental-strip-types --test src/tests/time.test.ts",
+    "seo:ping": "node scripts/seo_ping.js"
   },
   "dependencies": {
     "@types/d3-geo": "^3.1.1",

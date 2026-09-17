@@ -72,20 +72,20 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
 
   const faqs = [
     {
-      question: `What is the time difference between ${fromTz.abbr} and ${toTz.abbr}?`,
-      answer: `${fromTz.primaryName} (${fromTz.abbr}, ${fromTz.offsetStr}) is centered around ${fromTz.primaryIana}, while ${toTz.primaryName} (${toTz.abbr}, ${toTz.offsetStr}) is observed in ${toTz.primaryIana}. The relative difference can shift when either region enters or exits daylight saving time.`
+      question: `What is the current time difference between ${fromTz.abbr} and ${toTz.abbr}?`,
+      answer: `${fromTz.primaryName} (${fromTz.abbr}) operates at ${fromTz.offsetStr}, while ${toTz.primaryName} (${toTz.abbr}) operates at ${toTz.offsetStr}. When either region begins or ends Daylight Saving Time, the relative gap adjusts automatically on this board.`
     },
     {
-      question: `What is the best time for a meeting between ${fromTz.abbr} and ${toTz.abbr}?`,
-      answer: `Use our interactive visual timeline grid above to identify overlapping business hours (9:00 AM – 6:00 PM). Click the 'Snap to Overlap' button to instantly highlight the optimal working window where teams in both timezones are awake and working.`
+      question: `When is the best overlapping time for a call between ${fromTz.abbr} and ${toTz.abbr}?`,
+      answer: `Use the interactive 24-hour visual grid above to spot shared working hours (typically 9:00 AM to 5:00 PM). Click 'Snap to Overlap' to highlight the ideal meeting window where teams in both timezones are comfortably awake and working.`
     },
     {
-      question: `Does ${fromTz.abbr} or ${toTz.abbr} observe Daylight Saving Time (DST)?`,
-      answer: `${fromTz.abbr} ${fromTz.hasDst ? 'observes seasonal Daylight Saving Time clock adjustments' : 'remains on standard time year-round with no seasonal clock shifts'}. ${toTz.abbr} ${toTz.hasDst ? 'observes seasonal Daylight Saving Time clock adjustments' : 'remains on standard time year-round'}.`
+      question: `Do clocks shift for Daylight Saving Time in ${fromTz.abbr} or ${toTz.abbr}?`,
+      answer: `${fromTz.abbr} ${fromTz.hasDst ? 'observes seasonal Daylight Saving Time adjustments' : 'stays on standard time year-round with no clock shifts'}. ${toTz.abbr} ${toTz.hasDst ? 'observes seasonal Daylight Saving Time adjustments' : 'stays on standard time year-round'}. Our converter updates automatically on transition dates.`
     },
     {
-      question: `How do I share a converted meeting time with colleagues in ${toTz.abbr}?`,
-      answer: `Click any hour block on the interactive grid and press 'Copy for Slack / Email' or 'Google Calendar'. The tool generates a clear, timezone-labeled summary and direct calendar links for both parties.`
+      question: `How do I copy and share the converted meeting time with colleagues?`,
+      answer: `Click any hour slot on the visual board and select 'Copy for Slack / Email' or 'Google Calendar'. The tool generates a clean, timezone-labeled invitation ready to send to your team in one click.`
     }
   ];
 
@@ -103,6 +103,44 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
       <FaqAccordion items={faqs} title={`Frequently Asked Questions: ${fromTz.abbr} to ${toTz.abbr} Time Conversion`} />
 
       <RelatedLinksHub />
+
+      {/* Schema.org HowTo Rich Snippet */}
+      <script type="application/ld+json" suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": `How to Convert ${fromTz.abbr} to ${toTz.abbr}`,
+            "description": `Step-by-step instructions to convert time from ${fromTz.primaryName} to ${toTz.primaryName} and find shared team meeting hours.`,
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": `Find your local ${fromTz.abbr} hour`,
+                "text": `Locate your current or desired hour on the ${fromTz.abbr} horizontal timeline grid.`
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": `Read the aligned ${toTz.abbr} time`,
+                "text": `Follow the synchronized vertical column down to see the exact corresponding time in ${toTz.abbr}.`
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Check working hours overlap",
+                "text": "Look for the green and amber highlighted hour blocks where both timezones are within daytime business hours."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Export to calendar or messaging",
+                "text": "Click 'Copy for Slack / Email' or 'Google Calendar' to generate an instant meeting invitation with all timezones included."
+              }
+            ]
+          })
+        }}
+      />
 
       {/* Schema.org WebApplication & FAQPage JSON-LD */}
       <script type="application/ld+json" suppressHydrationWarning

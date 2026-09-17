@@ -48,7 +48,7 @@ export default async function CitySunriseSunsetPage({ params }: Props) {
   const faqs = [
     {
       question: `What time is sunrise in ${city.name} today?`,
-      answer: `TimeNumbers computes today's sunrise in ${city.name} based on its geographical coordinates (${city.lat.toFixed(2)}°N, ${city.lng.toFixed(2)}°E) and local ${city.timezone} time zone rules.`
+      answer: `We calculate today's sunrise, sunset, and twilight phases in ${city.name} (${city.country}) based on its precise coordinates (${city.lat.toFixed(2)}°, ${city.lng.toFixed(2)}°). The calculations factor in solar elevation and dawn twilight so photographers, travelers, and early risers can plan with confidence.`
     },
     {
       question: `What time does sunset occur in ${city.name}?`,

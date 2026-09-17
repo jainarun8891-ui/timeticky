@@ -8,61 +8,61 @@ export interface FaqItem {
   category?: string;
 }
 
-// 1. Homepage Master FAQs
+// 1. Homepage Master FAQs (Humanized, high-intent Google PAA)
 export const HOME_FAQS: FaqItem[] = [
   {
     question: "How accurate is the atomic clock on TimeNumbers?",
-    answer: "TimeNumbers synchronizes with international Stratum-1 atomic clock servers utilizing Network Time Protocol (NTP) round-trip algorithms. Under ordinary broadband connections, our platform delivers an accuracy of within ±0.01 seconds (10 milliseconds) of Coordinated Universal Time (UTC)."
+    answer: "TimeNumbers synchronizes directly with international Stratum-1 atomic clock networks. On any standard broadband or mobile connection, the time you see is accurate within approximately 10 milliseconds (0.01 seconds) of true Coordinated Universal Time (UTC). It is reliable enough for syncing mechanical watches, bidding on time-sensitive auctions, and coordinating international broadcasts."
   },
   {
-    question: "How does TimeNumbers determine my exact local time?",
-    answer: "TimeNumbers queries your device's internal clock and compares it with our atomic time servers via WebSocket and HTTP round-trip timing (RTT). The system calculates the exact drift between your computer and true UTC, displaying your real local time with sub-second precision."
+    question: "How does TimeNumbers find my exact local time?",
+    answer: "When you visit TimeNumbers, our system measures the tiny network round-trip time between your browser and our atomic time servers. We instantly detect if your computer or phone clock is drifting fast or slow, and apply a real-time calibration offset so you always see the exact second without installing any software."
   },
   {
-    question: "What is the difference between UTC and GMT?",
-    answer: "Greenwich Mean Time (GMT) is an astronomical time zone historically based on solar noon at the Royal Observatory in Greenwich, London. Coordinated Universal Time (UTC) is a high-precision scientific time standard defined by International Atomic Time (TAI) and cesium-133 atomic vibrations. UTC never shifts for Daylight Saving Time."
+    question: "What is the real difference between UTC and GMT?",
+    answer: "While GMT (Greenwich Mean Time) and UTC (Coordinated Universal Time) share the exact same current hour and minute, they represent different concepts. GMT is an astronomical time zone tied to the Earth's rotation at the Royal Observatory in Greenwich, London. UTC is the official international scientific standard governed by high-precision atomic clocks. Neither UTC nor GMT ever shifts for Daylight Saving Time."
   },
   {
-    question: "How does the International Meeting Planner calculate overlap?",
-    answer: "Our meeting overlap algorithm evaluates the standard business hours (typically 9:00 to 17:00 local time) across all selected participant cities simultaneously. It identifies the 'Golden Overlap Window' where participants can collaborate during daytime hours without sleep disruption."
+    question: "How does the International Meeting Planner find the best overlap time?",
+    answer: "Our meeting planner takes the work schedules of everyone on your team—usually 9:00 AM to 5:00 PM in their local cities—and aligns them along a 24-hour visual bar. The planner automatically highlights the sweet spot where everyone is awake and working during daylight hours, so you never accidentally schedule a call during a teammate's midnight."
   },
   {
-    question: "When do clocks change for Daylight Saving Time in 2025?",
-    answer: "In the United States and Canada, clocks spring forward by 1 hour on Sunday, March 9, 2025, and fall back on Sunday, November 2, 2025. In the European Union and the United Kingdom, clocks spring forward on Sunday, March 30, 2025, and fall back on Sunday, October 26, 2025."
+    question: "When do clocks change for Daylight Saving Time in 2026 and 2027?",
+    answer: "In the United States and Canada, clocks spring forward 1 hour on the second Sunday in March (March 8, 2026 / March 14, 2027) and fall back on the first Sunday in November (November 1, 2026 / November 7, 2027). In the European Union and the UK, clocks spring forward on the last Sunday in March (March 29, 2026 / March 28, 2027) and fall back on the last Sunday in October (October 25, 2026 / October 31, 2027)."
   },
   {
-    question: "Can I embed TimeNumbers clock widgets on my website?",
-    answer: "Yes. TimeNumbers provides free, responsive embeddable HTML5 widgets via our /widgets directory. You can customize the theme (light or dark), colors, format (12h or 24h), and display options for any of the 500+ indexed world cities."
+    question: "Can I add free TimeNumbers clock widgets to my own website?",
+    answer: "Yes, completely free! You can embed clean, responsive clock widgets from our /widgets directory. Pick any of our 500+ world cities, customize the colors, choose between light or dark mode, and toggle 12-hour or 24-hour formats. Simply copy and paste the snippet into your site, blog, or intranet."
   }
 ];
 
-// 2. Dynamic City FAQs
+// 2. Dynamic City FAQs (Humanized for travelers & remote workers)
 export function getCityFaqs(city: City): FaqItem[] {
-  const isDstCandidate = ['FR', 'US', 'GB', 'DE', 'IT', 'ES', 'CA', 'AU'].includes(city.countryCode);
+  const isDstCandidate = ['FR', 'US', 'GB', 'DE', 'IT', 'ES', 'CA', 'AU', 'NZ'].includes(city.countryCode);
   const dstText = isDstCandidate
-    ? `${city.name} observes Daylight Saving Time. Clocks advance by 1 hour in spring and turn back by 1 hour in autumn.`
-    : `${city.name} does not observe Daylight Saving Time and maintains standard time throughout the entire year.`;
+    ? `${city.name} observes Daylight Saving Time. Clocks jump forward by one hour in the spring to make the most of evening daylight, and fall back by one hour in autumn.`
+    : `${city.name} stays on standard time all year round with no daylight saving clock shifts.`;
 
   return [
     {
       question: `What is the exact time in ${city.name}, ${city.country} right now?`,
-      answer: `The current local time in ${city.name} is synchronized with atomic time on this page. TimeNumbers continuously updates the digital display to reflect the exact sub-second hour, minute, and second in ${city.name}.`
+      answer: `The live clock above shows the exact current local time in ${city.name}, synchronized to the atomic second with official time servers. The digital display updates continuously in real time.`
     },
     {
-      question: `What time zone is ${city.name} in?`,
-      answer: `${city.name} is located in the ${city.timezone} time zone. Its geographic coordinates are ${city.lat.toFixed(4)}° N, ${city.lng.toFixed(4)}° E.`
+      question: `What time zone does ${city.name} use?`,
+      answer: `${city.name} operates in the ${city.timezone} time zone (located at coordinates ${city.lat.toFixed(2)}°, ${city.lng.toFixed(2)}°). You can check its current offset from UTC in the header banner.`
     },
     {
-      question: `Does ${city.name} observe Daylight Saving Time (DST)?`,
+      question: `Does ${city.name} change clocks for Daylight Saving Time?`,
       answer: dstText
     },
     {
-      question: `How do I compare time between ${city.name} and other global cities?`,
-      answer: `You can use the TimeNumbers Time Difference comparison engine or the Meeting Planner on this page to view live hours side-by-side between ${city.name}, New York, London, Tokyo, and 500+ global hubs.`
+      question: `What are typical business hours in ${city.name}?`,
+      answer: `Offices and businesses in ${city.name} generally operate from 9:00 AM to 5:00 PM (or 6:00 PM) local time, Monday through Friday. When scheduling cross-border meetings, lunch typically occurs between 12:00 PM and 2:00 PM.`
     },
     {
-      question: `What are the standard business hours in ${city.name}?`,
-      answer: `Standard corporate business hours in ${city.name} typically run from 09:00 to 17:00 or 18:00 local time, Monday through Friday.`
+      question: `How do I compare time between ${city.name} and my city?`,
+      answer: `Use the interactive converter bar right on this page, or click any major city comparison to see side-by-side hours, daylight windows, and 1-click meeting scheduling links.`
     }
   ];
 }
@@ -72,19 +72,19 @@ export function getTimezoneFaqs(tz: TimeZoneInfo): FaqItem[] {
   return [
     {
       question: `What does ${tz.shortName} stand for and what is its UTC offset?`,
-      answer: `${tz.shortName} stands for ${tz.name}. Its standard offset relative to Coordinated Universal Time is ${tz.formattedOffset}.`
+      answer: `${tz.shortName} stands for ${tz.name}. Its civil time is currently offset by ${tz.formattedOffset} relative to Coordinated Universal Time (UTC).`
     },
     {
       question: `Which major countries and world cities operate on ${tz.shortName}?`,
-      answer: `Major hubs in this time zone include cities located in ${tz.countries.join(', ')}. Clocks across these regions regulate their civil time according to ${tz.shortName}.`
+      answer: `Major hubs and regions observing ${tz.shortName} include ${tz.countries.join(', ')}. Millions of people organize their daily business, transport schedules, and civil life according to this timezone.`
     },
     {
-      question: `Does ${tz.shortName} observe Daylight Saving Time?`,
-      answer: `Whether ${tz.shortName} shifts depends on local jurisdiction. Regions observing seasonal daylight time switch to their designated summer schedule during the spring and summer months.`
+      question: `Does ${tz.shortName} shift for Daylight Saving Time?`,
+      answer: `Whether clocks change depends on local laws in each country. Some regions observing ${tz.shortName} switch to a summer schedule for part of the year, while others remain on fixed standard time.`
     },
     {
-      question: `How do I convert ${tz.shortName} to UTC or EST?`,
-      answer: `To convert ${tz.shortName} to UTC, subtract or add the offset (${tz.formattedOffset}). You can also use our interactive /time-zone-converter to automatically compute conversions for any date and time.`
+      question: `How do I quickly convert ${tz.shortName} to other timezones?`,
+      answer: `You can use our visual Time Zone Converter directory to browse all 552 popular timezone pairings, scrub across a 24-hour timeline, and export meeting times directly to your calendar.`
     }
   ];
 }
@@ -93,16 +93,16 @@ export function getTimezoneFaqs(tz: TimeZoneInfo): FaqItem[] {
 export function getCountryFaqs(country: Country): FaqItem[] {
   return [
     {
-      question: `What is the official capital time of ${country.name}?`,
-      answer: `The capital of ${country.name} is ${country.capital}. The primary administrative time zone is ${country.timezones[0]}.`
+      question: `What is the capital city time of ${country.name}?`,
+      answer: `The capital of ${country.name} is ${country.capital}, located in the ${country.timezones[0]} time zone.`
     },
     {
-      question: `How many time zones does ${country.name} have?`,
-      answer: `${country.name} spans ${country.timezones.length} official time zone${country.timezones.length > 1 ? 's' : ''}: ${country.timezones.join(', ')}.`
+      question: `How many time zones does ${country.name} span?`,
+      answer: `${country.name} covers ${country.timezones.length} official time zone${country.timezones.length > 1 ? 's' : ''}: ${country.timezones.join(', ')}.`
     },
     {
-      question: `What currency and ISO codes are used in ${country.name}?`,
-      answer: `${country.name} uses the ${country.currency}. Its international ISO two-letter country code is ${country.code}.`
+      question: `What currency and country codes are used in ${country.name}?`,
+      answer: `${country.name} uses the ${country.currency}. Its international two-letter ISO country code is ${country.code}.`
     }
   ];
 }
@@ -110,63 +110,63 @@ export function getCountryFaqs(country: Country): FaqItem[] {
 // 5. Tool-Specific FAQs
 export const MEETING_PLANNER_FAQS: FaqItem[] = [
   {
-    question: "How does the international meeting planner calculate the best time?",
-    answer: "Our engine maps the local business hours (09:00–17:00) of each selected city onto a unified 24-hour UTC grid. It highlights overlapping working hours where all participants can join without working during late night or early morning."
+    question: "How does the international meeting planner find the best call time?",
+    answer: "Our planner lays out the typical 9:00 AM to 5:00 PM working hours for every participant side-by-side on a synchronized 24-hour strip. It automatically highlights the shared green overlap hours where no one has to wake up early or stay up late."
   },
   {
-    question: "Can I export meeting slots to Google Calendar or Outlook?",
-    answer: "Yes. Once an optimal meeting time is selected, you can generate an instant Google Calendar event link or download a standard .ics calendar invite compatible with Apple Calendar, Microsoft Outlook, and Yahoo Calendar."
+    question: "Can I export my selected meeting slot to Google Calendar or Outlook?",
+    answer: "Yes! Once you pick an hour, click either 'Google Calendar' or 'Download .ics' to create an instant event invite with all regional times clearly labeled for your attendees."
   },
   {
-    question: "How do we handle teams spanning the Americas, Europe, and Asia?",
-    answer: "When zero daytime overlap exists across three distant continents, we recommend rotating the weekly sync time so no single regional team permanently bears off-hours calls, or using asynchronous recorded memos."
+    question: "What if our team members have zero overlapping daytime hours?",
+    answer: "When teams are separated by 10 to 12 hours (like San Francisco and Singapore), a daytime overlap may not exist. In those cases, teams typically alternate who takes an early morning or evening call each week, or use asynchronous video and chat updates."
   }
 ];
 
 export const TIME_DIFFERENCE_FAQS: FaqItem[] = [
   {
     question: "How do I calculate the time difference between two cities?",
-    answer: "To find the time difference, determine the UTC offset of each city and subtract the smaller offset from the larger one. TimeNumbers calculates this automatically, factoring in daylight saving schedules."
+    answer: "Find the UTC offset for each location and subtract the earlier time from the later time. TimeNumbers computes this automatically, taking into account any active daylight saving shifts so you never have to do mental math."
   },
   {
-    question: "Why does the time difference between New York and London change in March?",
-    answer: "The United States begins Daylight Saving Time on the second Sunday in March, while the UK begins British Summer Time on the last Sunday in March. For approximately three weeks each year, the time difference drops from 5 hours to 4 hours."
+    question: "Why does the time difference between London and New York change in March?",
+    answer: "The United States switches to Daylight Saving Time on the second Sunday in March, while the United Kingdom switches to British Summer Time on the last Sunday in March. During those few weeks in between, the gap shrinks from 5 hours down to 4 hours."
   }
 ];
 
 export const DST_FAQS: FaqItem[] = [
   {
-    question: "When do clocks spring forward and fall back in 2025?",
-    answer: "In the United States and Canada, clocks advance by 1 hour on March 9, 2025, and turn back on November 2, 2025. In Europe and the UK, clocks advance on March 30, 2025, and turn back on October 26, 2025."
+    question: "When do clocks spring forward and fall back?",
+    answer: "In North America, clocks spring forward 1 hour on the second Sunday in March and fall back on the first Sunday in November. In Europe and the UK, clocks spring forward on the last Sunday in March and fall back on the last Sunday in October."
   },
   {
-    question: "Which countries do not observe Daylight Saving Time?",
-    answer: "Over 100 countries do not use DST, including Japan, China, India, Singapore, Russia, Turkey, Saudi Arabia, and most equatorial African and South American nations."
+    question: "Which major countries do not observe Daylight Saving Time?",
+    answer: "Over 100 countries never change their clocks, including Japan, India, China, Singapore, Brazil, Saudi Arabia, and most nations near the equator where daylight remains relatively steady throughout the year."
   },
   {
-    question: "Why is Daylight Saving Time controversial?",
-    answer: "Modern medical and chronobiology studies demonstrate that sudden one-hour sleep disruptions increase cardiovascular events, workplace injuries, and traffic accidents in the days immediately following the spring clock change."
+    question: "Why do some regions want to end Daylight Saving Time?",
+    answer: "Health studies have found that sudden one-hour clock shifts disrupt sleep rhythms and lead to short-term spikes in heart attacks, fatigue, and road accidents in the days following the spring change. Many legislatures are considering permanent standard time."
   }
 ];
 
 export const UNIX_TIME_FAQS: FaqItem[] = [
   {
     question: "What is a Unix timestamp?",
-    answer: "A Unix timestamp (epoch time) represents the number of non-leap seconds that have elapsed since Thursday, January 1, 1970 at 00:00:00 UTC. It provides a standardized numeric format for computers and databases."
+    answer: "A Unix timestamp is simply the total number of seconds that have passed since midnight UTC on January 1, 1970 (known as the Unix Epoch). It gives programmers a universal, timezone-independent way to store dates in databases and software."
   },
   {
     question: "What is the Year 2038 Problem (Y2K38)?",
-    answer: "Legacy 32-bit signed systems store time in an integer with a maximum capacity of 2,147,483,647. On January 19, 2038 at 03:14:07 UTC, this counter will overflow and wrap to negative numbers (December 13, 1901), potentially causing legacy computing failures."
+    answer: "Older 32-bit computer systems store time using numbers that max out at 2,147,483,647 seconds. On January 19, 2038, that counter will roll over to a negative number, potentially confusing legacy systems unless they are upgraded to modern 64-bit timestamps."
   }
 ];
 
 export const CLOCK_ACCURACY_FAQS: FaqItem[] = [
   {
-    question: "How does TimeNumbers achieve sub-second atomic precision in a web browser?",
-    answer: "Web browsers cannot directly query atomic clocks due to sandbox limitations. TimeNumbers uses precision round-trip time (RTT) algorithms to benchmark your local hardware clock against Stratum-1 NTP atomic servers, compensating for network latency down to ±0.01 seconds."
+    question: "How does TimeNumbers achieve atomic clock precision in a web browser?",
+    answer: "While web browsers cannot talk to atomic clocks directly, TimeNumbers continuously measures the round-trip signal time between your device and official Stratum-1 time servers. By compensating for network delay, we display the true atomic second within roughly 10 milliseconds."
   },
   {
-    question: "What is a Stratum 1 atomic time server?",
-    answer: "Stratum 1 time servers are directly connected to Stratum 0 physical time standards, such as cesium-133 beam atomic clocks, rubidium frequency oscillators, or GPS satellite time receivers."
+    question: "What is a Stratum-1 atomic time server?",
+    answer: "A Stratum-1 time server is connected directly to physical atomic clocks—such as cesium beam standards, rubidium oscillators, or GPS satellite constellations—delivering the gold standard of global timekeeping."
   }
 ];

@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { siteConfig } from '@/lib/config/site.config';
 
 interface JsonLdProps {
-  type: 'website' | 'organization' | 'faq' | 'article' | 'breadcrumb';
+  type: 'website' | 'organization' | 'faq' | 'article' | 'breadcrumb' | 'application' | 'howto';
   data?: any;
 }
 
@@ -34,9 +33,38 @@ export function JsonLd({ type, data }: JsonLdProps) {
       "url": siteConfig.url,
       "logo": siteConfig.url + "/favicon.ico",
       "sameAs": [
-        "https://twitter.com/timenumbers",
-        "https://github.com/timenumbers"
+        siteConfig.links.twitter,
+        siteConfig.links.github
       ]
+    };
+  } else if (type === 'application') {
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": data?.name || siteConfig.name,
+      "url": data?.url || siteConfig.url,
+      "description": data?.description || siteConfig.description,
+      "applicationCategory": data?.category || "UtilitiesApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires modern web browser with JavaScript enabled",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    };
+  } else if (type === 'howto' && data) {
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": data.name,
+      "description": data.description,
+      "step": (data.steps || []).map((step: any, index: number) => ({
+        "@type": "HowToStep",
+        "position": index + 1,
+        "name": step.name,
+        "text": step.text
+      }))
     };
   } else if (type === 'article' && data) {
     schema = {
@@ -45,11 +73,11 @@ export function JsonLd({ type, data }: JsonLdProps) {
       "headline": data.title,
       "description": data.excerpt,
       "image": data.image || (siteConfig.url + "/images/paris_hero.jpg"),
-      "datePublished": data.datePublished || "2025-01-15T08:00:00+00:00",
-      "dateModified": data.dateModified || "2025-03-25T10:00:00+00:00",
+      "datePublished": data.datePublished || "2026-01-15T08:00:00+00:00",
+      "dateModified": data.dateModified || "2026-03-25T10:00:00+00:00",
       "author": {
         "@type": "Person",
-        "name": data.author || "Dr. Julian Vance, Horology Lead"
+        "name": data.author || "TimeNumbers Horology Lab"
       },
       "publisher": {
         "@type": "Organization",

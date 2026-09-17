@@ -20,7 +20,7 @@ export default function PomodoroPage() {
     },
     {
       question: 'Does this Pomodoro timer work when the browser tab is inactive?',
-      answer: 'Yes. TimeNumbers Pomodoro calculates remaining time against absolute wall-clock epoch timestamps (Date.now()) rather than relying on throttled browser intervals. It will never drift or pause when you switch tabs.'
+      answer: 'Yes! The timer syncs against true wall-clock time (epoch milliseconds) rather than counting ticks in memory. That means you can switch tabs, minimize your browser, or take notes in another app, and your countdown will remain 100% accurate without slowing down.'
     },
     {
       question: 'Why is 25 minutes the standard Pomodoro interval?',

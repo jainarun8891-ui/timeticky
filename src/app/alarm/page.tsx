@@ -20,7 +20,7 @@ const ALARM_FAQS = [
   },
   {
     question: "How do the audio sounds work without downloading MP3 files?",
-    answer: "TimeNumbers synthesizes pure acoustic harmonic waves in real time using the browser's native Web Audio API (oscillators and exponential gain filters). This guarantees zero latency, works completely offline, and eliminates missing audio file errors."
+    answer: "All alarm chimes are synthesized smoothly in your browser using natural acoustic harmonic frequencies (zen singing bowls, warm marimba, and crisp digital pulses). Because no external sound files have to be loaded, the alarm rings instantaneously with zero lag, even if your internet connection drops."
   },
   {
     question: "Can I use Fullscreen Nightstand Mode on a tablet or bedside phone?",

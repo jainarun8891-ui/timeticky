@@ -16,11 +16,11 @@ export const metadata = buildPageMetadata(
 const SUN_FAQS = [
   {
     question: "How are sunrise and sunset times calculated?",
-    answer: "TimeNumbers utilizes the NOAA solar position algorithm based on orbital eccentricity, solar declination, and equation of time, determining the exact minute the upper limb of the sun touches the astronomical horizon (solar zenith 90.833°)."
+    answer: "We calculate sunrise and sunset based on the exact minute the top edge of the sun crosses the horizon, using the trusted solar position models developed by NOAA. We also factor in atmospheric refraction—the way Earth's air gently bends light rays—so your times reflect what you actually see in the sky."
   },
   {
     question: "What is Solar Noon?",
-    answer: "Solar Noon is the exact moment when the sun culminates at its highest point in the sky for a given longitude. It is midway between sunrise and sunset."
+    answer: "Solar Noon is the peak of the solar day—the exact moment when the sun reaches its highest point in the sky for your specific longitude. It represents true astronomical midday, dividing today's daylight into two equal halves."
   }
 ];
 
