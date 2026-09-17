@@ -12,22 +12,25 @@ export async function generateStaticParams() {
   }));
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = BLOG_ARTICLES.find((a) => a.slug === slug);
-  if (!article) return { title: 'Article Not Found' };
+  if (!article) return buildPageMetadata('Article Not Found', 'Article not found.', `/blog/${slug}`);
+
+  const baseMeta = buildPageMetadata(
+    `${article.title} - TimeNumbers Insights`,
+    article.excerpt,
+    `/blog/${article.slug}`
+  );
 
   return {
-    title: `${article.title} - TimeNumbers Insights`,
-    description: article.excerpt,
+    ...baseMeta,
     keywords: article.keywords,
-    alternates: {
-      canonical: `https://www.timenumbers.com/blog/${article.slug}`,
-    },
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
-      type: 'article',
+      ...baseMeta.openGraph,
+      type: 'article' as const,
       publishedTime: article.datePublished,
       authors: [article.author],
     },

@@ -3,8 +3,32 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
+import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Printer, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Printer, ArrowRight, Sun, Globe } from 'lucide-react';
+
+const CALENDAR_INDEX_FAQS = [
+  {
+    question: "How is the modern Gregorian calendar structured?",
+    answer: "The Gregorian calendar comprises 12 months totaling 365 days in standard years and 366 days in leap years. Introduced by Pope Gregory XIII in October 1582, it corrected the 11-minute annual drift of the preceding Julian calendar, realigning civil dates with the astronomical spring equinox."
+  },
+  {
+    question: "What is the rule for determining leap years?",
+    answer: "A year is a leap year if divisible by 4, except for end-of-century years (ending in 00), which must also be divisible by 400. Thus, 2000 was a leap year, but 1900 was not, and 2100 will not be a leap year."
+  },
+  {
+    question: "Can I print this monthly calendar for physical planning?",
+    answer: "Yes. Click the printer icon in the upper right corner of the calendar header to open your browser's print dialog. The layout automatically formats into a clean, black-and-white grid suitable for paper desk planners."
+  },
+  {
+    question: "How do I jump directly to future or past years?",
+    answer: "You can use the previous and next month arrows to navigate smoothly, or visit our dedicated year pages (such as /calendar/2026 or /calendar/2027) to view full 12-month printable overviews for any year."
+  },
+  {
+    question: "Does TimeNumbers provide week numbers on calendars?",
+    answer: "Yes! Visit our Week Number tool (/week-number) or Compact Calendar (/compact-calendar) to view official ISO-8601 calendar week designations across all 52 weeks of the year."
+  }
+];
 
 export default function CalendarPage() {
   const [d, setD] = useState(new Date());
@@ -31,7 +55,7 @@ export default function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
         <Breadcrumbs items={[{ name: 'Calendar', url: '/calendar' }]} />
 
@@ -45,6 +69,9 @@ export default function CalendarPage() {
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               World Calendar {y}
             </h1>
+            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
+              Interactive monthly calendar with printable views, leap year calculations, and Gregorian solar alignments.
+            </p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -64,39 +91,31 @@ export default function CalendarPage() {
           </div>
         </div>
 
-        {/* Calendar Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-10 shadow-sm space-y-6">
-          {/* Month Navigation */}
-          <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-800">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+        {/* Interactive Calendar Card */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
               {months[m]} {y}
             </h2>
-
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <button
                 onClick={prevMonth}
-                className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-300"
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
                 title="Previous Month"
               >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => setD(new Date())}
-                className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors"
-              >
-                Today
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={nextMonth}
-                className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-300"
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
                 title="Next Month"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
 
-          {/* Weekday Grid Header */}
+          {/* Days Header */}
           <div className="grid grid-cols-7 gap-1 text-center font-bold text-xs uppercase tracking-wider text-slate-400">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
               <div key={day} className="py-2">{day}</div>
@@ -124,6 +143,41 @@ export default function CalendarPage() {
             ))}
           </div>
         </div>
+
+        {/* Guide Section */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 space-y-6 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+            Astronomical Basis of the Gregorian Calendar
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-900 dark:text-white text-base">Tropical Year Alignment</h3>
+              <p>
+                A tropical year—the duration between successive vernal equinoxes—measures 365.242189 days.
+                Early solar calendars introduced too many leap days, causing Easter and agricultural planting seasons to drift backward through the calendar months.
+              </p>
+              <p>
+                The Gregorian formula omits three leap days every four centuries, keeping calendar months firmly synchronized with solar seasons across millennia.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-900 dark:text-white text-base">Civil, Commercial & Cultural Applications</h3>
+              <p>
+                While the Gregorian calendar is the internationally accepted standard for civil and commercial affairs, many cultures simultaneously maintain lunisolar calendars (such as the Hebrew, Islamic, and Hindu calendars) to observe cultural and religious holidays.
+              </p>
+              <p>
+                Explore our Holiday and Astronomy sections to discover how lunar phases, equinoxes, and solar meridians interact with modern civil dates.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Accordion */}
+        <FaqAccordion
+          items={CALENDAR_INDEX_FAQS}
+          title="World Calendar FAQs"
+          subtitle="Frequently asked questions about monthly calendars, leap years, and astronomical alignment."
+        />
 
         {/* Hub Navigation */}
         <RelatedLinksHub title="Explore More Calendars & Tools" />

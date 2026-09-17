@@ -15,6 +15,7 @@ export async function GET() {
     '/daylight-saving-time/non-observing-countries',
     '/daylight-saving-time/europe',
     '/daylight-saving-time/united-states',
+    '/united-states-time-now',
     '/daylight-saving-time/arizona',
     '/business-days-calculator',
     '/birthday-calculator',

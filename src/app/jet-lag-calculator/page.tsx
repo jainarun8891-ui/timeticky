@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Plane, Compass, Sparkles, ShieldCheck } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Flight Time & Jet Lag Circadian Protocol Calculator',
+  'Jet Lag Sleep & Flight Calculator',
   'Calculate flight duration, local arrival times across time zones, and generate an hour-by-hour science-backed light and sleep adjustment protocol to defeat jet lag.',
   '/jet-lag-calculator'
 );

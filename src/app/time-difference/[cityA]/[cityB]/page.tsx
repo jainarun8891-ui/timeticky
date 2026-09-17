@@ -7,6 +7,7 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { Metadata } from 'next';
+import { buildPageMetadata } from '@/lib/seo/metadata';
 
 interface Props {
   params: Promise<{ cityA: string; cityB: string }>;
@@ -46,21 +47,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { cityA: slugA, cityB: slugB } = await params;
   const cityA = findCityByRootSlug(slugA);
   const cityB = findCityByRootSlug(slugB);
-  if (!cityA || !cityB) return {};
+  if (!cityA || !cityB) return buildPageMetadata('Time Difference Not Found', 'City time difference not found.', `/time-difference/${slugA}/${slugB}`);
 
-  return {
-    title: `${cityA.name} to ${cityB.name} Time Difference — Exact Hours & Overlap Matrix`,
-    description: `Current time difference between ${cityA.name} (${cityA.country}) and ${cityB.name} (${cityB.country}). Includes live dual clocks, 24-hour conversion matrix, and best working meeting hours.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/time-difference/${slugA}/${slugB}`,
-    },
-    openGraph: {
-      title: `${cityA.name} to ${cityB.name} Time Difference`,
-      description: `Compare local time between ${cityA.name} and ${cityB.name} with live conversion matrix.`,
-      url: `https://www.timenumbers.com/time-difference/${slugA}/${slugB}`,
-      type: 'website',
-    },
-  };
+  return buildPageMetadata(
+    `${cityA.name} to ${cityB.name} Time Difference`,
+    `Current time difference between ${cityA.name} (${cityA.country}) and ${cityB.name} (${cityB.country}). Includes live dual clocks, 24-hour conversion matrix, and best working meeting hours.`,
+    `/time-difference/${slugA}/${slugB}`
+  );
 }
 
 export default async function TimeDifferencePairPage({ params }: Props) {

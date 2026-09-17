@@ -9,7 +9,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Globe, ShieldCheck, Cpu, Compass } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  '400+ World Time Zones Directory — Complete IANA Database & Current Times',
+  'World Time Zones List — Global UTC Offsets',
   'Browse the complete database of 400+ canonical IANA world time zones with real-time digital clocks, UTC offsets, daylight saving status, and continent search.',
   '/time-zones'
 );

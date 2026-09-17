@@ -6,18 +6,13 @@ import { ContactClient } from './ContactClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Mail, MessageSquare } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Contact TimeNumbers — Corrections, Inquiries & Technical Support',
-  description: 'Contact the TimeNumbers team for timezone corrections, developer API partnerships, civil DST decree updates, and horological feature requests.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/contact',
-  },
-  openGraph: {
-    title: 'Contact TimeNumbers Desk',
-    description: 'Get in touch with the TimeNumbers engineering and editorial team.',
-    url: 'https://www.timenumbers.com/contact',
-  },
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata(
+  'Contact Support & Feature Inquiries',
+  'Contact the TimeNumbers team for timezone corrections, developer API partnerships, civil DST decree updates, and horological feature requests.',
+  '/contact'
+);
 
 export default function ContactPage() {
   const jsonLd = {

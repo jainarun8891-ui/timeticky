@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Globe, Clock, ShieldCheck, Share2 } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'World Clock — Current Local Time in Cities Worldwide',
+  'World Clock — Current Local Time',
   'Monitor live atomic clocks across multiple world cities. Add favorite locations, reorder clocks, copy times, view day/night status, and share your personalized world clock setup.',
   '/world-clock'
 );

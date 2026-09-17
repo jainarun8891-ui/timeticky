@@ -3,9 +3,33 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
+import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
-import { Maximize2, Minimize2, Moon, Sun, Clock, ShieldCheck } from 'lucide-react';
+import { Maximize2, Minimize2, Moon, Sun, Clock, ShieldCheck, Zap, Radio } from 'lucide-react';
 import { getSyncedDate } from '@/lib/time/sync';
+
+const CLOCK_FAQS = [
+  {
+    question: "How does this online digital clock maintain atomic accuracy?",
+    answer: "TimeNumbers synchronizes with Network Time Protocol (NTP) servers anchored to international atomic clock standards (UTC). We perform real-time drift estimation to calibrate your browser clock against true UTC down to milliseconds."
+  },
+  {
+    question: "Why does my computer or phone clock sometimes drift?",
+    answer: "Consumer electronic clocks rely on quartz crystal oscillators, which are susceptible to temperature fluctuations, battery aging, and hardware manufacturing variances. Without frequent internet time synchronization, standard computer clocks can drift by several seconds per month."
+  },
+  {
+    question: "What is the benefit of the 24-hour time format?",
+    answer: "The 24-hour time notation (00:00 to 23:59) eliminates the ambiguity between morning (AM) and evening (PM) hours. It is the mandatory global standard in civil aviation, emergency healthcare, military logistics, astronomy, and international maritime navigation."
+  },
+  {
+    question: "How can I use this digital clock in fullscreen mode?",
+    answer: "Click the fullscreen icon located in the upper right control bar. The clock will expand to encompass your entire display with high-contrast typography, making it ideal as a desk clock, classroom display, or video broadcast backdrop."
+  },
+  {
+    question: "Does the digital clock keep running when the browser tab is hidden?",
+    answer: "Yes. The clock computes its display based on the live system clock rather than relying on background interval counters. Whenever you bring the tab back into focus, the displayed time is immediately 100% synchronized."
+  }
+];
 
 export default function ClockPage() {
   const [time, setTime] = useState(new Date());
@@ -33,7 +57,7 @@ export default function ClockPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
         <Breadcrumbs items={[{ name: 'Digital Clock', url: '/clock' }]} />
 
@@ -103,6 +127,40 @@ export default function ClockPage() {
             </p>
           </div>
         </div>
+
+        {/* Informative Science Guide */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 space-y-6 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+            Atomic Timekeeping & Digital Precision
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-900 dark:text-white text-base">Network Time Protocol (NTP) Synchronicity</h3>
+              <p>
+                Civil time is coordinated globally through the International Bureau of Weights and Measures (BIPM), which pools data from hundreds of atomic cesium beam standards and hydrogen masers worldwide to establish International Atomic Time (TAI) and Coordinated Universal Time (UTC).
+              </p>
+              <p>
+                Our web clock queries high-stratum time servers to measure transmission delay and offset variance, delivering time synchronization that exceeds the accuracy of unassisted device operating systems.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-900 dark:text-white text-base">High-Legibility Digital Display Design</h3>
+              <p>
+                Whether monitoring live television broadcast countdowns, bidding on digital auctions, or coordinating time-critical financial trades, precision seconds are indispensable.
+              </p>
+              <p>
+                TimeNumbers features responsive monospaced typography with customizable 12-hour/24-hour switching, full-screen capability, and dark room night mode to protect vision during extended sessions.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Accordion */}
+        <FaqAccordion
+          items={CLOCK_FAQS}
+          title="Digital Clock FAQs"
+          subtitle="Answers to common questions regarding atomic clock synchronization and digital time displays."
+        />
 
         {/* Related Links Hub */}
         <RelatedLinksHub title="Explore More Clocks & Tools" />

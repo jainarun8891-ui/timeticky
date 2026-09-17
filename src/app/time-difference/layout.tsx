@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Global Time Difference Calculator & City Comparison Matrix",
+  "Time Difference Calculator & Matrix",
   "Calculate the exact hour and minute time difference between world cities with live side-by-side chronometers.",
   "/time-difference"
 );

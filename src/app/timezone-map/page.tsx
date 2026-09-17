@@ -6,18 +6,13 @@ import { TimezoneMapClient } from './TimezoneMapClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Globe, Clock, Compass, ShieldCheck, MapPin, Layers } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Interactive World Time Zone Map — Live Global Clock Bands',
-  description: 'Explore the interactive world time zone map. Visualise 24 international longitudinal time bands, live UTC offsets, local time, and major cities across every time zone.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/timezone-map',
-  },
-  openGraph: {
-    title: 'Interactive World Time Zone Map — TimeNumbers',
-    description: 'Explore world time zones by longitudinal meridian, UTC offset, and major metropolitan clusters in real time.',
-    url: 'https://www.timenumbers.com/timezone-map',
-  },
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata(
+  'World Time Zone Map — Live Global Clock Bands',
+  'Explore the interactive world time zone map. Visualise 24 international longitudinal time bands, live UTC offsets, local time, and major cities across every time zone.',
+  '/timezone-map'
+);
 
 export default function TimezoneMapPage() {
   const jsonLd = {

@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Time Zone Converter — Convert Times Between Global Zones",
-  "Interactive 24-hour slider time zone converter with automatic day-shift detection and multi-city synchronization.",
+  "Time Zone Converter — Global Zones",
+  "Interactive multi-city time zone converter with automatic daylight saving time computation, 24-hour sliders, and meeting overlap calculation.",
   "/time-zone-converter"
 );
 

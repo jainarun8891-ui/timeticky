@@ -8,6 +8,8 @@ import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { Sun, Moon, Clock, ArrowRight, Calendar, Globe, AlertCircle, ShieldAlert } from 'lucide-react';
 import { COUNTRIES } from '@/lib/geo/countries';
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 interface Props {
   params: Promise<{ year: string }>;
 }
@@ -25,54 +27,45 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year: slug } = await params;
 
   if (slug === 'arizona') {
-    return {
-      title: "Does Arizona Change Time for Daylight Savings? MST Rules & Navajo Exception | TimeNumbers",
-      description: "Why Arizona does not observe Daylight Saving Time (DST). Explanation of Mountain Standard Time (MST) year-round, energy savings, and the Navajo Nation exception.",
-      alternates: { canonical: "https://www.timenumbers.com/daylight-saving-time/arizona" }
-    };
+    return buildPageMetadata(
+      "Arizona Daylight Saving Time Rules & MST",
+      "Why Arizona does not observe Daylight Saving Time (DST). Explanation of Mountain Standard Time (MST) year-round, energy savings, and the Navajo Nation exception.",
+      "/daylight-saving-time/arizona"
+    );
   }
 
   if (slug === 'united-states') {
-    return {
-      title: "United States Daylight Saving Time Schedule — March Clocks Forward | TimeNumbers",
-      description: "Exact time clocks change in the United States. Learn when clocks go forward in March and back in November, Uniform Time Act rules, and non-observing states.",
-      alternates: { canonical: "https://www.timenumbers.com/daylight-saving-time/united-states" }
-    };
+    return buildPageMetadata(
+      "US Daylight Saving Time Schedule & Clocks",
+      "Exact time clocks change in the United States. Learn when clocks go forward in March and back in November, Uniform Time Act rules, and non-observing states.",
+      "/daylight-saving-time/united-states"
+    );
   }
 
   if (slug === 'europe') {
-    return {
-      title: "European Union Daylight Saving Time Schedule & Clock Changes | TimeNumbers",
-      description: "When do clocks change in Europe? Schedule for European Summer Time (CEST/BST) transitions in March and October across the UK and EU countries.",
-      alternates: { canonical: "https://www.timenumbers.com/daylight-saving-time/europe" }
-    };
+    return buildPageMetadata(
+      "Europe Daylight Saving Time Schedule",
+      "When do clocks change in Europe? Schedule for European Summer Time (CEST/BST) transitions in March and October across the UK and EU countries.",
+      "/daylight-saving-time/europe"
+    );
   }
 
   if (slug === 'non-observing-countries') {
-    return {
-      title: "What Countries Do Not Observe Daylight Saving Time? Full Global List | TimeNumbers",
-      description: "Complete list of countries and territories that do not observe Daylight Saving Time. Learn why China, India, Japan, Brazil, and most equatorial nations keep standard time.",
-      alternates: { canonical: "https://www.timenumbers.com/daylight-saving-time/non-observing-countries" }
-    };
+    return buildPageMetadata(
+      "Countries That Do Not Observe DST",
+      "Complete list of countries and territories that do not observe Daylight Saving Time. Learn why China, India, Japan, Brazil, and most equatorial nations keep standard time.",
+      "/daylight-saving-time/non-observing-countries"
+    );
   }
 
   const y = parseInt(slug, 10);
   if (isNaN(y)) return {};
 
-  return {
-    title: `Daylight Saving Time ${y} — Global Transition Dates & Clock Changes | TimeNumbers`,
-    description: `Complete Daylight Saving Time (DST) schedule for ${y}. Exact spring-forward and fall-back transition dates and times for the United States, Canada, Europe, Australia, and New Zealand.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/daylight-saving-time/${y}`,
-    },
-    openGraph: {
-      title: `Daylight Saving Time ${y} Schedule & Transition Dates`,
-      description: `Exact DST clock change dates and times worldwide for year ${y}.`,
-      url: `https://www.timenumbers.com/daylight-saving-time/${y}`,
-      siteName: 'TimeNumbers',
-      type: 'website',
-    }
-  };
+  return buildPageMetadata(
+    `Daylight Saving Time ${y} — Clock Changes`,
+    `Complete Daylight Saving Time (DST) schedule for ${y}. Exact spring-forward and fall-back transition dates and times for the United States, Canada, Europe, Australia, and New Zealand.`,
+    `/daylight-saving-time/${y}`
+  );
 }
 
 export default async function DaylightSavingTimeYearPage({ params }: Props) {

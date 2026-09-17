@@ -68,6 +68,25 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
 
+        {country.slug === 'united-states' && (
+          <div className="mt-6 p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span className="font-bold text-sm text-blue-950 dark:text-blue-200 block">
+                Looking for live clocks across all US time zones?
+              </span>
+              <span className="text-xs text-blue-700 dark:text-blue-300">
+                View real-time atomic clocks for Eastern, Central, Mountain, Pacific, Alaska, and Hawaii.
+              </span>
+            </div>
+            <Link
+              href="/united-states-time-now"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shrink-0 transition-colors text-center"
+            >
+              US Time Now Hub →
+            </Link>
+          </div>
+        )}
+
         {country.dstNotes && (
           <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400">
             <span className="font-bold text-slate-800 dark:text-slate-200">Daylight Saving Rule: </span>

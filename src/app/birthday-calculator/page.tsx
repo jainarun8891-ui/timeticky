@@ -5,7 +5,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { BirthdayCalculatorClient } from './BirthdayCalculatorClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Birthday Calculator — How Many Weeks & Days Until My Birthday | TimeNumbers",
+  "Birthday Calculator — Days Until Birthday",
   "Calculate how many weeks, days, hours, and seconds until your next birthday. Discover your exact chronological age in years, months, and days with live countdown.",
   "/birthday-calculator"
 );

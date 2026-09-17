@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Sun, Moon, Compass, Sparkles } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Solar & Lunar Astronomy Lab — Sunrise, Sunset, Twilight & Moon Phases',
+  'Solar & Lunar Astronomy Lab — Ephemeris',
   'Real-time solar calculations, sunrise, sunset, civil and nautical twilight times, golden hour windows, and live moon phase illumination percentage for any world city.',
   '/astronomy'
 );

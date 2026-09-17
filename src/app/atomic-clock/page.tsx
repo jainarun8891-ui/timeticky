@@ -7,7 +7,7 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Online Atomic Clock — NIST-Synchronized Exact Time with Milliseconds',
+  'Online Atomic Clock — Exact UTC Milliseconds',
   'Accurate online atomic clock synchronized directly with NIST and BIPM atomic time standards. Features millisecond precision, drift measurement, 12/24 hour display, and acoustic beat.',
   '/atomic-clock'
 );

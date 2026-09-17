@@ -6,18 +6,13 @@ import { CitiesDirectoryClient } from './CitiesDirectoryClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Building2, Globe, Clock, MapPin, Compass } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'World Cities Directory — Current Local Time & Population Across All Metropolises',
-  description: 'Explore the definitive directory of global cities. Filter by continent, alphabetical order, or population to view live synchronized clocks, timezones, and coordinates.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/cities',
-  },
-  openGraph: {
-    title: 'World Cities Directory — TimeNumbers',
-    description: 'Browse global cities with live time, population data, and timezone offsets.',
-    url: 'https://www.timenumbers.com/cities',
-  },
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata(
+  'World Cities Directory — Major World Clocks',
+  'Explore the definitive directory of global cities. Filter by continent, alphabetical order, or population to view live synchronized clocks, timezones, and coordinates.',
+  '/cities'
+);
 
 export default function CitiesPage() {
   const jsonLd = {

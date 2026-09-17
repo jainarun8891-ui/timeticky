@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Globe, ArrowRight, ArrowLeftRight, Users, Sparkles, BookOpen, Clock, Calendar, Sun, Phone, Monitor, Plane, Bell, ShieldCheck, Map } from 'lucide-react';
+import { Globe, ArrowRight, ArrowLeftRight, Users, Sparkles, BookOpen, Clock, Calendar, Sun, Phone, Monitor, Plane, Bell, ShieldCheck, Map, Moon, Camera, Code, Layers } from 'lucide-react';
 import { CITIES } from '@/lib/geo/cities';
 import { TIMEZONES } from '@/lib/time/timezones';
 
@@ -30,8 +30,24 @@ export function RelatedLinksHub({
   ];
 
   const tools = [
+    { name: 'United States Time Now', desc: 'Live atomic clocks across all US time zones and Washington D.C.', url: '/united-states-time-now', icon: Globe },
+    { name: 'Exact Time Digital Clock', desc: 'Precision digital chronometer with seconds and atomic reference', url: '/clock', icon: Clock },
+    { name: 'Online Pomodoro Timer', desc: '25/5 study and deep work productivity intervals', url: '/pomodoro', icon: Bell },
+    { name: 'Accurate Analog Clock', desc: 'Smooth sweeping second hand and Swiss watch dial', url: '/analog-clock', icon: Clock },
+    { name: '552 Timezone Converters', desc: 'Visual timeline converter across 552 global timezone pairs', url: '/convert', icon: Layers },
+    { name: 'Date Difference Calculator', desc: 'Exact days, weeks, months & business days between dates', url: '/date-difference', icon: Calendar },
+    { name: 'Date Calculator', desc: 'Add or subtract days, weeks, months & business days', url: '/date-calculator', icon: Calendar },
+    { name: 'Golden Hour Calculator', desc: 'Exact photography lighting, blue hour & civil twilight times', url: '/golden-hour', icon: Camera },
+    { name: 'Sunrise & Sunset Times', desc: 'NOAA algorithm solar dawn and dusk times worldwide', url: '/sunrise-sunset', icon: Sun },
+    { name: 'Moon Phases & Illumination', desc: 'Live lunar surface illumination % and 29.5-day synodic cycle', url: '/moon', icon: Moon },
     { name: 'Interactive World Time Map', desc: 'Real-time solar terminator, day/night zones & 46 live clocks', url: '/world-map', icon: Globe },
     { name: '400+ Time Zones Directory', desc: 'Complete canonical IANA database with live ticking clocks', url: '/time-zones', icon: Globe },
+    { name: 'Interactive Timezone Map', desc: 'Live global clock bands with clickable UTC offset zones', url: '/timezone-map', icon: Map },
+    { name: 'World Cities Directory', desc: 'Current local time and population across global metropolises', url: '/cities', icon: Globe },
+    { name: 'Today\'s Date Details', desc: 'Day of year, ISO week, Julian day & year progress percentage', url: '/today', icon: Calendar },
+    { name: 'ISO Week Number Calculator', desc: 'Current ISO week number, calendar quarters & weeks remaining', url: '/week-number', icon: Calendar },
+    { name: 'ISO 8601 String Parser', desc: 'Parse, validate and format ISO-8601 date-time strings', url: '/iso-8601', icon: Code },
+    { name: 'Unix Timestamp Converter', desc: 'Epoch seconds converter to human readable UTC & local time', url: '/unix-time-converter', icon: Clock },
     { name: 'Astronomy & Twilight Lab', desc: 'Sunrise, sunset, golden hour & moon phase calendar', url: '/astronomy', icon: Sun },
     { name: 'International Dialing Codes', desc: 'Country calling codes & smart calling hour guide', url: '/dialing-codes', icon: Phone },
     { name: 'Multi-Clock World Wall', desc: 'Trading floor kiosk with Swiss analog & digital dials', url: '/world-clock-wall', icon: Monitor },

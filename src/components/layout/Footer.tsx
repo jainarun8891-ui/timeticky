@@ -6,7 +6,7 @@ import { siteConfig } from '@/lib/config/site.config';
 export function Footer() {
   return (
     <footer className="w-full bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800 mt-16 py-10 text-xs text-slate-500 dark:text-slate-400">
-      <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-6">
+      <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
           {/* Left: Brand */}
           <div className="flex items-center gap-2.5">
@@ -27,78 +27,127 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Links Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 font-medium text-xs">
+        {/* Links Grid: 7 Structured Categories */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 sm:gap-8 font-medium text-xs">
+          {/* 1. Clocks & Dials */}
           <div>
-            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2 uppercase tracking-wider">
-              Clocks & Wall
+            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
+              Clocks & Dials
             </h5>
             <ul className="space-y-1.5">
               <li><Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Clock</Link></li>
-              <li><Link href="/world-clock-wall" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Multi-Clock Wall</Link></li>
-              <li><Link href="/time-zones" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">400+ Time Zones</Link></li>
-              <li><Link href="/atomic-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Atomic Clock</Link></li>
-              <li><Link href="/clock-accuracy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Clock Accuracy</Link></li>
+              <li><Link href="/clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Exact Time Clock</Link></li>
+              <li><Link href="/analog-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Analog Clock Dial</Link></li>
+              <li><Link href="/fullscreen-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Fullscreen Desk Clock</Link></li>
+              <li><Link href="/world-clock-wall" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Multi-Clock World Wall</Link></li>
+              <li><Link href="/atomic-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Atomic Clock Standard</Link></li>
+              <li><Link href="/clock-accuracy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Clock Accuracy Test</Link></li>
             </ul>
           </div>
 
+          {/* 2. Timers & Productivity */}
           <div>
-            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2 uppercase tracking-wider">
-              Travel & Calling
+            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
+              Timers & Audio
             </h5>
             <ul className="space-y-1.5">
-              <li><Link href="/jet-lag-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Jet Lag Calculator</Link></li>
-              <li><Link href="/dialing-codes" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dialing Codes</Link></li>
-              <li><Link href="/overlap-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Overlap Calculator</Link></li>
-              <li><Link href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner</Link></li>
-              <li><Link href="/business-days-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Business Days</Link></li>
-              <li><Link href="/birthday-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Birthday & Age</Link></li>
-              <li><Link href="/time-difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Difference</Link></li>
+              <li><Link href="/pomodoro" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pomodoro Timer</Link></li>
+              <li><Link href="/timer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Timer</Link></li>
+              <li><Link href="/stopwatch" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Stopwatch</Link></li>
+              <li><Link href="/alarm" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Alarm Clock</Link></li>
+              <li><Link href="/calendar" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Calendar</Link></li>
+              <li><Link href="/today" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Today's Date & Details</Link></li>
+              <li><Link href="/week-number" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ISO Week Number</Link></li>
             </ul>
           </div>
 
+          {/* 3. Calculators & Converters */}
           <div>
-            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2 uppercase tracking-wider">
-              Horology & Space
+            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
+              Calculators
+            </h5>
+            <ul className="space-y-1.5">
+              <li><Link href="/convert" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">552 Timezone Pairs</Link></li>
+              <li><Link href="/time-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Converter</Link></li>
+              <li><Link href="/time-difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Difference Matrix</Link></li>
+              <li><Link href="/date-difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Date Difference</Link></li>
+              <li><Link href="/date-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Date Add / Subtract</Link></li>
+              <li><Link href="/business-days-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Business Days</Link></li>
+              <li><Link href="/birthday-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Birthday & Age</Link></li>
+            </ul>
+          </div>
+
+          {/* 4. Timezones & Travel */}
+          <div>
+            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
+              Timezones & Map
+            </h5>
+            <ul className="space-y-1.5">
+              <li><Link href="/time-zones" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">400+ Time Zones</Link></li>
+              <li><Link href="/timezone-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Time Map</Link></li>
+              <li><Link href="/world-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Sun Map (Live)</Link></li>
+              <li><Link href="/cities" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Cities Directory</Link></li>
+              <li><Link href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner</Link></li>
+              <li><Link href="/overlap-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Overlap Calculator</Link></li>
+              <li><Link href="/dialing-codes" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dialing Codes</Link></li>
+              <li><Link href="/jet-lag-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Jet Lag Calculator</Link></li>
+            </ul>
+          </div>
+
+          {/* 5. Solar, Lunar & Ephemeris */}
+          <div>
+            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
+              Sun & Moon Lab
             </h5>
             <ul className="space-y-1.5">
               <li><Link href="/astronomy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Astronomy Lab</Link></li>
-              <li><Link href="/daylight-saving-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daylight Saving 2025</Link></li>
-              <li><Link href="/unix-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Unix Timestamp</Link></li>
+              <li><Link href="/golden-hour" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Golden Hour Times</Link></li>
+              <li><Link href="/sunrise-sunset" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sunrise & Sunset</Link></li>
+              <li><Link href="/sunrise-sunset/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: New York</Link></li>
+              <li><Link href="/sunrise-sunset/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: London</Link></li>
+              <li><Link href="/sunrise-sunset/delhi" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Delhi</Link></li>
+              <li><Link href="/sunrise-sunset/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Tokyo</Link></li>
+              <li><Link href="/sunrise-sunset/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Paris</Link></li>
+              <li><Link href="/moon" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon Phases</Link></li>
+              <li><Link href="/moon/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: New York</Link></li>
+              <li><Link href="/moon/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: London</Link></li>
+              <li><Link href="/moon/delhi" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: Delhi</Link></li>
+              <li><Link href="/moon/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: Tokyo</Link></li>
+            </ul>
+          </div>
+
+          {/* 6. Daylight Saving & Standards */}
+          <div>
+            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
+              DST & Standards
+            </h5>
+            <ul className="space-y-1.5">
+              <li><Link href="/daylight-saving-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">DST Hub</Link></li>
+              <li><Link href="/daylight-saving-time/2026" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daylight Saving 2026</Link></li>
+              <li><Link href="/daylight-saving-time/2027" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daylight Saving 2027</Link></li>
+              <li><Link href="/daylight-saving-time/united-states" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">United States DST</Link></li>
+              <li><Link href="/daylight-saving-time/europe" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Europe Summer Time</Link></li>
+              <li><Link href="/daylight-saving-time/arizona" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Arizona MST Rules</Link></li>
+              <li><Link href="/daylight-saving-time/non-observing-countries" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Non-Observing Nations</Link></li>
+              <li><Link href="/unix-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Unix Timestamp Studio</Link></li>
+              <li><Link href="/unix-time-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Unix Epoch Converter</Link></li>
+              <li><Link href="/iso-8601" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ISO 8601 Parser</Link></li>
               <li><Link href="/learn" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Horology Academy</Link></li>
             </ul>
           </div>
 
+          {/* 7. Company & Support */}
           <div>
-            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2 uppercase tracking-wider">
-              Timers & Audio
-            </h5>
-            <ul className="space-y-1.5">
-              <li><Link href="/alarm" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Alarm Clock</Link></li>
-              <li><Link href="/stopwatch" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Stopwatch</Link></li>
-              <li><Link href="/timer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Timer</Link></li>
-              <li><Link href="/calendar" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Calendar</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2 uppercase tracking-wider">
-              Articles & Guides
-            </h5>
-            <ul className="space-y-1.5">
-              <li><Link href="/blog" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chronometry Blog</Link></li>
-              <li><Link href="/faq" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Time FAQs</Link></li>
-              <li><Link href="/widgets" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Embed Clocks</Link></li>
-              <li><Link href="/data-sources" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Data Sources</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2 uppercase tracking-wider">
+            <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
               About & Legal
             </h5>
             <ul className="space-y-1.5">
               <li><Link href="/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About TimeNumbers</Link></li>
+              <li><Link href="/contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact & Support</Link></li>
+              <li><Link href="/blog" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chronometry Blog</Link></li>
+              <li><Link href="/faq" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Time FAQs</Link></li>
+              <li><Link href="/widgets" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Embed Clock Widgets</Link></li>
+              <li><Link href="/data-sources" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Data Sources</Link></li>
               <li><Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</Link></li>
             </ul>

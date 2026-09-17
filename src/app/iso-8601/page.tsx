@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Code2, Clock, ShieldCheck } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'ISO 8601 Date & Time String Parser & Converter',
+  'ISO 8601 Timestamp Parser',
   'Parse, validate, and convert ISO 8601 timestamps into local date, canonical UTC strings, Unix timestamps, and component breakdowns.',
   '/iso-8601'
 );

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gt-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+    <linearGradient id="gt-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Glow & Background Squircle -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#gt-grad)" />
+  
+  <!-- Subtle Dial Rim -->
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+  
+  <!-- Globe Latitude / Longitude Arcs -->
+  <ellipse cx="32" cy="32" rx="10" ry="22" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" />
+  <line x1="10" y1="32" x2="54" y2="32" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" />
+  
+  <!-- Precision Clock Hands (10:10 classic horological alignment) -->
+  <line x1="32" y1="32" x2="22" y2="19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+  <line x1="32" y1="32" x2="44" y2="23" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" />
+  
+  <!-- Center Pin Jewel -->
+  <circle cx="32" cy="32" r="3.5" fill="#ffffff" />
+  <circle cx="32" cy="32" r="1.5" fill="#2563eb" />
+</svg>

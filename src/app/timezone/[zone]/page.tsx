@@ -34,6 +34,8 @@ export async function generateStaticParams() {
   return [...abbrSlugs, ...popularIanaSlugs];
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { zone } = await params;
   const slug = zone.toLowerCase();
@@ -42,19 +44,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const titleName = abbr ? `${abbr.primaryName} (${abbr.abbr})` : (iana ? `${iana.id} (${iana.abbreviation})` : zone.toUpperCase());
   const offset = abbr ? abbr.offsetStr : (iana ? iana.formattedOffset : 'UTC');
+  const shortTitle = abbr ? `${abbr.abbr} Time Zone` : (iana ? `${iana.id.split('/').pop()?.replace(/_/g, ' ')} Time` : `${zone.toUpperCase()} Time`);
 
-  return {
-    title: `Current Time in ${titleName} — Live Clock, Offset & Cities`,
-    description: `Exact current time in ${titleName}. Standard offset ${offset}, Daylight Saving Time status, IANA identifier, and live synchronized clocks for major cities worldwide.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/timezone/${slug}`,
-    },
-    openGraph: {
-      title: `${titleName} Time — Live Clock & Offset`,
-      description: `Exact time in ${titleName}. UTC offset ${offset}, DST rules, and member cities.`,
-      url: `https://www.timenumbers.com/timezone/${slug}`,
-    },
-  };
+  return buildPageMetadata(
+    `Current Time in ${shortTitle}`,
+    `Exact current time in ${titleName}. Standard offset ${offset}, Daylight Saving Time status, IANA identifier, and live synchronized clocks for major cities worldwide.`,
+    `/timezone/${slug}`
+  );
 }
 
 export default async function TimezonePage({ params }: Props) {

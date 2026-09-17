@@ -17,24 +17,18 @@ export async function generateStaticParams() {
   return popular.map(city => ({ city }));
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: rawSlug } = await params;
   const city = findCityByRootSlug(rawSlug);
-  if (!city) return {};
+  if (!city) return buildPageMetadata('City Not Found', 'City sunrise and sunset times not found.', `/sunrise-sunset/${rawSlug}`);
 
-  return {
-    title: `Sunrise and Sunset Times in ${city.name}, ${city.country} — Today's Dawn & Dusk`,
-    description: `Exact sunrise, sunset, dawn, dusk, civil twilight times, and day length for ${city.name} (${city.country}). Updated daily using high-precision NOAA solar formulas.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/sunrise-sunset/${rawSlug}`,
-    },
-    openGraph: {
-      title: `Sunrise and Sunset in ${city.name} — TimeNumbers`,
-      description: `Today's solar hours, solar noon, and twilight phases in ${city.name}.`,
-      url: `https://www.timenumbers.com/sunrise-sunset/${rawSlug}`,
-      type: 'website',
-    },
-  };
+  return buildPageMetadata(
+    `${city.name} Sunrise & Sunset Times Today`,
+    `Exact sunrise, sunset, dawn, dusk, civil twilight times, and day length for ${city.name} (${city.country}). Updated daily using high-precision NOAA solar formulas.`,
+    `/sunrise-sunset/${rawSlug}`
+  );
 }
 
 export default async function CitySunriseSunsetPage({ params }: Props) {

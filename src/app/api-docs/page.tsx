@@ -6,18 +6,13 @@ import { ApiDocsClient } from './ApiDocsClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { BookOpen, Code2, Terminal } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'TimeNumbers REST API Reference — Interactive OpenAPI Documentation (v1)',
-  description: 'Interactive API reference for the TimeNumbers REST platform. Test live endpoints for current time, timezones, city coordinates, solar ephemeris, and multi-zone time conversions.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/api-docs',
-  },
-  openGraph: {
-    title: 'TimeNumbers REST API Reference',
-    description: 'Interactive documentation for atomic time, astronomical, and timezone APIs.',
-    url: 'https://www.timenumbers.com/api-docs',
-  },
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata(
+  'REST API Reference (v1)',
+  'Interactive API reference for the TimeNumbers REST platform. Test live endpoints for current time, timezones, city coordinates, solar ephemeris, and multi-zone time conversions.',
+  '/api-docs'
+);
 
 export default function ApiDocsPage() {
   const jsonLd = {

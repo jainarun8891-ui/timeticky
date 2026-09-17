@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { ArrowLeftRight, Clock, ShieldCheck, Share2 } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Interactive Time Zone Converter — Convert Times Across Unlimited Cities',
+  'World Time Converter — Convert Between Zones',
   'Convert time across unlimited global locations simultaneously. Features an interactive 24-hour drag slider, business hours highlighting, date change indicators, and shareable URLs.',
   '/time-converter'
 );

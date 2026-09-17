@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Calendar, Clock, ShieldCheck, Sparkles } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Today\'s Date Details — Day of Year, ISO Week, Julian Date & Year Progress',
+  'Today\'s Date Details & Year Progress',
   'Complete chronometry data for today: day of the year, ISO-8601 week number, calendar quarter, days remaining in the year, Julian date, and live Unix timestamp.',
   '/today'
 );

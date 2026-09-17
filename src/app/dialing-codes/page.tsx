@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Phone, Globe, ShieldCheck, Clock } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'International Dialing Codes Directory & Calling Etiquette Guide',
+  'International Country Dialing Codes',
   'Search international country calling codes (+1, +44, +81, etc.), format phone numbers, and check current local time and business hours before calling abroad.',
   '/dialing-codes'
 );

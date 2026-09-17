@@ -6,18 +6,13 @@ import { AnalogClockClient } from './AnalogClockClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Clock, Globe, ShieldCheck } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Accurate Online Analog Clock — Smooth Sweeping Second Hand & Watch Dial',
-  description: 'Precision full-screen online analog clock featuring continuous sweeping second hand, multiple chronometer dial themes, date window, and global timezone selector.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/analog-clock',
-  },
-  openGraph: {
-    title: 'Precision Online Analog Clock — TimeNumbers',
-    description: 'Accurate analog watch dial with sweeping seconds, date aperture, and world time zones.',
-    url: 'https://www.timenumbers.com/analog-clock',
-  },
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata(
+  'Online Analog Clock — Sweeping Second Hand',
+  'Precision full-screen online analog clock featuring continuous sweeping second hand, multiple chronometer dial themes, date window, and global timezone selector.',
+  '/analog-clock'
+);
 
 export default function AnalogClockPage() {
   const jsonLd = {

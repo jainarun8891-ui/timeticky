@@ -1,11 +1,12 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React from 'react';
+import Link from 'next/link';
 import { SunriseSunsetClient } from './SunriseSunsetClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { Sun, Sunrise, Sunset, ShieldCheck } from 'lucide-react';
+import { Sun, Sunrise, Sunset, ShieldCheck, MapPin, ArrowRight, Camera } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
   'Sunrise and Sunset Times Worldwide — Solar Noon & Twilight Calculator',
@@ -22,6 +23,14 @@ const SUN_FAQS = [
     question: "What is Solar Noon?",
     answer: "Solar Noon is the peak of the solar day—the exact moment when the sun reaches its highest point in the sky for your specific longitude. It represents true astronomical midday, dividing today's daylight into two equal halves."
   }
+];
+
+const POPULAR_SOLAR_CITIES = [
+  { name: 'Delhi', country: 'India', href: '/sunrise-sunset/delhi', desc: 'Tropical twilight, IST solar noon & seasonal day length variations' },
+  { name: 'New York', country: 'United States', href: '/sunrise-sunset/new-york', desc: 'Eastern solar calendar, Manhattanhenge alignments & golden hour' },
+  { name: 'London', country: 'United Kingdom', href: '/sunrise-sunset/london', desc: 'Greenwich meridian solar noon, BST summer solstice & winter dusk' },
+  { name: 'Tokyo', country: 'Japan', href: '/sunrise-sunset/tokyo', desc: 'Early eastern dawn, JST solar apex & Mount Fuji silhouettes' },
+  { name: 'Paris', country: 'France', href: '/sunrise-sunset/paris', desc: 'Long European summer twilight, CET daylight duration & solar zenith' },
 ];
 
 export default function SunriseSunsetPage() {
@@ -71,6 +80,71 @@ export default function SunriseSunsetPage() {
       </div>
 
       <SunriseSunsetClient />
+
+      {/* Featured Cities & Photography Links */}
+      <section className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Sunrise className="w-4 h-4 text-amber-500" />
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+              Featured Global Metropolises — Today's Dawn & Dusk
+            </h2>
+          </div>
+          <Link
+            href="/golden-hour"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
+          >
+            <Camera className="w-3.5 h-3.5" />
+            <span>Golden Hour Calculator</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {POPULAR_SOLAR_CITIES.map((c) => (
+            <Link
+              key={c.href}
+              href={c.href}
+              className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:border-amber-300 dark:hover:border-amber-700 transition-all flex flex-col justify-between group"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1 text-xs font-bold text-amber-600 dark:text-amber-400">
+                    <MapPin className="w-3.5 h-3.5" />
+                    {c.country}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                  {c.name}
+                </h3>
+                <p className="text-xs text-slate-400 dark:text-slate-500 leading-relaxed">
+                  {c.desc}
+                </p>
+              </div>
+            </Link>
+          ))}
+          <Link
+            href="/golden-hour"
+            className="p-5 rounded-3xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/20 border border-amber-200/80 dark:border-amber-800/60 shadow-sm hover:border-amber-400 transition-all flex flex-col justify-between group"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-amber-700 dark:text-amber-300">
+                  Photography Tool
+                </span>
+                <ArrowRight className="w-4 h-4 text-amber-600 group-hover:translate-x-1 transition-all" />
+              </div>
+              <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
+                Golden Hour Calculator
+              </h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Calculates precise blue hour, golden hour, and magic hour lighting angles for photographers worldwide.
+              </p>
+            </div>
+          </Link>
+        </div>
+      </section>
 
       <div className="pt-4">
         <FaqAccordion

@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Exact Time Now — World Clock, Current Time & Atomic Clock | TimeNumbers",
+  title: "Exact Time Now — World Clock & Atomic Time | TimeNumbers",
   description: "What time is it right now? Check exact time now with atomic clock precision. Live world clock, time zone converter, international meeting planner, and current local time across 500+ world cities.",
   metadataBase: new URL(siteConfig.url),
   alternates: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "time difference calculator",
     "UTC time now",
     "GMT to EST converter",
-    "daylight saving time 2025"
+    "daylight saving time 2026"
   ],
   authors: [{ name: "TimeNumbers Chronometry Team" }],
   openGraph: {
@@ -34,16 +34,33 @@ export const metadata: Metadata = {
     description: "Sub-second NTP atomic time synchronization for 500+ world cities. Beautiful, accurate, and ad-free.",
     url: siteConfig.url,
     siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — Exact World Time & Atomic Clock Platform`
+      }
+    ],
     locale: "en_US",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} - Exact World Time`,
-    description: "Atomic precision world clock and time difference platform."
+    description: "Atomic precision world clock and time difference platform.",
+    images: [siteConfig.ogImage]
   },
   icons: {
-    icon: "/favicon.ico"
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ]
   }
 };
 
@@ -55,6 +72,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <Script id="gt-theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `(function() {
                 try {
                   var saved = localStorage.getItem('gt_theme');

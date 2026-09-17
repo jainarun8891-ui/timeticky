@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Calendar, Clock, ShieldCheck } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Date Difference Calculator — Exact Days, Weeks, Months Between Dates',
+  'Date Difference Calculator — Days Between',
   'Calculate the exact number of days, weeks, months, years, and working business days between two calendar dates. Includes optional weekend exclusion.',
   '/date-difference'
 );

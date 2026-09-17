@@ -43,28 +43,21 @@ export async function generateStaticParams() {
   return commonOffsets.map(offset => ({ offset }));
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { offset } = await params;
   const parsed = parseOffsetSlug(offset);
 
   if (!parsed) {
-    return {
-      title: 'UTC Offset Not Found — TimeNumbers',
-    };
+    return buildPageMetadata('UTC Offset Not Found', 'UTC offset timezone band not found.', `/utc-offset/${offset.toLowerCase()}`);
   }
 
-  return {
-    title: `Current Time in ${parsed.formattedOffset} — Clocks, Zones & Cities`,
-    description: `Exact current time in ${parsed.formattedOffset} timezone band. Compare cities, explore IANA zones, verify Daylight Saving changes, and check difference from your local time.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/utc-offset/${offset.toLowerCase()}`,
-    },
-    openGraph: {
-      title: `${parsed.formattedOffset} Time Zone — TimeNumbers`,
-      description: `Live atomic clock and member cities in ${parsed.formattedOffset}.`,
-      url: `https://www.timenumbers.com/utc-offset/${offset.toLowerCase()}`,
-    },
-  };
+  return buildPageMetadata(
+    `Current Time in ${parsed.formattedOffset}`,
+    `Exact current time in ${parsed.formattedOffset} timezone band. Compare cities, explore IANA zones, verify Daylight Saving changes, and check difference from your local time.`,
+    `/utc-offset/${offset.toLowerCase()}`
+  );
 }
 
 export default async function UtcOffsetPage({ params }: Props) {

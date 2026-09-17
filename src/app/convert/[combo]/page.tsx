@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ combo: st
   if (!parsed) return { title: 'Timezone Converter — TimeNumbers' };
 
   const { fromTz, toTz, cleanSlug } = parsed;
-  const title = `Convert ${fromTz.abbr} to ${toTz.abbr} — ${fromTz.primaryName} to ${toTz.primaryName} Converter`;
+  const title = `Convert ${fromTz.abbr} to ${toTz.abbr} — Time Converter`;
   const desc = `Convert time from ${fromTz.abbr} (${fromTz.primaryName}) to ${toTz.abbr} (${toTz.primaryName}). Features interactive WorldTimeBuddy-grade visual grid, 24-hour comparative matrix, business hours overlap finder, and 1-click meeting calendar sync.`;
 
   return buildPageMetadata(title, desc, `/convert/${cleanSlug}`);

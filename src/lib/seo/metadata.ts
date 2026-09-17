@@ -6,9 +6,34 @@ export function buildCanonicalUrl(path = ""): string {
   return `${base}${cleanPath}`;
 }
 
+export function formatSeoTitle(rawTitle: string): string {
+  const brand = ` | ${siteConfig.name}`;
+  // Strip any existing brand suffixes like " — TimeNumbers", " | TimeNumbers", " - TimeNumbers"
+  const stripped = rawTitle
+    .replace(new RegExp(`\\s*[—|\\-]\\s*${siteConfig.name}\\s*(Insights)?.*`, 'i'), '')
+    .trim();
+
+  // If already fits with brand suffix <= 60 chars:
+  if (stripped.length + brand.length <= 60) {
+    return `${stripped}${brand}`;
+  }
+
+  // If stripped itself is <= 60 chars, return stripped
+  if (stripped.length <= 60) {
+    return stripped;
+  }
+
+  // If stripped > 60 chars, trim cleanly at last word boundary before 60
+  const maxBase = 60 - brand.length;
+  const truncated = stripped.slice(0, maxBase);
+  const lastSpace = truncated.lastIndexOf(' ');
+  const cleanBase = (lastSpace > 20) ? truncated.slice(0, lastSpace) : truncated;
+  return `${cleanBase.trim()}${brand}`;
+}
+
 export function buildPageMetadata(title: string, description: string, path = "") {
   const canonical = buildCanonicalUrl(path);
-  const cleanTitle = title.includes(siteConfig.name) ? title : `${title} — ${siteConfig.name}`;
+  const cleanTitle = formatSeoTitle(title);
 
   return {
     title: cleanTitle,

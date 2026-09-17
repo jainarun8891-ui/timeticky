@@ -17,24 +17,18 @@ export async function generateStaticParams() {
   return popular.map(city => ({ city }));
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: rawSlug } = await params;
   const city = findCityByRootSlug(rawSlug);
-  if (!city) return {};
+  if (!city) return buildPageMetadata('City Not Found', 'City lunar ephemeris not found.', `/moon/${rawSlug}`);
 
-  return {
-    title: `Moon Phase in ${city.name}, ${city.country} Today — Lunar Illumination & Calendar`,
-    description: `Current moon phase, illumination percentage, and lunar calendar for ${city.name} (${city.country}). View next Full Moon and New Moon dates.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/moon/${rawSlug}`,
-    },
-    openGraph: {
-      title: `Moon Phase in ${city.name} — TimeNumbers`,
-      description: `Today's moon phase, illumination %, and lunar calendar in ${city.name}.`,
-      url: `https://www.timenumbers.com/moon/${rawSlug}`,
-      type: 'website',
-    },
-  };
+  return buildPageMetadata(
+    `Moon Phase in ${city.name} Today`,
+    `Current moon phase, illumination percentage, and lunar calendar for ${city.name} (${city.country}). View next Full Moon and New Moon dates.`,
+    `/moon/${rawSlug}`
+  );
 }
 
 export default async function CityMoonPage({ params }: Props) {

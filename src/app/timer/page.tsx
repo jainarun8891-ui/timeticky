@@ -6,18 +6,13 @@ import { TimerSuiteClient } from './TimerSuiteClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Timer, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Online Timer — Full Screen Accurate Countdown Clock with Alarm Sound',
-  description: 'Free online countdown timer with loud audio alarm, full-screen mode, and background tab accuracy. Shortcut presets for 1 min, 5 min, 10 min, 15 min, 30 min, and 1 hour.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/timer',
-  },
-  openGraph: {
-    title: 'Online Timer — TimeNumbers',
-    description: 'Accurate online countdown timer with audio chime and presets.',
-    url: 'https://www.timenumbers.com/timer',
-  },
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata(
+  'Online Timer — Countdown Clock with Alarm',
+  'Free online countdown timer with loud audio alarm, full-screen mode, and background tab accuracy. Shortcut presets for 1 min, 5 min, 10 min, 15 min, 30 min, and 1 hour.',
+  '/timer'
+);
 
 export default function TimerPage() {
   const jsonLd = {

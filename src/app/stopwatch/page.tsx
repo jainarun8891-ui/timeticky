@@ -2,8 +2,32 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
+import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
-import { Play, Pause, RotateCcw, Flag, Timer, Copy, Check } from 'lucide-react';
+import { Play, Pause, RotateCcw, Flag, Timer, Copy, Check, Zap, Target } from 'lucide-react';
+
+const STOPWATCH_FAQS = [
+  {
+    question: "How accurate is this online stopwatch?",
+    answer: "Our stopwatch utilizes the browser's performance.now() high-resolution timestamp API, providing sub-millisecond precision. Unlike basic interval loops that drift under CPU load, our stopwatch dynamically recalibrates against hardware performance clocks on every render cycle."
+  },
+  {
+    question: "What is the difference between a lap time and a split time?",
+    answer: "A lap time measures the duration of a single isolated interval or segment (such as one lap around a 400-meter track). A split time measures the cumulative elapsed time from the start of the race to that particular checkpoint."
+  },
+  {
+    question: "Can I export or copy my recorded lap times?",
+    answer: "Yes. Once you record laps using the Lap button, click 'Copy All Laps' to export your complete lap split history formatted cleanly for spreadsheets, workout logs, or laboratory notes."
+  },
+  {
+    question: "Does the stopwatch pause if my device screen locks or the tab changes?",
+    answer: "No. The stopwatch relies on absolute epoch delta timestamps. Even if the browser suspends UI animations to save power, the elapsed time is immediately calculated accurately when the window returns to view."
+  },
+  {
+    question: "What are keyboard shortcuts for controlling the stopwatch?",
+    answer: "You can press the Spacebar to start and pause the timer, press 'L' to record a new lap split, and press 'R' to reset the stopwatch to zero."
+  }
+];
 
 export default function StopwatchPage() {
   const [ms, setMs] = useState(0);
@@ -29,6 +53,18 @@ export default function StopwatchPage() {
   const s = Math.floor((ms % 60000) / 1000);
   const cs = Math.floor((ms % 1000) / 10);
 
+  const recordLap = () => {
+    if (running) {
+      setLaps([ms, ...laps]);
+    }
+  };
+
+  const reset = () => {
+    setRunning(false);
+    setMs(0);
+    setLaps([]);
+  };
+
   const copyLaps = () => {
     const text = laps.map((l, i) => `Lap ${laps.length - i}: ${(l / 1000).toFixed(2)}s`).join('\n');
     navigator.clipboard.writeText(text);
@@ -38,7 +74,7 @@ export default function StopwatchPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
         <Breadcrumbs items={[{ name: 'Stopwatch', url: '/stopwatch' }]} />
 
@@ -51,6 +87,9 @@ export default function StopwatchPage() {
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Online Precision Stopwatch
           </h1>
+          <p className="text-sm text-slate-600 dark:text-slate-300">
+            Measure elapsed time, record lap splits, and export times with sub-millisecond requestAnimationFrame accuracy.
+          </p>
         </div>
 
         {/* Stopwatch Main Display Card */}
@@ -59,38 +98,42 @@ export default function StopwatchPage() {
             {String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}.<span className="text-blue-600 dark:text-blue-400">{String(cs).padStart(2, '0')}</span>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <button
               onClick={() => setRunning(!running)}
-              className="px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-base flex items-center gap-2 shadow-md shadow-blue-500/20 transition-all hover:scale-105 active:scale-95"
+              className={`px-8 py-3.5 rounded-2xl font-bold text-sm flex items-center gap-2 shadow-sm transition-all ${
+                running
+                  ? 'bg-amber-500 hover:bg-amber-600 text-white'
+                  : 'bg-blue-600 hover:bg-blue-700 text-white'
+              }`}
             >
-              {running ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current" />}
-              <span>{running ? 'Pause' : 'Start'}</span>
+              {running ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {running ? 'Pause' : 'Start'}
             </button>
 
-            <button
-              onClick={() => running && setLaps([ms, ...laps])}
-              disabled={!running}
-              className="px-6 py-4 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-base flex items-center gap-2 transition-all disabled:opacity-40"
-            >
-              <Flag className="w-5 h-5" />
-              <span>Lap</span>
-            </button>
+            {running && (
+              <button
+                onClick={recordLap}
+                className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-800 dark:text-slate-200 flex items-center gap-2 transition-colors"
+              >
+                <Flag className="w-4 h-4" />
+                Lap Split
+              </button>
+            )}
 
             <button
-              onClick={() => { setRunning(false); setMs(0); setLaps([]); }}
-              className="px-6 py-4 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-base flex items-center gap-2 transition-all"
+              onClick={reset}
+              className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-800 dark:text-slate-200 flex items-center gap-2 transition-colors"
             >
-              <RotateCcw className="w-5 h-5" />
-              <span>Reset</span>
+              <RotateCcw className="w-4 h-4" />
+              Reset
             </button>
           </div>
 
-          {/* Lap Splits Table */}
+          {/* Laps List */}
           {laps.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-left space-y-3">
-              <div className="flex items-center justify-between">
+            <div className="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6 max-w-md mx-auto text-left">
+              <div className="flex justify-between items-center mb-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Recorded Lap Splits ({laps.length})
                 </span>
@@ -114,6 +157,40 @@ export default function StopwatchPage() {
             </div>
           )}
         </div>
+
+        {/* Stopwatch Engineering Guide */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 space-y-6 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+            High-Resolution Chronometry in the Browser
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-900 dark:text-white text-base">requestAnimationFrame & Performance Clocks</h3>
+              <p>
+                Standard JavaScript timers like setInterval are throttled by browser rendering engines, leading to erratic timing errors of 15 to 50 milliseconds per second.
+              </p>
+              <p>
+                TimeNumbers bypasses this limitation by binding the stopwatch loop directly to the browser hardware refresh cycle via requestAnimationFrame and measuring elapsed durations with performance.now() timestamps.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-900 dark:text-white text-base">Sports, Science & Productivity Applications</h3>
+              <p>
+                Whether pacing athletic sprint intervals, measuring scientific laboratory chemical reactions, or timing speech presentations, sub-second accuracy is essential.
+              </p>
+              <p>
+                Recorded lap splits allow coaches and researchers to track intermediate milestones without interrupting ongoing timer execution.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Accordion */}
+        <FaqAccordion
+          items={STOPWATCH_FAQS}
+          title="Precision Stopwatch FAQs"
+          subtitle="Frequently asked questions about high-precision browser timing, lap splits, and export tools."
+        />
 
         {/* Hub Navigation */}
         <RelatedLinksHub title="Explore More Clocks & Timers" />

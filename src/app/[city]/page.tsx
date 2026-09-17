@@ -21,25 +21,19 @@ export async function generateStaticParams() {
   return popular.map((city) => ({ city }));
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: rawSlug } = await params;
   const city = findCityByRootSlug(rawSlug);
-  if (!city) return {};
+  if (!city) return buildPageMetadata('City Not Found', 'City not found.', `/${rawSlug}`);
 
   const cleanSlug = city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  return {
-    title: `Current Time in ${city.name}, ${city.country} — Live Clock & Time Zone`,
-    description: `Exact current local time in ${city.name}, ${city.country}. Includes ${city.timezone} time zone, UTC offset, sunrise, sunset, day length, and live global time difference comparisons.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/${cleanSlug}`,
-    },
-    openGraph: {
-      title: `Current Time in ${city.name} — TimeNumbers`,
-      description: `Check precision local time in ${city.name} (${city.country}) with live seconds and atomic clock synchronization.`,
-      url: `https://www.timenumbers.com/${cleanSlug}`,
-      type: 'website',
-    },
-  };
+  return buildPageMetadata(
+    `Current Time in ${city.name}, ${city.country}`,
+    `Exact current local time in ${city.name}, ${city.country}. Includes ${city.timezone} time zone, UTC offset, sunrise, sunset, day length, and live global time difference comparisons.`,
+    `/${cleanSlug}`
+  );
 }
 
 export default async function RootCityPage({ params }: Props) {

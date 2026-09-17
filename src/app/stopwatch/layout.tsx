@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Online Stopwatch — Precision Millisecond Lap Timer",
+  "Online Stopwatch — Precision Split Timer",
   "High-precision browser stopwatch with split lap tracking, pause and resume, background tab resilience, and zero drift.",
   "/stopwatch"
 );

@@ -4,27 +4,14 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { WorldMapStudioClient } from '@/components/map/WorldMapStudioClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
-import { Globe, Compass, Sun, Moon, Clock, ShieldCheck, MapPin } from 'lucide-react';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { Globe, Sun, Compass, ShieldCheck } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Interactive World Time Map — Live Global Clocks, Day/Night Terminator & Timezones | TimeNumbers',
-  description: 'Explore real-time global time on a high-precision interactive world map. Hover over 46 global cities to inspect live digital clocks, solar terminator boundaries, day/night illumination, and great-circle time sync arcs.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/world-map',
-  },
-  openGraph: {
-    title: 'Interactive World Time Map — Live Global Clocks & Day/Night Boundary',
-    description: 'Explore real-time global time on a high-precision interactive world map with 46 live city clocks and solar terminator.',
-    url: 'https://www.timenumbers.com/world-map',
-    siteName: 'TimeNumbers',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Interactive World Time Map — TimeNumbers',
-    description: 'Explore real-time global time on a high-precision interactive world map with 46 live city clocks and solar terminator.',
-  }
-};
+export const metadata: Metadata = buildPageMetadata(
+  'World Time Map — Day/Night Daylight Clocks',
+  'Explore real-time global time on a high-precision interactive world map. Hover over 46 global cities to inspect live digital clocks, solar terminator boundaries, day/night illumination, and great-circle time sync arcs.',
+  '/world-map'
+);
 
 const WORLD_MAP_FAQS = [
   {

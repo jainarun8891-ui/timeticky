@@ -7,7 +7,7 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Online Pomodoro Timer — 25/5 Study & Deep Work Productivity Timer',
+  'Online Pomodoro Timer — 25/5 Focus Timer',
   'Free online Pomodoro timer for focus and productivity. Features 25-minute study intervals, 5-minute short breaks, 15-minute long breaks, audio chimes, and zero drift.',
   '/pomodoro'
 );

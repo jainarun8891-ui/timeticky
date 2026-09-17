@@ -16,25 +16,18 @@ export async function generateStaticParams() {
   return SUPPORTED_YEARS.map(year => ({ year }));
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year } = await params;
   const y = parseInt(year, 10);
   if (isNaN(y)) return {};
 
-  return {
-    title: `Calendar ${y} — Complete 12-Month Printable Gregorian Calendar | TimeNumbers`,
-    description: `Full 12-month calendar for year ${y} with week numbers, lunar phases, astronomical seasonal markers, and printable view. Explore dates, leap year calculations, and holidays.`,
-    alternates: {
-      canonical: `https://www.timenumbers.com/calendar/${y}`,
-    },
-    openGraph: {
-      title: `Calendar ${y} — Full 12-Month Calendar`,
-      description: `Complete Gregorian astronomical calendar for ${y} with week numbers and printable view.`,
-      url: `https://www.timenumbers.com/calendar/${y}`,
-      siteName: 'TimeNumbers',
-      type: 'website',
-    }
-  };
+  return buildPageMetadata(
+    `Calendar ${y} — Printable 12-Month Calendar`,
+    `Full 12-month calendar for year ${y} with week numbers, lunar phases, astronomical seasonal markers, and printable view. Explore dates, leap year calculations, and holidays.`,
+    `/calendar/${y}`
+  );
 }
 
 const MONTH_NAMES = [

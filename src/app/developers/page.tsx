@@ -5,18 +5,13 @@ import Link from 'next/link';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Code2, Terminal, ShieldCheck, Zap, Globe, ArrowRight, BookOpen, Key, CheckCircle } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'TimeNumbers Developer Platform — Free World Time & Astronomy API',
-  description: 'Integrate global atomic chronometry, IANA time zones, solar ephemeris, and precision time conversions into your applications. Free anonymous tier, zero dependencies, JSON REST API.',
-  alternates: {
-    canonical: 'https://www.timenumbers.com/developers',
-  },
-  openGraph: {
-    title: 'TimeNumbers Developer Platform & API',
-    description: 'High-precision REST APIs for timezones, cities, solar calculations, and time conversions.',
-    url: 'https://www.timenumbers.com/developers',
-  },
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata(
+  'Developer Platform — World Time API',
+  'Integrate global atomic chronometry, IANA time zones, solar ephemeris, and precision time conversions into your applications. Free anonymous tier, zero dependencies, JSON REST API.',
+  '/developers'
+);
 
 export default function DevelopersPage() {
   const jsonLd = {

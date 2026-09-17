@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { LayoutGrid, Monitor, ShieldCheck, Clock } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Multi-Clock World Wall & Trading Floor Kiosk Dashboard',
+  'World Clock Wall — Multi-City Display',
   'Multi-display live world clock wall for trading desks, command centers, and offices. Features Swiss luxury analog dials, high-contrast digital clocks, and fullscreen kiosk display.',
   '/world-clock-wall'
 );

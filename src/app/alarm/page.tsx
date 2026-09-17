@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Bell, Clock, Volume2, ShieldCheck } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Online Alarm Clock — Fullscreen Digital Bedside Clock with Audio Chimes',
+  'Online Alarm Clock — Loud Bedside Alarm',
   'Set multi-alarms online with customizable synthetic audio chimes (zen bell, marimba, pulse), snooze, nightstand dimming, and fullscreen bedside display.',
   '/alarm'
 );

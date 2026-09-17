@@ -7,7 +7,7 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Golden Hour Calculator — Exact Photography Lighting & Blue Hour Times',
+  'Golden Hour & Blue Hour Calculator',
   'Free online golden hour and blue hour calculator for photographers. Calculate morning and evening golden hour times, sun elevation angles, and solar noon for any city worldwide.',
   '/golden-hour'
 );
