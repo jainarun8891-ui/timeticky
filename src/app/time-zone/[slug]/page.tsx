@@ -105,7 +105,7 @@ export default async function TimeZoneDetailPage({ params }: { params: Promise<{
             {cities.map((city) => (
               <Link
                 key={city.id}
-                href={`/time/${city.slug}`}
+                href={`/${city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                 className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors border border-slate-100 dark:border-slate-700"
               >
                 <span className="font-bold text-sm text-slate-900 dark:text-white block">{city.name}</span>

@@ -128,7 +128,7 @@ export function CinematicWorldMap({ currentCity, onSelectCity }: CinematicWorldM
         </div>
 
         <Link
-          href={`/time/${currentCity.slug}`}
+          href={`/${currentCity.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
           className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:text-blue-300 hover:underline"
         >
           <span>Detailed Astronomical Data</span>

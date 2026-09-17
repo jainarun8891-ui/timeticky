@@ -110,7 +110,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
               return (
                 <Link
                   key={city.id}
-                  href={`/time/${city.slug}`}
+                  href={`/${city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                   className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-slate-700 border border-slate-100 dark:border-slate-800 flex items-center justify-between transition-all"
                 >
                   <div>

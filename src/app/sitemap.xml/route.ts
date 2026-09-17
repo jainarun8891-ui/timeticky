@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { POPULAR_CITIES } from '@/lib/geo/cities';
 import { getAllCountries } from '@/lib/geo/countries';
 import { BLOG_ARTICLES } from '@/lib/blog/articles';
+import { TIMEZONES } from '@/lib/time/timezones';
 import { COMMON_TIMEZONE_ABBREVIATIONS, getAllConverterCombos } from '@/lib/time/timezone-lookup';
 
 export async function GET() {
@@ -29,6 +30,8 @@ export async function GET() {
     '/world-clock',
     '/world-clock-wall',
     '/time-converter',
+    '/time-zone-converter',
+    '/compare',
     '/convert',
     '/meeting-planner',
     '/countdown',
@@ -92,9 +95,15 @@ export async function GET() {
     '/contact',
     '/privacy',
     '/terms',
+    '/blog',
+    '/data-sources',
+    '/holidays',
+    '/learn',
+    '/time-difference',
+    '/utc',
   ];
 
-    // Programmatic Time Zone Conversion Combos
+  // Programmatic Time Zone Conversion Combos
   const conversionCombos = getAllConverterCombos().map(c => `/convert/${c}`);
 
   // Time differences
@@ -131,9 +140,13 @@ export async function GET() {
     '/timezone/america-chicago',
   ];
 
+  // Timezone short name URLs
+  const timeZoneShortUrls = TIMEZONES.map(t => `/time-zone/${t.shortName.toLowerCase()}`);
+
   // UTC offsets
   const offsetUrls = [
     '/utc-offset/utc-plus-0',
+    '/utc-offset/utc-0',
     '/utc-offset/utc-plus-1',
     '/utc-offset/utc-plus-2',
     '/utc-offset/utc-plus-3',
@@ -159,8 +172,9 @@ export async function GET() {
     '/utc-offset/utc-minus-10',
   ];
 
-  // Root Cities
+  // Root Cities & City Time URLs
   const cityUrls = POPULAR_CITIES.map(c => `/${c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
+  const cityTimeUrls = POPULAR_CITIES.map(c => `/time/${c.slug}`);
 
   // Countries & Country Cities
   const countries = getAllCountries();
@@ -173,11 +187,13 @@ export async function GET() {
   const allUrls = Array.from(new Set([
     ...staticUrls,
     ...conversionCombos,
-      ...timeDifferenceUrls,
+    ...timeDifferenceUrls,
     ...tzAbbrUrls,
     ...popularIanaUrls,
+    ...timeZoneShortUrls,
     ...offsetUrls,
     ...cityUrls,
+    ...cityTimeUrls,
     ...countryUrls,
     ...countryCityUrls,
     ...blogUrls,

@@ -47,7 +47,7 @@ export function WorldMapCard({ currentCity, onSelectCity }: WorldMapCardProps) {
         </div>
 
         <Link
-          href={`/time/${currentCity.slug}`}
+          href={`/${currentCity.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
           className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 transition-colors"
           title={`View ${currentCity.name} dedicated page`}
         >

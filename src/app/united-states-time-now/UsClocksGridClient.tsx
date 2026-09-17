@@ -287,7 +287,7 @@ export function UsClocksGridClient() {
                     {zone.majorCities.map((city) => (
                       <Link
                         key={city.name}
-                        href={`/time/${city.slug}`}
+                        href={`/${city.slug}`}
                         className="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600 transition-colors"
                       >
                         {city.name}

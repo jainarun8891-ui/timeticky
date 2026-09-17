@@ -67,6 +67,8 @@ export function Footer() {
               Calculators
             </h5>
             <ul className="space-y-1.5">
+              <li><Link href="/time-zone-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Zone Converter</Link></li>
+              <li><Link href="/compare" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Compare World Cities</Link></li>
               <li><Link href="/convert" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">552 Timezone Pairs</Link></li>
               <li><Link href="/time-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Converter</Link></li>
               <li><Link href="/time-difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Difference Matrix</Link></li>
@@ -83,6 +85,7 @@ export function Footer() {
               Timezones & Map
             </h5>
             <ul className="space-y-1.5">
+              <li><Link href="/united-states-time-now" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">US Time Now</Link></li>
               <li><Link href="/time-zones" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">400+ Time Zones</Link></li>
               <li><Link href="/timezone-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Time Map</Link></li>
               <li><Link href="/world-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Sun Map (Live)</Link></li>
@@ -151,6 +154,36 @@ export function Footer() {
               <li><Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</Link></li>
             </ul>
+          </div>
+        </div>
+
+        {/* Global Metropolitan City Clocks (Canonical Direct Links) */}
+        <div className="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+            Popular World City Clocks
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs">
+            <Link href="/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">New York</Link>
+            <Link href="/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">London</Link>
+            <Link href="/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tokyo</Link>
+            <Link href="/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Paris</Link>
+            <Link href="/berlin" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Berlin</Link>
+            <Link href="/zurich" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Zurich</Link>
+            <Link href="/madrid" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Madrid</Link>
+            <Link href="/mumbai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Mumbai</Link>
+            <Link href="/bengaluru" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Bengaluru</Link>
+            <Link href="/hong-kong" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Hong Kong</Link>
+            <Link href="/rome" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Rome</Link>
+            <Link href="/chicago" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chicago</Link>
+            <Link href="/los-angeles" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Los Angeles</Link>
+            <Link href="/san-francisco" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">San Francisco</Link>
+            <Link href="/s-o-paulo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">São Paulo</Link>
+            <Link href="/toronto" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Toronto</Link>
+            <Link href="/seoul" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Seoul</Link>
+            <Link href="/cairo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Cairo</Link>
+            <Link href="/dubai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dubai</Link>
+            <Link href="/sydney" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sydney</Link>
+            <Link href="/singapore" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Singapore</Link>
           </div>
         </div>
 

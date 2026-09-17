@@ -160,7 +160,7 @@ export function CitiesDirectoryClient({ initialCities, countryFilter, countryNam
           return (
             <Link
               key={city.id}
-              href={`/${city.id}`}
+              href={`/${city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
               className="group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-sm flex items-center justify-between"
             >
               <div className="space-y-1 min-w-0 pr-3">

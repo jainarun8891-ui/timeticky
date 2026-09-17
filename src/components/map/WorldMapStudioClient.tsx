@@ -715,7 +715,7 @@ export function WorldMapStudioClient() {
           {/* Right: Direct Navigation Links */}
           <div className="flex items-center gap-2">
             <Link
-              href={`/time/${activeCity.slug}`}
+              href={`/${activeCity.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-colors"
             >
               <span>View City Clock</span>

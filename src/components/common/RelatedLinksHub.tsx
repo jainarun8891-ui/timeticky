@@ -17,10 +17,20 @@ export function RelatedLinksHub({
   title = 'Explore Global Time & Related Directories',
   subtitle = 'Quick access to international capitals, timezone offsets, chronometry tools, and horology guides',
 }: RelatedLinksHubProps) {
-  const topCities = CITIES.slice(0, 8);
+  const targetCitySlugs = [
+    'new-york', 'london', 'tokyo', 'paris', 'berlin', 'zurich',
+    'madrid', 'mumbai', 'bengaluru', 'hong-kong', 'rome',
+    'chicago', 'los-angeles', 'san-francisco', 'sao-paulo',
+    'toronto', 'seoul', 'cairo', 'dubai', 'sydney', 'singapore'
+  ];
+  const topCities = targetCitySlugs
+    .map(slug => CITIES.find(c => c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug || c.id.startsWith(slug) || c.slug.startsWith(slug)))
+    .filter((c): c is (typeof CITIES)[0] => !!c);
+
   const topTimezones = TIMEZONES.slice(0, 8);
 
   const topComparisons = [
+    { label: 'Compare All Cities →', url: '/compare' },
     { label: 'Paris vs New York', url: '/compare/paris-france-vs-new-york-united-states' },
     { label: 'London vs Tokyo', url: '/compare/london-united-kingdom-vs-tokyo-japan' },
     { label: 'New York vs London', url: '/compare/new-york-united-states-vs-london-united-kingdom' },
@@ -30,6 +40,8 @@ export function RelatedLinksHub({
   ];
 
   const tools = [
+    { name: 'Time Zone Converter', desc: 'Convert hours across global zones and cities', url: '/time-zone-converter', icon: Layers },
+    { name: 'Compare World Cities', desc: 'Direct side-by-side time difference and overlap', url: '/compare', icon: ArrowLeftRight },
     { name: 'United States Time Now', desc: 'Live atomic clocks across all US time zones and Washington D.C.', url: '/united-states-time-now', icon: Globe },
     { name: 'Exact Time Digital Clock', desc: 'Precision digital chronometer with seconds and atomic reference', url: '/clock', icon: Clock },
     { name: 'Online Pomodoro Timer', desc: '25/5 study and deep work productivity intervals', url: '/pomodoro', icon: Bell },
@@ -143,15 +155,18 @@ export function RelatedLinksHub({
           Global Financial & Metropolitan Capitals
         </h4>
         <div className="flex flex-wrap gap-2">
-          {topCities.map((city) => (
-            <Link
-              key={city.id}
-              href={`/time/${city.slug}`}
-              className="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/40 border border-slate-200/60 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
-            >
-              {city.name}, {city.country}
-            </Link>
-          ))}
+          {topCities.map((city) => {
+            const canonicalSlug = city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            return (
+              <Link
+                key={city.id}
+                href={`/${canonicalSlug}`}
+                className="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/40 border border-slate-200/60 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
+              >
+                {city.name}, {city.country}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import { ALL_IANA_TIMEZONES } from '@/lib/time/iana-database';
 import { getTimeDetails } from '@/lib/time/engine';
 import { ArrowRight, Clock, Globe } from 'lucide-react';
 import { formatTimeInZone } from '@/lib/time/timezones';
+import { offsetToSlug } from '@/lib/time/timezone-lookup';
 
 interface TimezoneBand {
   offsetStr: string;
@@ -250,7 +251,7 @@ export function TimezoneMapClient() {
 
           <div className="pt-2">
             <Link
-              href={`/utc-offset/${selectedBand.offsetStr.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+              href={`/utc-offset/${offsetToSlug(selectedBand.offsetStr)}`}
               className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
             >
               <span>View dedicated {selectedBand.offsetStr} offset guide</span>

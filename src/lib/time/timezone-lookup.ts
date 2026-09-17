@@ -526,7 +526,10 @@ export function findTimezoneAbbr(abbrOrSlug: string): TimezoneAbbrDefinition | u
 
 // Convert url offset slug like 'utc-plus-5-30' or 'utc-minus-5' to formatted offset string 'UTC +5:30'
 export function parseOffsetSlug(slug: string): { formattedOffset: string; minutes: number; label: string } | null {
-  const norm = slug.toLowerCase();
+  const norm = slug.toLowerCase().trim();
+  if (norm === 'utc-0' || norm === 'utc-plus-0' || norm === 'utc-minus-0' || norm === 'utc' || norm === 'utc-plus-00') {
+    return { formattedOffset: 'UTC +0', minutes: 0, label: 'UTC +0' };
+  }
   const match = norm.match(/^utc-(plus|minus)-(\d+)(?:-(\d+))?$/);
   if (!match) return null;
 

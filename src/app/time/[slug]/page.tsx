@@ -103,7 +103,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             {nearbyCities.map((other) => (
               <Link
                 key={other.id}
-                href={`/time/${other.slug}`}
+                href={`/${other.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                 className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors block border border-slate-100 dark:border-slate-700"
               >
                 <span className="text-xs font-bold text-slate-900 dark:text-white block">{other.name}</span>
