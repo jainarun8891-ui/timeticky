@@ -62,28 +62,28 @@ export function DateCalendarCard({ currentCity }: DateCalendarCardProps) {
         {/* Live Date in City Timezone */}
         <div className="flex items-center gap-2 text-xs font-black text-slate-900 dark:text-white my-2.5">
           <Calendar className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
-          <span>{details.dateStr}</span>
+          <span suppressHydrationWarning>{details.dateStr}</span>
         </div>
 
         {/* Dynamic Metric Rows */}
         <div className="space-y-2 text-xs mt-2">
           <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
             <span className="text-slate-400">Week number</span>
-            <span className="font-bold text-slate-900 dark:text-white font-mono">
+            <span className="font-bold text-slate-900 dark:text-white font-mono" suppressHydrationWarning>
               {details.weekNumber}
             </span>
           </div>
 
           <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
             <span className="text-slate-400">Day of year</span>
-            <span className="font-bold text-slate-900 dark:text-white font-mono">
+            <span className="font-bold text-slate-900 dark:text-white font-mono" suppressHydrationWarning>
               {details.dayOfYear} of {totalDays}
             </span>
           </div>
 
           <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
             <span className="text-slate-400">Days remaining</span>
-            <span className="font-bold text-slate-900 dark:text-white font-mono">
+            <span className="font-bold text-slate-900 dark:text-white font-mono" suppressHydrationWarning>
               {daysRemaining}
             </span>
           </div>

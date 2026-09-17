@@ -281,20 +281,20 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
 
       {/* Center: Big Clock Display (Stacking Context z-10) */}
       <div className="relative z-10 text-center my-3 sm:my-5">
-        <div className="text-6xl sm:text-7xl lg:text-[88px] font-black tracking-tight text-slate-900 dark:text-white font-mono leading-none select-all drop-shadow-xs">
+        <div className="text-6xl sm:text-7xl lg:text-[88px] font-black tracking-tight text-slate-900 dark:text-white font-mono leading-none select-all drop-shadow-xs" suppressHydrationWarning>
           {timeStr}
         </div>
 
-        <div className="mt-3 text-base sm:text-lg font-black text-slate-900 dark:text-white">
+        <div className="mt-3 text-base sm:text-lg font-black text-slate-900 dark:text-white" suppressHydrationWarning>
           {dateStr}
         </div>
 
-        <div className="mt-1 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 font-sans flex items-center justify-center gap-2">
-          <span>{utcOffsetStr}</span>
+        <div className="mt-1 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 font-sans flex items-center justify-center gap-2" suppressHydrationWarning>
+          <span suppressHydrationWarning>{utcOffsetStr}</span>
           <span className="text-slate-300 dark:text-slate-700">&bull;</span>
-          <span>{details.timeZoneAbbr || activeCity.timezone}</span>
+          <span suppressHydrationWarning>{details.timeZoneAbbr || activeCity.timezone}</span>
           <span className="text-slate-300 dark:text-slate-700">&bull;</span>
-          <span>{details.isDst ? 'Daylight Saving Time' : 'Standard Time'}</span>
+          <span suppressHydrationWarning>{details.isDst ? 'Daylight Saving Time' : 'Standard Time'}</span>
         </div>
 
         <div className="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">

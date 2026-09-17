@@ -81,6 +81,7 @@ export async function GET() {
     '/timezone-map',
     '/time-zones',
     '/cities',
+    '/country',
     '/dialing-codes',
     '/jet-lag-calculator',
     '/widgets',

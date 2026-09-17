@@ -153,19 +153,19 @@ export function PrecisionClockHero() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <h1 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight" suppressHydrationWarning>
                   Exact Time &amp; World Clock &mdash; {cityName}, {countryName}
                 </h1>
-                <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800">
+                <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800" suppressHydrationWarning>
                   {details.abbreviation || details.timeZoneAbbr}
                 </span>
               </div>
               <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono flex items-center gap-1.5 mt-0.5">
-                <span>{timeZone}</span>
+                <span suppressHydrationWarning>{timeZone}</span>
                 <span className="text-slate-300 dark:text-slate-600">&bull;</span>
-                <span>{details.utcOffsetString}</span>
+                <span suppressHydrationWarning>{details.utcOffsetString}</span>
                 <span className="text-slate-300 dark:text-slate-600">&bull;</span>
-                <span>{details.isDst ? 'DST Active' : 'Standard Time'}</span>
+                <span suppressHydrationWarning>{details.isDst ? 'DST Active' : 'Standard Time'}</span>
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@ export function PrecisionClockHero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>
+              <span suppressHydrationWarning>
                 {accuracyDriftMs === null || isNaN(accuracyDriftMs)
                   ? 'Atomic Synchronized'
                   : Math.abs(accuracyDriftMs) < 150
@@ -232,11 +232,11 @@ export function PrecisionClockHero() {
           {/* Main Time Readout */}
           <div className="space-y-1">
             <div className="flex items-baseline gap-2.5">
-              <span className="text-4xl sm:text-6xl lg:text-7xl font-mono font-black tracking-tight text-slate-900 dark:text-white select-all leading-none">
+              <span className="text-4xl sm:text-6xl lg:text-7xl font-mono font-black tracking-tight text-slate-900 dark:text-white select-all leading-none" suppressHydrationWarning>
                 {displayTime}
               </span>
               {!use24Hour && details.dayPeriod && (
-                <span className="text-base sm:text-lg font-mono font-black text-blue-600 dark:text-blue-400">
+                <span className="text-base sm:text-lg font-mono font-black text-blue-600 dark:text-blue-400" suppressHydrationWarning>
                   {details.dayPeriod}
                 </span>
               )}
@@ -245,9 +245,9 @@ export function PrecisionClockHero() {
             {showDate && (
               <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400">
                 <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                <span>{details.dateStr}</span>
+                <span suppressHydrationWarning>{details.dateStr}</span>
                 <span className="text-slate-300 dark:text-slate-600">&bull;</span>
-                <span className="font-mono text-[11px] text-slate-400">
+                <span className="font-mono text-[11px] text-slate-400" suppressHydrationWarning>
                   Day {details.dayOfYear} of {details.year}
                 </span>
               </div>
@@ -261,7 +261,7 @@ export function PrecisionClockHero() {
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
                   <Sunrise className="w-3 h-3 text-amber-500" /> Sunrise
                 </span>
-                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
+                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.sunrise}
                 </span>
               </div>
@@ -269,7 +269,7 @@ export function PrecisionClockHero() {
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
                   <Sunset className="w-3 h-3 text-orange-500" /> Sunset
                 </span>
-                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
+                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.sunset}
                 </span>
               </div>
@@ -277,7 +277,7 @@ export function PrecisionClockHero() {
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
                   <Sun className="w-3 h-3 text-yellow-500" /> Noon
                 </span>
-                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
+                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.solarNoon}
                 </span>
               </div>
@@ -285,7 +285,7 @@ export function PrecisionClockHero() {
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
                   <Clock className="w-3 h-3 text-indigo-500" /> Light
                 </span>
-                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
+                <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.dayLength}
                 </span>
               </div>

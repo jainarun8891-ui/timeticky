@@ -154,7 +154,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-[11px] text-slate-400">
+        <div className="pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-[11px] text-slate-400" suppressHydrationWarning>
           © {new Date().getFullYear()} {siteConfig.name}. All global times synchronized to UTC atomic reference standard.
         </div>
       </div>

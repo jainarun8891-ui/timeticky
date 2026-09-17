@@ -192,13 +192,13 @@ export function WorldClockStrip({ currentCity, onSelectCity }: WorldClockStripPr
               </div>
 
               {/* Digital Time */}
-              <div className="text-lg sm:text-xl font-black font-mono tracking-tight text-slate-900 dark:text-white my-1">
+              <div className="text-lg sm:text-xl font-black font-mono tracking-tight text-slate-900 dark:text-white my-1" suppressHydrationWarning>
                 {timeString}
               </div>
 
               {/* Date & Day/Night Indicator */}
-              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800/80 w-full">
-                <span>{cityDateStr}</span>
+              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800/80 w-full" suppressHydrationWarning>
+                <span suppressHydrationWarning>{cityDateStr}</span>
                 <span className="text-slate-300 dark:text-slate-700">&bull;</span>
                 <span className="flex items-center gap-1">
                   {isDay ? (

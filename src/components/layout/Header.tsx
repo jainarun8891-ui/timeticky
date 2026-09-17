@@ -876,7 +876,7 @@ export function Header() {
                   </button>
                 </div>
               </div>
-              <div className="text-[11px] text-slate-400 dark:text-slate-500 text-center">
+              <div className="text-[11px] text-slate-400 dark:text-slate-500 text-center" suppressHydrationWarning>
                 © {new Date().getFullYear()} {siteConfig.name} • Precision Chronometry
               </div>
             </div>

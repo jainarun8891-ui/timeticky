@@ -203,10 +203,10 @@ export function UsClocksGridClient() {
           </div>
 
           <div className="text-left md:text-right bg-black/30 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-            <div className="text-4xl sm:text-6xl font-black font-mono tracking-tight text-white drop-shadow-sm">
+            <div className="text-4xl sm:text-6xl font-black font-mono tracking-tight text-white drop-shadow-sm" suppressHydrationWarning>
               {capitalTime}
             </div>
-            <div className="text-xs sm:text-sm text-slate-300 font-medium mt-2">
+            <div className="text-xs sm:text-sm text-slate-300 font-medium mt-2" suppressHydrationWarning>
               {capitalDate}
             </div>
             <div className="flex items-center md:justify-end gap-2 mt-2">
@@ -263,10 +263,10 @@ export function UsClocksGridClient() {
 
                   {/* Digital Clock Display */}
                   <div className="my-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-center">
-                    <div className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-slate-900 dark:text-white">
+                    <div className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-slate-900 dark:text-white" suppressHydrationWarning>
                       {timeStr}
                     </div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium" suppressHydrationWarning>
                       {dateStr}
                     </div>
                   </div>

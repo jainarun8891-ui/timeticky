@@ -64,14 +64,14 @@ export function SunDaylightCard({ currentCity }: SunDaylightCardProps) {
 
           {/* Sunrise and Sunset Labels */}
           <div className="absolute bottom-0 left-2 text-center">
-            <span className="text-xs font-black text-slate-900 dark:text-white block font-mono">
+            <span className="text-xs font-black text-slate-900 dark:text-white block font-mono" suppressHydrationWarning>
               {sun.sunrise}
             </span>
             <span className="text-[10px] text-slate-400">Sunrise</span>
           </div>
 
           <div className="absolute bottom-0 right-2 text-center">
-            <span className="text-xs font-black text-slate-900 dark:text-white block font-mono">
+            <span className="text-xs font-black text-slate-900 dark:text-white block font-mono" suppressHydrationWarning>
               {sun.sunset}
             </span>
             <span className="text-[10px] text-slate-400">Sunset</span>
@@ -82,7 +82,7 @@ export function SunDaylightCard({ currentCity }: SunDaylightCardProps) {
       {/* Bottom Metrics */}
       <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800/80">
         <div>
-          <span className="text-xs font-black text-slate-900 dark:text-white block font-mono">
+          <span className="text-xs font-black text-slate-900 dark:text-white block font-mono" suppressHydrationWarning>
             {sun.dayLengthFormatted}
           </span>
           <span className="text-[10px] text-slate-400">Day length</span>
