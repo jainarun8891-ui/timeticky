@@ -46,12 +46,12 @@ function EmbedClockContent() {
       <div className="flex justify-between items-center text-[10px] text-slate-400">
         <span className="truncate pr-2">{date}</span>
         <a
-          href={`https://globaltime.org/time/${city.slug}`}
+          href={`https://timenumbers.com/time/${city.slug}`}
           target="_blank"
           rel="noopener"
           className="text-blue-500 hover:underline font-bold flex-shrink-0"
         >
-          GlobalTime
+          TimeNumbers
         </a>
       </div>
     </div>

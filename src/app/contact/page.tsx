@@ -7,15 +7,15 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Mail, MessageSquare } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact GlobalTime — Corrections, Inquiries & Technical Support',
-  description: 'Contact the GlobalTime team for timezone corrections, developer API partnerships, civil DST decree updates, and horological feature requests.',
+  title: 'Contact TimeNumbers — Corrections, Inquiries & Technical Support',
+  description: 'Contact the TimeNumbers team for timezone corrections, developer API partnerships, civil DST decree updates, and horological feature requests.',
   alternates: {
-    canonical: 'https://globaltime.org/contact',
+    canonical: 'https://timenumbers.com/contact',
   },
   openGraph: {
-    title: 'Contact GlobalTime Desk',
-    description: 'Get in touch with the GlobalTime engineering and editorial team.',
-    url: 'https://globaltime.org/contact',
+    title: 'Contact TimeNumbers Desk',
+    description: 'Get in touch with the TimeNumbers engineering and editorial team.',
+    url: 'https://timenumbers.com/contact',
   },
 };
 
@@ -23,14 +23,14 @@ export default function ContactPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: 'Contact GlobalTime',
+    name: 'Contact TimeNumbers',
     description: 'Get in touch for timezone corrections and developer inquiries.',
-    url: 'https://globaltime.org/contact',
+    url: 'https://timenumbers.com/contact',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://globaltime.org' },
-        { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://globaltime.org/contact' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://timenumbers.com/contact' },
       ],
     },
   };

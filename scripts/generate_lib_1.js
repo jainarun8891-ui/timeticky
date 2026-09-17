@@ -26,15 +26,15 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "GlobalTime",
+  name: "TimeNumbers",
   tagline: "A more connected world",
   secondaryTagline: "The world's time, clearly.",
-  url: "https://globaltime.org",
-  ogImage: "https://globaltime.org/og.png",
+  url: "https://timenumbers.com",
+  ogImage: "https://timenumbers.com/og.png",
   description: "Accurate, lightweight, and modern global time platform. Live synchronized world clocks, timezone converter, meeting planner, sunrise & sunset tracking, and calendar tools.",
   links: {
-    github: "https://github.com/globaltime",
-    twitter: "https://twitter.com/globaltime"
+    github: "https://github.com/timenumbers",
+    twitter: "https://twitter.com/timenumbers"
   },
   defaultLocale: "en",
   locales: ["en", "hi", "es", "fr", "de", "ja"]

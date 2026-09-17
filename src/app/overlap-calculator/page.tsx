@@ -5,7 +5,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { OverlapCalculatorClient } from './OverlapCalculatorClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Time Zone Overlap Calculator for Remote Teams | GlobalTime",
+  "Time Zone Overlap Calculator for Remote Teams | TimeNumbers",
   "Calculate overlapping working hours across international time zones (USA, UK, India, Japan, Australia). Find the best meeting time for distributed remote teams.",
   "/overlap-calculator"
 );

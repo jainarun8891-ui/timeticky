@@ -5,7 +5,7 @@ import React from 'react';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildPageMetadata(
-  'Current ISO Week Number & Weeks Left in Year | GlobalTime',
+  'Current ISO Week Number & Weeks Left in Year | TimeNumbers',
   'What is the current ISO week number of this year? Discover how many weeks are left in the current year, total days elapsed, and ISO 8601 calendar details.',
   '/week-number'
 );

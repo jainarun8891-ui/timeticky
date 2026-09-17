@@ -33,7 +33,7 @@ function EmbedClockContent() {
       </div>
       <div className="text-3xl font-black font-mono tracking-tight my-1">{time}</div>
       <div className="flex justify-between text-[10px] text-slate-400">
-        <span>{date}</span><span>GlobalTime</span>
+        <span>{date}</span><span>TimeNumbers</span>
       </div>
     </div>
   );

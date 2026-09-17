@@ -5,7 +5,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { BusinessDaysClient } from './BusinessDaysClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Business Days Calculator — Working Days & 90-Day Deadlines | GlobalTime",
+  "Business Days Calculator — Working Days & 90-Day Deadlines | TimeNumbers",
   "Calculate how many business days between two dates excluding weekends. Calculate 30, 60, or 90 business days from today for legal and contract deadlines.",
   "/business-days-calculator"
 );

@@ -1,4 +1,4 @@
-// GlobalTime Precision Chronometry Engine
+// TimeNumbers Precision Chronometry Engine
 
 export interface TimeDetails {
   timeStr: string;

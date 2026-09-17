@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Sunrise and Sunset Times in ${city.name}, ${city.country} — Today's Dawn & Dusk`,
     description: `Exact sunrise, sunset, dawn, dusk, civil twilight times, and day length for ${city.name} (${city.country}). Updated daily using high-precision NOAA solar formulas.`,
     alternates: {
-      canonical: `https://globaltime.org/sunrise-sunset/${rawSlug}`,
+      canonical: `https://timenumbers.com/sunrise-sunset/${rawSlug}`,
     },
     openGraph: {
-      title: `Sunrise and Sunset in ${city.name} — GlobalTime`,
+      title: `Sunrise and Sunset in ${city.name} — TimeNumbers`,
       description: `Today's solar hours, solar noon, and twilight phases in ${city.name}.`,
-      url: `https://globaltime.org/sunrise-sunset/${rawSlug}`,
+      url: `https://timenumbers.com/sunrise-sunset/${rawSlug}`,
       type: 'website',
     },
   };
@@ -48,7 +48,7 @@ export default async function CitySunriseSunsetPage({ params }: Props) {
   const faqs = [
     {
       question: `What time is sunrise in ${city.name} today?`,
-      answer: `GlobalTime computes today's sunrise in ${city.name} based on its geographical coordinates (${city.lat.toFixed(2)}°N, ${city.lng.toFixed(2)}°E) and local ${city.timezone} time zone rules.`
+      answer: `TimeNumbers computes today's sunrise in ${city.name} based on its geographical coordinates (${city.lat.toFixed(2)}°N, ${city.lng.toFixed(2)}°E) and local ${city.timezone} time zone rules.`
     },
     {
       question: `What time does sunset occur in ${city.name}?`,

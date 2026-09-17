@@ -34,8 +34,8 @@ export function JsonLd({ type, data }: JsonLdProps) {
       "url": siteConfig.url,
       "logo": siteConfig.url + "/favicon.ico",
       "sameAs": [
-        "https://twitter.com/globaltime",
-        "https://github.com/globaltime"
+        "https://twitter.com/timenumbers",
+        "https://github.com/timenumbers"
       ]
     };
   } else if (type === 'article' && data) {

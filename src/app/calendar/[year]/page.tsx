@@ -22,16 +22,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (isNaN(y)) return {};
 
   return {
-    title: `Calendar ${y} — Complete 12-Month Printable Gregorian Calendar | GlobalTime`,
+    title: `Calendar ${y} — Complete 12-Month Printable Gregorian Calendar | TimeNumbers`,
     description: `Full 12-month calendar for year ${y} with week numbers, lunar phases, astronomical seasonal markers, and printable view. Explore dates, leap year calculations, and holidays.`,
     alternates: {
-      canonical: `https://globaltime.org/calendar/${y}`,
+      canonical: `https://timenumbers.com/calendar/${y}`,
     },
     openGraph: {
       title: `Calendar ${y} — Full 12-Month Calendar`,
       description: `Complete Gregorian astronomical calendar for ${y} with week numbers and printable view.`,
-      url: `https://globaltime.org/calendar/${y}`,
-      siteName: 'GlobalTime',
+      url: `https://timenumbers.com/calendar/${y}`,
+      siteName: 'TimeNumbers',
       type: 'website',
     }
   };
@@ -90,7 +90,7 @@ export default async function CalendarYearPage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'ItemPage',
     name: `Calendar for Year ${y}`,
-    url: `https://globaltime.org/calendar/${y}`,
+    url: `https://timenumbers.com/calendar/${y}`,
     description: `Complete 12-month printable Gregorian calendar for year ${y}.`
   };
 

@@ -70,19 +70,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = EVENTS_DATABASE[event.toLowerCase()];
 
   if (!item) {
-    return { title: 'Event Countdown Not Found — GlobalTime' };
+    return { title: 'Event Countdown Not Found — TimeNumbers' };
   }
 
   return {
     title: `Countdown to ${item.name} — Exact Days, Hours & Minutes Remaining`,
     description: item.description,
     alternates: {
-      canonical: `https://globaltime.org/countdown/${event.toLowerCase()}`,
+      canonical: `https://timenumbers.com/countdown/${event.toLowerCase()}`,
     },
     openGraph: {
-      title: `Countdown to ${item.name} — GlobalTime`,
+      title: `Countdown to ${item.name} — TimeNumbers`,
       description: item.description,
-      url: `https://globaltime.org/countdown/${event.toLowerCase()}`,
+      url: `https://timenumbers.com/countdown/${event.toLowerCase()}`,
     },
   };
 }
@@ -100,13 +100,13 @@ export default async function CountdownEventPage({ params }: Props) {
     '@type': 'WebPage',
     name: `Countdown to ${item.name}`,
     description: item.description,
-    url: `https://globaltime.org/countdown/${event.toLowerCase()}`,
+    url: `https://timenumbers.com/countdown/${event.toLowerCase()}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://globaltime.org' },
-        { '@type': 'ListItem', position: 2, name: 'Countdown', item: 'https://globaltime.org/countdown' },
-        { '@type': 'ListItem', position: 3, name: item.name, item: `https://globaltime.org/countdown/${event.toLowerCase()}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Countdown', item: 'https://timenumbers.com/countdown' },
+        { '@type': 'ListItem', position: 3, name: item.name, item: `https://timenumbers.com/countdown/${event.toLowerCase()}` },
       ],
     },
   };

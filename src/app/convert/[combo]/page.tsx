@@ -54,7 +54,7 @@ function parseCombo(combo: string): { fromTz: TimezoneAbbrDefinition; toTz: Time
 export async function generateMetadata({ params }: { params: Promise<{ combo: string }> }): Promise<Metadata> {
   const { combo } = await params;
   const parsed = parseCombo(combo);
-  if (!parsed) return { title: 'Timezone Converter — GlobalTime' };
+  if (!parsed) return { title: 'Timezone Converter — TimeNumbers' };
 
   const { fromTz, toTz, cleanSlug } = parsed;
   const title = `Convert ${fromTz.abbr} to ${toTz.abbr} — ${fromTz.primaryName} to ${toTz.primaryName} Converter`;
@@ -111,7 +111,7 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": `Convert ${fromTz.abbr} to ${toTz.abbr} Time Converter`,
-            "url": `https://globaltime.org/convert/${cleanSlug}`,
+            "url": `https://timenumbers.com/convert/${cleanSlug}`,
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "browserRequirements": "Requires JavaScript. Requires HTML5.",

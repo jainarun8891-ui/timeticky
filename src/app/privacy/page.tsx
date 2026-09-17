@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Privacy Policy — GlobalTime Data Protection Commitment',
-  'GlobalTime respects your privacy. Zero user tracking, no third-party cookies, and anonymous client-side time calculations.',
+  'Privacy Policy — TimeNumbers Data Protection Commitment',
+  'TimeNumbers respects your privacy. Zero user tracking, no third-party cookies, and anonymous client-side time calculations.',
   '/privacy'
 );
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';

@@ -54,8 +54,8 @@ export default function GoldenHourPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "GlobalTime Golden Hour Calculator",
-            "url": "https://globaltime.org/golden-hour",
+            "name": "TimeNumbers Golden Hour Calculator",
+            "url": "https://timenumbers.com/golden-hour",
             "applicationCategory": "PhotographyApplication",
             "operatingSystem": "All",
             "offers": {

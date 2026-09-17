@@ -526,12 +526,12 @@ export function generateICS(title: string, dateStr: string, startHourUtc: number
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//GlobalTime//Meeting Planner//EN',
+    'PRODID:-//TimeNumbers//Meeting Planner//EN',
     'BEGIN:VEVENT',
     \`SUMMARY:\${title}\`,
     \`DTSTART:\${y}\${m}\${d}T\${startH}0000Z\`,
     \`DTEND:\${y}\${m}\${d}T\${endH}0000Z\`,
-    'DESCRIPTION:Scheduled via GlobalTime Meeting Planner',
+    'DESCRIPTION:Scheduled via TimeNumbers Meeting Planner',
     'STATUS:CONFIRMED',
     'END:VEVENT',
     'END:VCALENDAR'
@@ -548,7 +548,7 @@ export function generateGoogleCalendarUrl(title: string, dateStr: string, startH
   const startIso = \`\${y}\${m}\${d}T\${startH}0000Z\`;
   const endIso = \`\${y}\${m}\${d}T\${endH}0000Z\`;
 
-  return \`https://calendar.google.com/calendar/render?action=TEMPLATE&text=\${encodeURIComponent(title)}&dates=\${startIso}/\${endIso}&details=\${encodeURIComponent("Scheduled via GlobalTime")}\`;
+  return \`https://calendar.google.com/calendar/render?action=TEMPLATE&text=\${encodeURIComponent(title)}&dates=\${startIso}/\${endIso}&details=\${encodeURIComponent("Scheduled via TimeNumbers")}\`;
 }
 `);
 

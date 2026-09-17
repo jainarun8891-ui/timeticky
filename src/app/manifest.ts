@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'GlobalTime — Exact World Time & Atomic Clock',
-    short_name: 'GlobalTime',
+    name: 'TimeNumbers — Exact World Time & Atomic Clock',
+    short_name: 'TimeNumbers',
     description: 'Ultra-fast precision global time platform, world clock, IANA timezone database, and solar astronomical calculations.',
     start_url: '/',
     display: 'standalone',

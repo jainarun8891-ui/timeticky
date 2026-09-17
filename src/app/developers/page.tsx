@@ -6,15 +6,15 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Code2, Terminal, ShieldCheck, Zap, Globe, ArrowRight, BookOpen, Key, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'GlobalTime Developer Platform — Free World Time & Astronomy API',
+  title: 'TimeNumbers Developer Platform — Free World Time & Astronomy API',
   description: 'Integrate global atomic chronometry, IANA time zones, solar ephemeris, and precision time conversions into your applications. Free anonymous tier, zero dependencies, JSON REST API.',
   alternates: {
-    canonical: 'https://globaltime.org/developers',
+    canonical: 'https://timenumbers.com/developers',
   },
   openGraph: {
-    title: 'GlobalTime Developer Platform & API',
+    title: 'TimeNumbers Developer Platform & API',
     description: 'High-precision REST APIs for timezones, cities, solar calculations, and time conversions.',
-    url: 'https://globaltime.org/developers',
+    url: 'https://timenumbers.com/developers',
   },
 };
 
@@ -22,14 +22,14 @@ export default function DevelopersPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'GlobalTime Developer Platform',
+    name: 'TimeNumbers Developer Platform',
     description: 'World Time & Astronomy REST API Documentation and Quickstart.',
-    url: 'https://globaltime.org/developers',
+    url: 'https://timenumbers.com/developers',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://globaltime.org' },
-        { '@type': 'ListItem', position: 2, name: 'Developers', item: 'https://globaltime.org/developers' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Developers', item: 'https://timenumbers.com/developers' },
       ],
     },
   };
@@ -126,7 +126,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">1. Fetch Current Atomic UTC Time</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://globaltime.org/api/v1/time&quot;</code>
+              <code>curl -X GET &quot;https://timenumbers.com/api/v1/time&quot;</code>
             </div>
           </div>
 
@@ -134,7 +134,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">2. Inspect Specific IANA Timezone</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://globaltime.org/api/v1/timezone/Asia/Kolkata&quot;</code>
+              <code>curl -X GET &quot;https://timenumbers.com/api/v1/timezone/Asia/Kolkata&quot;</code>
             </div>
           </div>
 
@@ -142,7 +142,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">3. Calculate Solar Ephemeris for City</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://globaltime.org/api/v1/sun/delhi&quot;</code>
+              <code>curl -X GET &quot;https://timenumbers.com/api/v1/sun/delhi&quot;</code>
             </div>
           </div>
 
@@ -150,7 +150,7 @@ export default function DevelopersPage() {
           <div className="space-y-2">
             <span className="text-xs font-semibold text-slate-400">4. Convert Time Between Multiple International Zones</span>
             <div className="bg-slate-950 rounded-xl p-4 font-mono text-xs text-slate-200 overflow-x-auto border border-slate-800">
-              <code>curl -X GET &quot;https://globaltime.org/api/v1/convert?from=Asia/Kolkata&amp;to=America/New_York,Europe/London&amp;time=14:30&quot;</code>
+              <code>curl -X GET &quot;https://timenumbers.com/api/v1/convert?from=Asia/Kolkata&amp;to=America/New_York,Europe/London&amp;time=14:30&quot;</code>
             </div>
           </div>
         </div>

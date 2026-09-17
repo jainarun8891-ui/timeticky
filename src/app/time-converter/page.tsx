@@ -20,7 +20,7 @@ const CONVERTER_FAQS = [
   },
   {
     question: "How are date changes indicated across time zones?",
-    answer: "Whenever a converted time crosses midnight into the next or previous day, GlobalTime displays a '+1 Day (Tomorrow)' or '-1 Day (Yesterday)' indicator so you never miss cross-border deadlines."
+    answer: "Whenever a converted time crosses midnight into the next or previous day, TimeNumbers displays a '+1 Day (Tomorrow)' or '-1 Day (Yesterday)' indicator so you never miss cross-border deadlines."
   },
   {
     question: "How do I share a converted schedule with clients or team members?",

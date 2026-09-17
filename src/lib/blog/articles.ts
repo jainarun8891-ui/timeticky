@@ -22,7 +22,7 @@ export const BLOG_ARTICLES: Article[] = [
     readTime: '7 min read',
     datePublished: '2026-03-01T08:00:00Z',
     dateFormatted: 'Mar 1, 2026',
-    author: 'GlobalTime Research Lab',
+    author: 'TimeNumbers Research Lab',
     authorRole: 'Workplace Chronometry & Data Team',
     image: '/images/paris_hero.jpg',
     keywords: ['time zone productivity study', 'remote team scheduling cost', 'international meeting overlap', 'timezone fatigue statistics'],
@@ -45,7 +45,7 @@ export const BLOG_ARTICLES: Article[] = [
     readTime: '8 min read',
     datePublished: '2026-03-10T08:00:00Z',
     dateFormatted: 'Mar 10, 2026',
-    author: 'GlobalTime Research Lab',
+    author: 'TimeNumbers Research Lab',
     authorRole: 'Public Policy & Chronometry Division',
     image: '/images/paris_hero.jpg',
     keywords: ['daylight saving time study', 'sunshine protection act statistics', 'countries without daylight saving', 'DST health and cardiac impacts'],
@@ -84,7 +84,7 @@ export const BLOG_ARTICLES: Article[] = [
       '- **Stratum 1**: Dedicated servers directly connected to Stratum 0 devices. They provide microsecond-level synchronization to public networks.',
       '- **Stratum 2 & 3**: Regional servers and corporate edge routers that distribute time across billions of end-user endpoints.',
       '## Why Milliseconds Matter in the Real World',
-      'Modern distributed databases use synchronized clocks to sequence transactions without expensive global locks. In global equity markets, regulations like MiFID II mandate timestamp precision within 100 microseconds of UTC. At GlobalTime, our distributed NTP health verification ensures our time platform remains accurate to within ±0.01 seconds.'
+      'Modern distributed databases use synchronized clocks to sequence transactions without expensive global locks. In global equity markets, regulations like MiFID II mandate timestamp precision within 100 microseconds of UTC. At TimeNumbers, our distributed NTP health verification ensures our time platform remains accurate to within ±0.01 seconds.'
     ]
   },
   {
@@ -154,7 +154,7 @@ export const BLOG_ARTICLES: Article[] = [
     content: [
       'Managing a distributed workforce across San Francisco, London, Dubai, and Tokyo is one of the greatest operational hurdles of modern tech companies. Without clear rules, someone is always waking up at 5:00 AM or answering Slack at 11:00 PM.',
       '## 1. Map the Golden Overlap Window',
-      'Using the GlobalTime Meeting Planner, plot your core team hubs across the 24-hour strip. For an EU-US team (London and New York), standard business hours (9:00 - 17:00 local) overlap between **14:00 and 17:00 London time** (9:00 - 12:00 New York time).',
+      'Using the TimeNumbers Meeting Planner, plot your core team hubs across the 24-hour strip. For an EU-US team (London and New York), standard business hours (9:00 - 17:00 local) overlap between **14:00 and 17:00 London time** (9:00 - 12:00 New York time).',
       'Protect this 3-hour window exclusively for collaborative discussions, design reviews, and 1-on-1s. Reserve all other hours for deep, uninterrupted solo work.',
       '## 2. The Tri-Continental Rotation Protocol',
       'When your team spans all three continental mega-zones (Americas, EMEA, APAC), zero mathematical overlap exists that preserves standard daylight for everyone simultaneously. In this scenario:',

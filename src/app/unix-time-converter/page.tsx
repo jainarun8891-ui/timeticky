@@ -5,7 +5,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { UnixConverterClient } from './UnixConverterClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Unix Timestamp Converter — Epoch to Readable Date & Live Milliseconds | GlobalTime",
+  "Unix Timestamp Converter — Epoch to Readable Date & Live Milliseconds | TimeNumbers",
   "Convert Unix timestamp seconds to readable human date, parse ISO 8601 strings, and copy live epoch milliseconds. Understand UTC vs GMT and the Year 2038 problem.",
   "/unix-time-converter"
 );

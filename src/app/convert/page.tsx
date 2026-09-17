@@ -74,8 +74,8 @@ export default function ConvertDirectoryPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "GlobalTime Timezone Converters Directory",
-            "url": "https://globaltime.org/convert",
+            "name": "TimeNumbers Timezone Converters Directory",
+            "url": "https://timenumbers.com/convert",
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "offers": {

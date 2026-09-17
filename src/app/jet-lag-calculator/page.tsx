@@ -28,7 +28,7 @@ const JET_LAG_FAQS = [
   },
   {
     question: "How does flight distance and speed factor into flight time calculation?",
-    answer: "GlobalTime calculates flight duration using great-circle orthodromic distance (the shortest route over the curved Earth surface), calibrated for modern commercial passenger aircraft cruising speeds (820–850 km/h) plus standard runway taxi and approach buffers."
+    answer: "TimeNumbers calculates flight duration using great-circle orthodromic distance (the shortest route over the curved Earth surface), calibrated for modern commercial passenger aircraft cruising speeds (820–850 km/h) plus standard runway taxi and approach buffers."
   }
 ];
 

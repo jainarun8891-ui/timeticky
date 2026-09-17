@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Time Zone Science & Horology Knowledge Hub — GlobalTime",
+  "Time Zone Science & Horology Knowledge Hub — TimeNumbers",
   "In-depth guides on atomic timekeeping, UTC vs GMT differences, daylight saving history, and circadian travel science.",
   "/learn"
 );

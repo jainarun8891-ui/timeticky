@@ -55,7 +55,7 @@ export default function ClockAccuracyPage() {
     },
     {
       question: "How to check if my computer clock is accurate?",
-      answer: "GlobalTime measures the network round-trip time between your browser and our Stratum-1 NTP synchronized server infrastructure. The calculated offset represents the exact drift of your local device clock against coordinated universal atomic time (UTC)."
+      answer: "TimeNumbers measures the network round-trip time between your browser and our Stratum-1 NTP synchronized server infrastructure. The calculated offset represents the exact drift of your local device clock against coordinated universal atomic time (UTC)."
     },
     {
       question: "Why does my computer clock lose or gain time?",

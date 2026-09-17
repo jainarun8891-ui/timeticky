@@ -16,7 +16,7 @@ export const metadata = buildPageMetadata(
 const SUN_FAQS = [
   {
     question: "How are sunrise and sunset times calculated?",
-    answer: "GlobalTime utilizes the NOAA solar position algorithm based on orbital eccentricity, solar declination, and equation of time, determining the exact minute the upper limb of the sun touches the astronomical horizon (solar zenith 90.833°)."
+    answer: "TimeNumbers utilizes the NOAA solar position algorithm based on orbital eccentricity, solar declination, and equation of time, determining the exact minute the upper limb of the sun touches the astronomical horizon (solar zenith 90.833°)."
   },
   {
     question: "What is Solar Noon?",

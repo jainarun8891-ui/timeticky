@@ -58,8 +58,8 @@ export default function AtomicClockPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "GlobalTime Online Atomic Clock",
-            "url": "https://globaltime.org/atomic-clock",
+            "name": "TimeNumbers Online Atomic Clock",
+            "url": "https://timenumbers.com/atomic-clock",
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "offers": {

@@ -156,7 +156,7 @@ export function SwissAnalogClock({ time, timezone, className = "", size = 260 }:
 
         {/* 7. Brand Mark on Dial */}
         <text x="150" y="100" textAnchor="middle" className="fill-slate-800 dark:fill-slate-200 font-black text-[11px] tracking-widest uppercase">
-          GLOBALTIME
+          TIMENUMBERS
         </text>
         <text x="150" y="112" textAnchor="middle" className="fill-blue-600 dark:fill-blue-400 font-mono text-[8px] font-semibold tracking-wider uppercase">
           ATOMIC CHRONOMETER

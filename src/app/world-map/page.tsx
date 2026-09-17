@@ -7,21 +7,21 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Globe, Compass, Sun, Moon, Clock, ShieldCheck, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Interactive World Time Map — Live Global Clocks, Day/Night Terminator & Timezones | GlobalTime',
+  title: 'Interactive World Time Map — Live Global Clocks, Day/Night Terminator & Timezones | TimeNumbers',
   description: 'Explore real-time global time on a high-precision interactive world map. Hover over 46 global cities to inspect live digital clocks, solar terminator boundaries, day/night illumination, and great-circle time sync arcs.',
   alternates: {
-    canonical: 'https://globaltime.org/world-map',
+    canonical: 'https://timenumbers.com/world-map',
   },
   openGraph: {
     title: 'Interactive World Time Map — Live Global Clocks & Day/Night Boundary',
     description: 'Explore real-time global time on a high-precision interactive world map with 46 live city clocks and solar terminator.',
-    url: 'https://globaltime.org/world-map',
-    siteName: 'GlobalTime',
+    url: 'https://timenumbers.com/world-map',
+    siteName: 'TimeNumbers',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Interactive World Time Map — GlobalTime',
+    title: 'Interactive World Time Map — TimeNumbers',
     description: 'Explore real-time global time on a high-precision interactive world map with 46 live city clocks and solar terminator.',
   }
 };
@@ -33,7 +33,7 @@ const WORLD_MAP_FAQS = [
   },
   {
     question: 'How accurate are the live clocks displayed when hovering over city pins?',
-    answer: 'Every city clock on the GlobalTime world map computes time in-memory directly from canonical IANA time zone rules and native browser internationalization engine. Clocks are synchronized against atomic standards and maintain precision of ±0.01 seconds without background tab drift.'
+    answer: 'Every city clock on the TimeNumbers world map computes time in-memory directly from canonical IANA time zone rules and native browser internationalization engine. Clocks are synchronized against atomic standards and maintain precision of ±0.01 seconds without background tab drift.'
   },
   {
     question: 'What do the curved lines connecting cities on the map represent?',
@@ -53,8 +53,8 @@ export default function WorldMapPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'GlobalTime Interactive World Time Map',
-    url: 'https://globaltime.org/world-map',
+    name: 'TimeNumbers Interactive World Time Map',
+    url: 'https://timenumbers.com/world-map',
     description: 'High-precision interactive world time map featuring real-time solar terminator, live clocks across 46 global cities, day/night boundary, and time zone meridians.',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All'

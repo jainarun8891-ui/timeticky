@@ -32,12 +32,12 @@ export default function WidgetBuilderPage() {
 
   const selectedCity = CITIES.find(c => c.slug === slug) || CITIES[0];
 
-  const clockIframeUrl = `https://globaltime.org/embed/clock?city=${slug}&theme=${theme}&format=${format}&seconds=${showSeconds}`;
+  const clockIframeUrl = `https://timenumbers.com/embed/clock?city=${slug}&theme=${theme}&format=${format}&seconds=${showSeconds}`;
   const previewClockUrl = `/embed/clock?city=${slug}&theme=${theme}&format=${format}&seconds=${showSeconds}`;
 
   const countdownTarget = countdownEvent === 'new-year' ? '2027-01-01T00:00:00Z' : '2026-12-25T00:00:00Z';
   const countdownName = countdownEvent === 'new-year' ? 'New Year 2027' : 'Christmas Day';
-  const countdownIframeUrl = `https://globaltime.org/embed/countdown?event=${encodeURIComponent(countdownName)}&target=${countdownTarget}&theme=${theme}`;
+  const countdownIframeUrl = `https://timenumbers.com/embed/countdown?event=${encodeURIComponent(countdownName)}&target=${countdownTarget}&theme=${theme}`;
   const previewCountdownUrl = `/embed/countdown?event=${encodeURIComponent(countdownName)}&target=${countdownTarget}&theme=${theme}`;
 
   // Engineered SEO Backlink Snippet
@@ -54,7 +54,7 @@ export default function WidgetBuilderPage() {
   </iframe>
   <!-- The SEO Backlink -->
   <p style="font-size: 11px; margin-top: 6px; color: #64748b;">
-    Powered by <a href="https://globaltime.org/time/${slug}" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 600; text-decoration: none;">GlobalTime</a>
+    Powered by <a href="https://timenumbers.com/time/${slug}" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 600; text-decoration: none;">TimeNumbers</a>
   </p>
 </div>`;
 
@@ -71,7 +71,7 @@ export default function WidgetBuilderPage() {
   </iframe>
   <!-- The SEO Backlink -->
   <p style="font-size: 11px; margin-top: 6px; color: #64748b;">
-    Powered by <a href="https://globaltime.org/countdown" target="_blank" rel="noopener" style="color: #e11d48; font-weight: 600; text-decoration: none;">GlobalTime Countdown</a>
+    Powered by <a href="https://timenumbers.com/countdown" target="_blank" rel="noopener" style="color: #e11d48; font-weight: 600; text-decoration: none;">TimeNumbers Countdown</a>
   </p>
 </div>`;
 
@@ -85,8 +85,8 @@ export default function WidgetBuilderPage() {
 
   const faqs = [
     {
-      question: "Are GlobalTime widgets completely free to use?",
-      answer: "Yes! All GlobalTime widgets are 100% free, ad-free, and require zero user registration or API keys. Simply copy the HTML embed snippet and paste it into your website."
+      question: "Are TimeNumbers widgets completely free to use?",
+      answer: "Yes! All TimeNumbers widgets are 100% free, ad-free, and require zero user registration or API keys. Simply copy the HTML embed snippet and paste it into your website."
     },
     {
       question: "Will the widget slow down my website?",
@@ -312,7 +312,7 @@ export default function WidgetBuilderPage() {
                     title="Live Widget Preview"
                   />
                   <p className="text-[11px] text-center mt-1.5 text-slate-500 font-medium">
-                    Powered by <span className="text-blue-600 font-bold">GlobalTime</span>
+                    Powered by <span className="text-blue-600 font-bold">TimeNumbers</span>
                   </p>
                 </div>
               </div>

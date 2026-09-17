@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Frequently Asked Questions — GlobalTime Accuracy & Standards",
+  "Frequently Asked Questions — TimeNumbers Accuracy & Standards",
   "Answers to common questions about atomic clock synchronization, IANA time zones, UTC offsets, daylight saving time, and API usage.",
   "/faq"
 );

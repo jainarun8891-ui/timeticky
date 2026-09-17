@@ -35,7 +35,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
       setTime(now);
       const ts = formatTimeInZone(now, activeCity.timezone, false, true);
       if (typeof document !== 'undefined') {
-        document.title = `${ts} • Time in ${activeCity.name}, ${activeCity.country} • GlobalTime`;
+        document.title = `${ts} • Time in ${activeCity.name}, ${activeCity.country} • TimeNumbers`;
       }
     }, 1000);
     return () => clearInterval(interval);

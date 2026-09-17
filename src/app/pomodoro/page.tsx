@@ -20,7 +20,7 @@ export default function PomodoroPage() {
     },
     {
       question: 'Does this Pomodoro timer work when the browser tab is inactive?',
-      answer: 'Yes. GlobalTime Pomodoro calculates remaining time against absolute wall-clock epoch timestamps (Date.now()) rather than relying on throttled browser intervals. It will never drift or pause when you switch tabs.'
+      answer: 'Yes. TimeNumbers Pomodoro calculates remaining time against absolute wall-clock epoch timestamps (Date.now()) rather than relying on throttled browser intervals. It will never drift or pause when you switch tabs.'
     },
     {
       question: 'Why is 25 minutes the standard Pomodoro interval?',
@@ -54,8 +54,8 @@ export default function PomodoroPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "GlobalTime Pomodoro Timer",
-            "url": "https://globaltime.org/pomodoro",
+            "name": "TimeNumbers Pomodoro Timer",
+            "url": "https://timenumbers.com/pomodoro",
             "applicationCategory": "ProductivityApplication",
             "operatingSystem": "All",
             "offers": {

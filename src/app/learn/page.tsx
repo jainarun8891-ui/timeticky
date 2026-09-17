@@ -23,7 +23,7 @@ export default function LearnAcademyPage() {
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-bold shadow-2xs">
           <BookOpen className="w-3.5 h-3.5" />
-          <span>GlobalTime Chronometry Academy</span>
+          <span>TimeNumbers Chronometry Academy</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
           How Time Works on Planet Earth
@@ -160,10 +160,10 @@ export default function LearnAcademyPage() {
             </p>
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 text-xs space-y-2">
               <span className="font-bold text-slate-900 dark:text-white block">
-                Sub-Second NTP Synchronization on GlobalTime
+                Sub-Second NTP Synchronization on TimeNumbers
               </span>
               <p className="text-slate-600 dark:text-slate-300">
-                GlobalTime continuously calibrates your browser local clock against Stratum-1 atomic NTP servers via server round-trip timing (RTT) algorithms, ensuring sub-second display accuracy within ±0.01s.
+                TimeNumbers continuously calibrates your browser local clock against Stratum-1 atomic NTP servers via server round-trip timing (RTT) algorithms, ensuring sub-second display accuracy within ±0.01s.
               </p>
             </div>
           </div>

@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Exact Time Now — World Clock, Current Time & Atomic Clock | GlobalTime",
+  title: "Exact Time Now — World Clock, Current Time & Atomic Clock | TimeNumbers",
   description: "What time is it right now? Check exact time now with atomic clock precision. Live world clock, time zone converter, international meeting planner, and current local time across 500+ world cities.",
   metadataBase: new URL(siteConfig.url),
   alternates: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "GMT to EST converter",
     "daylight saving time 2025"
   ],
-  authors: [{ name: "GlobalTime Chronometry Team" }],
+  authors: [{ name: "TimeNumbers Chronometry Team" }],
   openGraph: {
     title: `${siteConfig.name} - Exact World Time & Atomic Clock Platform`,
     description: "Sub-second NTP atomic time synchronization for 500+ world cities. Beautiful, accurate, and ad-free.",

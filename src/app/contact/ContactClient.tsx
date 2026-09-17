@@ -25,7 +25,7 @@ export function ContactClient() {
             Editorial & Technical Inquiries
           </h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            GlobalTime is maintained by a specialized team of systems engineers and chronometry enthusiasts. We welcome community corrections, API integration partnerships, and feature suggestions.
+            TimeNumbers is maintained by a specialized team of systems engineers and chronometry enthusiasts. We welcome community corrections, API integration partnerships, and feature suggestions.
           </p>
 
           <div className="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
@@ -55,7 +55,7 @@ export function ContactClient() {
               </div>
               <div>
                 <span className="font-bold text-slate-800 dark:text-slate-200 block">Direct Email</span>
-                <span className="font-mono text-blue-600 dark:text-blue-400">support@globaltime.org</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">support@timenumbers.com</span>
               </div>
             </div>
           </div>

@@ -251,7 +251,7 @@ export function WorldTimeBuddyGrid({ fromTz, toTz, comboSlug }: WorldTimeBuddyGr
       const diffTag = rt.dayDiff > 0 ? ` (+${rt.dayDiff}d)` : rt.dayDiff < 0 ? ` (${rt.dayDiff}d)` : '';
       text += `• ${timeDisplay}${diffTag} ${rt.abbr} (${row?.subtitle})\n`;
     });
-    text += `\nShared via GlobalTime: https://globaltime.org/convert/${comboSlug}?h=${selectedHour}`;
+    text += `\nShared via TimeNumbers: https://timenumbers.com/convert/${comboSlug}?h=${selectedHour}`;
 
     navigator.clipboard.writeText(text);
     setIsCopied(true);
@@ -283,7 +283,7 @@ export function WorldTimeBuddyGrid({ fromTz, toTz, comboSlug }: WorldTimeBuddyGr
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.setAttribute('download', `globaltime-meeting-${dateIso}.ics`);
+    link.setAttribute('download', `timenumbers-meeting-${dateIso}.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

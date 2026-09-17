@@ -5,7 +5,7 @@ import { getSunTimes } from '../lib/astronomy/sun';
 import { evaluateMeetingSlots } from '../lib/meeting/planner';
 import { getCityBySlug, searchCities } from '../lib/geo/cities';
 
-describe('GlobalTime Core Engine Tests', () => {
+describe('TimeNumbers Core Engine Tests', () => {
   it('correctly calculates India Standard Time offset (UTC+5:30)', () => {
     const d = new Date('2026-03-25T12:00:00Z');
     const offset = getOffsetMinutes(d, 'Asia/Kolkata');

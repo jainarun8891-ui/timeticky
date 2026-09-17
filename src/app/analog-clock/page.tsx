@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Accurate Online Analog Clock — Smooth Sweeping Second Hand & Watch Dial',
   description: 'Precision full-screen online analog clock featuring continuous sweeping second hand, multiple chronometer dial themes, date window, and global timezone selector.',
   alternates: {
-    canonical: 'https://globaltime.org/analog-clock',
+    canonical: 'https://timenumbers.com/analog-clock',
   },
   openGraph: {
-    title: 'Precision Online Analog Clock — GlobalTime',
+    title: 'Precision Online Analog Clock — TimeNumbers',
     description: 'Accurate analog watch dial with sweeping seconds, date aperture, and world time zones.',
-    url: 'https://globaltime.org/analog-clock',
+    url: 'https://timenumbers.com/analog-clock',
   },
 };
 
@@ -25,12 +25,12 @@ export default function AnalogClockPage() {
     '@type': 'WebPage',
     name: 'Online Analog Clock',
     description: 'High-precision SVG analog clock with sweeping seconds and timezone support.',
-    url: 'https://globaltime.org/analog-clock',
+    url: 'https://timenumbers.com/analog-clock',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://globaltime.org' },
-        { '@type': 'ListItem', position: 2, name: 'Analog Clock', item: 'https://globaltime.org/analog-clock' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Analog Clock', item: 'https://timenumbers.com/analog-clock' },
       ],
     },
   };

@@ -11,12 +11,12 @@ export interface FaqItem {
 // 1. Homepage Master FAQs
 export const HOME_FAQS: FaqItem[] = [
   {
-    question: "How accurate is the atomic clock on GlobalTime?",
-    answer: "GlobalTime synchronizes with international Stratum-1 atomic clock servers utilizing Network Time Protocol (NTP) round-trip algorithms. Under ordinary broadband connections, our platform delivers an accuracy of within ±0.01 seconds (10 milliseconds) of Coordinated Universal Time (UTC)."
+    question: "How accurate is the atomic clock on TimeNumbers?",
+    answer: "TimeNumbers synchronizes with international Stratum-1 atomic clock servers utilizing Network Time Protocol (NTP) round-trip algorithms. Under ordinary broadband connections, our platform delivers an accuracy of within ±0.01 seconds (10 milliseconds) of Coordinated Universal Time (UTC)."
   },
   {
-    question: "How does GlobalTime determine my exact local time?",
-    answer: "GlobalTime queries your device's internal clock and compares it with our atomic time servers via WebSocket and HTTP round-trip timing (RTT). The system calculates the exact drift between your computer and true UTC, displaying your real local time with sub-second precision."
+    question: "How does TimeNumbers determine my exact local time?",
+    answer: "TimeNumbers queries your device's internal clock and compares it with our atomic time servers via WebSocket and HTTP round-trip timing (RTT). The system calculates the exact drift between your computer and true UTC, displaying your real local time with sub-second precision."
   },
   {
     question: "What is the difference between UTC and GMT?",
@@ -31,8 +31,8 @@ export const HOME_FAQS: FaqItem[] = [
     answer: "In the United States and Canada, clocks spring forward by 1 hour on Sunday, March 9, 2025, and fall back on Sunday, November 2, 2025. In the European Union and the United Kingdom, clocks spring forward on Sunday, March 30, 2025, and fall back on Sunday, October 26, 2025."
   },
   {
-    question: "Can I embed GlobalTime clock widgets on my website?",
-    answer: "Yes. GlobalTime provides free, responsive embeddable HTML5 widgets via our /widgets directory. You can customize the theme (light or dark), colors, format (12h or 24h), and display options for any of the 500+ indexed world cities."
+    question: "Can I embed TimeNumbers clock widgets on my website?",
+    answer: "Yes. TimeNumbers provides free, responsive embeddable HTML5 widgets via our /widgets directory. You can customize the theme (light or dark), colors, format (12h or 24h), and display options for any of the 500+ indexed world cities."
   }
 ];
 
@@ -46,7 +46,7 @@ export function getCityFaqs(city: City): FaqItem[] {
   return [
     {
       question: `What is the exact time in ${city.name}, ${city.country} right now?`,
-      answer: `The current local time in ${city.name} is synchronized with atomic time on this page. GlobalTime continuously updates the digital display to reflect the exact sub-second hour, minute, and second in ${city.name}.`
+      answer: `The current local time in ${city.name} is synchronized with atomic time on this page. TimeNumbers continuously updates the digital display to reflect the exact sub-second hour, minute, and second in ${city.name}.`
     },
     {
       question: `What time zone is ${city.name} in?`,
@@ -58,7 +58,7 @@ export function getCityFaqs(city: City): FaqItem[] {
     },
     {
       question: `How do I compare time between ${city.name} and other global cities?`,
-      answer: `You can use the GlobalTime Time Difference comparison engine or the Meeting Planner on this page to view live hours side-by-side between ${city.name}, New York, London, Tokyo, and 500+ global hubs.`
+      answer: `You can use the TimeNumbers Time Difference comparison engine or the Meeting Planner on this page to view live hours side-by-side between ${city.name}, New York, London, Tokyo, and 500+ global hubs.`
     },
     {
       question: `What are the standard business hours in ${city.name}?`,
@@ -126,7 +126,7 @@ export const MEETING_PLANNER_FAQS: FaqItem[] = [
 export const TIME_DIFFERENCE_FAQS: FaqItem[] = [
   {
     question: "How do I calculate the time difference between two cities?",
-    answer: "To find the time difference, determine the UTC offset of each city and subtract the smaller offset from the larger one. GlobalTime calculates this automatically, factoring in daylight saving schedules."
+    answer: "To find the time difference, determine the UTC offset of each city and subtract the smaller offset from the larger one. TimeNumbers calculates this automatically, factoring in daylight saving schedules."
   },
   {
     question: "Why does the time difference between New York and London change in March?",
@@ -162,8 +162,8 @@ export const UNIX_TIME_FAQS: FaqItem[] = [
 
 export const CLOCK_ACCURACY_FAQS: FaqItem[] = [
   {
-    question: "How does GlobalTime achieve sub-second atomic precision in a web browser?",
-    answer: "Web browsers cannot directly query atomic clocks due to sandbox limitations. GlobalTime uses precision round-trip time (RTT) algorithms to benchmark your local hardware clock against Stratum-1 NTP atomic servers, compensating for network latency down to ±0.01 seconds."
+    question: "How does TimeNumbers achieve sub-second atomic precision in a web browser?",
+    answer: "Web browsers cannot directly query atomic clocks due to sandbox limitations. TimeNumbers uses precision round-trip time (RTT) algorithms to benchmark your local hardware clock against Stratum-1 NTP atomic servers, compensating for network latency down to ±0.01 seconds."
   },
   {
     question: "What is a Stratum 1 atomic time server?",

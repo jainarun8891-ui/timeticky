@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!article) return { title: 'Article Not Found' };
 
   return {
-    title: `${article.title} - GlobalTime Insights`,
+    title: `${article.title} - TimeNumbers Insights`,
     description: article.excerpt,
     keywords: article.keywords,
     alternates: {
-      canonical: `https://globaltime.org/blog/${article.slug}`,
+      canonical: `https://timenumbers.com/blog/${article.slug}`,
     },
     openGraph: {
       title: article.title,

@@ -5,7 +5,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { SeoSimulatorClient } from './SeoSimulatorClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  "SEO Simulator — Domain Authority vs Keyword Difficulty | GlobalTime",
+  "SEO Simulator — Domain Authority vs Keyword Difficulty | TimeNumbers",
   "Interactive simulator demonstrating how programmatic long-tail pages build Domain Authority (DA) to outrank legacy incumbents for competitive short-tail keywords.",
   "/learn/seo-simulator"
 );

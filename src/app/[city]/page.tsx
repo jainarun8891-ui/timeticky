@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Current Time in ${city.name}, ${city.country} — Live Clock & Time Zone`,
     description: `Exact current local time in ${city.name}, ${city.country}. Includes ${city.timezone} time zone, UTC offset, sunrise, sunset, day length, and live global time difference comparisons.`,
     alternates: {
-      canonical: `https://globaltime.org/${cleanSlug}`,
+      canonical: `https://timenumbers.com/${cleanSlug}`,
     },
     openGraph: {
-      title: `Current Time in ${city.name} — GlobalTime`,
+      title: `Current Time in ${city.name} — TimeNumbers`,
       description: `Check precision local time in ${city.name} (${city.country}) with live seconds and atomic clock synchronization.`,
-      url: `https://globaltime.org/${cleanSlug}`,
+      url: `https://timenumbers.com/${cleanSlug}`,
       type: 'website',
     },
   };
@@ -55,7 +55,7 @@ export default async function RootCityPage({ params }: Props) {
   const cityFaqs = [
     {
       question: `What time is it in ${city.name} right now?`,
-      answer: `GlobalTime calculates the current local time in ${city.name} using atomic NTP synchronization against the canonical ${city.timezone} IANA time zone rules.`
+      answer: `TimeNumbers calculates the current local time in ${city.name} using atomic NTP synchronization against the canonical ${city.timezone} IANA time zone rules.`
     },
     {
       question: `Does ${city.name} observe Daylight Saving Time (DST)?`,

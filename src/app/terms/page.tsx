@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Terms of Service & Usage Policy — GlobalTime',
-  'Terms and conditions for using GlobalTime free time calculators, solar ephemeris data, and developer APIs.',
+  'Terms of Service & Usage Policy — TimeNumbers',
+  'Terms and conditions for using TimeNumbers free time calculators, solar ephemeris data, and developer APIs.',
   '/terms'
 );
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
@@ -14,7 +14,7 @@ export default function TermsPage() {
       <Breadcrumbs items={[{"name":"Terms of Service","url":"/terms"}]} />
       <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Terms of Use</h1>
       <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-        GlobalTime is provided as a free utility. Calculated times and astronomical calculations are delivered in good faith.
+        TimeNumbers is provided as a free utility. Calculated times and astronomical calculations are delivered in good faith.
       </p>
     </div>
   );

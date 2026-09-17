@@ -1,4 +1,4 @@
-﻿# GlobalTime — Production-Ready Global Time Platform
+﻿# TimeNumbers — Production-Ready Global Time Platform
 
 > **"The world's time, clearly."**
 > A modern, lightweight, privacy-conscious global time platform engineered for microsecond accuracy, zero-dependency solar astronomy, and intuitive multi-city scheduling.
@@ -7,7 +7,7 @@
 
 ## 1. Project Overview & Architecture
 
-GlobalTime is built from first principles to provide practical global time utilities without bloated frameworks, third-party tracker scripts, or AI-generated filler. It matches the clean dashboard aesthetics of weather and utility apps while giving the live clock hero status.
+TimeNumbers is built from first principles to provide practical global time utilities without bloated frameworks, third-party tracker scripts, or AI-generated filler. It matches the clean dashboard aesthetics of weather and utility apps while giving the live clock hero status.
 
 ### Technology Stack
 * **Framework**: Next.js 15+ (App Router) with React 19 & TypeScript.
@@ -20,7 +20,7 @@ GlobalTime is built from first principles to provide practical global time utili
 ## 2. Directory Structure
 
 ```
-globaltime/
+timenumbers/
 ├── src/
 │   ├── app/
 │   │   ├── api/
@@ -71,7 +71,7 @@ globaltime/
 
 ## 3. Clock Synchronization Architecture
 
-GlobalTime does not assume the visitor's hardware clock is correct.
+TimeNumbers does not assume the visitor's hardware clock is correct.
 * Client initiates small consecutive requests to `/api/time` with `cache: no-store`.
 * Measures round-trip time ($RTT = t_1 - t_0$).
 * Calculates estimated device offset: $\text{Offset} = \text{ServerTimestamp} - (t_0 + RTT / 2)$.

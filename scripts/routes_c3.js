@@ -20,7 +20,7 @@ export default function WidgetBuilderPage() {
   const [theme, setTheme] = useState('light');
   const [copied, setCopied] = useState(false);
 
-  const snippet = \`<iframe src="https://globaltime.org/embed/clock?city=\${slug}&theme=\${theme}" width="320" height="130" frameborder="0" style="border-radius: 16px; overflow: hidden;" title="GlobalTime Widget"></iframe>\`;
+  const snippet = \`<iframe src="https://timenumbers.com/embed/clock?city=\${slug}&theme=\${theme}" width="320" height="130" frameborder="0" style="border-radius: 16px; overflow: hidden;" title="TimeNumbers Widget"></iframe>\`;
 
   const copy = () => {
     navigator.clipboard.writeText(snippet);
@@ -98,7 +98,7 @@ export default function EmbedClock() {
       </div>
       <div className="text-3xl font-black font-mono tracking-tight my-1">{time}</div>
       <div className="flex justify-between text-[10px] text-slate-400">
-        <span>{date}</span><span>GlobalTime</span>
+        <span>{date}</span><span>TimeNumbers</span>
       </div>
     </div>
   );
@@ -179,7 +179,7 @@ export default function TermsPage() {
     <div className="max-w-3xl mx-auto px-4 py-12 space-y-4">
       <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Terms of Use</h1>
       <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-        GlobalTime is provided as a free utility. Calculated times and astronomical calculations are delivered in good faith.
+        TimeNumbers is provided as a free utility. Calculated times and astronomical calculations are delivered in good faith.
       </p>
     </div>
   );
@@ -190,7 +190,7 @@ export default function TermsPage() {
 write('app/robots.txt/route.ts', `
 import { NextResponse } from 'next/server';
 export async function GET() {
-  const robots = ['User-agent: *', 'Allow: /', 'Disallow: /api/', 'Disallow: /embed/', '', 'Sitemap: https://globaltime.org/sitemap.xml'].join('\\n');
+  const robots = ['User-agent: *', 'Allow: /', 'Disallow: /api/', 'Disallow: /embed/', '', 'Sitemap: https://timenumbers.com/sitemap.xml'].join('\\n');
   return new NextResponse(robots, { headers: { 'Content-Type': 'text/plain' } });
 }
 `);
@@ -211,7 +211,7 @@ export async function GET() {
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...all.map(u => \`  <url><loc>https://globaltime.org\${u}</loc><changefreq>daily</changefreq></url>\`),
+    ...all.map(u => \`  <url><loc>https://timenumbers.com\${u}</loc><changefreq>daily</changefreq></url>\`),
     '</urlset>'
   ].join('\\n');
 

@@ -66,7 +66,7 @@ export default function HomePage() {
             How Global Time and Synchronization Work
           </h2>
           <p>
-            GlobalTime synchronizes in real time with authoritative server time via NTP-calibrated timestamps. By measuring round-trip network latency and filtering jitter, your browser clock offset is continuously compensated to maintain second-level precision without requiring GPS permissions.
+            TimeNumbers synchronizes in real time with authoritative server time via NTP-calibrated timestamps. By measuring round-trip network latency and filtering jitter, your browser clock offset is continuously compensated to maintain second-level precision without requiring GPS permissions.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800">

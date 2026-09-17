@@ -55,12 +55,12 @@ function EmbedCountdownContent() {
       <div className="flex justify-between items-center text-[10px] text-slate-400">
         <span>Countdown</span>
         <a
-          href="https://globaltime.org/countdown"
+          href="https://timenumbers.com/countdown"
           target="_blank"
           rel="noopener"
           className="text-rose-500 hover:underline font-bold inline-flex items-center gap-1"
         >
-          Powered by GlobalTime
+          Powered by TimeNumbers
         </a>
       </div>
     </div>

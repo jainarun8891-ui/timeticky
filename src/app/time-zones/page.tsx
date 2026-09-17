@@ -29,7 +29,7 @@ const TIMEZONE_PAGE_FAQS = [
   },
   {
     question: "Are these times synchronized with atomic clocks?",
-    answer: "Yes. GlobalTime calculates all times using high-precision NTP (Network Time Protocol) reference time cross-checked with the canonical IANA tz database release, accurate to within fractions of a millisecond."
+    answer: "Yes. TimeNumbers calculates all times using high-precision NTP (Network Time Protocol) reference time cross-checked with the canonical IANA tz database release, accurate to within fractions of a millisecond."
   }
 ];
 

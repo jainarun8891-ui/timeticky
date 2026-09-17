@@ -52,12 +52,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${cityA.name} to ${cityB.name} Time Difference — Exact Hours & Overlap Matrix`,
     description: `Current time difference between ${cityA.name} (${cityA.country}) and ${cityB.name} (${cityB.country}). Includes live dual clocks, 24-hour conversion matrix, and best working meeting hours.`,
     alternates: {
-      canonical: `https://globaltime.org/time-difference/${slugA}/${slugB}`,
+      canonical: `https://timenumbers.com/time-difference/${slugA}/${slugB}`,
     },
     openGraph: {
       title: `${cityA.name} to ${cityB.name} Time Difference`,
       description: `Compare local time between ${cityA.name} and ${cityB.name} with live conversion matrix.`,
-      url: `https://globaltime.org/time-difference/${slugA}/${slugB}`,
+      url: `https://timenumbers.com/time-difference/${slugA}/${slugB}`,
       type: 'website',
     },
   };

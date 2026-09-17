@@ -98,7 +98,7 @@ export function Footer() {
               About & Legal
             </h5>
             <ul className="space-y-1.5">
-              <li><Link href="/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About GlobalTime</Link></li>
+              <li><Link href="/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About TimeNumbers</Link></li>
               <li><Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</Link></li>
             </ul>

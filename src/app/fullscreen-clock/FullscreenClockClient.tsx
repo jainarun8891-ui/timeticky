@@ -109,7 +109,7 @@ export function FullscreenClockClient() {
           }`}
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to GlobalTime
+          Back to TimeNumbers
         </Link>
 
         {/* Quick Shortcut Pills */}

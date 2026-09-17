@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'World Cities Directory — Current Local Time & Population Across All Metropolises',
   description: 'Explore the definitive directory of global cities. Filter by continent, alphabetical order, or population to view live synchronized clocks, timezones, and coordinates.',
   alternates: {
-    canonical: 'https://globaltime.org/cities',
+    canonical: 'https://timenumbers.com/cities',
   },
   openGraph: {
-    title: 'World Cities Directory — GlobalTime',
+    title: 'World Cities Directory — TimeNumbers',
     description: 'Browse global cities with live time, population data, and timezone offsets.',
-    url: 'https://globaltime.org/cities',
+    url: 'https://timenumbers.com/cities',
   },
 };
 
@@ -25,12 +25,12 @@ export default function CitiesPage() {
     '@type': 'WebPage',
     name: 'World Cities Directory',
     description: 'Directory of major world cities with live clocks, timezones, and population stats.',
-    url: 'https://globaltime.org/cities',
+    url: 'https://timenumbers.com/cities',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://globaltime.org' },
-        { '@type': 'ListItem', position: 2, name: 'Cities', item: 'https://globaltime.org/cities' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Cities', item: 'https://timenumbers.com/cities' },
       ],
     },
   };

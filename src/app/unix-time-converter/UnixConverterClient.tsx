@@ -178,7 +178,7 @@ export function UnixConverterClient() {
           Query real-time timezone, UTC offsets, and atomic epoch data programmatically with 0 auth headers:
         </p>
         <div className="p-4 rounded-2xl bg-slate-900 font-mono text-xs text-emerald-400 overflow-x-auto">
-          <code>curl -s https://globaltime.org/api/v1/time?city=tokyo</code>
+          <code>curl -s https://timenumbers.com/api/v1/time?city=tokyo</code>
         </div>
       </section>
 

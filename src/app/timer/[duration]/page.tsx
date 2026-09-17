@@ -77,19 +77,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = DURATION_MAP[duration.toLowerCase()];
 
   if (!item) {
-    return { title: 'Timer Not Found — GlobalTime' };
+    return { title: 'Timer Not Found — TimeNumbers' };
   }
 
   return {
     title: `${item.name} — Online Countdown Timer with Sound`,
     description: item.description,
     alternates: {
-      canonical: `https://globaltime.org/timer/${duration.toLowerCase()}`,
+      canonical: `https://timenumbers.com/timer/${duration.toLowerCase()}`,
     },
     openGraph: {
-      title: `${item.name} — GlobalTime`,
+      title: `${item.name} — TimeNumbers`,
       description: item.description,
-      url: `https://globaltime.org/timer/${duration.toLowerCase()}`,
+      url: `https://timenumbers.com/timer/${duration.toLowerCase()}`,
     },
   };
 }
@@ -107,13 +107,13 @@ export default async function TimerDurationPage({ params }: Props) {
     '@type': 'WebPage',
     name: item.name,
     description: item.description,
-    url: `https://globaltime.org/timer/${duration.toLowerCase()}`,
+    url: `https://timenumbers.com/timer/${duration.toLowerCase()}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://globaltime.org' },
-        { '@type': 'ListItem', position: 2, name: 'Timer', item: 'https://globaltime.org/timer' },
-        { '@type': 'ListItem', position: 3, name: item.label, item: `https://globaltime.org/timer/${duration.toLowerCase()}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://timenumbers.com' },
+        { '@type': 'ListItem', position: 2, name: 'Timer', item: 'https://timenumbers.com/timer' },
+        { '@type': 'ListItem', position: 3, name: item.label, item: `https://timenumbers.com/timer/${duration.toLowerCase()}` },
       ],
     },
   };

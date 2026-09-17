@@ -1,4 +1,4 @@
-// Auto-generated exact Natural Earth vector paths for GlobalTime map
+// Auto-generated exact Natural Earth vector paths for TimeNumbers map
 export const WORLD_MAP_WIDTH = 960;
 export const WORLD_MAP_HEIGHT = 480;
 
