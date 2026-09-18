@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --experimental-strip-types --test src/tests/time.test.ts",
-    "seo:ping": "node scripts/seo_ping.js"
+    "seo:ping": "node scripts/seo_ping.js",
+    "seo:keywords": "node scripts/keyword_miner.mjs"
   },
   "dependencies": {
     "@types/d3-geo": "^3.1.1",
