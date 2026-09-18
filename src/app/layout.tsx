@@ -7,26 +7,32 @@ import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Exact Time Now — World Clock & Atomic Time | TimeNumbers",
-  description: "What time is it right now? Check exact time now with atomic clock precision. Live world clock, time zone converter, international meeting planner, and current local time across 500+ world cities.",
+  title: "Exact Time Now — What Time Is It? World Clock & Time Difference | TimeNumbers",
+  description: "What time is it right now? Check exact time now with atomic clock precision. Live world clock, time zone converter, time difference calculator, and current local time across 500+ world cities.",
   metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: siteConfig.url,
   },
   keywords: [
+    "what time is it",
     "exact time now",
+    "time difference between",
+    "what time is it in",
+    "current local time",
     "atomic clock online",
     "world clock",
-    "current local time",
-    "time in Paris now",
-    "time in New York now",
-    "time in Tokyo now",
     "time zone converter",
+    "what time is it right now",
+    "time in New York now",
+    "time in London now",
+    "time in Tokyo now",
+    "time in Paris now",
+    "convert est to gmt",
+    "what time is us now",
+    "daylight saving time 2026",
     "meeting planner time overlap",
     "time difference calculator",
-    "UTC time now",
-    "GMT to EST converter",
-    "daylight saving time 2026"
+    "UTC time now"
   ],
   authors: [{ name: "TimeNumbers Chronometry Team" }],
   openGraph: {

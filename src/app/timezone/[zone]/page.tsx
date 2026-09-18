@@ -8,6 +8,8 @@ import { ALL_IANA_TIMEZONES } from '@/lib/time/iana-database';
 import { POPULAR_CITIES } from '@/lib/geo/cities';
 import { TimezoneDetailClient } from '@/components/common/TimezoneDetailClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { FaqAccordion } from '@/components/common/FaqAccordion';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Globe, Clock, ShieldCheck, Compass, ArrowRight, ExternalLink } from 'lucide-react';
 
 interface Props {
@@ -47,8 +49,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const shortTitle = abbr ? `${abbr.abbr} Time Zone` : (iana ? `${iana.id.split('/').pop()?.replace(/_/g, ' ')} Time` : `${zone.toUpperCase()} Time`);
 
   return buildPageMetadata(
-    `Current Time in ${shortTitle}`,
-    `Exact current time in ${titleName}. Standard offset ${offset}, Daylight Saving Time status, IANA identifier, and live synchronized clocks for major cities worldwide.`,
+    `What Time is it in ${abbr ? abbr.abbr : shortTitle}? Exact ${shortTitle} Now`,
+    `What time is it in ${titleName} right now? Live atomic clock, standard UTC offset ${offset}, Daylight Saving Time (DST) status, military time, and major world city clocks.`,
     `/timezone/${slug}`
   );
 }
@@ -105,12 +107,32 @@ export default async function TimezonePage({ params }: Props) {
     },
   };
 
+  const tzFaqs = [
+    {
+      question: `What time is it in ${title} right now?`,
+      answer: `The live clock above displays the exact, calibrated local time currently observed across the ${title} region. Our chronometers sync to atomic reference standards to maintain millisecond precision.`
+    },
+    {
+      question: `What is the standard UTC offset for ${title}?`,
+      answer: `${title} is anchored to a standard civil offset of ${offsetStr}. Locations observing this zone are situated ${offsetStr.startsWith('+') ? `${offsetStr.replace('+', '')} hours ahead of` : offsetStr.startsWith('-') ? `${offsetStr.replace('-', '')} hours behind` : 'at'} Coordinated Universal Time (UTC).`
+    },
+    {
+      question: `Does ${title} observe Daylight Saving Time (DST)?`,
+      answer: `${title} ${hasDst ? 'observes seasonal Daylight Saving Time transitions, shifting clocks by +1 hour in the spring and resetting in the autumn' : 'remains on standard time year-round with no seasonal clock adjustments'}.`
+    },
+    {
+      question: `Which major cities operate within ${title}?`,
+      answer: `Major metropolitan hubs connected to this zone include ${finalCities.slice(0, 4).map(c => c.name).join(', ')}${finalCities.length > 4 ? ', and others' : ''}. Use the comparative grid above to explore individual city clocks.`
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd type="faq" data={tzFaqs} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         {/* Navigation Breadcrumbs */}
@@ -200,6 +222,9 @@ export default async function TimezonePage({ params }: Props) {
             </div>
           </div>
         </div>
+
+        {/* Dynamic FAQ Accordion */}
+        <FaqAccordion items={tzFaqs} title={`Frequently Asked Questions: ${title}`} />
 
         {/* Global Links Hub */}
         <RelatedLinksHub title="Explore Related Tools & Zones" />

@@ -9,6 +9,7 @@ import { getCitiesByCountry } from '@/lib/geo/cities';
 import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { formatTimeInZone, getUtcOffsetString } from '@/lib/time/timezones';
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Globe, Clock, ChevronRight, ArrowRight } from 'lucide-react';
 
 export async function generateStaticParams() {
@@ -21,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const country = getCountryBySlug(slug);
   if (!country) return { title: 'Country Not Found' };
   return buildPageMetadata(
-    `Current Time in ${country.name}`,
-    `Current local times across ${country.name}, capital time in ${country.capital}, timezones used, and daylight saving status.`,
+    `What Time is it in ${country.name}? Current Time in ${country.name} Now`,
+    `What time is it in ${country.name} right now? Live official clocks for ${country.capital} and major cities, timezones, UTC offsets, daylight saving status, and local time converter.`,
     `/country/${country.slug}`
   );
 }
@@ -41,7 +42,17 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Breadcrumbs */}
+      {/* Breadcrumbs & Schema */}
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Countries', url: '/country' },
+          { name: country.name, url: `/country/${country.slug}` },
+        ]}
+      />
+      <JsonLd type="faq" data={getCountryFaqs(country)} />
+
       <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs text-slate-500">
         <Link href="/" className="hover:text-blue-600 flex items-center gap-1">
           <Globe className="w-3.5 h-3.5" />

@@ -11,7 +11,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Globe, ShieldCheck, Cpu, Compass, Clock, ArrowRight } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'World Time Zones List — Global UTC Offsets',
+  'World Time Zones List — Current Time & Global UTC Offsets',
   'Browse the complete database of 400+ canonical IANA world time zones with real-time digital clocks, UTC offsets, daylight saving status, and continent search.',
   '/time-zones'
 );
@@ -47,6 +47,7 @@ export default function TimeZonesPage() {
           { name: 'Time Zones Directory', url: '/time-zones' },
         ]}
       />
+      <JsonLd type="faq" data={TIMEZONE_PAGE_FAQS} />
 
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">

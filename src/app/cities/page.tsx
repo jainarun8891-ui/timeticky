@@ -10,8 +10,8 @@ import { Building2, Globe, Clock, MapPin, Compass } from 'lucide-react';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  'World Cities Directory — Major World Clocks',
-  'Explore the definitive directory of global cities. Filter by continent, alphabetical order, or population to view live synchronized clocks, timezones, and coordinates.',
+  'World Cities Directory — Current Local Time in World Cities',
+  'Explore live local time, timezones, and atomic clocks for world cities. Filter by continent, country, or timezone to compare exact times worldwide.',
   '/cities'
 );
 

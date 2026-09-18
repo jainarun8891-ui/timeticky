@@ -11,8 +11,8 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Globe, MapPin, Clock, Compass, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = buildPageMetadata(
-  'World Countries Directory — Global Clocks & Timezones',
-  'Browse the world countries directory. Access real-time clocks, capital city times, IANA timezone boundaries, and daylight saving status for every nation.',
+  'Current Time in Countries Worldwide — World Countries Directory',
+  'What time is it around the world? Live clocks, current local time, capital cities, and timezone offsets for all countries worldwide.',
   '/country'
 );
 
@@ -61,6 +61,7 @@ export default function CountryDirectoryPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd type="faq" data={COUNTRY_PAGE_FAQS} />
 
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">

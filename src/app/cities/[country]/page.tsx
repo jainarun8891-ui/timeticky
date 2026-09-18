@@ -10,6 +10,7 @@ import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { Building2, Globe, ArrowRight, Clock, ShieldCheck, MapPin } from 'lucide-react';
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
   params: Promise<{ country: string }>;
@@ -28,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return buildPageMetadata(
-    `Cities in ${country.name} — Local Clocks`,
-    `Current local time in major cities across ${country.name}. Capital time in ${country.capital}, timezone offsets, and daylight saving status.`,
+    `Current Time in ${country.name} Cities — Exact Local Clocks Now`,
+    `What time is it in ${country.name} cities? Current local time for ${country.capital} and all major metropolitan centers across ${country.name}, timezones, and Daylight Saving Time.`,
     `/cities/${slug}`
   );
 }
@@ -87,6 +88,7 @@ export default async function CountryCitiesPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd type="faq" data={countryFaqs} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         {/* Navigation Breadcrumbs & Header */}

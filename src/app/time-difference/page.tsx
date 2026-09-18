@@ -6,6 +6,7 @@ import { TIME_DIFFERENCE_FAQS } from '@/lib/seo/page-faqs';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { CITIES, City } from '@/lib/geo/cities';
+import { findCityByRootSlug, POPULAR_TIME_DIFFERENCE_PAIRS } from '@/lib/geo/city-lookup';
 import { formatTimeInZone, formatDateInZone, getUtcOffsetString, getTimeDifference } from '@/lib/time/timezones';
 import { ArrowRight, ArrowLeftRight, Clock } from 'lucide-react';
 
@@ -100,38 +101,33 @@ export default function TimeDifferencePage() {
           <span className="text-xs text-slate-400 font-medium">15 Dedicated Pair Guides</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {[
-            { from: 'Delhi', to: 'New York', url: '/time-difference/delhi/new-york', hours: '9.5h behind' },
-            { from: 'New York', to: 'Delhi', url: '/time-difference/new-york/delhi', hours: '9.5h ahead' },
-            { from: 'London', to: 'Tokyo', url: '/time-difference/london/tokyo', hours: '9h ahead' },
-            { from: 'Tokyo', to: 'London', url: '/time-difference/tokyo/london', hours: '9h behind' },
-            { from: 'New York', to: 'London', url: '/time-difference/new-york/london', hours: '5h ahead' },
-            { from: 'London', to: 'New York', url: '/time-difference/london/new-york', hours: '5h behind' },
-            { from: 'Sydney', to: 'New York', url: '/time-difference/sydney/new-york', hours: '14h behind' },
-            { from: 'New York', to: 'Sydney', url: '/time-difference/new-york/sydney', hours: '14h ahead' },
-            { from: 'Sydney', to: 'London', url: '/time-difference/sydney/london', hours: '9h behind' },
-            { from: 'London', to: 'Sydney', url: '/time-difference/london/sydney', hours: '9h ahead' },
-            { from: 'Paris', to: 'Tokyo', url: '/time-difference/paris/tokyo', hours: '7h ahead' },
-            { from: 'Dubai', to: 'Singapore', url: '/time-difference/dubai/singapore', hours: '4h ahead' },
-            { from: 'Singapore', to: 'Tokyo', url: '/time-difference/singapore/tokyo', hours: '1h ahead' },
-            { from: 'Chicago', to: 'London', url: '/time-difference/chicago/london', hours: '6h ahead' },
-            { from: 'Los Angeles', to: 'Tokyo', url: '/time-difference/los-angeles/tokyo', hours: '16h ahead' },
-          ].map((pair) => (
-            <Link
-              key={pair.url}
-              href={pair.url}
-              className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-100 dark:border-slate-800 transition-all flex items-center justify-between group"
-            >
-              <div>
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {pair.from} → {pair.to}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+          {POPULAR_TIME_DIFFERENCE_PAIRS.map((pair) => {
+            const cA = findCityByRootSlug(pair.cityA);
+            const cB = findCityByRootSlug(pair.cityB);
+            const nameA = cA?.name || pair.cityA;
+            const nameB = cB?.name || pair.cityB;
+            const url = `/time-difference/${pair.cityA}/${pair.cityB}`;
+            return (
+              <Link
+                key={url}
+                href={url}
+                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-100 dark:border-slate-800 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
+                    {nameA} to {nameB}
+                  </span>
+                  <span className="text-[10px] text-slate-400 block mt-0.5">
+                    Live Clocks & Conversion
+                  </span>
+                </div>
+                <span className="text-[10px] text-blue-600 dark:text-blue-400 mt-2 font-semibold flex items-center gap-0.5">
+                  Compare Hours →
                 </span>
-                <span className="text-[11px] text-slate-400 block mt-0.5">{pair.hours}</span>
-              </div>
-              <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </section>
 

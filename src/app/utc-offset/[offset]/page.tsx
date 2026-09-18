@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation';
 import { parseOffsetSlug, getLocationsForOffset } from '@/lib/time/timezone-lookup';
 import { TimezoneDetailClient } from '@/components/common/TimezoneDetailClient';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { FaqAccordion } from '@/components/common/FaqAccordion';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Clock, Globe, ArrowRight, ShieldCheck, Layers } from 'lucide-react';
 
 interface Props {
@@ -54,8 +56,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return buildPageMetadata(
-    `Current Time in ${parsed.formattedOffset}`,
-    `Exact current time in ${parsed.formattedOffset} timezone band. Compare cities, explore IANA zones, verify Daylight Saving changes, and check difference from your local time.`,
+    `What Time is it in ${parsed.formattedOffset}? Exact ${parsed.formattedOffset} Time Now`,
+    `What time is it in ${parsed.formattedOffset} right now? Exact local time for countries and cities observing ${parsed.formattedOffset}, IANA time zones, UTC difference, and live clocks.`,
     `/utc-offset/${offset.toLowerCase()}`
   );
 }
@@ -89,12 +91,28 @@ export default async function UtcOffsetPage({ params }: Props) {
     },
   };
 
+  const offsetFaqs = [
+    {
+      question: `What is ${parsed.formattedOffset} time right now?`,
+      answer: `Clocks in the ${parsed.formattedOffset} zone are currently ticking at ${parsed.formattedOffset} relative to Coordinated Universal Time (UTC). Check the live synchronized chronometer above for the exact time to the second.`
+    },
+    {
+      question: `Which countries and cities use the ${parsed.formattedOffset} offset?`,
+      answer: `Locations in this longitudinal offset band include ${cities.slice(0, 4).map(c => c.name).join(', ')}${cities.length > 4 ? ', and others' : ''}, encompassing ${zones.length} distinct IANA timezone identifiers.`
+    },
+    {
+      question: `How many hours difference is ${parsed.formattedOffset} from UTC?`,
+      answer: `${parsed.formattedOffset} is exactly ${parsed.formattedOffset.replace('UTC', '').trim() || '0'} hours relative to UTC / GMT prime meridian.`
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd type="faq" data={offsetFaqs} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         {/* Navigation Breadcrumbs */}
@@ -148,6 +166,9 @@ export default async function UtcOffsetPage({ params }: Props) {
             ))}
           </div>
         </div>
+
+        {/* FAQ Accordion */}
+        <FaqAccordion items={offsetFaqs} title={`Frequently Asked Questions: ${parsed.formattedOffset}`} />
 
         {/* Global Hub Navigation */}
         <RelatedLinksHub title="Explore All Time Zones & Offsets" />

@@ -6,11 +6,12 @@ import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { UsClocksGridClient } from './UsClocksGridClient';
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Clock, MapPin, Globe, ShieldCheck, Sun, Calendar, Sparkles, Building2, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = buildPageMetadata(
-  "United States America Time Now — Live Clocks",
-  "What is now the time in America? Live atomic clocks for all US time zones: Eastern, Central, Mountain, Pacific, Alaska, Hawaii, and Washington D.C.",
+  "United States America Time Now — Exact Clocks Across All US Time Zones",
+  "What time is it in America right now? Check exact live atomic clocks across all US time zones: Eastern, Central, Mountain, Pacific, Alaska, Hawaii, and Washington D.C.",
   "/united-states-time-now"
 );
 
@@ -71,6 +72,7 @@ export default function UnitedStatesTimeNowPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd type="faq" data={US_TIME_FAQS} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Navigation Breadcrumbs */}

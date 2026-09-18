@@ -8,8 +8,8 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { ArrowLeftRight, Clock, ShieldCheck, Share2 } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'World Time Converter — Convert Between Zones',
-  'Convert time across unlimited global locations simultaneously. Features an interactive 24-hour drag slider, business hours highlighting, date change indicators, and shareable URLs.',
+  'Time Zone Converter — Convert Time Between Cities Worldwide',
+  'Convert time across world cities and timezones simultaneously. Features an interactive 24-hour visual grid slider, business hours highlighting, date change indicators, and 1-click meeting calendar sync.',
   '/time-converter'
 );
 
@@ -39,6 +39,7 @@ export default function TimeConverterPage() {
           { name: 'Time Converter', url: '/time-converter' },
         ]}
       />
+      <JsonLd type="faq" data={CONVERTER_FAQS} />
 
       {/* Hero Header */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">

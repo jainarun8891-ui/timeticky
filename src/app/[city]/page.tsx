@@ -9,6 +9,8 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
+import { JsonLd } from '@/components/seo/JsonLd';
+
 interface Props {
   params: Promise<{ city: string }>;
 }
@@ -24,8 +26,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const cleanSlug = getCityRootSlug(city);
   return buildPageMetadata(
-    `Current Time in ${city.name}, ${city.country}`,
-    `Exact current local time in ${city.name}, ${city.country}. Includes ${city.timezone} time zone, UTC offset, sunrise, sunset, day length, and live global time difference comparisons.`,
+    `What Time is it in ${city.name}? Exact Local Time Now`,
+    `What time is it in ${city.name}, ${city.country} right now? Live digital clock with seconds, ${city.timezone} time zone, UTC offset, daylight saving time (DST) status, sunrise, sunset, and meeting converter.`,
     `/${cleanSlug}`
   );
 }
@@ -72,6 +74,15 @@ export default async function RootCityPage({ params }: Props) {
           { name: `${city.name}, ${city.country}`, url: `/${cleanSlug}` },
         ]}
       />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Cities', url: '/cities' },
+          { name: `${city.name}, ${city.country}`, url: `/${cleanSlug}` },
+        ]}
+      />
+      <JsonLd type="faq" data={cityFaqs} />
 
       <CityPageClient city={city} />
 

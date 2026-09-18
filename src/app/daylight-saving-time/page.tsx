@@ -7,11 +7,12 @@ import Link from 'next/link';
 import { TIMEZONES } from '@/lib/time/timezones';
 import { COUNTRIES } from '@/lib/geo/countries';
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Calendar, Globe, ArrowRight, Clock, ShieldAlert } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Daylight Saving Time (DST) Hub',
-  'Comprehensive guide to active Daylight Saving Time regions, upcoming transition dates, and countries that do not observe clock changes.',
+  'Daylight Saving Time 2026 — When Do Clocks Change? Dates & Schedule',
+  'When do clocks change in 2026? Complete Daylight Saving Time (DST) schedule, spring forward and fall back transition dates for USA, Europe, and worldwide.',
   '/daylight-saving-time'
 );
 
@@ -61,6 +62,14 @@ export default function DaylightSavingTimePage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{"name":"Daylight Saving Time","url":"/daylight-saving-time"}]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Daylight Saving Time', url: '/daylight-saving-time' },
+        ]}
+      />
+      <JsonLd type="faq" data={DST_FAQS} />
       <div>
         <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white">
           Daylight Saving Time (DST) Status

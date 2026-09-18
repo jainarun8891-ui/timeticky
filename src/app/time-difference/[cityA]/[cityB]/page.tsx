@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound, permanentRedirect } from 'next/navigation';
-import { findCityByRootSlug, getCityRootSlug } from '@/lib/geo/city-lookup';
+import { findCityByRootSlug, getCityRootSlug, POPULAR_TIME_DIFFERENCE_PAIRS } from '@/lib/geo/city-lookup';
 import { TimeDifferencePairClient } from './TimeDifferencePairClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
@@ -14,33 +14,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return [
-    { cityA: 'delhi', cityB: 'new-york' },
-    { cityA: 'new-york', cityB: 'delhi' },
-    { cityA: 'london', cityB: 'tokyo' },
-    { cityA: 'tokyo', cityB: 'london' },
-    { cityA: 'new-york', cityB: 'london' },
-    { cityA: 'london', cityB: 'new-york' },
-    { cityA: 'sydney', cityB: 'new-york' },
-    { cityA: 'new-york', cityB: 'sydney' },
-    { cityA: 'sydney', cityB: 'london' },
-    { cityA: 'london', cityB: 'sydney' },
-    { cityA: 'dubai', cityB: 'delhi' },
-    { cityA: 'delhi', cityB: 'dubai' },
-    { cityA: 'tokyo', cityB: 'sydney' },
-    { cityA: 'sydney', cityB: 'tokyo' },
-    { cityA: 'san-francisco', cityB: 'paris' },
-    { cityA: 'paris', cityB: 'san-francisco' },
-    { cityA: 'paris', cityB: 'london' },
-    { cityA: 'london', cityB: 'paris' },
-    { cityA: 'singapore', cityB: 'london' },
-    { cityA: 'london', cityB: 'singapore' },
-    { cityA: 'dubai', cityB: 'singapore' },
-    { cityA: 'singapore', cityB: 'tokyo' },
-    { cityA: 'chicago', cityB: 'london' },
-    { cityA: 'los-angeles', cityB: 'tokyo' },
-    { cityA: 'paris', cityB: 'tokyo' },
-  ];
+  return POPULAR_TIME_DIFFERENCE_PAIRS;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -50,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cityA || !cityB) return buildPageMetadata('Time Difference Not Found', 'City time difference not found.', `/time-difference/${slugA}/${slugB}`);
 
   return buildPageMetadata(
-    `${cityA.name} to ${cityB.name} Time Difference`,
-    `Current time difference between ${cityA.name} (${cityA.country}) and ${cityB.name} (${cityB.country}). Includes live dual clocks, 24-hour conversion matrix, and best working meeting hours.`,
+    `Time Difference Between ${cityA.name} and ${cityB.name}`,
+    `Exact time difference between ${cityA.name} and ${cityB.name}. Live dual clocks, hours ahead or behind, 24-hour time conversion matrix, and best meeting call hours.`,
     `/time-difference/${slugA}/${slugB}`
   );
 }
@@ -85,6 +59,15 @@ export default async function TimeDifferencePairPage({ params }: Props) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={[{ name: 'Time Difference', url: '/time-difference' }, { name: `${cityA.name} to ${cityB.name}`, url: `/time-difference/${slugA}/${slugB}` }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Time Difference', url: '/time-difference' },
+          { name: `${cityA.name} to ${cityB.name}`, url: `/time-difference/${slugA}/${slugB}` },
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
 
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">

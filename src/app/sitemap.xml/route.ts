@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { POPULAR_CITIES } from '@/lib/geo/cities';
-import { getCityRootSlug } from '@/lib/geo/city-lookup';
+import { getCityRootSlug, POPULAR_TIME_DIFFERENCE_PAIRS } from '@/lib/geo/city-lookup';
 import { getAllCountries } from '@/lib/geo/countries';
 import { BLOG_ARTICLES } from '@/lib/blog/articles';
 import { COMMON_TIMEZONE_ABBREVIATIONS, getAllConverterCombos } from '@/lib/time/timezone-lookup';
@@ -107,24 +107,8 @@ export async function GET() {
   // Programmatic Time Zone Conversion Combos
   const conversionCombos = getAllConverterCombos().map(c => `/convert/${c}`);
 
-  // Time differences
-  const timeDifferenceUrls = [
-    '/time-difference/delhi/new-york',
-    '/time-difference/new-york/delhi',
-    '/time-difference/london/tokyo',
-    '/time-difference/tokyo/london',
-    '/time-difference/new-york/london',
-    '/time-difference/london/new-york',
-    '/time-difference/sydney/new-york',
-    '/time-difference/new-york/sydney',
-    '/time-difference/sydney/london',
-    '/time-difference/london/sydney',
-    '/time-difference/paris/tokyo',
-    '/time-difference/dubai/singapore',
-    '/time-difference/singapore/tokyo',
-    '/time-difference/chicago/london',
-    '/time-difference/los-angeles/tokyo',
-  ];
+  // High-traffic programmatic time differences
+  const timeDifferenceUrls = POPULAR_TIME_DIFFERENCE_PAIRS.map(p => `/time-difference/${p.cityA}/${p.cityB}`);
 
   // Common timezone routes
   const tzAbbrUrls = Object.keys(COMMON_TIMEZONE_ABBREVIATIONS).map(slug => `/timezone/${slug}`);
