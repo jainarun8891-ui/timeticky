@@ -105,21 +105,41 @@ export default function CountdownPage() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
           Popular Global Holiday Countdowns
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           <Link href="/countdown/new-year" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
             <span className="text-xs font-bold text-blue-600 dark:text-blue-400 block">January 1</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">New Year 2027</h3>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">New Year</h3>
             <p className="text-xs text-slate-500 mt-1">Live countdown to the stroke of midnight across world timezones.</p>
           </Link>
-          <Link href="/countdown/christmas" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
-            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 block">December 25</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">Christmas Day</h3>
-            <p className="text-xs text-slate-500 mt-1">Track days and hours until Christmas morning and holiday gatherings.</p>
+          <Link href="/countdown/valentines-day" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-pink-600 dark:text-pink-400 block">February 14</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-pink-600 transition-colors">Valentine's Day</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to romantic celebrations, flowers, and special moments.</p>
+          </Link>
+          <Link href="/countdown/holi" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-purple-600 dark:text-purple-400 block">Spring Equinox</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors">Holi Festival of Colors</h3>
+            <p className="text-xs text-slate-500 mt-1">Live countdown to the vibrant Hindu festival of colors and joy.</p>
           </Link>
           <Link href="/countdown/halloween" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
-            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 block">October 31</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">Halloween</h3>
+            <span className="text-xs font-bold text-orange-600 dark:text-orange-400 block">October 31</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors">Halloween</h3>
             <p className="text-xs text-slate-500 mt-1">Countdown to trick-or-treating and autumn harvest celebrations.</p>
+          </Link>
+          <Link href="/countdown/diwali" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 block">Kartik Amavasya</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">Diwali Festival of Lights</h3>
+            <p className="text-xs text-slate-500 mt-1">Track days and hours until the auspicious celebration of lights.</p>
+          </Link>
+          <Link href="/countdown/thanksgiving" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-amber-700 dark:text-amber-400 block">4th Thursday in Nov</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-700 transition-colors">Thanksgiving Day</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to American Thanksgiving feast and family reunions.</p>
+          </Link>
+          <Link href="/countdown/christmas" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 block">December 25</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors">Christmas Day</h3>
+            <p className="text-xs text-slate-500 mt-1">Track days and hours until Christmas morning and holiday gatherings.</p>
           </Link>
         </div>
       </section>

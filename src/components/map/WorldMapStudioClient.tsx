@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { CITIES, City } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { WORLD_LAND_PATH, WORLD_BORDERS_PATH, WORLD_MAP_WIDTH, WORLD_MAP_HEIGHT } from '@/lib/geo/world-paths';
 import { getSolarTerminatorSvgPath, isLocationInDaylight } from '@/lib/geo/solar-terminator';
 import { formatTimeInZone, formatDateInZone, getUtcOffsetString } from '@/lib/time/timezones';
@@ -715,7 +716,7 @@ export function WorldMapStudioClient() {
           {/* Right: Direct Navigation Links */}
           <div className="flex items-center gap-2">
             <Link
-              href={`/${activeCity.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+              href={`/${getCityRootSlug(activeCity)}`}
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-colors"
             >
               <span>View City Clock</span>

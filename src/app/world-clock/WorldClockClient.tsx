@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { CITIES, City } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { getTimeDetails, getTimeDifferenceText } from '@/lib/time/engine';
 import {
   Clock,
@@ -228,7 +229,7 @@ export function WorldClockClient() {
                       {city.country}
                     </span>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-tight">
-                      <Link href={`/${city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} className="hover:text-blue-600 transition-colors">
+                      <Link href={`/${getCityRootSlug(city)}`} className="hover:text-blue-600 transition-colors">
                         {city.name}
                       </Link>
                     </h3>

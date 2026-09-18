@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowLeftRight, ChevronRight } from 'lucide-react';
 import { City, CITIES } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { getTimeDifferenceText } from '@/lib/time/engine';
 import { getCountryFlagEmoji } from '@/lib/geo/flags';
 
@@ -45,7 +46,7 @@ export function TimeDifferenceCard({ currentCity }: TimeDifferenceCardProps) {
         countryCode: target.countryCode,
         diff: formattedDiff,
         isBehind,
-        link: `/time-difference/${currentCity.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/${target.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+        link: `/time-difference/${getCityRootSlug(currentCity)}/${getCityRootSlug(target)}`
       };
     });
   }, [currentCity]);

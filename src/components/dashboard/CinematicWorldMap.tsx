@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { ExactWorldMapSvg } from '../art/ExactWorldMapSvg';
 import { City, CITIES } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { getSunTimes } from '@/lib/astronomy/sun';
 
 interface CinematicWorldMapProps {
@@ -128,7 +129,7 @@ export function CinematicWorldMap({ currentCity, onSelectCity }: CinematicWorldM
         </div>
 
         <Link
-          href={`/${currentCity.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+          href={`/${getCityRootSlug(currentCity)}`}
           className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:text-blue-300 hover:underline"
         >
           <span>Detailed Astronomical Data</span>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
-import { findCityByRootSlug } from '@/lib/geo/city-lookup';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { findCityByRootSlug, getCityRootSlug } from '@/lib/geo/city-lookup';
 import { TimeDifferencePairClient } from './TimeDifferencePairClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
@@ -63,6 +63,12 @@ export default async function TimeDifferencePairPage({ params }: Props) {
 
   if (!cityA || !cityB) {
     notFound();
+  }
+
+  const cleanA = getCityRootSlug(cityA);
+  const cleanB = getCityRootSlug(cityB);
+  if (slugA !== cleanA || slugB !== cleanB) {
+    permanentRedirect(`/time-difference/${cleanA}/${cleanB}`);
   }
 
   const faqs = [

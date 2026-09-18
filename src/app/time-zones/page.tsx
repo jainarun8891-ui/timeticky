@@ -1,12 +1,14 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React from 'react';
+import Link from 'next/link';
 import { ALL_IANA_TIMEZONES } from '@/lib/time/iana-database';
+import { COMMON_TIMEZONE_ABBREVIATIONS } from '@/lib/time/timezone-lookup';
 import { TimeZonesDirectoryClient } from './TimeZonesDirectoryClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { Globe, ShieldCheck, Cpu, Compass } from 'lucide-react';
+import { Globe, ShieldCheck, Cpu, Compass, Clock, ArrowRight } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
   'World Time Zones List — Global UTC Offsets',
@@ -63,7 +65,11 @@ export default function TimeZonesPage() {
             Explore all <strong>{ALL_IANA_TIMEZONES.length} canonical IANA time zones</strong> across every continent. Filter by region, offset, and city name with live precision atomic timekeeping.
           </p>
 
-          <div className="pt-2 flex flex-wrap gap-6 text-xs text-slate-300">
+          <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-slate-300">
+            <Link href="/utc" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-500/30 hover:bg-blue-500/50 text-white font-semibold transition-colors border border-blue-400/40">
+              <Clock className="w-3.5 h-3.5 text-cyan-300" />
+              <span>Coordinated Universal Time (UTC) Standard →</span>
+            </Link>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               <span>419 Canonical Zones</span>
@@ -79,6 +85,99 @@ export default function TimeZonesPage() {
           </div>
         </div>
       </div>
+
+      {/* Major Global Time Zone Abbreviations Hub */}
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <Clock className="w-4 h-4 text-blue-600" />
+              Major Global Time Zone Abbreviation Guides
+            </h2>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Explore primary civil and military time zones with dedicated clock pages, DST shift rules, and city listings.
+            </p>
+          </div>
+          <span className="text-xs font-mono font-bold text-slate-400">
+            {Object.keys(COMMON_TIMEZONE_ABBREVIATIONS).length} Major Zones
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+          {Object.entries(COMMON_TIMEZONE_ABBREVIATIONS).map(([slug, def]) => (
+            <Link
+              key={slug}
+              href={`/timezone/${slug}`}
+              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700/80 transition-all group flex flex-col justify-between"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-mono font-black text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {def.abbr}
+                </span>
+                <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-1.5 py-0.5 rounded">
+                  {def.offsetStr}
+                </span>
+              </div>
+              <span className="text-[11px] text-slate-400 dark:text-slate-400 truncate mt-1">
+                {def.primaryName}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Major Metropolitan IANA Time Zones */}
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <Globe className="w-4 h-4 text-blue-600" />
+              Major Metropolitan Time Zone Guides (IANA)
+            </h2>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Deep-dive IANA astronomical time zones for the world's most populous and financially significant metropolises.
+            </p>
+          </div>
+          <span className="text-xs font-mono font-bold text-slate-400">
+            Canonical Olson Database
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+          {[
+            { name: 'Kolkata (IST)', slug: 'asia-kolkata', offset: 'UTC +5:30' },
+            { name: 'New York (ET)', slug: 'america-new-york', offset: 'UTC -5' },
+            { name: 'London (GMT)', slug: 'europe-london', offset: 'UTC +0' },
+            { name: 'Paris (CET)', slug: 'europe-paris', offset: 'UTC +1' },
+            { name: 'Tokyo (JST)', slug: 'asia-tokyo', offset: 'UTC +9' },
+            { name: 'Dubai (GST)', slug: 'asia-dubai', offset: 'UTC +4' },
+            { name: 'Singapore (SGT)', slug: 'asia-singapore', offset: 'UTC +8' },
+            { name: 'Sydney (AEST)', slug: 'australia-sydney', offset: 'UTC +10' },
+            { name: 'Los Angeles (PT)', slug: 'america-los-angeles', offset: 'UTC -8' },
+            { name: 'Chicago (CT)', slug: 'america-chicago', offset: 'UTC -6' },
+            { name: 'Toronto (ET)', slug: 'america-toronto', offset: 'UTC -5' },
+            { name: 'Berlin (CET)', slug: 'europe-berlin', offset: 'UTC +1' },
+          ].map((item) => (
+            <Link
+              key={item.slug}
+              href={`/timezone/${item.slug}`}
+              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700/80 transition-all group flex flex-col justify-between"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-mono font-bold text-xs text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {item.name}
+                </span>
+                <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-1 py-0.5 rounded">
+                  {item.offset}
+                </span>
+              </div>
+              <span className="text-[10px] text-slate-400 truncate mt-1">
+                /timezone/{item.slug}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* Interactive Directory Client Component */}
       <TimeZonesDirectoryClient initialZones={ALL_IANA_TIMEZONES} />

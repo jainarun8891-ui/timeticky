@@ -90,6 +90,7 @@ export function Footer() {
               <li><Link href="/timezone-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Time Map</Link></li>
               <li><Link href="/world-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Sun Map (Live)</Link></li>
               <li><Link href="/cities" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Cities Directory</Link></li>
+              <li><Link href="/country" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Country Time Directory</Link></li>
               <li><Link href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner</Link></li>
               <li><Link href="/overlap-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Overlap Calculator</Link></li>
               <li><Link href="/dialing-codes" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dialing Codes</Link></li>
@@ -125,6 +126,7 @@ export function Footer() {
               DST & Standards
             </h5>
             <ul className="space-y-1.5">
+              <li><Link href="/utc" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Coordinated Universal Time (UTC)</Link></li>
               <li><Link href="/daylight-saving-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">DST Hub</Link></li>
               <li><Link href="/daylight-saving-time/2026" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daylight Saving 2026</Link></li>
               <li><Link href="/daylight-saving-time/2027" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daylight Saving 2027</Link></li>
@@ -177,7 +179,8 @@ export function Footer() {
             <Link href="/chicago" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chicago</Link>
             <Link href="/los-angeles" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Los Angeles</Link>
             <Link href="/san-francisco" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">San Francisco</Link>
-            <Link href="/s-o-paulo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">São Paulo</Link>
+            <Link href="/washington-dc" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Washington D.C.</Link>
+            <Link href="/sao-paulo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">São Paulo</Link>
             <Link href="/toronto" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Toronto</Link>
             <Link href="/seoul" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Seoul</Link>
             <Link href="/cairo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Cairo</Link>
@@ -186,6 +189,7 @@ export function Footer() {
             <Link href="/singapore" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Singapore</Link>
           </div>
         </div>
+
 
         <div className="pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-[11px] text-slate-400" suppressHydrationWarning>
           © {new Date().getFullYear()} {siteConfig.name}. All global times synchronized to UTC atomic reference standard.

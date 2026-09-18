@@ -58,7 +58,8 @@ async function getAllUrls() {
     'https://www.timenumbers.com/san-francisco',
     'https://www.timenumbers.com/cairo',
     'https://www.timenumbers.com/los-angeles',
-    'https://www.timenumbers.com/s-o-paulo',
+    'https://www.timenumbers.com/washington-dc',
+    'https://www.timenumbers.com/sao-paulo',
     'https://www.timenumbers.com/toronto'
   ];
 }

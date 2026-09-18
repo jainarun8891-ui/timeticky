@@ -74,12 +74,30 @@ export default function CalendarPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <Link
+              href="/calendar/2026"
+              className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
+            >
+              2026
+            </Link>
+            <Link
+              href="/calendar/2027"
+              className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
+            >
+              2027
+            </Link>
+            <Link
+              href="/calendar/2028"
+              className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
+            >
+              2028
+            </Link>
             <Link
               href="/compact-calendar"
-              className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors"
+              className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors"
             >
-              Compact Year View
+              Compact
             </Link>
             <button
               onClick={() => window.print()}

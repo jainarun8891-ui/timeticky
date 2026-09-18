@@ -3,12 +3,13 @@ import { getCountryFaqs } from '@/lib/seo/page-faqs';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import React from 'react';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { getCountryBySlug, getAllCountries } from '@/lib/geo/countries';
 import { getCitiesByCountry } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { formatTimeInZone, getUtcOffsetString } from '@/lib/time/timezones';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { Globe, Clock, ChevronRight } from 'lucide-react';
+import { Globe, Clock, ChevronRight, ArrowRight } from 'lucide-react';
 
 export async function generateStaticParams() {
   return getAllCountries().map(c => ({ slug: c.slug }));
@@ -16,6 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === 'world') return buildPageMetadata('Country Time Directory', 'Global country time index.', '/country');
   const country = getCountryBySlug(slug);
   if (!country) return { title: 'Country Not Found' };
   return buildPageMetadata(
@@ -27,6 +29,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CountryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === 'world') {
+    permanentRedirect('/country');
+  }
   const country = getCountryBySlug(slug);
   if (!country) notFound();
 
@@ -110,7 +115,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
               return (
                 <Link
                   key={city.id}
-                  href={`/${city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                  href={`/${getCityRootSlug(city)}`}
                   className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-slate-700 border border-slate-100 dark:border-slate-800 flex items-center justify-between transition-all"
                 >
                   <div>
@@ -126,7 +131,19 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
             })}
           </div>
         )}
+
+        <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs">
+          <span className="text-slate-500">Need specific city time and local schedules in {country.name}?</span>
+          <Link
+            href={`/cities/${country.slug}`}
+            className="inline-flex items-center gap-1.5 font-bold text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            <span>Browse All {country.name} Cities</span>
+            <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
       </section>
+
     
       <FaqAccordion items={getCountryFaqs(country)} title={`Frequently Asked Questions About ${country.name}`} />
       <RelatedLinksHub />

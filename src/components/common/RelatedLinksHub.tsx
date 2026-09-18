@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Globe, ArrowRight, ArrowLeftRight, Users, Sparkles, BookOpen, Clock, Calendar, Sun, Phone, Monitor, Plane, Bell, ShieldCheck, Map, Moon, Camera, Code, Layers } from 'lucide-react';
 import { CITIES } from '@/lib/geo/cities';
 import { TIMEZONES } from '@/lib/time/timezones';
+import { getCityRootSlug, findCityByRootSlug } from '@/lib/geo/city-lookup';
 
 interface RelatedLinksHubProps {
   currentPath?: string;
@@ -20,12 +21,13 @@ export function RelatedLinksHub({
   const targetCitySlugs = [
     'new-york', 'london', 'tokyo', 'paris', 'berlin', 'zurich',
     'madrid', 'mumbai', 'bengaluru', 'hong-kong', 'rome',
-    'chicago', 'los-angeles', 'san-francisco', 'sao-paulo',
+    'chicago', 'los-angeles', 'san-francisco', 'washington-dc', 'sao-paulo',
     'toronto', 'seoul', 'cairo', 'dubai', 'sydney', 'singapore'
   ];
   const topCities = targetCitySlugs
-    .map(slug => CITIES.find(c => c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug || c.id.startsWith(slug) || c.slug.startsWith(slug)))
+    .map(slug => findCityByRootSlug(slug))
     .filter((c): c is (typeof CITIES)[0] => !!c);
+
 
   const topTimezones = TIMEZONES.slice(0, 8);
 
@@ -40,6 +42,7 @@ export function RelatedLinksHub({
   ];
 
   const tools = [
+    { name: 'Coordinated Universal Time (UTC)', desc: 'Canonical atomic reference standard and UTC offset zero', url: '/utc', icon: Globe },
     { name: 'Time Zone Converter', desc: 'Convert hours across global zones and cities', url: '/time-zone-converter', icon: Layers },
     { name: 'Compare World Cities', desc: 'Direct side-by-side time difference and overlap', url: '/compare', icon: ArrowLeftRight },
     { name: 'United States Time Now', desc: 'Live atomic clocks across all US time zones and Washington D.C.', url: '/united-states-time-now', icon: Globe },
@@ -156,7 +159,7 @@ export function RelatedLinksHub({
         </h4>
         <div className="flex flex-wrap gap-2">
           {topCities.map((city) => {
-            const canonicalSlug = city.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            const canonicalSlug = getCityRootSlug(city);
             return (
               <Link
                 key={city.id}

@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { POPULAR_CITIES } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { getAllCountries } from '@/lib/geo/countries';
 import { BLOG_ARTICLES } from '@/lib/blog/articles';
-import { TIMEZONES } from '@/lib/time/timezones';
 import { COMMON_TIMEZONE_ABBREVIATIONS, getAllConverterCombos } from '@/lib/time/timezone-lookup';
+
 
 export async function GET() {
   const baseUrl = 'https://www.timenumbers.com';
@@ -140,13 +141,9 @@ export async function GET() {
     '/timezone/america-chicago',
   ];
 
-  // Timezone short name URLs
-  const timeZoneShortUrls = TIMEZONES.map(t => `/time-zone/${t.shortName.toLowerCase()}`);
-
   // UTC offsets
   const offsetUrls = [
     '/utc-offset/utc-plus-0',
-    '/utc-offset/utc-0',
     '/utc-offset/utc-plus-1',
     '/utc-offset/utc-plus-2',
     '/utc-offset/utc-plus-3',
@@ -172,9 +169,8 @@ export async function GET() {
     '/utc-offset/utc-minus-10',
   ];
 
-  // Root Cities & City Time URLs
-  const cityUrls = POPULAR_CITIES.map(c => `/${c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
-  const cityTimeUrls = POPULAR_CITIES.map(c => `/time/${c.slug}`);
+  // Canonical Root Cities
+  const cityUrls = POPULAR_CITIES.map(c => `/${getCityRootSlug(c)}`);
 
   // Countries & Country Cities
   const countries = getAllCountries();
@@ -190,14 +186,13 @@ export async function GET() {
     ...timeDifferenceUrls,
     ...tzAbbrUrls,
     ...popularIanaUrls,
-    ...timeZoneShortUrls,
     ...offsetUrls,
     ...cityUrls,
-    ...cityTimeUrls,
     ...countryUrls,
     ...countryCityUrls,
     ...blogUrls,
   ]));
+
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

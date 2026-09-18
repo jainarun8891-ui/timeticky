@@ -168,6 +168,71 @@ export const COUNTRIES: Record<string, Country> = {
     region: "Europe",
     hasDst: true,
     dstNotes: "Follows Central European Summer Time (CEST) from late March to late October."
+  },
+  ES: {
+    code: "ES",
+    name: "Spain",
+    slug: "spain",
+    capital: "Madrid",
+    population: "48.4 million",
+    currency: "Euro (EUR)",
+    flag: "🇪🇸",
+    timezones: ["Europe/Madrid"],
+    region: "Europe",
+    hasDst: true,
+    dstNotes: "Observes Central European Summer Time (CEST, UTC+2) from late March to late October."
+  },
+  IT: {
+    code: "IT",
+    name: "Italy",
+    slug: "italy",
+    capital: "Rome",
+    population: "58.9 million",
+    currency: "Euro (EUR)",
+    flag: "🇮🇹",
+    timezones: ["Europe/Rome"],
+    region: "Europe",
+    hasDst: true,
+    dstNotes: "Observes Central European Summer Time (CEST, UTC+2) from late March to late October."
+  },
+  KR: {
+    code: "KR",
+    name: "South Korea",
+    slug: "south-korea",
+    capital: "Seoul",
+    population: "51.7 million",
+    currency: "South Korean Won (KRW)",
+    flag: "🇰🇷",
+    timezones: ["Asia/Seoul"],
+    region: "Asia",
+    hasDst: false,
+    dstNotes: "South Korea observes Korea Standard Time (KST, UTC+9) year-round without daylight saving time."
+  },
+  EG: {
+    code: "EG",
+    name: "Egypt",
+    slug: "egypt",
+    capital: "Cairo",
+    population: "112.7 million",
+    currency: "Egyptian Pound (EGP)",
+    flag: "🇪🇬",
+    timezones: ["Africa/Cairo"],
+    region: "Africa",
+    hasDst: true,
+    dstNotes: "Observes Daylight Saving Time (UTC+3) from the last Friday in April to the last Thursday in October."
+  },
+  HK: {
+    code: "HK",
+    name: "Hong Kong",
+    slug: "hong-kong",
+    capital: "Hong Kong",
+    population: "7.4 million",
+    currency: "Hong Kong Dollar (HKD)",
+    flag: "🇭🇰",
+    timezones: ["Asia/Hong_Kong"],
+    region: "Asia",
+    hasDst: false,
+    dstNotes: "Hong Kong observes Hong Kong Time (HKT, UTC+8) year-round without daylight saving."
   }
 };
 
