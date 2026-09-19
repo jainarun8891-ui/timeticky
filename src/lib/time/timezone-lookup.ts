@@ -530,13 +530,21 @@ export function parseOffsetSlug(slug: string): { formattedOffset: string; minute
   if (norm === 'utc-0' || norm === 'utc-plus-0' || norm === 'utc-minus-0' || norm === 'utc' || norm === 'utc-plus-00') {
     return { formattedOffset: 'UTC +0', minutes: 0, label: 'UTC +0' };
   }
-  const match = norm.match(/^utc-(plus|minus)-(\d+)(?:-(\d+))?$/);
+  const match = norm.match(/^utc-(plus|minus)-(\d{1,2})(?:-(\d{2}))?$/);
   if (!match) return null;
 
   const sign = match[1] === 'plus' ? 1 : -1;
   const signStr = match[1] === 'plus' ? '+' : '-';
   const hours = parseInt(match[2], 10);
   const minutes = match[3] ? parseInt(match[3], 10) : 0;
+
+  // Strict physical & civil validation:
+  // Earth standard offsets range from UTC-12 to UTC+14, and fractional offsets are strictly 0, 15, 30, or 45 mins
+  if (isNaN(hours) || isNaN(minutes)) return null;
+  if (hours < 0 || hours > 14) return null;
+  if (![0, 15, 30, 45].includes(minutes)) return null;
+  if (sign === -1 && (hours > 12 || (hours === 12 && minutes > 0))) return null;
+  if (sign === 1 && hours === 14 && minutes > 0) return null;
 
   const totalMinutes = sign * (hours * 60 + minutes);
   const formattedOffset = minutes > 0 ? `UTC ${signStr}${hours}:${minutes.toString().padStart(2, '0')}` : `UTC ${signStr}${hours}`;

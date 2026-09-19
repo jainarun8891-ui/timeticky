@@ -52,7 +52,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parsed = parseOffsetSlug(offset);
 
   if (!parsed) {
-    return buildPageMetadata('UTC Offset Not Found', 'UTC offset timezone band not found.', `/utc-offset/${offset.toLowerCase()}`);
+    return {
+      title: 'Offset Not Found — TimeNumbers',
+      robots: { index: false, follow: false },
+    };
   }
 
   return buildPageMetadata(
