@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { searchCities } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { TIMEZONES } from '@/lib/time/timezones';
 import { ALL_IANA_TIMEZONES } from '@/lib/time/iana-database';
 import { COUNTRIES } from '@/lib/geo/countries';
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
     id: c.id,
     title: `${c.name}, ${c.country}`,
     subtitle: c.timezone,
-    slug: `/time/${c.slug}`,
+    slug: `/${getCityRootSlug(c)}`,
     countryCode: c.countryCode
   }));
 
@@ -41,7 +42,7 @@ export async function GET(request: NextRequest) {
       id: t.id,
       title: `${t.name} (${t.shortName})`,
       subtitle: t.formattedOffset,
-      slug: `/time-zone/${t.shortName.toLowerCase()}`,
+      slug: `/timezone/${t.shortName.toLowerCase()}`,
       countryCode: ''
     }));
 

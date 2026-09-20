@@ -54,7 +54,7 @@ export default function WidgetBuilderPage() {
   </iframe>
   <!-- The SEO Backlink -->
   <p style="font-size: 11px; margin-top: 6px; color: #64748b;">
-    Powered by <a href="https://www.timenumbers.com/time/${slug}" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 600; text-decoration: none;">TimeNumbers</a>
+    Powered by <a href="https://www.timenumbers.com/${slug}" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 600; text-decoration: none;">TimeNumbers</a>
   </p>
 </div>`;
 

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, X, MapPin, Globe, Clock } from 'lucide-react';
 import { searchCities } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { TIMEZONES } from '@/lib/time/timezones';
 import { COUNTRIES } from '@/lib/geo/countries';
 
@@ -27,7 +28,7 @@ export function GlobalSearchBar() {
       id: c.id,
       title: `${c.name}, ${c.country}`,
       subtitle: c.timezone,
-      slug: `/time/${c.slug}`,
+      slug: `/${getCityRootSlug(c)}`,
       type: 'city'
     }));
 
@@ -49,7 +50,7 @@ export function GlobalSearchBar() {
         id: t.id,
         title: `${t.name} (${t.shortName})`,
         subtitle: t.formattedOffset,
-        slug: `/time-zone/${t.shortName.toLowerCase()}`,
+        slug: `/timezone/${t.shortName.toLowerCase()}`,
         type: 'timezone'
       }));
 
@@ -100,9 +101,9 @@ export function GlobalSearchBar() {
             <button
               key={item}
               onClick={() => {
-                if (item === 'IST') router.push('/time-zone/ist');
-                else if (item === 'PST') router.push('/time-zone/pt');
-                else router.push(`/time/${item.toLowerCase().replace(' ', '-')}`);
+                if (item === 'IST') router.push('/timezone/ist');
+                else if (item === 'PST') router.push('/timezone/pt');
+                else router.push(`/${item.toLowerCase().replace(' ', '-')}`);
               }}
               type="button"
               className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"

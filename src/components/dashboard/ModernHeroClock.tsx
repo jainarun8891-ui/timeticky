@@ -15,6 +15,7 @@ import { getMoonPhase, getCityClimate } from '@/lib/astronomy/climate-moon';
 import { playEscapementTick, playMinuteChime } from '@/lib/audio/ticker';
 import { SwissAnalogClock } from '@/components/art/SwissAnalogClock';
 import { City, CITIES } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 
 interface ModernHeroClockProps {
   currentCity: City;
@@ -442,7 +443,7 @@ export function ModernHeroClock({ currentCity, onSelectCity, onOpenSearch }: Mod
           </button>
 
           <button
-            onClick={() => router.push(`/time/${currentCity.slug}`)}
+            onClick={() => router.push(`/${getCityRootSlug(currentCity)}`)}
             type="button"
             className="inline-flex items-center gap-1 text-xs font-bold text-blue-400 hover:underline ml-1"
           >

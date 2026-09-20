@@ -8,6 +8,7 @@ import { formatTimeInZone, formatDateInZone, getUtcOffsetString } from '@/lib/ti
 import { getTimeDetails } from '@/lib/time/engine';
 import { getSyncedDate, syncWithServer } from '@/lib/time/sync';
 import { getCountryFlagEmoji } from '@/lib/geo/flags';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 
 interface HeroClockCardProps {
   currentCity: City;
@@ -67,8 +68,8 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
     if (onSelectCity) {
       onSelectCity(c);
     } else {
-      // 3. Otherwise (e.g. on /time/[slug]), navigate to that city's dedicated URL
-      router.push(`/time/${c.slug}`);
+      // 3. Otherwise, navigate to that city's dedicated canonical URL
+      router.push(`/${getCityRootSlug(c)}`);
     }
   };
 

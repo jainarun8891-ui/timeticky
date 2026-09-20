@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { getCityBySlug, CITIES } from '@/lib/geo/cities';
+import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { formatTimeInZone, formatDateInZone, getUtcOffsetString } from '@/lib/time/timezones';
 import { getSyncedDate } from '@/lib/time/sync';
 
@@ -46,7 +47,7 @@ function EmbedClockContent() {
       <div className="flex justify-between items-center text-[10px] text-slate-400">
         <span className="truncate pr-2">{date}</span>
         <a
-          href={`https://www.timenumbers.com/time/${city.slug}`}
+          href={`https://www.timenumbers.com/${getCityRootSlug(city)}`}
           target="_blank"
           rel="noopener"
           className="text-blue-500 hover:underline font-bold flex-shrink-0"
