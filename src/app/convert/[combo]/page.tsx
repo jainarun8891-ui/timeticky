@@ -16,7 +16,29 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 export const dynamicParams = true;
 
 // Pre-render the most popular high-traffic combinations
+// Pre-render the most popular high-traffic combinations including top GSC impression performers
 export const POPULAR_CONVERSION_COMBOS = [
+  // GSC Top Performing & Striking-Distance Combinations
+  'edt-to-ist', 'ist-to-edt', 'kst-to-cdt', 'cdt-to-kst',
+  'cdt-to-ist', 'ist-to-cdt', 'kst-to-mst', 'mst-to-kst',
+  'cest-to-utc', 'utc-to-cest', 'cest-to-est', 'est-to-cest',
+  'pdt-to-est', 'est-to-pdt', 'cest-to-cdt', 'cdt-to-cest',
+  'kst-to-mdt', 'mdt-to-kst', 'edt-to-kst', 'kst-to-edt',
+  'pdt-to-cdt', 'cdt-to-pdt', 'cest-to-gmt', 'gmt-to-cest',
+  'mdt-to-est', 'est-to-mdt', 'edt-to-est', 'est-to-edt',
+  'edt-to-awst', 'awst-to-edt', 'edt-to-cdt', 'cdt-to-edt',
+  'pdt-to-mdt', 'mdt-to-pdt', 'cdt-to-bst', 'bst-to-cdt',
+  'eest-to-gmt', 'gmt-to-eest', 'ist-to-mdt', 'mdt-to-ist',
+  'pdt-to-gmt', 'gmt-to-pdt', 'eest-to-est', 'est-to-eest',
+  'bst-to-west', 'west-to-bst', 'mdt-to-eest', 'eest-to-mdt',
+  'pst-to-edt', 'edt-to-pst', 'cst-to-cdt', 'cdt-to-cst',
+  'mst-to-mdt', 'mdt-to-mst', 'awst-to-eest', 'eest-to-awst',
+  'gmt-to-eet', 'eet-to-gmt', 'mdt-to-cdt', 'cdt-to-mdt',
+  'pdt-to-cest', 'cest-to-pdt', 'kst-to-west', 'west-to-kst',
+  'pdt-to-aest', 'aest-to-pdt', 'edt-to-gmt', 'gmt-to-edt',
+  'edt-to-mdt', 'mdt-to-edt', 'mst-to-bst', 'bst-to-mst',
+
+  // Core High-Traffic Baseline Combinations
   'gmt-to-est', 'est-to-gmt', 'gmt-to-pst', 'pst-to-gmt',
   'gmt-to-cst', 'cst-to-gmt', 'gmt-to-ist', 'ist-to-gmt',
   'gmt-to-cet', 'cet-to-gmt', 'gmt-to-utc', 'utc-to-gmt',
@@ -57,8 +79,9 @@ export async function generateMetadata({ params }: { params: Promise<{ combo: st
   if (!parsed) return { title: 'Timezone Converter — TimeNumbers' };
 
   const { fromTz, toTz, cleanSlug } = parsed;
-  const title = `Convert ${fromTz.abbr} to ${toTz.abbr} Time — Exact Difference & Converter`;
-  const desc = `Convert time from ${fromTz.abbr} (${fromTz.primaryName}) to ${toTz.abbr} (${toTz.primaryName}). Exact live time difference, hour-by-hour comparison table, business hours overlap, and 1-click meeting calendar sync.`;
+  // High-CTR search intent matching (e.g. "EDT to IST Converter: Live Time & Difference")
+  const title = `${fromTz.abbr} to ${toTz.abbr} Converter: Live Time & Difference`;
+  const desc = `Convert ${fromTz.abbr} (${fromTz.primaryName}) to ${toTz.abbr} (${toTz.primaryName}). Real-time 24-hour visual conversion table, hour difference, and business meeting scheduler.`;
 
   return buildPageMetadata(title, desc, `/convert/${cleanSlug}`);
 }

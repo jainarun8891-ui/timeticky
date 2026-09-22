@@ -8,8 +8,8 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Calendar, Clock, ShieldCheck, Sparkles } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Today\'s Date Details & Year Progress',
-  'Complete chronometry data for today: day of the year, ISO-8601 week number, calendar quarter, days remaining in the year, Julian date, and live Unix timestamp.',
+  'What is Today\'s Date? Exact Date Today, Day of Year & Week',
+  'What is today\'s date? Live calendar date, current day of the year, ISO-8601 week number, calendar quarter, days remaining in 2026, and atomic time details.',
   '/today'
 );
 
@@ -50,7 +50,7 @@ export default function TodayPage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Today's Date & Chronology
+            What is Today's Date? Exact Date, Day of Year & Week
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">

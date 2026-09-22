@@ -46,10 +46,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const titleName = abbr ? `${abbr.primaryName} (${abbr.abbr})` : (iana ? `${iana.id} (${iana.abbreviation})` : zone.toUpperCase());
   const offset = abbr ? abbr.offsetStr : (iana ? iana.formattedOffset : 'UTC');
-  const shortTitle = abbr ? `${abbr.abbr} Time Zone` : (iana ? `${iana.id.split('/').pop()?.replace(/_/g, ' ')} Time` : `${zone.toUpperCase()} Time`);
+  const cityName = iana ? iana.id.split('/').pop()?.replace(/_/g, ' ') : '';
+  const displayLabel = abbr ? `${abbr.abbr} Time` : (cityName ? `${cityName} Time` : `${zone.toUpperCase()} Time`);
+  const targetName = abbr ? abbr.abbr : (cityName ? cityName : zone.toUpperCase());
 
   return buildPageMetadata(
-    `What Time is it in ${abbr ? abbr.abbr : shortTitle}? Exact ${shortTitle} Now`,
+    `What Time is it in ${targetName}? Current ${displayLabel} Now`,
     `What time is it in ${titleName} right now? Live atomic clock, standard UTC offset ${offset}, Daylight Saving Time (DST) status, military time, and major world city clocks.`,
     `/timezone/${slug}`
   );

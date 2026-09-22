@@ -8,8 +8,8 @@ import { Clock, Globe, ShieldCheck, Zap, Compass, ArrowRight } from 'lucide-reac
 import Link from 'next/link';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Coordinated Universal Time (UTC)',
-  'Live Coordinated Universal Time (UTC) reference clock, atomic synchronization, leap second rules, UTC vs GMT comparison, and global offset tables.',
+  'UTC Time Now: Exact Current Universal Time & Clock',
+  'What time is it in UTC right now? Live atomic clock showing exact Coordinated Universal Time (UTC/GMT) with seconds, date, UTC offsets, and time difference converter.',
   '/utc'
 );
 

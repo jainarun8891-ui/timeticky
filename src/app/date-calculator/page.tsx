@@ -8,8 +8,8 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Calendar, Plus, ShieldCheck } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Date Calculator — Add or Subtract Days',
-  'Add or subtract days, weeks, months, or years to any calendar date. Includes a working business-day mode that skips Saturdays and Sundays.',
+  'Date Calculator: Add or Subtract Days, Weeks & Business Days',
+  'Free online date calculator: add or subtract days, weeks, months, or years from any date. Includes business days mode that skips weekends and holidays.',
   '/date-calculator'
 );
 
@@ -46,7 +46,7 @@ export default function DateCalculatorPage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Date Calculator
+            Date Calculator — Add or Subtract Days & Weeks
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">

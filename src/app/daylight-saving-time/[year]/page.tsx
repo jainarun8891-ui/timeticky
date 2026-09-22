@@ -62,8 +62,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (isNaN(y)) return {};
 
   return buildPageMetadata(
-    `Daylight Saving Time ${y} — Clock Changes`,
-    `Complete Daylight Saving Time (DST) schedule for ${y}. Exact spring-forward and fall-back transition dates and times for the United States, Canada, Europe, Australia, and New Zealand.`,
+    `Daylight Saving Time ${y}: Clock Change Dates & Schedule`,
+    `When do clocks change in ${y}? Complete Daylight Saving Time (DST) schedule, exact spring-forward and fall-back transition dates for USA, Canada, Europe, and Australia.`,
     `/daylight-saving-time/${y}`
   );
 }

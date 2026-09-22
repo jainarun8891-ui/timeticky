@@ -11,8 +11,8 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { Calendar, Globe, ArrowRight, Clock, ShieldAlert } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Daylight Saving Time 2026 — When Do Clocks Change? Dates & Schedule',
-  'When do clocks change in 2026? Complete Daylight Saving Time (DST) schedule, spring forward and fall back transition dates for USA, Europe, and worldwide.',
+  'Daylight Saving Time 2026: Clock Change Dates & Schedule',
+  'When do clocks change in 2026? Spring forward on March 8 (USA) & March 29 (Europe). Fall back on Nov 1 (USA) & Oct 25 (Europe). Complete 2026 DST dates and countdown.',
   '/daylight-saving-time'
 );
 
@@ -71,12 +71,55 @@ export default function DaylightSavingTimePage() {
       />
       <JsonLd type="faq" data={DST_FAQS} />
       <div>
-        <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-          Daylight Saving Time (DST) Status
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Daylight Saving Time 2026 — When Do Clocks Change?
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-          Track clock changes, spring-forward/fall-back schedules, and timezone shift history worldwide.
+          Exact 2026 spring-forward and fall-back clock change dates, sunrise impacts, and global timezone schedule.
         </p>
+      </div>
+
+      {/* Featured Snippet: 2026 Clock Change Dates Quick Answer Box */}
+      <div className="rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-400/30">
+            <Clock className="w-3.5 h-3.5" />
+            <span>2026 Global Clock Shift Schedule</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 space-y-2">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-300">
+                Spring Forward (Start DST 2026)
+              </span>
+              <p className="text-lg sm:text-xl font-black">
+                Sunday, March 8, 2026 (USA & Canada)
+              </p>
+              <p className="text-sm text-slate-300">
+                Sunday, March 29, 2026 (UK & European Union)
+              </p>
+              <p className="text-xs text-slate-400">
+                Clocks advance 1 hour forward at 2:00 AM local time. You lose 1 hour of sleep.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 space-y-2">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-300">
+                Fall Back (End DST 2026)
+              </span>
+              <p className="text-lg sm:text-xl font-black">
+                Sunday, October 25, 2026 (UK & Europe)
+              </p>
+              <p className="text-sm text-slate-300">
+                Sunday, November 1, 2026 (USA & Canada)
+              </p>
+              <p className="text-xs text-slate-400">
+                Clocks shift 1 hour back at 2:00 AM local time. You gain 1 hour of sleep.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Regional & Annual Transition Guides */}
@@ -162,7 +205,7 @@ export default function DaylightSavingTimePage() {
         </section>
       </div>
     
-      <FaqAccordion items={DST_FAQS} title="Frequently Asked Questions About Daylight Saving Time 2025" />
+      <FaqAccordion items={DST_FAQS} title="Frequently Asked Questions About Daylight Saving Time 2026" />
       <RelatedLinksHub />
     </div>
   );

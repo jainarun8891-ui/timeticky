@@ -13,22 +13,21 @@ export function formatSeoTitle(rawTitle: string): string {
     .replace(new RegExp(`\\s*[—|\\-]\\s*${siteConfig.name}\\s*(Insights)?.*`, 'i'), '')
     .trim();
 
-  // If already fits with brand suffix <= 60 chars:
-  if (stripped.length + brand.length <= 60) {
+  // If fits with brand suffix <= 65 chars (standard Google desktop title limit):
+  if (stripped.length + brand.length <= 65) {
     return `${stripped}${brand}`;
   }
 
-  // If stripped itself is <= 60 chars, return stripped
-  if (stripped.length <= 60) {
+  // If stripped itself is <= 65 chars, retain the complete high-value keyword phrase:
+  if (stripped.length <= 65) {
     return stripped;
   }
 
-  // If stripped > 60 chars, trim cleanly at last word boundary before 60
-  const maxBase = 60 - brand.length;
-  const truncated = stripped.slice(0, maxBase);
+  // If stripped > 65 chars, trim cleanly at last word boundary before 65
+  const truncated = stripped.slice(0, 65);
   const lastSpace = truncated.lastIndexOf(' ');
-  const cleanBase = (lastSpace > 20) ? truncated.slice(0, lastSpace) : truncated;
-  return `${cleanBase.trim()}${brand}`;
+  const cleanBase = (lastSpace > 25) ? truncated.slice(0, lastSpace) : truncated;
+  return cleanBase.trim();
 }
 
 export function buildPageMetadata(title: string, description: string, path = "") {
