@@ -1,5 +1,6 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { ALL_IANA_TIMEZONES } from '@/lib/time/iana-database';
 import { COMMON_TIMEZONE_ABBREVIATIONS } from '@/lib/time/timezone-lookup';
@@ -8,46 +9,23 @@ import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { Globe, ShieldCheck, Cpu, Compass, Clock, ArrowRight } from 'lucide-react';
+import { Globe, ShieldCheck, Cpu, Compass, Clock } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 
-export const metadata = buildPageMetadata(
-  'World Time Zones List — Current Time & Global UTC Offsets',
-  'Browse the complete database of 400+ canonical IANA world time zones with real-time digital clocks, UTC offsets, daylight saving status, and continent search.',
+const content = HUB_PAGES_CUSTOM_CONTENT['/time-zones'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
   '/time-zones'
 );
-
-const TIMEZONE_PAGE_FAQS = [
-  {
-    question: "How many official time zones are there in the world?",
-    answer: "While Earth is divided into 24 standard 15-degree longitudinal hourly time zones, there are currently over 400 canonical IANA (Olson) time zone identifiers. These account for daylight saving rules, half-hour and 45-minute offsets (such as India UTC+5:30 or Nepal UTC+5:45), and historical geopolitical shifts."
-  },
-  {
-    question: "What is the difference between UTC offset and an IANA time zone identifier?",
-    answer: "A UTC offset (like UTC-5 or UTC+1) simply indicates how many hours a location is ahead or behind Coordinated Universal Time at a specific moment. An IANA identifier (like America/New_York or Europe/Paris) represents a geographical boundary that tracks automatic daylight saving transitions and historical time changes."
-  },
-  {
-    question: "Which countries have the most time zones?",
-    answer: "France holds the record for the most time zones (12, or 13 including Antarctic claims) due to its overseas departments and territories across all oceans. The United States and Russia follow with 11 time zones each, and the United Kingdom has 9 across its sovereign territories."
-  },
-  {
-    question: "Are these times synchronized with atomic clocks?",
-    answer: "Yes. TimeNumbers calculates all times using high-precision NTP (Network Time Protocol) reference time cross-checked with the canonical IANA tz database release, accurate to within fractions of a millisecond."
-  }
-];
 
 export default function TimeZonesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
-      <Breadcrumbs items={[{"name":"Time Zones Directory","url":"/time-zones"}]} />
-      {/* Schema.org Breadcrumbs */}
-      <JsonLd
-        type="breadcrumb"
-        data={[
-          { name: 'Home', url: '/' },
-          { name: 'Time Zones Directory', url: '/time-zones' },
-        ]}
-      />
-      <JsonLd type="faq" data={TIMEZONE_PAGE_FAQS} />
+      <Breadcrumbs items={[{ name: "Time Zones Directory", url: "/time-zones" }]} />
+      <JsonLd type="faq" data={content.faqs} />
 
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
@@ -59,11 +37,11 @@ export default function TimeZonesPage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Canonical World Time Zones
+            {content.h1}
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Explore all <strong>{ALL_IANA_TIMEZONES.length} canonical IANA time zones</strong> across every continent. Filter by region, offset, and city name with live precision atomic timekeeping.
+            {content.description}
           </p>
 
           <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-slate-300">
@@ -136,7 +114,7 @@ export default function TimeZonesPage() {
               Major Metropolitan Time Zone Guides (IANA)
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
-              Deep-dive IANA astronomical time zones for the world's most populous and financially significant metropolises.
+              Deep-dive IANA astronomical time zones for the world&apos;s most populous and financially significant metropolises.
             </p>
           </div>
           <span className="text-xs font-mono font-bold text-slate-400">
@@ -183,20 +161,22 @@ export default function TimeZonesPage() {
       {/* Interactive Directory Client Component */}
       <TimeZonesDirectoryClient initialZones={ALL_IANA_TIMEZONES} />
 
+      {/* Educational Guide Section */}
+      <EditorialContentBlock content={content} badgeLabel="Civil Horology & Offset Reference" />
+
       {/* FAQs Section */}
       <div className="pt-4">
         <FaqAccordion
           title="Frequently Asked Questions About Global Time Zones"
           subtitle="Learn how global time zones, daylight saving offsets, and IANA standards operate."
-          items={TIMEZONE_PAGE_FAQS}
+          items={content.faqs}
         />
       </div>
 
-      {/* Ubiquitous Related Links */}
       <RelatedLinksHub
         currentPath="/time-zones"
-        title="Explore More Horology Tools & Global Clocks"
-        subtitle="Discover atomic clock synchronization, meeting planners, and visual time difference matrices."
+        title="Explore More Time & Location Directories"
+        subtitle="Discover time zones, country hubs, or check current world time."
       />
     </div>
   );

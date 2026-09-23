@@ -5,7 +5,11 @@ import { Cake, Calendar, Clock, Heart, Sparkles, Flame, Check } from 'lucide-rea
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 
-export function BirthdayCalculatorClient() {
+interface Props {
+  h1Title?: string;
+}
+
+export function BirthdayCalculatorClient({ h1Title }: Props) {
   const [birthDate, setBirthDate] = useState<string>('2000-01-01');
   const [now, setNow] = useState<Date>(new Date());
 
@@ -71,7 +75,7 @@ export function BirthdayCalculatorClient() {
           <span>Milestone Life Tracking</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-          Birthday &amp; Age Calculator
+          {h1Title || "Birthday & Age Calculator"}
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
           Calculate how many weeks and days until your next birthday and discover your exact chronological age down to the second.

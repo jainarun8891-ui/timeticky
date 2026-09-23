@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Online Stopwatch — Millisecond Precision Lap & Split Timer (Free)",
-  "Free online stopwatch with millisecond precision, split lap recorder, keyboard shortcuts (Space/L/R), and background tab resilience.",
+  "Online Stopwatch with Lap Times — Millisecond Precision",
+  "Use our highly accurate online stopwatch with lap and split times. Features millisecond precision, exportable data, keyboard shortcuts, and zero time drift.",
   "/stopwatch"
 );
 

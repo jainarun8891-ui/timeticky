@@ -1,55 +1,34 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React from 'react';
+import { Metadata } from 'next';
 import { AlarmClockClient } from './AlarmClockClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Bell, Clock, Volume2, ShieldCheck } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 
-export const metadata = buildPageMetadata(
-  'Online Alarm Clock — Set Loud Alarm Online (Free & Reliable)',
-  'Free online alarm clock with loud acoustic chimes, snooze button, multi-alarms, and dark bedside nightstand mode. Works in any browser without app download.',
+const content = HUB_PAGES_CUSTOM_CONTENT['/alarm'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
   '/alarm'
 );
-
-const ALARM_FAQS = [
-  {
-    question: "Will this online alarm clock ring if my computer goes to sleep?",
-    answer: "Web browsers can only execute timers while your computer remains awake. To ensure your alarm rings reliably, adjust your computer power settings to prevent automatic sleep mode or keep the tab active."
-  },
-  {
-    question: "How do the audio sounds work without downloading MP3 files?",
-    answer: "All alarm chimes are synthesized smoothly in your browser using natural acoustic harmonic frequencies (zen singing bowls, warm marimba, and crisp digital pulses). Because no external sound files have to be loaded, the alarm rings instantaneously with zero lag, even if your internet connection drops."
-  },
-  {
-    question: "Can I use Fullscreen Nightstand Mode on a tablet or bedside phone?",
-    answer: "Yes! Click the Maximize icon or press 'F' on your keyboard to enter fullscreen mode. You can also toggle the Moon icon for an ultra-dim nightstand display designed to reduce blue light in dark bedrooms."
-  },
-  {
-    question: "How does the Snooze feature operate?",
-    answer: "When an alarm triggers, you can choose to snooze for 5 minutes or 10 minutes. The alarm automatically arms a temporary follow-up timer and will ring again after the selected interval."
-  }
-];
 
 export default function AlarmPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
-      <Breadcrumbs items={[{"name":"Online Alarm Clock","url":"/alarm"}]} />
-      <JsonLd
-        type="breadcrumb"
-        data={[
-          { name: 'Home', url: '/' },
-          { name: 'Online Alarm Clock', url: '/alarm' },
-        ]}
-      />
-      <JsonLd type="faq" data={ALARM_FAQS} />
+      <Breadcrumbs items={[{ name: "Online Alarm Clock", url: "/alarm" }]} />
+      <JsonLd type="faq" data={content.faqs} />
       <JsonLd
         type="application"
         data={{
           name: "Online Alarm Clock",
           category: "UtilitiesApplication",
-          description: "Free online alarm clock with customizable chimes, snooze, and fullscreen nightstand mode."
+          description: content.description
         }}
       />
 
@@ -59,15 +38,15 @@ export default function AlarmPage() {
         <div className="relative z-10 max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30">
             <Bell className="w-3.5 h-3.5" />
-            High-Precision Audio Synthesis & Bedside Clock
+            High-Precision Audio Synthesis &amp; Bedside Clock
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Online Alarm Clock & Chimes
+            {content.h1}
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Configure multiple customizable alarms with zero-dependency Web Audio synthetic chimes, snooze, and fullscreen nightstand kiosk mode.
+            {content.description}
           </p>
 
           <div className="pt-2 flex flex-wrap gap-6 text-xs text-slate-300">
@@ -77,7 +56,7 @@ export default function AlarmPage() {
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-cyan-400" />
-              <span>Snooze & Multi-Alarm Manager</span>
+              <span>Snooze &amp; Multi-Alarm Manager</span>
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-amber-400" />
@@ -90,12 +69,15 @@ export default function AlarmPage() {
       {/* Alarm Client Component */}
       <AlarmClockClient />
 
+      {/* Educational Guide Section */}
+      <EditorialContentBlock content={content} badgeLabel="Gentle Wake Architecture" />
+
       {/* FAQs */}
       <div className="pt-4">
         <FaqAccordion
           title="Frequently Asked Questions About Online Alarm Clock"
-          subtitle="Tips on ensuring your alarm rings on time and optimizing bedside nightstand displays."
-          items={ALARM_FAQS}
+          subtitle="Tips on ensuring your alarm rings on time, avoiding sleep inertia, and optimizing bedside nightstand displays."
+          items={content.faqs}
         />
       </div>
 

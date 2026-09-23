@@ -153,9 +153,9 @@ export function PrecisionClockHero() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight" suppressHydrationWarning>
+                <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight" suppressHydrationWarning>
                   Exact Time &amp; World Clock &mdash; {cityName}, {countryName}
-                </h1>
+                </div>
                 <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800" suppressHydrationWarning>
                   {details.abbreviation || details.timeZoneAbbr}
                 </span>

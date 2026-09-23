@@ -16,7 +16,11 @@ interface Props {
   params: Promise<{ zone: string }>;
 }
 
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { TIMEZONE_CUSTOM_CONTENT } from '@/lib/seo/timezone-custom-content';
+
 export async function generateStaticParams() {
+  const customSlugs = Object.keys(TIMEZONE_CUSTOM_CONTENT).map(zone => ({ zone }));
   const abbrSlugs = Object.keys(COMMON_TIMEZONE_ABBREVIATIONS).map(slug => ({ zone: slug }));
   const popularIanaSlugs = [
     'asia-kolkata',
@@ -33,14 +37,25 @@ export async function generateStaticParams() {
     'europe-berlin',
   ].map(slug => ({ zone: slug }));
 
-  return [...abbrSlugs, ...popularIanaSlugs];
+  const seen = new Set<string>();
+  const combined: { zone: string }[] = [];
+  for (const item of [...customSlugs, ...abbrSlugs, ...popularIanaSlugs]) {
+    if (!seen.has(item.zone)) {
+      seen.add(item.zone);
+      combined.push(item);
+    }
+  }
+  return combined;
 }
-
-import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { zone } = await params;
   const slug = zone.toLowerCase();
+  const custom = TIMEZONE_CUSTOM_CONTENT[slug];
+  if (custom) {
+    return buildPageMetadata(custom.title, custom.description, `/timezone/${slug}`);
+  }
+
   const abbr = findTimezoneAbbr(slug);
   const iana = findIanaZoneBySlug(slug);
 
@@ -128,13 +143,16 @@ export default async function TimezonePage({ params }: Props) {
     }
   ];
 
+  const custom = TIMEZONE_CUSTOM_CONTENT[slug];
+  const faqs = custom?.faqs || tzFaqs;
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <JsonLd type="faq" data={tzFaqs} />
+      <JsonLd type="faq" data={faqs} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         {/* Navigation Breadcrumbs */}
@@ -142,7 +160,8 @@ export default async function TimezonePage({ params }: Props) {
 
         {/* Live Detail Client */}
         <TimezoneDetailClient
-          title={title}
+          title={custom?.h1 || title}
+          description={custom?.description}
           representativeTz={representativeTz}
           offsetStr={offsetStr}
           abbreviation={displayAbbr}
@@ -151,6 +170,41 @@ export default async function TimezonePage({ params }: Props) {
           notes={notes}
           isAmbiguous={isAmbiguous}
         />
+
+        {/* Custom Educational Guide Section */}
+        {custom && (
+          <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 space-y-8 shadow-sm">
+            <div className="space-y-4 max-w-4xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
+                <Compass className="w-3.5 h-3.5" />
+                <span>Dedicated Timezone Analysis</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                {custom.headings[0] || `${title} Time Standards`}
+              </h2>
+              {custom.page_text.split('\n\n').map((paragraph, idx) => (
+                <p key={idx} className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {custom.headings.length > 1 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                {custom.headings.slice(1).map((heading, idx) => (
+                  <div key={idx} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                      {heading}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Observances, offset conventions, and international coordination for {title}.
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         {/* Ambiguity Disambiguation Table if multiple meanings */}
         {abbr && abbr.meanings.length > 1 && (
@@ -226,7 +280,7 @@ export default async function TimezonePage({ params }: Props) {
         </div>
 
         {/* Dynamic FAQ Accordion */}
-        <FaqAccordion items={tzFaqs} title={`Frequently Asked Questions: ${title}`} />
+        <FaqAccordion items={faqs} title={`Frequently Asked Questions: ${custom?.h1 || title}`} />
 
         {/* Global Links Hub */}
         <RelatedLinksHub title="Explore Related Tools & Zones" />

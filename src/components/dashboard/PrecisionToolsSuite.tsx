@@ -10,12 +10,13 @@ export function PrecisionToolsSuite() {
   const [activeTab, setActiveTab] = useState<'unix' | 'stopwatch' | 'timer'>('unix');
 
   // Unix Epoch State
-  const [epoch, setEpoch] = useState(Math.floor(Date.now() / 1000));
+  const [epoch, setEpoch] = useState<number>(0);
   const [epochCopied, setEpochCopied] = useState(false);
   const [customEpoch, setCustomEpoch] = useState('');
   const [convertedDate, setConvertedDate] = useState<string | null>(null);
 
   useEffect(() => {
+    setEpoch(Math.floor(Date.now() / 1000));
     const timer = setInterval(() => {
       setEpoch(Math.floor(Date.now() / 1000));
     }, 1000);

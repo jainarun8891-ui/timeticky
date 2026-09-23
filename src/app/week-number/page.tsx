@@ -3,11 +3,16 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { JsonLd } from '@/components/seo/JsonLd';
 import React from 'react';
+import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 
-export const metadata = buildPageMetadata(
-  'Week Number Today — What Week Is It? (2026 Calendar & Weeks Left)',
-  'What week of the year is it today? Check current ISO week number, how many weeks are left in the year, days elapsed, and full calendar week dates.',
+const content = HUB_PAGES_CUSTOM_CONTENT['/week-number'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
   '/week-number'
 );
 
@@ -30,21 +35,6 @@ export default function WeekNumberPage() {
   const dayOfYear = Math.floor(diff / 86400000) + 1;
   const percentElapsed = ((diff / (endOfYear.getTime() - startOfYear.getTime())) * 100).toFixed(1);
 
-  const faqs = [
-    {
-      question: "What is the current ISO week number of this year?",
-      answer: `The current ISO 8601 week number is Week ${weekNumber} of ${now.getFullYear()}.`
-    },
-    {
-      question: "How many weeks are left in the current year?",
-      answer: `There are ${weeksRemaining} full calendar weeks remaining in ${now.getFullYear()}.`
-    },
-    {
-      question: "What is an ISO 8601 week definition?",
-      answer: "Under the international ISO 8601 standard, a week begins on Monday and ends on Sunday. Week 1 of any calendar year is the week containing the first Thursday of that year (or January 4)."
-    }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={[{"name":"Week Number","url":"/week-number"}]} />
@@ -55,14 +45,22 @@ export default function WeekNumberPage() {
           { name: 'Week Number', url: '/week-number' },
         ]}
       />
-      <JsonLd type="faq" data={faqs} />
+      <JsonLd type="faq" data={content.faqs} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Current ISO Week Number Calculator",
+          category: "UtilitiesApplication",
+          description: content.description
+        }}
+      />
 
       <header className="text-center max-w-2xl mx-auto space-y-3">
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">
-          Current ISO Week Number
+          {content.h1}
         </h1>
         <p className="text-base text-slate-600 dark:text-slate-400">
-          Live ISO 8601 calendar week, elapsed day of the year, and weeks remaining in {now.getFullYear()}.
+          {content.description}
         </p>
       </header>
 
@@ -96,11 +94,14 @@ export default function WeekNumberPage() {
         </div>
       </div>
 
+      {/* Educational Guide Section */}
+      <EditorialContentBlock content={content} badgeLabel="ISO 8601 Calendar Telemetry & Sprint Planning" />
+
       <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
-        <FaqAccordion items={faqs} title="Frequently Asked Questions About Week Numbers" />
+        <FaqAccordion items={content.faqs} title="Frequently Asked Questions About Week Numbers" />
       </section>
 
-      <RelatedLinksHub />
+      <RelatedLinksHub currentPath="/week-number" />
     </div>
   );
 }

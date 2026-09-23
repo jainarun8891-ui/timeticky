@@ -7,22 +7,15 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Calendar, Plus, ShieldCheck } from 'lucide-react';
 
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+
+const content = HUB_PAGES_CUSTOM_CONTENT['/date-calculator'];
+
 export const metadata = buildPageMetadata(
-  'Date Calculator: Add or Subtract Days, Weeks & Business Days',
-  'Free online date calculator: add or subtract days, weeks, months, or years from any date. Includes business days mode that skips weekends and holidays.',
+  content.title,
+  content.description,
   '/date-calculator'
 );
-
-const DATE_CALC_FAQS = [
-  {
-    question: "How do business day additions work?",
-    answer: "In 'Business days only' mode, Saturdays and Sundays are skipped during addition or subtraction. For example, adding 5 business days to a Friday yields the following Friday, exactly 1 calendar week later."
-  },
-  {
-    question: "How are month additions calculated when months have varying days?",
-    answer: "If adding a month lands on a date past the final day of the target month (e.g. adding 1 month to January 31), the date automatically adjusts to the final valid day of that month (February 28 or 29)."
-  }
-];
 
 export default function DateCalculatorPage() {
   return (
@@ -35,13 +28,13 @@ export default function DateCalculatorPage() {
           { name: 'Date Calculator', url: '/date-calculator' },
         ]}
       />
-      <JsonLd type="faq" data={DATE_CALC_FAQS} />
+      <JsonLd type="faq" data={content.faqs} />
       <JsonLd
         type="application"
         data={{
-          name: "Date Calculator",
+          name: content.h1,
           category: "UtilitiesApplication",
-          description: "Add or subtract days, weeks, months, and business working days from any calendar date."
+          description: content.description
         }}
       />
 
@@ -55,11 +48,11 @@ export default function DateCalculatorPage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Date Calculator — Add or Subtract Days & Weeks
+            {content.h1}
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Add or subtract days, weeks, months, and years from any starting date. Features working business days calculation with weekend exclusion.
+            {content.description}
           </p>
 
           <div className="pt-2 flex flex-wrap gap-6 text-xs text-slate-300">
@@ -81,11 +74,40 @@ export default function DateCalculatorPage() {
 
       <DateCalculatorClient />
 
+      {/* Educational Guide Section */}
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-8 sm:p-10 shadow-sm space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+        <div className="space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+            {content.headings[0]}
+          </h2>
+          {content.page_text.split('\n\n').map((paragraph, idx) => (
+            <p key={idx} className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        {content.headings.length > 1 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+            {content.headings.slice(1).map((heading, idx) => (
+              <div key={idx} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  {heading}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Reliable month-end snapping, leap year math, and explicit weekday identification.
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
       <div className="pt-4">
         <FaqAccordion
           title="Frequently Asked Questions About Date Math"
           subtitle="Learn how leap years and varying month lengths affect date calculations."
-          items={DATE_CALC_FAQS}
+          items={content.faqs}
         />
       </div>
 

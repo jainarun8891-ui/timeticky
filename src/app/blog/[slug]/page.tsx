@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Calendar, User, Share2, Tag, Bookmark, CheckCircle2 } from 'lucide-react';
 import { BLOG_ARTICLES, Article } from '@/lib/blog/articles';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 
 export async function generateStaticParams() {
@@ -37,24 +38,43 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+import { FaqAccordion } from '@/components/common/FaqAccordion';
+
+function getArticleFaqs(article: Article) {
+  return [
+    {
+      question: `What is the primary conclusion of "${article.title}"?`,
+      answer: article.excerpt
+    },
+    {
+      question: `Who conducted the research for this ${article.category.toLowerCase()} analysis?`,
+      answer: `This analysis was researched by ${article.author} (${article.authorRole}) and published under the TimeNumbers Chronometry Research initiative.`
+    },
+    {
+      question: `How can readers apply the insights from this study?`,
+      answer: `Readers can explore our free interactive tools, including the International Meeting Planner, Overlap Calculator, and Precision Atomic Clock to apply these chronometric principles directly.`
+    }
+  ];
+}
+
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = BLOG_ARTICLES.find((a) => a.slug === slug);
   if (!article) notFound();
 
+  const faqs = getArticleFaqs(article);
   const related = BLOG_ARTICLES.filter(a => a.slug !== article.slug).slice(0, 3);
 
   return (
     <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-12">
-      <JsonLd type="article" data={article} />
-      <JsonLd
-        type="breadcrumb"
-        data={[
-          { name: "Home", url: "/" },
+      <Breadcrumbs
+        items={[
           { name: "Blog", url: "/blog" },
           { name: article.title, url: `/blog/${article.slug}` }
         ]}
       />
+      <JsonLd type="article" data={article} />
+      <JsonLd type="faq" data={faqs} />
 
       {/* Back button */}
       <div>
@@ -162,6 +182,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Link>
           ))}
         </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto pt-4 border-t border-slate-200 dark:border-slate-800">
+        <FaqAccordion items={faqs} title="Frequently Asked Questions: Research Briefing" />
       </div>
 
       {/* Ubiquitous Related Links */}

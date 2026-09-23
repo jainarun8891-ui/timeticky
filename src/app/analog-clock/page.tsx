@@ -1,74 +1,104 @@
-import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React from 'react';
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { AnalogClockClient } from './AnalogClockClient';
+import { Breadcrumbs } from '@/components/common/Breadcrumbs';
+import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
-import { Clock, Globe, ShieldCheck } from 'lucide-react';
-
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { AnalogClockClient } from './AnalogClockClient';
+import { Clock, ShieldCheck, Compass, Sparkles, Watch, Eye } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
+import { JsonLd } from '@/components/seo/JsonLd';
+
+const content = HUB_PAGES_CUSTOM_CONTENT['/analog-clock'];
 
 export const metadata: Metadata = buildPageMetadata(
-  'Online Analog Clock — Sweeping Second Hand',
-  'Precision full-screen online analog clock featuring continuous sweeping second hand, multiple chronometer dial themes, date window, and global timezone selector.',
-  '/analog-clock'
+  content.title,
+  content.description,
+  "/analog-clock"
 );
 
 export default function AnalogClockPage() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Online Analog Clock',
-    description: 'High-precision SVG analog clock with sweeping seconds and timezone support.',
-    url: 'https://www.timenumbers.com/analog-clock',
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.timenumbers.com' },
-        { '@type': 'ListItem', position: 2, name: 'Analog Clock', item: 'https://www.timenumbers.com/analog-clock' },
-      ],
-    },
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
-      <Breadcrumbs items={[{"name":"Analog Watch Clock","url":"/analog-clock"}]} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <Breadcrumbs items={[{ name: 'Analog Clock', url: '/analog-clock' }]} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-        {/* Breadcrumb & Intro */}
-        <div className="space-y-4">
-          <nav className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-            <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-900 dark:text-slate-200 font-medium">Analog Clock</span>
-          </nav>
+      {/* Header Banner */}
+      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 max-w-3xl space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+            <Clock className="w-3.5 h-3.5" />
+            Continuous Sweeping Horology
+          </div>
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-2">
-                <Clock className="w-3.5 h-3.5" />
-                Precision Horology & Chronometer Dial
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                Online Analog Clock
-              </h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+            {content.h1}
+          </h1>
+
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            {content.description}
+          </p>
+
+          <div className="pt-2 flex flex-wrap gap-6 text-xs text-slate-300">
+            <div className="flex items-center gap-2">
+              <Watch className="w-4 h-4 text-emerald-400" />
+              <span>60 FPS Fluid Sweep</span>
             </div>
-            <p className="text-sm text-slate-600 dark:text-slate-400 max-w-lg">
-              Engineered with SVG vector precision and continuous 60fps frame synchronization. Switch dial themes, toggle fullscreen presentation, and monitor any international time zone.
-            </p>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <span>Atomic Drift Compensated</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Eye className="w-4 h-4 text-amber-400" />
+              <span>Spatial Time Perception</span>
+            </div>
           </div>
         </div>
-
-        {/* Analog Clock Client */}
-        <AnalogClockClient />
-
-        {/* Hub Navigation */}
-        <RelatedLinksHub title="Explore More Precision Clocks & Timers" />
       </div>
+
+      <JsonLd type="faq" data={content.faqs} />
+
+      {/* Interactive Analog Clock Client */}
+      <AnalogClockClient />
+
+      {/* Educational Guide Section */}
+      <EditorialContentBlock content={content} badgeLabel="High-Beat Precision Chronometry" />
+
+      {/* FAQs */}
+      <FaqAccordion
+        title="Frequently Asked Questions About Analog Clocks"
+        subtitle="Insights into sweeping escapements, quartz resonance, and dial geometry."
+        items={content.faqs}
+      />
+
+      {/* Cross Links */}
+      <RelatedLinksHub
+        currentPath="/analog-clock"
+        title="Explore Precision Clocks & Horology Tools"
+        subtitle="Test clock accuracy, open the fullscreen nightstand mode, or view atomic reference time."
+      />
+
+      {/* Schema.org WebApplication structured data */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "TimeNumbers Online Analog Watch Clock",
+            "url": "https://www.timenumbers.com/analog-clock",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "All",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          })
+        }}
+      />
     </div>
   );
 }

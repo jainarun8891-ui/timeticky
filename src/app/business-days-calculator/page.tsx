@@ -7,26 +7,15 @@ import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { BusinessDaysClient } from './BusinessDaysClient';
 
-export const metadata: Metadata = buildPageMetadata(
-  "Business Days Calculator: Working Days Between Two Dates (Excl. Weekends)",
-  "Calculate working business days between two dates excluding weekends. Add or subtract 30, 60, or 90 business days from today for invoices, contracts, and legal deadlines.",
-  "/business-days-calculator"
-);
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
 
-const BUSINESS_DAYS_FAQS = [
-  {
-    question: "How does the business days calculator calculate working days?",
-    answer: "The calculator iterates through the selected date range and counts every business weekday (Monday through Friday), automatically excluding Saturdays and Sundays."
-  },
-  {
-    question: "How do I calculate 30, 60, or 90 business days from today?",
-    answer: "Select 'Add / Subtract Business Days', enter your starting date, and input the number of business days (e.g. 30, 60, or 90). The calculator instantly identifies the target completion date excluding weekends."
-  },
-  {
-    question: "Does the calculation include the start and end dates?",
-    answer: "By standard business practice, interval duration counts elapsed working days between the start date and the end date. You can also view the total calendar days elapsed alongside working days."
-  }
-];
+const content = HUB_PAGES_CUSTOM_CONTENT['/business-days-calculator'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
+  '/business-days-calculator'
+);
 
 export default function BusinessDaysPage() {
   return (
@@ -39,17 +28,47 @@ export default function BusinessDaysPage() {
           { name: 'Business Days Calculator', url: '/business-days-calculator' },
         ]}
       />
-      <JsonLd type="faq" data={BUSINESS_DAYS_FAQS} />
+      <JsonLd type="faq" data={content.faqs} />
       <JsonLd
         type="application"
         data={{
-          name: "Business Days Calculator",
+          name: content.h1,
           category: "BusinessApplication",
-          description: "Calculate working days between two dates excluding weekends, or project future business days from today."
+          description: content.description
         }}
       />
-      <BusinessDaysClient />
-      <FaqAccordion items={BUSINESS_DAYS_FAQS} title="Frequently Asked Questions About Business Days" />
+      <BusinessDaysClient h1Title={content.h1} />
+
+      {/* Educational Guide Section */}
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-8 sm:p-10 shadow-sm space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+        <div className="space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+            {content.headings[0]}
+          </h2>
+          {content.page_text.split('\n\n').map((paragraph, idx) => (
+            <p key={idx} className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        {content.headings.length > 1 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+            {content.headings.slice(1).map((heading, idx) => (
+              <div key={idx} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  {heading}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Accurate statutory bank closures, weekend exclusions, and contractual milestone projections.
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <FaqAccordion items={content.faqs} title="Frequently Asked Questions About Business Days" />
       <RelatedLinksHub />
     </div>
   );

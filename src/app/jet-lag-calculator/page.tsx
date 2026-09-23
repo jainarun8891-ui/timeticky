@@ -1,47 +1,35 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React from 'react';
+import { Metadata } from 'next';
 import { JetLagCalculatorClient } from './JetLagCalculatorClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Plane, Compass, Sparkles, ShieldCheck } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 
-export const metadata = buildPageMetadata(
-  'Jet Lag Calculator: Flight Time & Circadian Sleep Protocol',
-  'Calculate flight duration, time difference, and generate a personalized hour-by-hour light and sleep protocol to prevent and recover from jet lag fast.',
+const content = HUB_PAGES_CUSTOM_CONTENT['/jet-lag-calculator'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
   '/jet-lag-calculator'
 );
-
-const JET_LAG_FAQS = [
-  {
-    question: "Why is jet lag significantly worse when flying East than flying West?",
-    answer: "The human circadian master clock naturally runs slightly longer than 24 hours (around 24.2 hours). Flying West requires extending your day ('phase delay'), which is biologically natural. Flying East requires compressing your day ('phase advance'), forcing your brain to fall asleep hours earlier than your internal biological clock expects."
-  },
-  {
-    question: "How does light exposure reset the circadian rhythm?",
-    answer: "Intrinsically photosensitive retinal ganglion cells (ipRGCs) in your eyes detect blue wavelengths (460–480 nm) in daylight and transmit signals directly to the suprachiasmatic nucleus (SCN) in the hypothalamus, instantly halting melatonin production and setting your biological clock to daytime."
-  },
-  {
-    question: "When should I take melatonin for jet lag?",
-    answer: "For eastward travel across multiple time zones, take a low dose (0.5 mg to 3 mg) of melatonin approximately 30 minutes before your planned bedtime in your new destination. Avoid taking melatonin upon waking or during the local destination daytime."
-  },
-  {
-    question: "How does flight distance and speed factor into flight time calculation?",
-    answer: "TimeNumbers calculates flight duration using great-circle orthodromic distance (the shortest route over the curved Earth surface), calibrated for modern commercial passenger aircraft cruising speeds (820–850 km/h) plus standard runway taxi and approach buffers."
-  }
-];
 
 export default function JetLagCalculatorPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
-      <Breadcrumbs items={[{"name":"Jet Lag & Flight Time","url":"/jet-lag-calculator"}]} />
+      <Breadcrumbs items={[{ name: "Jet Lag & Flight Time", url: "/jet-lag-calculator" }]} />
+      <JsonLd type="faq" data={content.faqs} />
       <JsonLd
-        type="breadcrumb"
-        data={[
-          { name: 'Home', url: '/' },
-          { name: 'Jet Lag Calculator', url: '/jet-lag-calculator' },
-        ]}
+        type="application"
+        data={{
+          name: "Jet Lag Calculator",
+          category: "HealthApplication",
+          description: content.description
+        }}
       />
 
       {/* Hero Header */}
@@ -50,15 +38,15 @@ export default function JetLagCalculatorPage() {
         <div className="relative z-10 max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30">
             <Plane className="w-3.5 h-3.5" />
-            Aviation Chronobiology & Travel Optimization
+            Aviation Chronobiology &amp; Travel Optimization
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Jet Lag Calculator & Flight Duration
+            {content.h1}
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Calculate accurate international flight travel times, local arrival hours, and get a chronobiology-backed circadian light and sleep prescription to eliminate jet lag.
+            {content.description}
           </p>
 
           <div className="pt-2 flex flex-wrap gap-6 text-xs text-slate-300">
@@ -81,12 +69,15 @@ export default function JetLagCalculatorPage() {
       {/* Jet Lag Studio Client Component */}
       <JetLagCalculatorClient />
 
+      {/* Educational Guide Section */}
+      <EditorialContentBlock content={content} badgeLabel="Circadian Chronobiology Guide" />
+
       {/* FAQs */}
-      <div className="pt-4">
+      <div className="pt-2">
         <FaqAccordion
           title="Frequently Asked Questions About Jet Lag & Circadian Adaptation"
           subtitle="Learn the scientific principles behind circadian phase shifts and recovery protocols."
-          items={JET_LAG_FAQS}
+          items={content.faqs}
         />
       </div>
 

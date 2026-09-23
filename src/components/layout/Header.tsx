@@ -98,14 +98,14 @@ export function Header() {
   };
 
   const featureTools = [
-    { name: 'Time Zone Converter', desc: 'Convert hours across global zones', href: '/time-zone-converter', icon: ArrowLeftRight },
-    { name: 'Compare World Cities', desc: 'Direct side-by-side time difference', href: '/compare', icon: ArrowLeftRight },
-    { name: 'Timezone Converters', desc: '552 pairs with visual grid', href: '/convert', icon: ArrowLeftRight },
+    { name: 'Time Zone Converter', desc: 'Convert hours across global zones', href: '/converter', icon: ArrowLeftRight },
+    { name: 'Compare World Cities', desc: 'Direct side-by-side time difference', href: '/converter/compare', icon: ArrowLeftRight },
+    { name: 'Timezone Converters', desc: '552 pairs with visual grid', href: '/converter', icon: ArrowLeftRight },
     { name: 'Exact Time Clock', desc: 'Precision digital chronometer', href: '/clock', icon: Clock },
     { name: 'Interactive World Map', desc: 'Solar terminator & 46 live clocks', href: '/world-map', icon: Globe },
     { name: 'Online Pomodoro Timer', desc: '25/5 study productivity intervals', href: '/pomodoro', icon: Bell },
     { name: 'Multi-Clock World Wall', desc: 'Trading floor kiosk with Swiss dials', href: '/world-clock-wall', icon: Monitor },
-    { name: 'Solar & Lunar Astronomy', desc: 'Sunrise, sunset & moon phases', href: '/astronomy', icon: SunMedium },
+    { name: 'Solar & Lunar Astronomy', desc: 'Sunrise, sunset & moon phases', href: '/sun', icon: SunMedium },
     { name: 'Date Difference Calculator', desc: 'Exact days & months between dates', href: '/date-difference', icon: Calendar },
     { name: 'Date Add / Subtract', desc: 'Add or subtract days & business days', href: '/date-calculator', icon: Calendar },
     { name: 'Golden Hour Calculator', desc: 'Photography lighting & magic hour', href: '/golden-hour', icon: Camera },
@@ -118,16 +118,16 @@ export function Header() {
   ];
 
   const popularConverters = [
-    { label: 'GMT to EST', desc: 'London → New York', href: '/convert/gmt-to-est' },
-    { label: 'EST to GMT', desc: 'New York → London', href: '/convert/est-to-gmt' },
-    { label: 'IST to PST', desc: 'India → California', href: '/convert/ist-to-pst' },
-    { label: 'PST to EST', desc: 'Pacific → Eastern', href: '/convert/pst-to-est' },
-    { label: 'GMT to IST', desc: 'London → India', href: '/convert/gmt-to-ist' },
-    { label: 'CET to EST', desc: 'Europe → New York', href: '/convert/cet-to-est' },
-    { label: 'BST to EST', desc: 'UK Summer → Eastern', href: '/convert/bst-to-est' },
-    { label: 'UTC to IST', desc: 'UTC Standard → India', href: '/convert/utc-to-ist' },
-    { label: 'KST to GMT', desc: 'Korea → London', href: '/convert/kst-to-gmt' },
-    { label: 'AEST to GMT', desc: 'Sydney → London', href: '/convert/aest-to-gmt' },
+    { label: 'GMT to EST', desc: 'London → New York', href: '/converter/gmt-to-est' },
+    { label: 'EST to GMT', desc: 'New York → London', href: '/converter/est-to-gmt' },
+    { label: 'IST to PST', desc: 'India → California', href: '/converter/ist-to-pst' },
+    { label: 'PST to EST', desc: 'Pacific → Eastern', href: '/converter/pst-to-est' },
+    { label: 'GMT to IST', desc: 'London → India', href: '/converter/gmt-to-ist' },
+    { label: 'CET to EST', desc: 'Europe → New York', href: '/converter/cet-to-est' },
+    { label: 'BST to EST', desc: 'UK Summer → Eastern', href: '/converter/bst-to-est' },
+    { label: 'UTC to IST', desc: 'UTC Standard → India', href: '/converter/utc-to-ist' },
+    { label: 'KST to GMT', desc: 'Korea → London', href: '/converter/kst-to-gmt' },
+    { label: 'AEST to GMT', desc: 'Sydney → London', href: '/converter/aest-to-gmt' },
   ];
 
   return (
@@ -162,7 +162,7 @@ export function Header() {
           {/* Converters Mega Dropdown */}
           <div ref={convertersRef} className="relative flex items-center">
             <Link
-              href="/convert"
+              href="/converter"
               className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1.5 py-2 font-bold"
             >
               <span>Converters</span>
@@ -191,7 +191,7 @@ export function Header() {
                     <span>Timezone Converters</span>
                   </div>
                   <Link
-                    href="/convert"
+                    href="/converter"
                     onClick={() => setConvertersOpen(false)}
                     className="text-[11px] font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
                   >
@@ -221,7 +221,7 @@ export function Header() {
 
                 {/* Footer Banner */}
                 <Link
-                  href="/convert"
+                  href="/converter"
                   onClick={() => setConvertersOpen(false)}
                   className="w-full py-2 px-3 rounded-2xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-200/70 dark:border-blue-800/70 text-blue-700 dark:text-blue-300 text-xs font-bold flex items-center justify-between transition-colors"
                 >
@@ -576,7 +576,7 @@ export function Header() {
                     </div>
 
                     <Link
-                      href="/convert"
+                      href="/converter"
                       onClick={() => setMobileMenuOpen(false)}
                       className="w-full py-2.5 px-3 rounded-xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-200/70 dark:border-blue-800/70 text-blue-700 dark:text-blue-300 text-xs font-bold flex items-center justify-between transition-colors"
                     >
@@ -770,7 +770,7 @@ export function Header() {
 
               {/* Country Directory */}
               <Link
-                href="/country"
+                href="/countries"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >

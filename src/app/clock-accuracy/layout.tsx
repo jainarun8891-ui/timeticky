@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Clock Accuracy Test — Browser Drift Check",
-  "Check if your computer clock is accurate with millisecond precision against official atomic time. Diagnose clock drift, NTP synchronization, and fast or slow system time.",
+  "Check Clock Accuracy — Test Device Time Drift & Sync",
+  "Is your computer or phone clock fast or slow? Check your exact device time drift against official atomic time down to the millisecond, and learn how to fix it.",
   "/clock-accuracy"
 );
 

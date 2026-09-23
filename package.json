@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test src/tests/time.test.ts",
+    "test": "node scripts/run_tests.js",
     "seo:ping": "node scripts/seo_ping.js",
     "seo:keywords": "node scripts/keyword_miner.mjs"
   },

@@ -17,15 +17,27 @@ async function getAllUrls() {
       }
     }
   } catch (err) {
-    console.log('Local dev server not responding, falling back to priority list:', err.message);
+    console.log('Local dev server not responding, falling back to all 352 reviewed URLs from site_all_pages_review.json');
+  }
+
+  const fs = require('fs');
+  const path = require('path');
+  try {
+    const reviewPath = path.join(__dirname, '../site_all_pages_review.json');
+    if (fs.existsSync(reviewPath)) {
+      const review = JSON.parse(fs.readFileSync(reviewPath, 'utf8'));
+      const urls = review.map(p => p.url || `https://${host}${p.path === '/' ? '' : p.path}`);
+      console.log(`Loaded ${urls.length} canonical URLs directly from site_all_pages_review.json`);
+      return Array.from(new Set(urls));
+    }
+  } catch (e) {
+    console.warn('Could not read site_all_pages_review.json, using static fallback');
   }
 
   return [
     'https://www.timenumbers.com/',
     'https://www.timenumbers.com/united-states-time-now',
-    'https://www.timenumbers.com/time-zone-converter',
-    'https://www.timenumbers.com/compare',
-    'https://www.timenumbers.com/convert',
+    'https://www.timenumbers.com/converter',
     'https://www.timenumbers.com/date-difference',
     'https://www.timenumbers.com/business-days-calculator',
     'https://www.timenumbers.com/week-number',

@@ -17,6 +17,30 @@ export async function generateStaticParams() {
 }
 
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { FaqAccordion } from '@/components/common/FaqAccordion';
+import { JsonLd } from '@/components/seo/JsonLd';
+
+function getCalendarYearFaqs(year: number) {
+  const isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  const startDay = new Date(year, 0, 1).toLocaleDateString('en-US', { weekday: 'long' });
+  const endDay = new Date(year, 11, 31).toLocaleDateString('en-US', { weekday: 'long' });
+  return [
+    {
+      question: `How many days are in the year ${year}?`,
+      answer: `The year ${year} has exactly ${isLeap ? '366 days (leap year)' : '365 days (common standard year)'}. February contains ${isLeap ? '29 days' : '28 days'}.`
+    },
+    {
+      question: `Is ${year} a leap year?`,
+      answer: isLeap
+        ? `Yes, ${year} is an official leap year. In the Gregorian calendar, years divisible by 4 are leap years, adding an extra day (February 29) to synchronize civil calendars with Earth's 365.242-day solar orbit.`
+        : `No, ${year} is a common 365-day year. Leap years occur quadrennially to adjust for fractional orbital hours.`
+    },
+    {
+      question: `What day of the week does ${year} begin and end on?`,
+      answer: `January 1, ${year} begins on a ${startDay}, and the final day of the year, December 31, ${year}, concludes on a ${endDay}.`
+    }
+  ];
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year } = await params;
@@ -87,8 +111,11 @@ export default async function CalendarYearPage({ params }: Props) {
     description: `Complete 12-month printable Gregorian calendar for year ${y}.`
   };
 
+  const faqs = getCalendarYearFaqs(y);
+
   return (
     <div className="w-full min-h-screen pb-16">
+      <JsonLd type="faq" data={faqs} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -199,6 +226,10 @@ export default async function CalendarYearPage({ params }: Props) {
               </div>
             );
           })}
+        </div>
+
+        <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+          <FaqAccordion items={faqs} title={`Frequently Asked Questions: Calendar ${y}`} />
         </div>
 
         {/* Universal Related Links */}

@@ -6,7 +6,11 @@ import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import Link from 'next/link';
 
-export function UnixConverterClient() {
+interface Props {
+  h1Title?: string;
+}
+
+export function UnixConverterClient({ h1Title }: Props) {
   const [currentEpoch, setCurrentEpoch] = useState<number>(Math.floor(Date.now() / 1000));
   const [currentEpochMs, setCurrentEpochMs] = useState<number>(Date.now());
   const [copied, setCopied] = useState<string | null>(null);
@@ -56,7 +60,7 @@ export function UnixConverterClient() {
           <span>Developer Tools Suite</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-          Unix Timestamp Converter &amp; Epoch Studio
+          {h1Title || "Unix Timestamp Converter & Epoch Studio"}
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
           Live atomic epoch in seconds &amp; milliseconds, bidirectional ISO 8601 formatting, and technical documentation.

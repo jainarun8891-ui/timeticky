@@ -35,7 +35,8 @@ export function Footer() {
               Clocks & Dials
             </h5>
             <ul className="space-y-1.5">
-              <li><Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Clock</Link></li>
+              <li><Link href="/world-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Clock Dashboard</Link></li>
+              <li><Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Clocks Home</Link></li>
               <li><Link href="/clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Exact Time Clock</Link></li>
               <li><Link href="/analog-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Analog Clock Dial</Link></li>
               <li><Link href="/fullscreen-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Fullscreen Desk Clock</Link></li>
@@ -53,10 +54,12 @@ export function Footer() {
             <ul className="space-y-1.5">
               <li><Link href="/pomodoro" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pomodoro Timer</Link></li>
               <li><Link href="/timer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Timer</Link></li>
+              <li><Link href="/countdown" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Events</Link></li>
               <li><Link href="/stopwatch" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Stopwatch</Link></li>
               <li><Link href="/alarm" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Alarm Clock</Link></li>
               <li><Link href="/calendar" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Calendar</Link></li>
-              <li><Link href="/today" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Today's Date & Details</Link></li>
+              <li><Link href="/holidays" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Public Holidays</Link></li>
+              <li><Link href="/today" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Today&apos;s Date & Details</Link></li>
               <li><Link href="/week-number" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ISO Week Number</Link></li>
             </ul>
           </div>
@@ -67,11 +70,11 @@ export function Footer() {
               Calculators
             </h5>
             <ul className="space-y-1.5">
-              <li><Link href="/time-zone-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Zone Converter</Link></li>
-              <li><Link href="/compare" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Compare World Cities</Link></li>
-              <li><Link href="/convert" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">552 Timezone Pairs</Link></li>
-              <li><Link href="/time-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Converter</Link></li>
-              <li><Link href="/time-difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Difference Matrix</Link></li>
+              <li><Link href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Zone Converter</Link></li>
+              <li><Link href="/converter/compare" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Compare World Cities</Link></li>
+              <li><Link href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">552 Timezone Pairs</Link></li>
+              <li><Link href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner Grid</Link></li>
+              <li><Link href="/overlap-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Overlap Calculator</Link></li>
               <li><Link href="/date-difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Date Difference</Link></li>
               <li><Link href="/date-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Date Add / Subtract</Link></li>
               <li><Link href="/business-days-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Business Days</Link></li>
@@ -90,7 +93,7 @@ export function Footer() {
               <li><Link href="/timezone-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Time Map</Link></li>
               <li><Link href="/world-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Sun Map (Live)</Link></li>
               <li><Link href="/cities" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Cities Directory</Link></li>
-              <li><Link href="/country" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Country Time Directory</Link></li>
+              <li><Link href="/countries" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Country Time Directory</Link></li>
               <li><Link href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner</Link></li>
               <li><Link href="/overlap-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Overlap Calculator</Link></li>
               <li><Link href="/dialing-codes" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dialing Codes</Link></li>
@@ -104,14 +107,14 @@ export function Footer() {
               Sun & Moon Lab
             </h5>
             <ul className="space-y-1.5">
-              <li><Link href="/astronomy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Astronomy Lab</Link></li>
+              <li><Link href="/sun" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Astronomy & Sun Hub</Link></li>
               <li><Link href="/golden-hour" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Golden Hour Times</Link></li>
-              <li><Link href="/sunrise-sunset" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sunrise & Sunset</Link></li>
-              <li><Link href="/sunrise-sunset/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: New York</Link></li>
-              <li><Link href="/sunrise-sunset/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: London</Link></li>
-              <li><Link href="/sunrise-sunset/delhi" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Delhi</Link></li>
-              <li><Link href="/sunrise-sunset/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Tokyo</Link></li>
-              <li><Link href="/sunrise-sunset/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Paris</Link></li>
+              <li><Link href="/sun" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sunrise & Sunset</Link></li>
+              <li><Link href="/sun/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: New York</Link></li>
+              <li><Link href="/sun/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: London</Link></li>
+              <li><Link href="/sun/delhi" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Delhi</Link></li>
+              <li><Link href="/sun/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Tokyo</Link></li>
+              <li><Link href="/sun/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Paris</Link></li>
               <li><Link href="/moon" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon Phases</Link></li>
               <li><Link href="/moon/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: New York</Link></li>
               <li><Link href="/moon/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: London</Link></li>
@@ -137,7 +140,9 @@ export function Footer() {
               <li><Link href="/unix-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Unix Timestamp Studio</Link></li>
               <li><Link href="/unix-time-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Unix Epoch Converter</Link></li>
               <li><Link href="/iso-8601" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ISO 8601 Parser</Link></li>
+              <li><Link href="/api-docs" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Developer Time API</Link></li>
               <li><Link href="/learn" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Horology Academy</Link></li>
+              <li><Link href="/learn/seo-simulator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">SERP Simulator</Link></li>
             </ul>
           </div>
 
@@ -165,28 +170,28 @@ export function Footer() {
             Popular World City Clocks
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs">
-            <Link href="/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">New York</Link>
-            <Link href="/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">London</Link>
-            <Link href="/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tokyo</Link>
-            <Link href="/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Paris</Link>
-            <Link href="/berlin" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Berlin</Link>
-            <Link href="/zurich" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Zurich</Link>
-            <Link href="/madrid" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Madrid</Link>
-            <Link href="/mumbai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Mumbai</Link>
-            <Link href="/bengaluru" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Bengaluru</Link>
-            <Link href="/hong-kong" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Hong Kong</Link>
-            <Link href="/rome" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Rome</Link>
-            <Link href="/chicago" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chicago</Link>
-            <Link href="/los-angeles" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Los Angeles</Link>
-            <Link href="/san-francisco" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">San Francisco</Link>
-            <Link href="/washington-dc" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Washington D.C.</Link>
-            <Link href="/sao-paulo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">São Paulo</Link>
-            <Link href="/toronto" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Toronto</Link>
-            <Link href="/seoul" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Seoul</Link>
-            <Link href="/cairo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Cairo</Link>
-            <Link href="/dubai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dubai</Link>
-            <Link href="/sydney" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sydney</Link>
-            <Link href="/singapore" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Singapore</Link>
+            <Link href="/time/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">New York</Link>
+            <Link href="/time/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">London</Link>
+            <Link href="/time/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tokyo</Link>
+            <Link href="/time/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Paris</Link>
+            <Link href="/time/berlin" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Berlin</Link>
+            <Link href="/time/zurich" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Zurich</Link>
+            <Link href="/time/madrid" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Madrid</Link>
+            <Link href="/time/mumbai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Mumbai</Link>
+            <Link href="/time/bengaluru" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Bengaluru</Link>
+            <Link href="/time/hong-kong" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Hong Kong</Link>
+            <Link href="/time/rome" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Rome</Link>
+            <Link href="/time/chicago" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chicago</Link>
+            <Link href="/time/los-angeles" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Los Angeles</Link>
+            <Link href="/time/san-francisco" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">San Francisco</Link>
+            <Link href="/time/washington-dc" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Washington D.C.</Link>
+            <Link href="/time/sao-paulo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">São Paulo</Link>
+            <Link href="/time/toronto" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Toronto</Link>
+            <Link href="/time/seoul" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Seoul</Link>
+            <Link href="/time/cairo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Cairo</Link>
+            <Link href="/time/dubai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dubai</Link>
+            <Link href="/time/sydney" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sydney</Link>
+            <Link href="/time/singapore" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Singapore</Link>
           </div>
         </div>
 

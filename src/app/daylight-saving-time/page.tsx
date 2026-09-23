@@ -1,18 +1,21 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
-import { DST_FAQS } from '@/lib/seo/page-faqs';
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
-import { TIMEZONES } from '@/lib/time/timezones';
 import { COUNTRIES } from '@/lib/geo/countries';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { Calendar, Globe, ArrowRight, Clock, ShieldAlert } from 'lucide-react';
+import { Calendar, ArrowRight, Clock } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 
-export const metadata = buildPageMetadata(
-  'Daylight Saving Time 2026: Clock Change Dates & Schedule',
-  'When do clocks change in 2026? Spring forward on March 8 (USA) & March 29 (Europe). Fall back on Nov 1 (USA) & Oct 25 (Europe). Complete 2026 DST dates and countdown.',
+const content = HUB_PAGES_CUSTOM_CONTENT['/daylight-saving-time'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
   '/daylight-saving-time'
 );
 
@@ -61,7 +64,7 @@ export default function DaylightSavingTimePage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <Breadcrumbs items={[{"name":"Daylight Saving Time","url":"/daylight-saving-time"}]} />
+      <Breadcrumbs items={[{ name: "Daylight Saving Time", url: "/daylight-saving-time" }]} />
       <JsonLd
         type="breadcrumb"
         data={[
@@ -69,13 +72,14 @@ export default function DaylightSavingTimePage() {
           { name: 'Daylight Saving Time', url: '/daylight-saving-time' },
         ]}
       />
-      <JsonLd type="faq" data={DST_FAQS} />
+      <JsonLd type="faq" data={content.faqs} />
+
       <div>
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Daylight Saving Time 2026 — When Do Clocks Change?
+          {content.h1}
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-          Exact 2026 spring-forward and fall-back clock change dates, sunrise impacts, and global timezone schedule.
+          {content.description}
         </p>
       </div>
 
@@ -94,10 +98,10 @@ export default function DaylightSavingTimePage() {
                 Spring Forward (Start DST 2026)
               </span>
               <p className="text-lg sm:text-xl font-black">
-                Sunday, March 8, 2026 (USA & Canada)
+                Sunday, March 8, 2026 (USA &amp; Canada)
               </p>
               <p className="text-sm text-slate-300">
-                Sunday, March 29, 2026 (UK & European Union)
+                Sunday, March 29, 2026 (UK &amp; European Union)
               </p>
               <p className="text-xs text-slate-400">
                 Clocks advance 1 hour forward at 2:00 AM local time. You lose 1 hour of sleep.
@@ -109,10 +113,10 @@ export default function DaylightSavingTimePage() {
                 Fall Back (End DST 2026)
               </span>
               <p className="text-lg sm:text-xl font-black">
-                Sunday, October 25, 2026 (UK & Europe)
+                Sunday, October 25, 2026 (UK &amp; Europe)
               </p>
               <p className="text-sm text-slate-300">
-                Sunday, November 1, 2026 (USA & Canada)
+                Sunday, November 1, 2026 (USA &amp; Canada)
               </p>
               <p className="text-xs text-slate-400">
                 Clocks shift 1 hour back at 2:00 AM local time. You gain 1 hour of sleep.
@@ -122,12 +126,15 @@ export default function DaylightSavingTimePage() {
         </div>
       </div>
 
+      {/* Educational Guide Section */}
+      <EditorialContentBlock content={content} badgeLabel="Daylight Saving Schedule & Policy Guide" />
+
       {/* Regional & Annual Transition Guides */}
       <section className="space-y-4">
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-blue-600" />
           <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-            Regional & Annual Daylight Saving Guides
+            Regional &amp; Annual Daylight Saving Guides
           </h2>
         </div>
 
@@ -205,8 +212,12 @@ export default function DaylightSavingTimePage() {
         </section>
       </div>
     
-      <FaqAccordion items={DST_FAQS} title="Frequently Asked Questions About Daylight Saving Time 2026" />
-      <RelatedLinksHub />
+      <FaqAccordion
+        title="Frequently Asked Questions About Daylight Saving Time"
+        subtitle="Understand the health, energy, and scheduling implications of shifting clocks."
+        items={content.faqs}
+      />
+      <RelatedLinksHub currentPath="/daylight-saving-time" />
     </div>
   );
 }

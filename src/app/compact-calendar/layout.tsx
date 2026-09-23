@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Compact Calendar — Year Overview",
-  "High-density 12-month calendar grid with day-of-week alignment, quarterly milestones, and ISO-8601 week number tracking.",
+  "Compact Year-at-a-Glance Calendar — Full 12 Months on One Screen",
+  "View all 365 days of the year on a single, high-density screen. Our compact calendar grid is perfect for 90-day sprints, quarterly planning, and fast date tracking.",
   "/compact-calendar"
 );
 

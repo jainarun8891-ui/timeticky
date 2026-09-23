@@ -1,37 +1,27 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React from 'react';
+import { Metadata } from 'next';
 import { WorldClockClient } from './WorldClockClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Globe, Clock, ShieldCheck, Share2 } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 
-export const metadata = buildPageMetadata(
-  'World Clock: Live Time with Seconds in Cities Worldwide (Atomic)',
-  'Live synchronized world clock with seconds. Track current local time across 500+ world cities with day/night status, time zone offsets, and custom multi-clock boards.',
+const content = HUB_PAGES_CUSTOM_CONTENT['/world-clock'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
   '/world-clock'
 );
-
-const WORLD_CLOCK_FAQS = [
-  {
-    question: "How do I save my favorite world cities?",
-    answer: "Click the 'Add City' button and select any location from our global directory. Your cities are preserved in your browser's private local storage automatically with zero registration or tracking."
-  },
-  {
-    question: "Can I share my custom world clock layout with my team?",
-    answer: "Yes! Click the 'Share' button in the toolbar. It generates a shareable link that encodes your selected cities directly in the URL query string, allowing colleagues to open the exact same multi-clock dashboard."
-  },
-  {
-    question: "Are the clocks synchronized across all displayed cities?",
-    answer: "Yes. All clocks tick simultaneously using atomic reference timestamps and canonical IANA timezone database offsets, accurate to the millisecond."
-  }
-];
 
 export default function WorldClockPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
-      <Breadcrumbs items={[{"name":"World Clock","url":"/world-clock"}]} />
+      <Breadcrumbs items={[{ name: "World Clock", url: "/world-clock" }]} />
       <JsonLd
         type="breadcrumb"
         data={[
@@ -39,13 +29,13 @@ export default function WorldClockPage() {
           { name: 'World Clock', url: '/world-clock' },
         ]}
       />
-      <JsonLd type="faq" data={WORLD_CLOCK_FAQS} />
+      <JsonLd type="faq" data={content.faqs} />
       <JsonLd
         type="application"
         data={{
-          name: "World Clock",
+          name: "Personal World Clock Dashboard",
           category: "UtilitiesApplication",
-          description: "Live synchronized world clock with seconds for 500+ world cities."
+          description: content.description
         }}
       />
 
@@ -59,17 +49,17 @@ export default function WorldClockPage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Personal World Clock
+            {content.h1}
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Track current local time across your team's locations worldwide. Add, reorder, and compare cities with live seconds and day/night indicators.
+            {content.description}
           </p>
 
           <div className="pt-2 flex flex-wrap gap-6 text-xs text-slate-300">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-emerald-400" />
-              <span>Zero-Polling Client Engine</span>
+              <span>Stratum-1 Atomic Precision</span>
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-cyan-400" />
@@ -85,11 +75,14 @@ export default function WorldClockPage() {
 
       <WorldClockClient />
 
+      {/* Educational Guide Section */}
+      <EditorialContentBlock content={content} badgeLabel="Global Network Time & Synchronization" />
+
       <div className="pt-4">
         <FaqAccordion
           title="Frequently Asked Questions About World Clock"
-          subtitle="Tips on organizing international time zones and sharing clock configurations."
-          items={WORLD_CLOCK_FAQS}
+          subtitle="Tips on organizing international time zones and managing clock configurations."
+          items={content.faqs}
         />
       </div>
 

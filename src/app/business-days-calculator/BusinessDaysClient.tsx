@@ -5,7 +5,11 @@ import { Briefcase, Calendar, Plus, Minus, Check, ArrowRight, ShieldCheck } from
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 
-export function BusinessDaysClient() {
+interface Props {
+  h1Title?: string;
+}
+
+export function BusinessDaysClient({ h1Title }: Props) {
   const todayStr = new Date().toISOString().split('T')[0];
   const ninetyDaysStr = new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0];
 
@@ -94,7 +98,7 @@ export function BusinessDaysClient() {
           <span>Workday &amp; Deadline Calculator</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-          Business Days Calculator
+          {h1Title || "Business Days Calculator"}
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
           Calculate working business days between two dates or add 30, 60, or 90 business days excluding weekends.

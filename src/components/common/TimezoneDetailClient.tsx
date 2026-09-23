@@ -23,6 +23,7 @@ interface Props {
   hasDst: boolean;
   notes?: string;
   isAmbiguous?: boolean;
+  description?: string;
 }
 
 export function TimezoneDetailClient({
@@ -33,7 +34,8 @@ export function TimezoneDetailClient({
   cities,
   hasDst,
   notes,
-  isAmbiguous
+  isAmbiguous,
+  description
 }: Props) {
   const [now, setNow] = useState<Date | null>(null);
   const [is24Hour, setIs24Hour] = useState(false);
@@ -83,8 +85,12 @@ export function TimezoneDetailClient({
             </h1>
 
             <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xl">
-              Representative reference: <span className="font-mono text-slate-700 dark:text-slate-300">{representativeTz}</span>.
-              Calculated using live astronomical and IANA civil chronometry rules.
+              {description || (
+                <>
+                  Representative reference: <span className="font-mono text-slate-700 dark:text-slate-300">{representativeTz}</span>.
+                  Calculated using live astronomical and IANA civil chronometry rules.
+                </>
+              )}
             </p>
           </div>
 

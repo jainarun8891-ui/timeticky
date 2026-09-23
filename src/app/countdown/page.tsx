@@ -1,54 +1,23 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { Sparkles, Calendar, Clock, Timer, ArrowRight, Share2 } from 'lucide-react';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { CountdownClient } from './CountdownClient';
 
-const COUNTDOWN_INDEX_FAQS = [
-  {
-    question: "How does the custom event countdown calculate remaining time?",
-    answer: "The countdown calculates the difference in milliseconds between your device's current system time and the target date-time. It decomposes the duration into whole days, hours, minutes, and seconds, updating every 1,000 milliseconds with browser Performance API synchronization."
-  },
-  {
-    question: "What happens when the countdown reaches zero?",
-    answer: "Upon reaching zero, the counter stops at 00:00:00, signaling the arrival of the milestone. You can reconfigure the date input at any time to set a new countdown target."
-  },
-  {
-    question: "How do time zones impact event countdowns?",
-    answer: "Global events occur at different local times depending on the viewer's longitude. For instance, midnight on New Year's Eve rolls across 24 standard time zones over a 26-hour period. Our dedicated holiday countdowns let you track the arrival of celebrations across specific international time zones."
-  },
-  {
-    question: "Are there pre-configured countdowns for major holidays?",
-    answer: "Yes! TimeNumbers provides dedicated real-time countdowns for New Year, Christmas, Halloween, Valentine's Day, Diwali, Holi, and Thanksgiving, complete with cultural notes, astronomical milestones, and time zone progression maps."
-  }
-];
+const content = HUB_PAGES_CUSTOM_CONTENT['/countdown'];
+
+export const metadata: Metadata = buildPageMetadata(
+  content.title,
+  content.description,
+  '/countdown'
+);
 
 export default function CountdownPage() {
-  const [target, setTarget] = useState('2027-01-01T00:00');
-  const [diff, setDiff] = useState({ d: 0, h: 0, m: 0, s: 0 });
-
-  useEffect(() => {
-    const calc = () => {
-      const ms = new Date(target).getTime() - Date.now();
-      if (ms <= 0) setDiff({ d: 0, h: 0, m: 0, s: 0 });
-      else {
-        setDiff({
-          d: Math.floor(ms / 86400000),
-          h: Math.floor((ms % 86400000) / 3600000),
-          m: Math.floor((ms % 3600000) / 60000),
-          s: Math.floor((ms % 60000) / 1000)
-        });
-      }
-    };
-    calc();
-    const t = setInterval(calc, 1000);
-    return () => clearInterval(t);
-  }, [target]);
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
       <Breadcrumbs items={[{"name":"Event Countdown","url":"/countdown"}]} />
@@ -59,63 +28,17 @@ export default function CountdownPage() {
           { name: 'Countdown Timer', url: '/countdown' },
         ]}
       />
-      <JsonLd type="faq" data={COUNTDOWN_INDEX_FAQS} />
+      <JsonLd type="faq" data={content.faqs} />
       <JsonLd
         type="application"
         data={{
-          name: "Event Countdown Timer",
+          name: content.h1,
           category: "UtilitiesApplication",
-          description: "Create precision live countdowns for events, launches, holidays, and milestones."
+          description: content.description
         }}
       />
 
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold">
-          <Sparkles className="w-3.5 h-3.5" />
-          Real-Time Chronometer Countdown
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Event Countdown Timer
-        </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-          Create precision live countdowns for weddings, product launches, birthdays, holidays, and milestones with real-time second updates.
-        </p>
-      </div>
-
-      {/* Target Selector */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <label className="text-sm font-bold text-slate-700 dark:text-slate-200">
-            Select Target Date & Time:
-          </label>
-          <input
-            type="datetime-local"
-            value={target}
-            onChange={(e) => setTarget(e.target.value)}
-            className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-bold text-slate-800 dark:text-white outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Big Counter Display */}
-        <div className="grid grid-cols-4 gap-3 max-w-lg mx-auto font-mono text-center pt-2">
-          <div className="bg-slate-50 dark:bg-slate-800/80 p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
-            <span className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white block">{diff.d}</span>
-            <span className="text-xs text-slate-400 font-sans uppercase font-bold tracking-wider mt-1 block">Days</span>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-800/80 p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
-            <span className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white block">{diff.h}</span>
-            <span className="text-xs text-slate-400 font-sans uppercase font-bold tracking-wider mt-1 block">Hours</span>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-800/80 p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
-            <span className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white block">{diff.m}</span>
-            <span className="text-xs text-slate-400 font-sans uppercase font-bold tracking-wider mt-1 block">Mins</span>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-800/80 p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
-            <span className="text-3xl sm:text-5xl font-black text-blue-600 dark:text-blue-400 block">{diff.s}</span>
-            <span className="text-xs text-slate-400 font-sans uppercase font-bold tracking-wider mt-1 block">Secs</span>
-          </div>
-        </div>
-      </div>
+      <CountdownClient h1Title={content.h1} description={content.description} />
 
       {/* Featured Holiday Countdowns Grid */}
       <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 space-y-6 shadow-sm">
@@ -130,7 +53,7 @@ export default function CountdownPage() {
           </Link>
           <Link href="/countdown/valentines-day" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
             <span className="text-xs font-bold text-pink-600 dark:text-pink-400 block">February 14</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-pink-600 transition-colors">Valentine's Day</h3>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-pink-600 transition-colors">Valentine&apos;s Day</h3>
             <p className="text-xs text-slate-500 mt-1">Countdown to romantic celebrations, flowers, and special moments.</p>
           </Link>
           <Link href="/countdown/holi" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
@@ -162,37 +85,38 @@ export default function CountdownPage() {
       </section>
 
       {/* Guide Section */}
-      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 space-y-6 shadow-sm">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-          Why Event Countdowns Drive Anticipation & Focus
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          <div className="space-y-3">
-            <h3 className="font-semibold text-slate-900 dark:text-white text-base">Psychological Impact of Visual Timers</h3>
-            <p>
-              Visualizing the passage of time in explicit units of days, hours, and seconds turns abstract future deadlines into tangible reality.
-              Whether organizing an international conference or counting down to a personal anniversary, visual timers keep teams aligned.
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-8 sm:p-10 shadow-sm space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+        <div className="space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+            {content.headings[0]}
+          </h2>
+          {content.page_text.split('\n\n').map((paragraph, idx) => (
+            <p key={idx} className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              {paragraph}
             </p>
-            <p>
-              In project management environments, countdown displays serve as focal anchors during product sprint launches and software release cutovers.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <h3 className="font-semibold text-slate-900 dark:text-white text-base">International Temporal Alignment</h3>
-            <p>
-              When hosting global virtual events, announcing a single time zone often leads to confusion for attendees located in opposite hemispheres.
-            </p>
-            <p>
-              Pairing an event countdown with our Time Zone Converter and Meeting Planner ensures that all attendees know the exact hour in their local city.
-            </p>
-          </div>
+          ))}
         </div>
+
+        {content.headings.length > 1 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+            {content.headings.slice(1).map((heading, idx) => (
+              <div key={idx} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  {heading}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  High-contrast full-screen projection, atomic time synchronization, and shareable event countdown links.
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* FAQ Accordion */}
       <FaqAccordion
-        items={COUNTDOWN_INDEX_FAQS}
-        title="Event Countdown FAQs"
+        items={content.faqs}
+        title="Frequently Asked Questions About Event Countdowns"
         subtitle="Common questions regarding countdown accuracy, time zones, and holiday tracking."
       />
 

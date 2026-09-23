@@ -32,28 +32,28 @@ export function RelatedLinksHub({
   const topTimezones = TIMEZONES.slice(0, 8);
 
   const topComparisons = [
-    { label: 'Compare All Cities →', url: '/compare' },
-    { label: 'Paris vs New York', url: '/compare/paris-france-vs-new-york-united-states' },
-    { label: 'London vs Tokyo', url: '/compare/london-united-kingdom-vs-tokyo-japan' },
-    { label: 'New York vs London', url: '/compare/new-york-united-states-vs-london-united-kingdom' },
-    { label: 'Dubai vs Delhi', url: '/compare/dubai-united-arab-emirates-vs-delhi-india' },
-    { label: 'Tokyo vs Sydney', url: '/compare/tokyo-japan-vs-sydney-australia' },
-    { label: 'San Francisco vs Paris', url: '/compare/san-francisco-united-states-vs-paris-france' },
+    { label: 'Compare All Cities →', url: '/converter/compare' },
+    { label: 'Paris vs New York', url: '/converter/difference/paris-to-new-york' },
+    { label: 'London vs Tokyo', url: '/converter/difference/london-to-tokyo' },
+    { label: 'New York vs London', url: '/converter/difference/new-york-to-london' },
+    { label: 'Dubai vs Delhi', url: '/converter/difference/dubai-to-delhi' },
+    { label: 'Tokyo vs Sydney', url: '/converter/difference/tokyo-to-sydney' },
+    { label: 'San Francisco vs Paris', url: '/converter/difference/san-francisco-to-paris' },
   ];
 
   const tools = [
     { name: 'Coordinated Universal Time (UTC)', desc: 'Canonical atomic reference standard and UTC offset zero', url: '/utc', icon: Globe },
-    { name: 'Time Zone Converter', desc: 'Convert hours across global zones and cities', url: '/time-zone-converter', icon: Layers },
-    { name: 'Compare World Cities', desc: 'Direct side-by-side time difference and overlap', url: '/compare', icon: ArrowLeftRight },
+    { name: 'Multi-Zone Time Converter Hub', desc: 'Convert hours across global zones and cities', url: '/converter', icon: Layers },
+    { name: 'Compare World Cities', desc: 'Direct side-by-side time difference and overlap', url: '/converter/compare', icon: ArrowLeftRight },
     { name: 'United States Time Now', desc: 'Live atomic clocks across all US time zones and Washington D.C.', url: '/united-states-time-now', icon: Globe },
     { name: 'Exact Time Digital Clock', desc: 'Precision digital chronometer with seconds and atomic reference', url: '/clock', icon: Clock },
     { name: 'Online Pomodoro Timer', desc: '25/5 study and deep work productivity intervals', url: '/pomodoro', icon: Bell },
     { name: 'Accurate Analog Clock', desc: 'Smooth sweeping second hand and Swiss watch dial', url: '/analog-clock', icon: Clock },
-    { name: '552 Timezone Converters', desc: 'Visual timeline converter across 552 global timezone pairs', url: '/convert', icon: Layers },
+    { name: '552 Timezone Converters', desc: 'Visual timeline converter across 552 global timezone pairs', url: '/converter', icon: Layers },
     { name: 'Date Difference Calculator', desc: 'Exact days, weeks, months & business days between dates', url: '/date-difference', icon: Calendar },
     { name: 'Date Calculator', desc: 'Add or subtract days, weeks, months & business days', url: '/date-calculator', icon: Calendar },
     { name: 'Golden Hour Calculator', desc: 'Exact photography lighting, blue hour & civil twilight times', url: '/golden-hour', icon: Camera },
-    { name: 'Sunrise & Sunset Times', desc: 'NOAA algorithm solar dawn and dusk times worldwide', url: '/sunrise-sunset', icon: Sun },
+    { name: 'Sunrise & Sunset Times Hub', desc: 'NOAA algorithm solar dawn and dusk times worldwide', url: '/sun', icon: Sun },
     { name: 'Moon Phases & Illumination', desc: 'Live lunar surface illumination % and 29.5-day synodic cycle', url: '/moon', icon: Moon },
     { name: 'Interactive World Time Map', desc: 'Real-time solar terminator, day/night zones & 46 live clocks', url: '/world-map', icon: Globe },
     { name: '400+ Time Zones Directory', desc: 'Complete canonical IANA database with live ticking clocks', url: '/time-zones', icon: Globe },
@@ -63,7 +63,7 @@ export function RelatedLinksHub({
     { name: 'ISO Week Number Calculator', desc: 'Current ISO week number, calendar quarters & weeks remaining', url: '/week-number', icon: Calendar },
     { name: 'ISO 8601 String Parser', desc: 'Parse, validate and format ISO-8601 date-time strings', url: '/iso-8601', icon: Code },
     { name: 'Unix Timestamp Converter', desc: 'Epoch seconds converter to human readable UTC & local time', url: '/unix-time-converter', icon: Clock },
-    { name: 'Astronomy & Twilight Lab', desc: 'Sunrise, sunset, golden hour & moon phase calendar', url: '/astronomy', icon: Sun },
+    { name: 'Astronomy & Twilight Lab', desc: 'Sunrise, sunset, golden hour & moon phase calendar', url: '/sun', icon: Sun },
     { name: 'International Dialing Codes', desc: 'Country calling codes & smart calling hour guide', url: '/dialing-codes', icon: Phone },
     { name: 'Multi-Clock World Wall', desc: 'Trading floor kiosk with Swiss analog & digital dials', url: '/world-clock-wall', icon: Monitor },
     { name: 'Flight & Jet Lag Calculator', desc: 'Travel time & circadian light adjustment protocol', url: '/jet-lag-calculator', icon: Plane },
@@ -72,7 +72,6 @@ export function RelatedLinksHub({
     { name: 'Team Overlap Calculator', desc: 'Mutual working hours matrix for remote teams', url: '/overlap-calculator', icon: Users },
     { name: 'Business Days Calculator', desc: 'Working days between dates & 90-day deadlines', url: '/business-days-calculator', icon: Calendar },
     { name: 'Birthday & Age Countdown', desc: 'Weeks, days & exact chronological age tracker', url: '/birthday-calculator', icon: Clock },
-    { name: 'Time Difference', desc: 'Instant hour comparison matrix', url: '/time-difference', icon: ArrowLeftRight },
     { name: 'Atomic Clock Accuracy', desc: 'NTP drift latency benchmark', url: '/clock-accuracy', icon: ShieldCheck },
     { name: 'Unix Timestamp Studio', desc: 'Epoch seconds converter & 2038 lab', url: '/unix-time', icon: Clock },
     { name: 'Daylight Saving Schedule', desc: 'Global spring forward & fall back dates', url: '/daylight-saving-time', icon: Calendar },
@@ -163,7 +162,7 @@ export function RelatedLinksHub({
             return (
               <Link
                 key={city.id}
-                href={`/${canonicalSlug}`}
+                href={`/time/${canonicalSlug}`}
                 className="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/40 border border-slate-200/60 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
               >
                 {city.name}, {city.country}

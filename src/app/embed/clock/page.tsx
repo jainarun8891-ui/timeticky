@@ -47,7 +47,7 @@ function EmbedClockContent() {
       <div className="flex justify-between items-center text-[10px] text-slate-400">
         <span className="truncate pr-2">{date}</span>
         <a
-          href={`https://www.timenumbers.com/${getCityRootSlug(city)}`}
+          href={`https://www.timenumbers.com/time/${getCityRootSlug(city)}`}
           target="_blank"
           rel="noopener"
           className="text-blue-500 hover:underline font-bold flex-shrink-0"

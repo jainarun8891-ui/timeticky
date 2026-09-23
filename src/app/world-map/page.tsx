@@ -4,45 +4,27 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { WorldMapStudioClient } from '@/components/map/WorldMapStudioClient';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { Globe, Sun, Compass, ShieldCheck } from 'lucide-react';
+import { Globe } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
+
+const content = HUB_PAGES_CUSTOM_CONTENT['/world-map'];
 
 export const metadata: Metadata = buildPageMetadata(
-  'World Time Map — Day/Night Daylight Clocks',
-  'Explore real-time global time on a high-precision interactive world map. Hover over 46 global cities to inspect live digital clocks, solar terminator boundaries, day/night illumination, and great-circle time sync arcs.',
+  content.title,
+  content.description,
   '/world-map'
 );
-
-const WORLD_MAP_FAQS = [
-  {
-    question: 'What is the Day/Night Solar Terminator line shown on the map?',
-    answer: 'The solar terminator (also called the twilight zone or grey line) is the mathematical boundary separating the sunlit day hemisphere of Earth from the dark night hemisphere. Because Earth is tilted at an axial angle of approximately 23.44°, this boundary shifts continuously throughout the year, causing longer summer days and shorter winter days.'
-  },
-  {
-    question: 'How accurate are the live clocks displayed when hovering over city pins?',
-    answer: 'Every city clock on the TimeNumbers world map computes time in-memory directly from canonical IANA time zone rules and native browser internationalization engine. Clocks are synchronized against atomic standards and maintain precision of ±0.01 seconds without background tab drift.'
-  },
-  {
-    question: 'What do the curved lines connecting cities on the map represent?',
-    answer: 'The illuminated curved arcs represent great-circle geodesic paths connecting key global financial, technological, and transport hubs. These represent the shortest flight trajectories across Earth’s spherical surface and visualize international time synchronizations.'
-  },
-  {
-    question: 'Why are there 24 longitudinal lines across the world map?',
-    answer: 'Earth rotates 360° of longitude in approximately 24 hours, which equates to 15° of longitude per hour. The 1884 International Meridian Conference in Washington, D.C. established the Prime Meridian (0°) through Greenwich, London, creating 24 standard 15-degree longitudinal time zone bands.'
-  },
-  {
-    question: 'Can I simulate future or past time on the map?',
-    answer: 'Yes. Use the interactive 24-Hour Solar Scrubber slider at the top of the map to shift the simulated hour up to ±12 hours. You can observe the solar terminator glide across continents in real time and inspect simulated city times.'
-  }
-];
 
 export default function WorldMapPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'TimeNumbers Interactive World Time Map',
+    name: content.title,
     url: 'https://www.timenumbers.com/world-map',
-    description: 'High-precision interactive world time map featuring real-time solar terminator, live clocks across 46 global cities, day/night boundary, and time zone meridians.',
+    description: content.description,
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All'
   };
@@ -53,6 +35,7 @@ export default function WorldMapPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd type="faq" data={content.faqs} />
 
       <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 pt-4 sm:pt-6 space-y-8">
         {/* Universal SEO Breadcrumbs */}
@@ -68,11 +51,11 @@ export default function WorldMapPage() {
           </div>
 
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-            Interactive World Time & Astronomical Map
+            {content.h1}
           </h1>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-4xl font-normal leading-relaxed">
-            Track real-time global time zones, astronomical solar illumination, and planetary day/night boundaries across 46 major world cities. Hover over any city pin for an instant live clock, solar ephemeris, and UTC offset.
+            {content.description}
           </p>
         </div>
 
@@ -80,49 +63,23 @@ export default function WorldMapPage() {
         <WorldMapStudioClient />
 
         {/* Educational Content & Telemetry Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 shadow-sm space-y-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
-              <Sun className="w-5 h-5" />
-            </div>
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">
-              The Astronomical Solar Terminator
-            </h2>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              The luminous curve traversing the map represents the exact astronomical boundary where the sun is on the local horizon. The curvature changes with Earth’s axial tilt throughout the four seasons.
-            </p>
-          </div>
+        <EditorialContentBlock content={content} badgeLabel="Global Cartography & Solar Day/Night Guide" />
 
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 shadow-sm space-y-3">
-            <div className="w-10 h-10 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
-              <Compass className="w-5 h-5" />
-            </div>
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">
-              Greenwich Prime Meridian (0°)
-            </h2>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Anchored at the Royal Observatory in Greenwich, London, the Prime Meridian marks 0° longitude. Time zones west subtract hours (UTC-), while time zones east add hours (UTC+) up to the International Date Line (180°).
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 shadow-sm space-y-3">
-            <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">
-              Atomic NTP Clock Synchronization
-            </h2>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Every city clock ticks in exact synchronization with international UTC atomic time standards, ensuring microsecond accuracy across desktop, tablet, and mobile browsers.
-            </p>
-          </div>
+        {/* FAQs */}
+        <div className="pt-2">
+          <FaqAccordion
+            title="Frequently Asked Questions About the Interactive World Map"
+            subtitle="Understand cartographic projections, the solar terminator line, and world time visualization."
+            items={content.faqs}
+          />
         </div>
 
-        {/* Frequently Asked Questions Accordion */}
-        <FaqAccordion items={WORLD_MAP_FAQS} title="Frequently Asked Questions About the World Time Map" />
-
-        {/* Universal Related Links Directory */}
-        <RelatedLinksHub />
+        {/* Ubiquitous Related Links */}
+        <RelatedLinksHub
+          currentPath="/world-map"
+          title="Explore Related Horological Visualizers"
+          subtitle="Explore live atomic clocks, time zone converters, and astronomy charts."
+        />
       </div>
     </div>
   );

@@ -5,12 +5,15 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { Calendar, Globe, Building2, Clock, ShieldCheck, Sparkles, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Calendar, Building2 } from 'lucide-react';
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
+
+const content = HUB_PAGES_CUSTOM_CONTENT['/holidays'];
 
 export const metadata: Metadata = buildPageMetadata(
-  'World Public Holidays 2026: Official National & Bank Holidays',
-  'Global public holidays calendar for 2026 and 2027. Official national holidays, statutory bank closures, astronomical observances, and business day calculation schedule for 80+ countries.',
+  content.title,
+  content.description,
   '/holidays'
 );
 
@@ -32,21 +35,6 @@ export default function HolidaysPage() {
     { name: "Boxing Day", date: "Dec 26, 2026", type: "Statutory / Bank Holiday", country: "UK, Canada, Australia", desc: "Commonwealth public holiday celebrated the day after Christmas." }
   ];
 
-  const faqs = [
-    {
-      question: "What happens when a public holiday falls on a Saturday or Sunday?",
-      answer: "In most jurisdictions (including the United States, United Kingdom, Canada, and Australia), holidays that land on a weekend roll over to an 'in-lieu' substitute statutory holiday on the following Monday (or Friday if Saturday). This ensures employees receive their allotted paid holiday and banks remain closed for settlement."
-    },
-    {
-      question: "How do public holidays affect business day calculations?",
-      answer: "Business day calculators exclude Saturdays, Sundays, and official jurisdiction-specific statutory holidays. Financial settlement systems like Fedwire (US) and TARGET2 (Europe) do not process interbank transactions on recognized holidays, adding to payment settlement latency."
-    },
-    {
-      question: "Why do Easter and lunar holiday dates shift each year?",
-      answer: "Gregorian holidays like New Year's Day (Jan 1) and US Independence Day (Jul 4) are fixed solar calendar dates. In contrast, moveable feasts like Easter follow a lunisolar calculation (first Sunday after the first ecclesiastical full moon following the vernal equinox). Lunar New Year, Diwali, and Eid likewise follow precise astronomical moon phases."
-    }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       <Breadcrumbs items={[{ name: 'Public Holidays', url: '/holidays' }]} />
@@ -57,7 +45,7 @@ export default function HolidaysPage() {
           { name: 'Public Holidays', url: '/holidays' },
         ]}
       />
-      <JsonLd type="faq" data={faqs} />
+      <JsonLd type="faq" data={content.faqs} />
 
       {/* Hero Header */}
       <div className="space-y-3">
@@ -66,10 +54,10 @@ export default function HolidaysPage() {
           <span>Statutory & Cultural Calendar</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          World Public Holidays & Observances
+          {content.h1}
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-          Comprehensive guide to statutory bank closures, national days, religious celebrations, and civil observances across major international economies.
+          {content.description}
         </p>
       </div>
 
@@ -77,7 +65,7 @@ export default function HolidaysPage() {
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-4">
         <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <Building2 className="w-5 h-5 text-blue-600" />
-          Major International Public Holidays (2026)
+          Major International Public Holidays (2026 & 2027)
         </h2>
 
         <div className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -97,41 +85,13 @@ export default function HolidaysPage() {
       </div>
 
       {/* Educational Guide */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-8 sm:p-10 shadow-sm space-y-8 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-        <section className="space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Globe className="w-5 h-5 text-blue-600" />
-            1. Classification of Public Holidays
-          </h2>
-          <p>
-            Around the globe, official holidays generally fall into three distinct legal and regulatory classifications:
-          </p>
-          <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm">
-            <li><strong>Federal & National Statutory Holidays:</strong> Established by national legislative decree (such as US Federal holidays enacted by Congress or UK Bank Holidays established by royal proclamation). Government offices, embassies, financial exchanges, and central banks are legally mandated to close.</li>
-            <li><strong>State, Provincial & Regional Holidays:</strong> Celebrated within specific federal states or autonomous regions (such as Patriots&rsquo; Day in Massachusetts, USA, or St. Andrew&rsquo;s Day in Scotland).</li>
-            <li><strong>Cultural & Religious Moveable Feasts:</strong> Holidays whose dates fluctuate according to astronomical, lunar, or solar calculations, including Easter, Ramadan/Eid, Diwali, and Rosh Hashanah.</li>
-          </ul>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Clock className="w-5 h-5 text-indigo-600" />
-            2. Business Day Deadlines & Financial Settlement Impact
-          </h2>
-          <p>
-            Commercial contracts, statutory filings, court filing deadlines, and real estate escrow agreements often stipulate performance within a specific number of &ldquo;business days&rdquo; (such as 30 or 60 working days).
-          </p>
-          <p>
-            When calculating business day duration using our <Link href="/business-days-calculator" className="text-blue-600 underline font-semibold">Business Days Calculator</Link>, official statutory holidays must be subtracted alongside weekends to guarantee contractual compliance and avoid interest penalties on international wire transfers.
-          </p>
-        </section>
-      </div>
+      <EditorialContentBlock content={content} badgeLabel="Global Bank Closures and Statutory Observances" />
 
       {/* Structured FAQs */}
       <FaqAccordion
         title="Frequently Asked Questions About Public Holidays"
         subtitle="Learn how holidays impact payroll, bank settlements, and calendar calculations."
-        items={faqs}
+        items={content.faqs}
       />
 
       <RelatedLinksHub

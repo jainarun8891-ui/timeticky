@@ -41,7 +41,12 @@ const SAMPLE_QUERIES: SimulationQuery[] = [
   { keyword: "time", category: "Mega Head", kd: 98, monthlyVol: 35000000, type: "Short-Tail (Head)" },
 ];
 
-export function SeoSimulatorClient() {
+interface Props {
+  h1Title?: string;
+  description?: string;
+}
+
+export function SeoSimulatorClient({ h1Title, description }: Props) {
   const [da, setDa] = useState<number>(25);
   const [programmaticPages, setProgrammaticPages] = useState<number>(1500);
 
@@ -96,10 +101,10 @@ export function SeoSimulatorClient() {
           <span>SEO Growth Flywheel Simulator</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-          Domain Authority vs Keyword Difficulty Simulator
+          {h1Title || "Domain Authority vs Keyword Difficulty Simulator"}
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
-          Visualize how thousands of programmatic long-tail pages build topical authority and eventually pull 10M+ head terms onto Google Page 1.
+          {description || "Visualize how thousands of programmatic long-tail pages build topical authority and eventually pull 10M+ head terms onto Google Page 1."}
         </p>
       </header>
 

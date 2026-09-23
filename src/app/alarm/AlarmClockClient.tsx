@@ -107,6 +107,15 @@ export function AlarmClockClient() {
     } catch {}
   };
 
+  const triggerAlarm = (alarm: AlarmItem) => {
+    setActiveRingingAlarm(alarm);
+    playSound(alarm.sound);
+    if (soundIntervalRef.current) clearInterval(soundIntervalRef.current);
+    soundIntervalRef.current = setInterval(() => {
+      playSound(alarm.sound);
+    }, 2500);
+  };
+
   // Clock tick & Alarm monitoring
   useEffect(() => {
     setCurrentTime(new Date());
@@ -129,15 +138,6 @@ export function AlarmClockClient() {
 
     return () => clearInterval(timer);
   }, [alarms, activeRingingAlarm]);
-
-  const triggerAlarm = (alarm: AlarmItem) => {
-    setActiveRingingAlarm(alarm);
-    playSound(alarm.sound);
-    if (soundIntervalRef.current) clearInterval(soundIntervalRef.current);
-    soundIntervalRef.current = setInterval(() => {
-      playSound(alarm.sound);
-    }, 2500);
-  };
 
   const stopAlarm = () => {
     if (soundIntervalRef.current) {

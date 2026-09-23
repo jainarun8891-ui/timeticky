@@ -105,17 +105,9 @@ export function JsonLd({ type, data }: JsonLdProps) {
         }
       }))
     };
-  } else if (type === 'breadcrumb' && data) {
-    schema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": data.map((item: any, index: number) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": siteConfig.url + item.url
-      }))
-    };
+  } else if (type === 'breadcrumb') {
+    // Schema.org BreadcrumbList is canonically emitted by <Breadcrumbs /> to prevent duplicate schema tags
+    return null;
   }
 
   return (

@@ -11,32 +11,40 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => ({}));
     const host = new URL(siteConfig.url).host;
 
-    // Default top high-intent routes if not specified in body
+    // Default top high-intent canonical routes if not specified in body
     const defaultRoutes = [
       '/',
-      '/convert',
-      '/convert/gmt-to-est',
-      '/convert/est-to-pst',
-      '/convert/gmt-to-pst',
-      '/convert/gmt-to-ist',
+      '/clock',
+      '/analog-clock',
+      '/atomic-clock',
+      '/converter',
+      '/converter/gmt-to-est',
+      '/converter/est-to-pst',
+      '/converter/gmt-to-ist',
+      '/converter/difference/new-york-to-london',
+      '/converter/compare',
       '/world-map',
       '/world-clock',
-      '/time-converter',
+      '/world-clock-wall',
       '/meeting-planner',
-      '/atomic-clock',
-      '/clock-accuracy',
       '/alarm',
       '/pomodoro',
       '/stopwatch',
+      '/timer',
       '/calendar',
       '/daylight-saving-time',
-      '/sunrise-sunset',
-      '/widgets',
-      '/delhi',
-      '/new-york',
-      '/london',
-      '/paris',
-      '/tokyo'
+      '/sun',
+      '/golden-hour',
+      '/moon',
+      '/time/delhi',
+      '/time/new-york',
+      '/time/london',
+      '/time/paris',
+      '/time/tokyo',
+      '/countries',
+      '/cities',
+      '/utc',
+      '/timezone-map'
     ];
 
     const urlList: string[] = Array.isArray(body.urls) && body.urls.length > 0

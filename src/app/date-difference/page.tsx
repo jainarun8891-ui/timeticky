@@ -7,22 +7,16 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Calendar, Clock, ShieldCheck } from 'lucide-react';
 
+import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
+import { Compass } from 'lucide-react';
+
+const content = HUB_PAGES_CUSTOM_CONTENT['/date-difference'];
+
 export const metadata = buildPageMetadata(
-  'Days Between Two Dates Calculator (Exact Days & Business Days)',
-  'Calculate the exact number of days, business days, weeks, months, and years between two calendar dates. Includes leap years, weekend exclusion, and countdown calculations.',
+  content.title,
+  content.description,
   '/date-difference'
 );
-
-const DATE_DIFF_FAQS = [
-  {
-    question: "How does the weekend exclusion calculation work?",
-    answer: "When 'Exclude weekends' is enabled, the calculator iterates through the elapsed interval and removes every Saturday and Sunday, counting only working business days (Monday through Friday)."
-  },
-  {
-    question: "Does the date difference count include the end date?",
-    answer: "By standard mathematical convention, the interval measures the distance between the two points in time (from midnight on the start date to midnight on the end date)."
-  }
-];
 
 export default function DateDifferencePage() {
   return (
@@ -35,13 +29,13 @@ export default function DateDifferencePage() {
           { name: 'Date Difference', url: '/date-difference' },
         ]}
       />
-      <JsonLd type="faq" data={DATE_DIFF_FAQS} />
+      <JsonLd type="faq" data={content.faqs} />
       <JsonLd
         type="application"
         data={{
-          name: "Days Between Two Dates Calculator",
+          name: content.h1,
           category: "UtilitiesApplication",
-          description: "Calculate exact calendar days, working business days, and time elapsed between any two dates."
+          description: content.description
         }}
       />
 
@@ -55,11 +49,11 @@ export default function DateDifferencePage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Date Difference Calculator
+            {content.h1}
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Measure the exact time duration between any two dates in days, business weekdays, weeks, months, and hours.
+            {content.description}
           </p>
 
           <div className="pt-2 flex flex-wrap gap-6 text-xs text-slate-300">
@@ -81,11 +75,40 @@ export default function DateDifferencePage() {
 
       <DateDifferenceClient />
 
+      {/* Educational Guide Section */}
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-8 sm:p-10 shadow-sm space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+        <div className="space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+            {content.headings[0]}
+          </h2>
+          {content.page_text.split('\n\n').map((paragraph, idx) => (
+            <p key={idx} className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        {content.headings.length > 1 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+            {content.headings.slice(1).map((heading, idx) => (
+              <div key={idx} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  {heading}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Elapsed intervals, leap year corrections, and inclusive versus exclusive calendar math.
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
       <div className="pt-4">
         <FaqAccordion
           title="Frequently Asked Questions About Date Calculation"
           subtitle="Learn how calendar days, leap intervals, and working business days are computed."
-          items={DATE_DIFF_FAQS}
+          items={content.faqs}
         />
       </div>
 

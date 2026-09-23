@@ -14,7 +14,21 @@ export function FullscreenClockClient() {
   const [isDark, setIsDark] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [isDimmed, setIsDimmed] = useState(false);
+  const [pixelShift, setPixelShift] = useState({ x: 0, y: 0 });
   const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Microscopic pixel shift every 3 minutes for OLED burn-in prevention
+  useEffect(() => {
+    const shiftInterval = setInterval(() => {
+      const angle = (Date.now() / 180000) * 2 * Math.PI;
+      setPixelShift({
+        x: Math.round(Math.cos(angle) * 3),
+        y: Math.round(Math.sin(angle) * 3)
+      });
+    }, 180000);
+    return () => clearInterval(shiftInterval);
+  }, []);
 
   useEffect(() => {
     try {
@@ -57,23 +71,6 @@ export function FullscreenClockClient() {
     };
   }, []);
 
-  // Keyboard shortcut listener
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === 'f') {
-        toggleFullscreen();
-      } else if (e.key.toLowerCase() === 's') {
-        setShowSeconds(s => !s);
-      } else if (e.key.toLowerCase() === 'm') {
-        setShowMillis(m => !m);
-      } else if (e.key.toLowerCase() === 'd') {
-        setIsDark(d => !d);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().then(() => setIsFullscreen(true)).catch(() => {});
@@ -81,6 +78,29 @@ export function FullscreenClockClient() {
       document.exitFullscreen().then(() => setIsFullscreen(false)).catch(() => {});
     }
   };
+
+  // Keyboard shortcut listener
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
+      const key = e.key.toLowerCase();
+      if (key === 'f') {
+        toggleFullscreen();
+      } else if (key === 's') {
+        setShowSeconds(s => !s);
+      } else if (key === 'm') {
+        setShowMillis(m => !m);
+      } else if (key === 'd') {
+        setIsDark(d => !d);
+      } else if (key === 't') {
+        setIs24Hour(h => !h);
+      } else if (e.key === 'ArrowDown') {
+        setIsDimmed(dm => !dm);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const cur = now || new Date();
   const timeInfo = getTimeDetails(selectedTz, cur);
@@ -162,7 +182,12 @@ export function FullscreenClockClient() {
       </div>
 
       {/* Main Clock Hero */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center">
+      <div
+        className={`flex-1 flex flex-col items-center justify-center text-center transition-all duration-500 ${
+          isDimmed ? 'opacity-30 filter brightness-75' : 'opacity-100'
+        }`}
+        style={{ transform: `translate(${pixelShift.x}px, ${pixelShift.y}px)` }}
+      >
         <div className="font-mono font-black tracking-tight leading-none text-[clamp(4.5rem,18vw,20rem)] select-all drop-shadow-sm flex items-baseline justify-center">
           <span>{hStr}:{mStr}</span>
           {showSeconds && (

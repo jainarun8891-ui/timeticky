@@ -7,8 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Exact Time Now — What Time Is It? World Clock & Time Difference | TimeNumbers",
-  description: "What time is it right now? Check exact time now with atomic clock precision. Live world clock, time zone converter, time difference calculator, and current local time across 500+ world cities.",
+  title: "Exact Time Now — What Time Is It Right Now? Live Atomic Clock & World Time",
+  description: "See the exact time right now down to the millisecond. Compare current local time across 500+ world cities, check device clock drift against atomic time, and plan international meetings effortlessly.",
   metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: siteConfig.url,

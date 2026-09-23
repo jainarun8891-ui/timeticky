@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Embeddable TimeNumbers Widget',
   robots: {
     index: false,
-    follow: false,
+    follow: true,
   },
 };
 
