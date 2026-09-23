@@ -39,6 +39,7 @@ export default function TodayPage() {
           { name: 'Today Stats', url: '/today' },
         ]}
       />
+      <JsonLd type="faq" data={TODAY_FAQS} />
 
       {/* Hero Header */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">

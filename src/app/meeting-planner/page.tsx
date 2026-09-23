@@ -4,6 +4,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { MEETING_PLANNER_FAQS } from '@/lib/seo/page-faqs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import React, { useState } from 'react';
 import { evaluateMeetingSlots, generateICS, generateGoogleCalendarUrl, Participant } from '@/lib/meeting/planner';
 import { Users, Download, Calendar, Copy, Check } from 'lucide-react';
@@ -41,6 +42,22 @@ export default function MeetingPlannerPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{"name":"Meeting Planner","url":"/meeting-planner"}]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Meeting Planner', url: '/meeting-planner' },
+        ]}
+      />
+      <JsonLd type="faq" data={MEETING_PLANNER_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Global Meeting Planner",
+          category: "BusinessApplication",
+          description: "Find overlapping working hours across multiple global timezones and export calendar invites."
+        }}
+      />
       <div>
         <div className="flex items-center gap-2 text-xs text-blue-600 font-bold uppercase tracking-wider">
           <Users className="w-4 h-4" />

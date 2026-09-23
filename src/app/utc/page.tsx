@@ -4,6 +4,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Clock, Globe, ShieldCheck, Zap, Compass, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -47,6 +48,14 @@ export default function UtcPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       <Breadcrumbs items={[{ name: 'Coordinated Universal Time (UTC)', url: '/utc' }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'UTC Time Now', url: '/utc' },
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
 
       {/* Hero Header */}
       <div className="space-y-3 text-center sm:text-left">

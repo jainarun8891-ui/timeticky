@@ -8,8 +8,8 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Globe, Clock, ShieldCheck, Share2 } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'World Clock — Current Local Time in Cities Worldwide',
-  'Live world clock tracking current local time across 500+ world cities. Add favorite locations, reorder clocks, copy times, view day/night status, and share your personalized world clock setup.',
+  'World Clock: Live Time with Seconds in Cities Worldwide (Atomic)',
+  'Live synchronized world clock with seconds. Track current local time across 500+ world cities with day/night status, time zone offsets, and custom multi-clock boards.',
   '/world-clock'
 );
 
@@ -40,6 +40,14 @@ export default function WorldClockPage() {
         ]}
       />
       <JsonLd type="faq" data={WORLD_CLOCK_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "World Clock",
+          category: "UtilitiesApplication",
+          description: "Live synchronized world clock with seconds for 500+ world cities."
+        }}
+      />
 
       {/* Hero Header */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">

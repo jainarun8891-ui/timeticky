@@ -8,9 +8,11 @@ async function getAllUrls() {
     const res = await fetch('http://localhost:3000/sitemap.xml');
     if (res.ok) {
       const xml = await res.text();
-      const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+      const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+        .map(m => m[1])
+        .filter(url => url.includes(host));
       if (matches.length > 0) {
-        console.log(`Extracted ${matches.length} URLs from local sitemap.xml`);
+        console.log(`Extracted ${matches.length} URLs from local sitemap.xml for ${host}`);
         return Array.from(new Set(matches));
       }
     }
@@ -23,6 +25,30 @@ async function getAllUrls() {
     'https://www.timenumbers.com/united-states-time-now',
     'https://www.timenumbers.com/time-zone-converter',
     'https://www.timenumbers.com/compare',
+    'https://www.timenumbers.com/convert',
+    'https://www.timenumbers.com/date-difference',
+    'https://www.timenumbers.com/business-days-calculator',
+    'https://www.timenumbers.com/week-number',
+    'https://www.timenumbers.com/calendar',
+    'https://www.timenumbers.com/calendar/2026',
+    'https://www.timenumbers.com/time-difference/los-angeles/honolulu',
+    'https://www.timenumbers.com/time-difference/honolulu/los-angeles',
+    'https://www.timenumbers.com/time-difference/dallas/los-angeles',
+    'https://www.timenumbers.com/time-difference/los-angeles/dallas',
+    'https://www.timenumbers.com/time-difference/dallas/honolulu',
+    'https://www.timenumbers.com/time-difference/honolulu/dallas',
+    'https://www.timenumbers.com/time-difference/honolulu/new-york',
+    'https://www.timenumbers.com/time-difference/new-york/honolulu',
+    'https://www.timenumbers.com/time-difference/los-angeles/miami',
+    'https://www.timenumbers.com/time-difference/miami/los-angeles',
+    'https://www.timenumbers.com/time-difference/phoenix/los-angeles',
+    'https://www.timenumbers.com/time-difference/los-angeles/phoenix',
+    'https://www.timenumbers.com/time-difference/chicago/los-angeles',
+    'https://www.timenumbers.com/time-difference/los-angeles/chicago',
+    'https://www.timenumbers.com/time-difference/houston/new-york',
+    'https://www.timenumbers.com/time-difference/new-york/houston',
+    'https://www.timenumbers.com/time-difference/seattle/new-york',
+    'https://www.timenumbers.com/time-difference/new-york/seattle',
     'https://www.timenumbers.com/convert',
     'https://www.timenumbers.com/convert/gmt-to-est',
     'https://www.timenumbers.com/convert/est-to-pst',

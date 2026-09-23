@@ -4,12 +4,13 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Calendar, Globe, Building2, Clock, ShieldCheck, Sparkles, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = buildPageMetadata(
-  'World Public Holidays & Observances',
-  'Global public holidays calendar for 2026 and 2027. Official national holidays, statutory bank closures, astronomical observances, and business day calculation rules.',
+  'World Public Holidays 2026: Official National & Bank Holidays',
+  'Global public holidays calendar for 2026 and 2027. Official national holidays, statutory bank closures, astronomical observances, and business day calculation schedule for 80+ countries.',
   '/holidays'
 );
 
@@ -49,6 +50,14 @@ export default function HolidaysPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       <Breadcrumbs items={[{ name: 'Public Holidays', url: '/holidays' }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Public Holidays', url: '/holidays' },
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
 
       {/* Hero Header */}
       <div className="space-y-3">

@@ -9,6 +9,7 @@ import { Sun, Moon, Clock, ArrowRight, Calendar, Globe, AlertCircle, ShieldAlert
 import { COUNTRIES } from '@/lib/geo/countries';
 
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
   params: Promise<{ year: string }>;
@@ -90,6 +91,15 @@ export default async function DaylightSavingTimeYearPage({ params }: Props) {
     return (
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <Breadcrumbs items={[{"name":"Daylight Saving Time","url":"/daylight-saving-time"},{"name":"Arizona","url":"/daylight-saving-time/arizona"}]} />
+        <JsonLd
+          type="breadcrumb"
+          data={[
+            { name: 'Home', url: '/' },
+            { name: 'Daylight Saving Time', url: '/daylight-saving-time' },
+            { name: 'Arizona', url: '/daylight-saving-time/arizona' },
+          ]}
+        />
+        <JsonLd type="faq" data={faqs} />
         <header className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
             <Sun className="w-3.5 h-3.5" />
@@ -176,6 +186,15 @@ export default async function DaylightSavingTimeYearPage({ params }: Props) {
     return (
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <Breadcrumbs items={[{"name":"Daylight Saving Time","url":"/daylight-saving-time"},{"name":"United States","url":"/daylight-saving-time/united-states"}]} />
+        <JsonLd
+          type="breadcrumb"
+          data={[
+            { name: 'Home', url: '/' },
+            { name: 'Daylight Saving Time', url: '/daylight-saving-time' },
+            { name: 'United States', url: '/daylight-saving-time/united-states' },
+          ]}
+        />
+        <JsonLd type="faq" data={faqs} />
         <header className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
             <Clock className="w-3.5 h-3.5" />
@@ -209,6 +228,15 @@ export default async function DaylightSavingTimeYearPage({ params }: Props) {
     return (
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <Breadcrumbs items={[{"name":"Daylight Saving Time","url":"/daylight-saving-time"},{"name":"Europe","url":"/daylight-saving-time/europe"}]} />
+        <JsonLd
+          type="breadcrumb"
+          data={[
+            { name: 'Home', url: '/' },
+            { name: 'Daylight Saving Time', url: '/daylight-saving-time' },
+            { name: 'Europe', url: '/daylight-saving-time/europe' },
+          ]}
+        />
+        <JsonLd type="faq" data={faqs} />
         <header className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
             <Clock className="w-3.5 h-3.5" />
@@ -248,6 +276,15 @@ export default async function DaylightSavingTimeYearPage({ params }: Props) {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{"name":"Daylight Saving Time","url":"/daylight-saving-time"},{"name":`${y}`,"url":`/daylight-saving-time/${y}`}]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Daylight Saving Time', url: '/daylight-saving-time' },
+          { name: `${y}`, url: `/daylight-saving-time/${y}` },
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
 
       <header className="text-center max-w-3xl mx-auto space-y-3">
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">

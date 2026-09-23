@@ -8,8 +8,8 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Calendar, Clock, ShieldCheck } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Date Difference Calculator — Days Between',
-  'Calculate the exact number of days, weeks, months, years, and working business days between two calendar dates. Includes optional weekend exclusion.',
+  'Days Between Two Dates Calculator (Exact Days & Business Days)',
+  'Calculate the exact number of days, business days, weeks, months, and years between two calendar dates. Includes leap years, weekend exclusion, and countdown calculations.',
   '/date-difference'
 );
 
@@ -34,6 +34,15 @@ export default function DateDifferencePage() {
           { name: 'Home', url: '/' },
           { name: 'Date Difference', url: '/date-difference' },
         ]}
+      />
+      <JsonLd type="faq" data={DATE_DIFF_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Days Between Two Dates Calculator",
+          category: "UtilitiesApplication",
+          description: "Calculate exact calendar days, working business days, and time elapsed between any two dates."
+        }}
       />
 
       {/* Hero Header */}

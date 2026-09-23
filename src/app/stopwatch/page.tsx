@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Play, Pause, RotateCcw, Flag, Timer, Copy, Check, Zap, Target } from 'lucide-react';
 
 const STOPWATCH_FAQS = [
@@ -77,6 +78,22 @@ export default function StopwatchPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
         <Breadcrumbs items={[{ name: 'Stopwatch', url: '/stopwatch' }]} />
+        <JsonLd
+          type="breadcrumb"
+          data={[
+            { name: 'Home', url: '/' },
+            { name: 'Stopwatch', url: '/stopwatch' },
+          ]}
+        />
+        <JsonLd type="faq" data={STOPWATCH_FAQS} />
+        <JsonLd
+          type="application"
+          data={{
+            name: "Online Precision Stopwatch",
+            category: "UtilitiesApplication",
+            description: "Free online stopwatch with millisecond precision, split laps, and keyboard shortcuts."
+          }}
+        />
 
         {/* Title Header */}
         <div className="space-y-1 text-center">

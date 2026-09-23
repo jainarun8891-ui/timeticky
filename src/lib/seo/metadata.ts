@@ -26,8 +26,15 @@ export function formatSeoTitle(rawTitle: string): string {
   // If stripped > 65 chars, trim cleanly at last word boundary before 65
   const truncated = stripped.slice(0, 65);
   const lastSpace = truncated.lastIndexOf(' ');
-  const cleanBase = (lastSpace > 25) ? truncated.slice(0, lastSpace) : truncated;
-  return cleanBase.trim();
+  let cleanBase = (lastSpace > 25) ? truncated.slice(0, lastSpace) : truncated;
+  cleanBase = cleanBase.replace(/[\s,;:\-([]+$/, '').trim();
+  if (cleanBase.includes('(') && !cleanBase.includes(')')) {
+    cleanBase = cleanBase.replace(/\s*\([^)]*$/, '').trim();
+  }
+  if (cleanBase.includes('[') && !cleanBase.includes(']')) {
+    cleanBase = cleanBase.replace(/\s*\[[^\]]*$/, '').trim();
+  }
+  return cleanBase;
 }
 
 export function buildPageMetadata(title: string, description: string, path = "") {

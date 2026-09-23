@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { TIMEZONES, formatTimeInZone, formatDateInZone, getUtcOffsetString } from '@/lib/time/timezones';
 import { ArrowLeftRight, Calendar, Clock, Globe, ShieldCheck, Sun, Moon } from 'lucide-react';
 
@@ -50,6 +51,22 @@ export default function TimeZoneConverterPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={[{ name: "Time Zone Converter", url: "/time-zone-converter" }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Time Zone Converter', url: '/time-zone-converter' },
+        ]}
+      />
+      <JsonLd type="faq" data={CONVERTER_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Time Zone Converter",
+          category: "UtilitiesApplication",
+          description: "Free interactive multi-city time zone converter with automatic daylight saving time and meeting overlap."
+        }}
+      />
 
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-3">

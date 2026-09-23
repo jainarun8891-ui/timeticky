@@ -15,6 +15,7 @@ import { CountryInfoCard } from '@/components/dashboard/CountryInfoCard';
 import { QuoteCard } from '@/components/dashboard/QuoteCard';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { HOME_FAQS } from '@/lib/seo/page-faqs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { City, CITIES } from '@/lib/geo/cities';
 
@@ -75,6 +76,7 @@ export default function HomePage() {
           </div>
 
         {/* Homepage Google SERP FAQ Accordion */}
+        <JsonLd type="faq" data={HOME_FAQS} />
         <FaqAccordion items={HOME_FAQS} title="Frequently Asked Questions About Global Time" />
 
         {/* Global Related Links Directory */}

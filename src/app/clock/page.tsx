@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Maximize2, Minimize2, Moon, Sun, Clock, ShieldCheck, Zap, Radio } from 'lucide-react';
 import { getSyncedDate } from '@/lib/time/sync';
 
@@ -60,6 +61,22 @@ export default function ClockPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
         <Breadcrumbs items={[{ name: 'Digital Clock', url: '/clock' }]} />
+        <JsonLd
+          type="breadcrumb"
+          data={[
+            { name: 'Home', url: '/' },
+            { name: 'Digital Clock', url: '/clock' },
+          ]}
+        />
+        <JsonLd type="faq" data={CLOCK_FAQS} />
+        <JsonLd
+          type="application"
+          data={{
+            name: "Online Digital Clock with Seconds",
+            category: "UtilitiesApplication",
+            description: "Precision digital clock with seconds, 12/24 hour display, and fullscreen nightstand mode."
+          }}
+        />
 
         {/* Main Clock Stage Card */}
         <div className={`w-full rounded-3xl border transition-all duration-300 p-8 sm:p-16 flex flex-col items-center justify-center select-none relative overflow-hidden ${

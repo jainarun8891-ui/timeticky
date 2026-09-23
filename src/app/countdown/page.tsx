@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Sparkles, Calendar, Clock, Timer, ArrowRight, Share2 } from 'lucide-react';
 
 const COUNTDOWN_INDEX_FAQS = [
@@ -51,6 +52,22 @@ export default function CountdownPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
       <Breadcrumbs items={[{"name":"Event Countdown","url":"/countdown"}]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Countdown Timer', url: '/countdown' },
+        ]}
+      />
+      <JsonLd type="faq" data={COUNTDOWN_INDEX_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Event Countdown Timer",
+          category: "UtilitiesApplication",
+          description: "Create precision live countdowns for events, launches, holidays, and milestones."
+        }}
+      />
 
       <div className="text-center space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold">

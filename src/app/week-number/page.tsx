@@ -1,12 +1,13 @@
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
+import { JsonLd } from '@/components/seo/JsonLd';
 import React from 'react';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildPageMetadata(
-  'Current ISO Week Number & Weeks Left',
-  'What is the current ISO week number of this year? Discover how many weeks are left in the current year, total days elapsed, and ISO 8601 calendar details.',
+  'Week Number Today — What Week Is It? (2026 Calendar & Weeks Left)',
+  'What week of the year is it today? Check current ISO week number, how many weeks are left in the year, days elapsed, and full calendar week dates.',
   '/week-number'
 );
 
@@ -47,6 +48,14 @@ export default function WeekNumberPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={[{"name":"Week Number","url":"/week-number"}]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Week Number', url: '/week-number' },
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
 
       <header className="text-center max-w-2xl mx-auto space-y-3">
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">

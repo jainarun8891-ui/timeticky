@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { CITIES, City } from '@/lib/geo/cities';
 import { formatTimeInZone, formatDateInZone, getUtcOffsetString, getTimeDifference } from '@/lib/time/timezones';
 import { ArrowLeftRight, Plus, X, Globe, Clock, Users, Building2, CheckCircle2 } from 'lucide-react';
@@ -66,6 +67,22 @@ export default function CompareIndexPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={[{ name: "Compare", url: "/compare" }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Compare Cities', url: '/compare' },
+        ]}
+      />
+      <JsonLd type="faq" data={COMPARE_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Compare Cities Time Difference",
+          category: "UtilitiesApplication",
+          description: "Side-by-side time difference calculator for global cities."
+        }}
+      />
 
       {/* Hero Header */}
       <div>

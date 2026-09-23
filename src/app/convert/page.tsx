@@ -4,6 +4,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { ConvertDirectoryClient } from './ConvertDirectoryClient';
 import { Sparkles, Globe, Clock, Layers } from 'lucide-react';
 
@@ -41,6 +42,14 @@ export default function ConvertDirectoryPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={breadcrumbs} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          ...breadcrumbs
+        ]}
+      />
+      <JsonLd type="faq" data={DIRECTORY_FAQS} />
 
       {/* Hero Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">

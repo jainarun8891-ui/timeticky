@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cityA || !cityB) return buildPageMetadata('Time Difference Not Found', 'City time difference not found.', `/time-difference/${slugA}/${slugB}`);
 
   return buildPageMetadata(
-    `Time Difference Between ${cityA.name} and ${cityB.name}`,
-    `Exact time difference between ${cityA.name} and ${cityB.name}. Live dual clocks, hours ahead or behind, 24-hour time conversion matrix, and best meeting call hours.`,
+    `${cityA.name} to ${cityB.name} Time Difference (Exact Hours & Overlap)`,
+    `Exact time difference between ${cityA.name} (${cityA.country}) and ${cityB.name} (${cityB.country}). Live dual clocks, hours ahead or behind, 24-hour conversion table, and best calling hours.`,
     `/time-difference/${slugA}/${slugB}`
   );
 }

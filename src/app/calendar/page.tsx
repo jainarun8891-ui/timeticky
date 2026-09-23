@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Printer, ArrowRight, Sun, Globe } from 'lucide-react';
 
 const CALENDAR_INDEX_FAQS = [
@@ -58,6 +59,14 @@ export default function CalendarPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
         <Breadcrumbs items={[{ name: 'Calendar', url: '/calendar' }]} />
+        <JsonLd
+          type="breadcrumb"
+          data={[
+            { name: 'Home', url: '/' },
+            { name: 'Calendar', url: '/calendar' },
+          ]}
+        />
+        <JsonLd type="faq" data={CALENDAR_INDEX_FAQS} />
 
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">

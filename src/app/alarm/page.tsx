@@ -8,8 +8,8 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 import { Bell, Clock, Volume2, ShieldCheck } from 'lucide-react';
 
 export const metadata = buildPageMetadata(
-  'Online Alarm Clock — Loud Bedside Alarm',
-  'Set multi-alarms online with customizable synthetic audio chimes (zen bell, marimba, pulse), snooze, nightstand dimming, and fullscreen bedside display.',
+  'Online Alarm Clock — Set Loud Alarm Online (Free & Reliable)',
+  'Free online alarm clock with loud acoustic chimes, snooze button, multi-alarms, and dark bedside nightstand mode. Works in any browser without app download.',
   '/alarm'
 );
 
@@ -42,6 +42,15 @@ export default function AlarmPage() {
           { name: 'Home', url: '/' },
           { name: 'Online Alarm Clock', url: '/alarm' },
         ]}
+      />
+      <JsonLd type="faq" data={ALARM_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Online Alarm Clock",
+          category: "UtilitiesApplication",
+          description: "Free online alarm clock with customizable chimes, snooze, and fullscreen nightstand mode."
+        }}
       />
 
       {/* Hero Header */}

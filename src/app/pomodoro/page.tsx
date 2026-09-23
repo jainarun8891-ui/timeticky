@@ -5,10 +5,11 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { buildPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Online Pomodoro Timer — 25/5 Focus Timer',
-  'Free online Pomodoro timer for focus and productivity. Features 25-minute study intervals, 5-minute short breaks, 15-minute long breaks, audio chimes, and zero drift.',
+  'Online Pomodoro Timer: 25/5 Study & Productivity Focus Timer',
+  'Free online Pomodoro timer for study, focus, and productivity. 25-minute focus intervals, 5-minute restorative breaks, audio chimes, and background tab accuracy.',
   '/pomodoro'
 );
 
@@ -31,6 +32,22 @@ export default function PomodoroPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Pomodoro Timer', url: '/pomodoro' }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Pomodoro Timer', url: '/pomodoro' },
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Online Pomodoro Timer",
+          category: "UtilitiesApplication",
+          description: "Free online 25/5 Pomodoro focus timer with acoustic bells and background sync."
+        }}
+      />
 
       <div className="text-center space-y-2">
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">

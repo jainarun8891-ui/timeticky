@@ -168,6 +168,26 @@ export const POPULAR_TIME_DIFFERENCE_PAIRS: { cityA: string; cityB: string }[] =
   { cityA: 'sao-paulo', cityB: 'new-york' },
   { cityA: 'new-york', cityB: 'sao-paulo' },
   { cityA: 'sao-paulo', cityB: 'london' },
-  { cityA: 'london', cityB: 'sao-paulo' }
+  { cityA: 'london', cityB: 'sao-paulo' },
+
+  // Top Google Trends Breakout Pairs
+  { cityA: 'los-angeles', cityB: 'honolulu' },
+  { cityA: 'honolulu', cityB: 'los-angeles' },
+  { cityA: 'dallas', cityB: 'los-angeles' },
+  { cityA: 'los-angeles', cityB: 'dallas' },
+  { cityA: 'dallas', cityB: 'honolulu' },
+  { cityA: 'honolulu', cityB: 'dallas' },
+  { cityA: 'honolulu', cityB: 'new-york' },
+  { cityA: 'new-york', cityB: 'honolulu' },
+  { cityA: 'los-angeles', cityB: 'miami' },
+  { cityA: 'miami', cityB: 'los-angeles' },
+  { cityA: 'phoenix', cityB: 'los-angeles' },
+  { cityA: 'los-angeles', cityB: 'phoenix' },
+  { cityA: 'chicago', cityB: 'los-angeles' },
+  { cityA: 'los-angeles', cityB: 'chicago' },
+  { cityA: 'houston', cityB: 'new-york' },
+  { cityA: 'new-york', cityB: 'houston' },
+  { cityA: 'seattle', cityB: 'new-york' },
+  { cityA: 'new-york', cityB: 'seattle' }
 ];
 

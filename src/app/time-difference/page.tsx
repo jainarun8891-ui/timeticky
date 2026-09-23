@@ -3,6 +3,8 @@
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { TIME_DIFFERENCE_FAQS } from '@/lib/seo/page-faqs';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { CITIES, City } from '@/lib/geo/cities';
@@ -23,6 +25,15 @@ export default function TimeDifferencePage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <Breadcrumbs items={[{ name: 'Time Difference', url: '/time-difference' }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Time Difference', url: '/time-difference' },
+        ]}
+      />
+      <JsonLd type="faq" data={TIME_DIFFERENCE_FAQS} />
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white">
           Time Difference Calculator

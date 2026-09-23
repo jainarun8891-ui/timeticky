@@ -4,11 +4,12 @@ import { AtomicClockClient } from './AtomicClockClient';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Online Atomic Clock — Exact UTC Milliseconds',
-  'Accurate online atomic clock synchronized directly with NIST and BIPM atomic time standards. Features millisecond precision, drift measurement, 12/24 hour display, and acoustic beat.',
+  'Online Atomic Clock — Exact Time Now with Seconds (NTP Calibrated)',
+  'Official online atomic clock synchronized directly with NIST & BIPM Stratum-1 time servers. Sub-second precision, clock drift measurement, 12/24hr live display.',
   '/atomic-clock'
 );
 
@@ -35,6 +36,14 @@ export default function AtomicClockPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Atomic Clock', url: '/atomic-clock' }]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Atomic Clock', url: '/atomic-clock' },
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
 
       <div className="text-center space-y-2">
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">

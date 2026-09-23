@@ -10,6 +10,7 @@ import { ConvertComboClient } from './ConvertComboClient';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 // Allow dynamic rendering for all 552 cross-converter combinations on demand
@@ -120,6 +121,14 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={breadcrumbs} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          ...breadcrumbs
+        ]}
+      />
+      <JsonLd type="faq" data={faqs} />
 
       <ConvertComboClient fromTz={fromTz} toTz={toTz} comboSlug={cleanSlug} />
 

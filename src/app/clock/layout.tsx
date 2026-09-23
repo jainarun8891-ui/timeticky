@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Online Digital Clock with Seconds",
-  "What time is it right now? Check exact time with seconds synchronized with atomic clock. Minimalist precision digital clock with 12/24 hour display and full screen mode.",
+  "Online Digital Clock with Seconds: Exact Time Now (Fullscreen & 24h)",
+  "Exact time now with seconds synchronized with atomic clock standards. High-contrast fullscreen online digital clock with 12/24 hour toggle, dark mode, and zero drift.",
   "/clock"
 );
 

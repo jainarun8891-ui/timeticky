@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata(
-  "Compare World Cities Time Difference",
-  "Side-by-side time comparison matrix for global metropolitan centers with business meeting overlap windows.",
+  "Compare Cities Time Difference: Multi-City World Clock & Overlap",
+  "Side-by-side time difference calculator for global cities. Compare local times, working business hours overlap, and daylight saving status for up to 10 cities.",
   "/compare"
 );
 

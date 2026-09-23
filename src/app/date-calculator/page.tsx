@@ -35,6 +35,15 @@ export default function DateCalculatorPage() {
           { name: 'Date Calculator', url: '/date-calculator' },
         ]}
       />
+      <JsonLd type="faq" data={DATE_CALC_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Date Calculator",
+          category: "UtilitiesApplication",
+          description: "Add or subtract days, weeks, months, and business working days from any calendar date."
+        }}
+      />
 
       {/* Hero Header */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">

@@ -4,6 +4,7 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { UNIX_TIME_FAQS } from '@/lib/seo/page-faqs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import React, { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
 
@@ -25,6 +26,22 @@ export default function UnixTimePage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-12 text-center space-y-6">
       <Breadcrumbs items={[{"name":"Unix Timestamp","url":"/unix-time"}]} />
+      <JsonLd
+        type="breadcrumb"
+        data={[
+          { name: 'Home', url: '/' },
+          { name: 'Unix Timestamp', url: '/unix-time' },
+        ]}
+      />
+      <JsonLd type="faq" data={UNIX_TIME_FAQS} />
+      <JsonLd
+        type="application"
+        data={{
+          name: "Live Unix Timestamp Clock",
+          category: "DeveloperApplication",
+          description: "Real-time ticking Unix epoch timestamp counter in seconds and milliseconds."
+        }}
+      />
       <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Current Unix Timestamp</h1>
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Epoch Seconds</span>
