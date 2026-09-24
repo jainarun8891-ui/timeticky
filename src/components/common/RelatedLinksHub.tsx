@@ -32,16 +32,21 @@ export function RelatedLinksHub({
   const topTimezones = TIMEZONES.slice(0, 8);
 
   const topComparisons = [
-    { label: 'Compare All Cities →', url: '/converter/compare' },
+    { label: 'All 92 City Differences Directory →', url: '/converter/difference' },
     { label: 'Paris vs New York', url: '/converter/difference/paris-to-new-york' },
     { label: 'London vs Tokyo', url: '/converter/difference/london-to-tokyo' },
     { label: 'New York vs London', url: '/converter/difference/new-york-to-london' },
+    { label: 'New York vs São Paulo', url: '/converter/difference/new-york-to-sao-paulo' },
+    { label: 'New York vs Honolulu', url: '/converter/difference/new-york-to-honolulu' },
+    { label: 'Los Angeles vs Honolulu', url: '/converter/difference/los-angeles-to-honolulu' },
     { label: 'Dubai vs Delhi', url: '/converter/difference/dubai-to-delhi' },
     { label: 'Tokyo vs Sydney', url: '/converter/difference/tokyo-to-sydney' },
     { label: 'San Francisco vs Paris', url: '/converter/difference/san-francisco-to-paris' },
+    { label: 'Compare All Cities Matrix →', url: '/converter/compare' },
   ];
 
   const tools = [
+    { name: 'City Time Differences Directory', desc: 'Exact hours ahead & overlap for 92+ city pairs', url: '/converter/difference', icon: ArrowLeftRight },
     { name: 'Coordinated Universal Time (UTC)', desc: 'Canonical atomic reference standard and UTC offset zero', url: '/utc', icon: Globe },
     { name: 'Multi-Zone Time Converter Hub', desc: 'Convert hours across global zones and cities', url: '/converter', icon: Layers },
     { name: 'Compare World Cities', desc: 'Direct side-by-side time difference and overlap', url: '/converter/compare', icon: ArrowLeftRight },

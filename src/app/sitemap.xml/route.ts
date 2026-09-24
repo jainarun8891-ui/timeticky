@@ -33,6 +33,7 @@ export async function GET() {
 
     // 2.0 LOCAL TIME, CONVERTERS & MEETINGS
     '/converter',
+    '/converter/difference',
     '/converter/compare',
     '/meeting-planner',
     '/overlap-calculator',

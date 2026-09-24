@@ -444,6 +444,39 @@ export const HUB_PAGES_CUSTOM_CONTENT: Record<string, HubPageCustomContent> = {
       }
     ]
   },
+  "/converter/difference": {
+    "url": "https://www.timenumbers.com/converter/difference",
+    "path": "/converter/difference",
+    "category": "2.0 Local Time, Converters & Meetings",
+    "title": "World City Time Difference Directory — Exact Hours & Overlap",
+    "description": "Comprehensive directory of 92+ bilateral world city time differences. Compare exact hours ahead or behind, calculate shared office overlap, and check reciprocal local time.",
+    "h1": "World City Time Differences Directory",
+    "headings": [
+      "Bilateral Time Differences Across Major World Corridors",
+      "Calculating Transcontinental Business Hours & Overlap",
+      "Managing Daylight Saving Time Divergence Across Hemispheres"
+    ],
+    "page_text": "Navigating cross-border schedules between international commercial centers requires more than generic timezone offsets. Our World City Time Differences directory indexes 92+ high-volume city-to-city corridors—from New York to London and São Paulo to Honolulu, London to Tokyo, and Dubai to Delhi.\n\nEach bilateral guide provides live dual atomic clocks, exact hour differentials (accounting for standard and daylight saving adjustments), reciprocal scheduling comparisons, and an interactive 24-hour visual matrix highlighting shared working hours.\n\nWhether you are managing multinational remote teams, closing cross-border transactions, or synchronizing transatlantic travel itineraries, our verified chronometry ensures zero missed appointments and friction-free international coordination.",
+    "faqsCount": 4,
+    "faqs": [
+      {
+        "question": "How are city time differences calculated on TimeNumbers?",
+        "answer": "Time differences are computed directly from the canonical IANA Time Zone Database using the exact geographic coordinates and legal time rules of each metropolis. Clocks update in real time against atomic standards, reflecting active Daylight Saving Time (DST) or standard time offsets."
+      },
+      {
+        "question": "Why does the time difference between two cities change during the year?",
+        "answer": "Many countries observe Daylight Saving Time on different start and end dates. For example, the United States springs forward in early March, while the United Kingdom and Europe change clocks in late March. For approximately two weeks each spring and autumn, the time difference between New York and London narrows from 5 hours to 4 hours."
+      },
+      {
+        "question": "What is the best way to find reciprocal time differences?",
+        "answer": "Every city pair page includes a direct one-click reciprocal link. For example, if you are viewing New York to London, you can instantly toggle to London to New York to inspect the reverse working schedule and morning hours."
+      },
+      {
+        "question": "How do I find overlapping business hours between distant cities?",
+        "answer": "Select any pair from this directory to view the 24-hour side-by-side comparison table. Green-highlighted rows indicate shared mutual office hours (9:00 AM to 6:00 PM in both locations), making it effortless to schedule international video calls."
+      }
+    ]
+  },
   "/meeting-planner": {
     "url": "https://www.timenumbers.com/meeting-planner",
     "path": "/meeting-planner",

@@ -71,6 +71,7 @@ export function Footer() {
             </h5>
             <ul className="space-y-1.5">
               <li><Link href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Zone Converter</Link></li>
+              <li><Link href="/converter/difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">City Time Differences</Link></li>
               <li><Link href="/converter/compare" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Compare World Cities</Link></li>
               <li><Link href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">552 Timezone Pairs</Link></li>
               <li><Link href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner Grid</Link></li>

@@ -272,7 +272,7 @@ export function ConverterHubClient() {
 
       {/* 4. Popular City Pair Differences */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
               Popular City Pair Differences
@@ -281,10 +281,17 @@ export function ConverterHubClient() {
               Exact hour offset and time difference between major metropolitan centers.
             </p>
           </div>
+          <Link
+            href="/converter/difference"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-xs font-bold text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors w-fit"
+          >
+            <span>View All 92 Differences Directory</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {POPULAR_TIME_DIFFERENCE_PAIRS.slice(0, 12).map((pair) => {
+          {POPULAR_TIME_DIFFERENCE_PAIRS.slice(0, 24).map((pair) => {
             const cityA = findCityByRootSlug(pair.cityA);
             const cityB = findCityByRootSlug(pair.cityB);
             const nameA = cityA?.name || pair.cityA;
@@ -309,7 +316,26 @@ export function ConverterHubClient() {
             );
           })}
         </div>
+
+        {/* Directory Callout Banner */}
+        <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800/80 dark:to-indigo-950/40 border border-blue-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-0.5 text-center sm:text-left">
+            <span className="text-xs font-bold text-slate-900 dark:text-white block">
+              Looking for other city-to-city comparisons?
+            </span>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              Explore our full directory of 92 bilateral routes including New York to São Paulo, Honolulu, Tokyo, and London.
+            </p>
+          </div>
+          <Link
+            href="/converter/difference"
+            className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition-all whitespace-nowrap"
+          >
+            Open 92-City Difference Directory →
+          </Link>
+        </div>
       </div>
+
 
       {/* 4. Quick Conversion Combos Directory (552 Combos) */}
       <div className="space-y-6">

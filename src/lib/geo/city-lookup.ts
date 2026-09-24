@@ -191,3 +191,17 @@ export const POPULAR_TIME_DIFFERENCE_PAIRS: { cityA: string; cityB: string }[] =
   { cityA: 'new-york', cityB: 'seattle' }
 ];
 
+export function getTimeDifferencePairsForCity(citySlug: string): { cityA: string; cityB: string }[] {
+  const clean = citySlug.toLowerCase().trim();
+  return POPULAR_TIME_DIFFERENCE_PAIRS.filter(p => p.cityA === clean || p.cityB === clean);
+}
+
+export function getRelatedDifferencePairs(slugA: string, slugB: string, limit: number = 8): { cityA: string; cityB: string }[] {
+  const cleanA = slugA.toLowerCase().trim();
+  const cleanB = slugB.toLowerCase().trim();
+  return POPULAR_TIME_DIFFERENCE_PAIRS.filter(
+    p => (p.cityA === cleanA || p.cityB === cleanA || p.cityA === cleanB || p.cityB === cleanB) &&
+         !(p.cityA === cleanA && p.cityB === cleanB)
+  ).slice(0, limit);
+}
+

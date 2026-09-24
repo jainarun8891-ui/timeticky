@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { City, CITIES } from '@/lib/geo/cities';
+import { getCityRootSlug, getTimeDifferencePairsForCity, findCityByRootSlug } from '@/lib/geo/city-lookup';
 import { getTimeDetails, getUtcOffsetString, getTimeDifferenceText } from '@/lib/time/engine';
 import { getSolarTimes } from '@/lib/astronomy/calculator';
 import { Clock, Sun, Sunrise, Sunset, Globe, Compass, Calendar, ArrowRight, ArrowLeftRight, CheckCircle2, ShieldAlert } from 'lucide-react';
@@ -70,6 +71,24 @@ export function CityPageClient({ city, h1Title }: Props) {
       };
     });
   }, [city, now, use24Hour]);
+
+  const cityRootSlug = useMemo(() => getCityRootSlug(city), [city]);
+  const cityDifferencePairs = useMemo(() => {
+    return getTimeDifferencePairsForCity(cityRootSlug).map(pair => {
+      const isOutbound = pair.cityA === cityRootSlug;
+      const otherSlug = isOutbound ? pair.cityB : pair.cityA;
+      const otherCity = findCityByRootSlug(otherSlug);
+      const otherName = otherCity?.name || otherSlug;
+      const slug = `${pair.cityA}-to-${pair.cityB}`;
+      return {
+        slug,
+        isOutbound,
+        otherName,
+        otherCountry: otherCity?.country || 'Global',
+        label: isOutbound ? `${city.name} to ${otherName}` : `${otherName} to ${city.name}`,
+      };
+    });
+  }, [cityRootSlug, city.name]);
 
   return (
     <div className="space-y-8">
@@ -232,6 +251,71 @@ export function CityPageClient({ city, h1Title }: Props) {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Dedicated City Difference Pair Guides */}
+      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              <ArrowLeftRight className="w-3.5 h-3.5" />
+              <span>Bilateral Time Corridors</span>
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
+              Time Difference Guides for {city.name}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              Live dual atomic clocks, daylight saving variations, and shared working hours.
+            </p>
+          </div>
+          <Link
+            href="/converter/difference"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            <span>All 92 City Differences Directory</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {cityDifferencePairs.length > 0 ? (
+            cityDifferencePairs.map((pair) => (
+              <Link
+                key={pair.slug}
+                href={`/converter/difference/${pair.slug}`}
+                className="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 hover:border-blue-500/40 transition-all flex items-center justify-between"
+              >
+                <div className="truncate">
+                  <div className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors truncate">
+                    {pair.label}
+                  </div>
+                  <div className="text-[11px] text-slate-400 truncate">
+                    Compare Clocks & Overlap
+                  </div>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+              </Link>
+            ))
+          ) : (
+            ['new-york-to-london', 'london-to-tokyo', 'new-york-to-sao-paulo', 'new-york-to-honolulu'].map((slug) => (
+              <Link
+                key={slug}
+                href={`/converter/difference/${slug}`}
+                className="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 hover:border-blue-500/40 transition-all flex items-center justify-between"
+              >
+                <div className="truncate">
+                  <div className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors capitalize truncate">
+                    {slug.replace(/-/g, ' ')}
+                  </div>
+                  <div className="text-[11px] text-slate-400 truncate">
+                    Compare Clocks & Overlap
+                  </div>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>

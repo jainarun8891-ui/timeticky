@@ -100,6 +100,7 @@ export function Header() {
   const featureTools = [
     { name: 'Time Zone Converter', desc: 'Convert hours across global zones', href: '/converter', icon: ArrowLeftRight },
     { name: 'Compare World Cities', desc: 'Direct side-by-side time difference', href: '/converter/compare', icon: ArrowLeftRight },
+    { name: 'City Time Differences', desc: 'Exact hours ahead & overlap for 92+ pairs', href: '/converter/difference', icon: ArrowLeftRight },
     { name: 'Timezone Converters', desc: '552 pairs with visual grid', href: '/converter', icon: ArrowLeftRight },
     { name: 'Exact Time Clock', desc: 'Precision digital chronometer', href: '/clock', icon: Clock },
     { name: 'Interactive World Map', desc: 'Solar terminator & 46 live clocks', href: '/world-map', icon: Globe },
