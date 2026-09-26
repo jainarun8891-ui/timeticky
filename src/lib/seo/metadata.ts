@@ -6,6 +6,23 @@ export function buildCanonicalUrl(path = ""): string {
   return `${base}${cleanPath}`;
 }
 
+const DANGLING_WORDS_REGEX = /\s+(?:&|and|or|with|for|in|to|of|vs|at|on|the|a|an|by|from|into|onto|upon|about)\s*$/i;
+
+function cleanDanglingEnds(text: string): string {
+  let res = text.replace(/[\s,;:|—\-([]+$/, '').trim();
+  while (DANGLING_WORDS_REGEX.test(res)) {
+    res = res.replace(DANGLING_WORDS_REGEX, '').trim();
+    res = res.replace(/[\s,;:|—\-([]+$/, '').trim();
+  }
+  if (res.includes('(') && !res.includes(')')) {
+    res = res.replace(/\s*\([^)]*$/, '').trim();
+  }
+  if (res.includes('[') && !res.includes(']')) {
+    res = res.replace(/\s*\[[^\]]*$/, '').trim();
+  }
+  return res.replace(/[\s,;:|—\-([]+$/, '').trim();
+}
+
 export function formatSeoTitle(rawTitle: string): string {
   const brand = ` | ${siteConfig.name}`;
   // Strip any existing brand suffixes like " — TimeNumbers", " | TimeNumbers", " - TimeNumbers"
@@ -18,23 +35,27 @@ export function formatSeoTitle(rawTitle: string): string {
     return `${stripped}${brand}`;
   }
 
-  // If stripped itself is <= 65 chars, retain the complete high-value keyword phrase:
-  if (stripped.length <= 65) {
+  // If stripped itself is <= 70 chars, retain complete high-value keyword phrase without slicing:
+  if (stripped.length <= 70) {
     return stripped;
   }
 
-  // If stripped > 65 chars, trim cleanly at last word boundary before 65
-  const truncated = stripped.slice(0, 65);
+  // If stripped has a primary separator (— or |) and the first part is substantial (>= 25 chars):
+  if (stripped.includes(' — ')) {
+    const parts = stripped.split(' — ');
+    if (parts[0].length >= 25 && parts[0].length <= 65) {
+      if (parts[0].length + brand.length <= 65) {
+        return `${parts[0]}${brand}`;
+      }
+      return parts[0];
+    }
+  }
+
+  // If stripped > 70 chars, trim cleanly at last word boundary before 68 and strip dangling connectors:
+  const truncated = stripped.slice(0, 68);
   const lastSpace = truncated.lastIndexOf(' ');
-  let cleanBase = (lastSpace > 25) ? truncated.slice(0, lastSpace) : truncated;
-  cleanBase = cleanBase.replace(/[\s,;:\-([]+$/, '').trim();
-  if (cleanBase.includes('(') && !cleanBase.includes(')')) {
-    cleanBase = cleanBase.replace(/\s*\([^)]*$/, '').trim();
-  }
-  if (cleanBase.includes('[') && !cleanBase.includes(']')) {
-    cleanBase = cleanBase.replace(/\s*\[[^\]]*$/, '').trim();
-  }
-  return cleanBase;
+  const cleanBase = (lastSpace > 25) ? truncated.slice(0, lastSpace) : truncated;
+  return cleanDanglingEnds(cleanBase);
 }
 
 export function buildPageMetadata(title: string, description: string, path = "") {

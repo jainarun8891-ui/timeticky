@@ -9,9 +9,9 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { getCityDifferenceData, getCityDifferenceFaqs } from '@/lib/seo/page-faqs';
+import { getCityDifferenceData, getCityDifferenceFaqs, formatHourAmPm } from '@/lib/seo/page-faqs';
 import { CITY_DIFFERENCE_CUSTOM_CONTENT } from '@/lib/seo/city-difference-custom-content';
-import { Clock, Compass, ArrowLeftRight, ArrowRight, Globe } from 'lucide-react';
+import { Clock, Compass, ArrowLeftRight, ArrowRight, Globe, Table } from 'lucide-react';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return buildPageMetadata(
     `${cityA.name} to ${cityB.name} Time Difference (Exact Hours & Overlap)`,
-    `${diffSentence} Calculate overlapping business hours and find the best time to schedule cross-border meetings between ${cityA.name} and ${cityB.name}.`,
+    `${diffSentence} 24-hour visual time difference converter, business hours overlap calculator, and 1-click meeting scheduler between ${cityA.name} and ${cityB.name}.`,
     `/converter/difference/${canonicalSlug}`
   );
 }
@@ -112,7 +112,7 @@ export default async function ConverterCityDifferencePage({ params }: Props) {
       <Breadcrumbs items={breadcrumbs} />
       <JsonLd type="faq" data={faqs} />
 
-      {/* Header Banner with single canonical H1 */}
+      {/* Header Banner with single canonical H1 & Quick Answer Box */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
         <div className="absolute right-0 top-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 max-w-3xl space-y-4">
@@ -128,10 +128,85 @@ export default async function ConverterCityDifferencePage({ params }: Props) {
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {custom?.description || `${diffSentence} Compare live atomic clocks, calculate overlapping working hours, and schedule meetings seamlessly.`}
           </p>
+
+          {/* Featured Snippet Quick Answer Box */}
+          <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-xs border border-white/20 text-white text-xs sm:text-sm leading-relaxed mt-4">
+            <span className="font-bold text-amber-300">Quick Answer: </span>
+            <span>{diffSentence} </span>
+            <span className="text-slate-200">
+              When it is 12:00 PM (Noon) in {cityA.name}, it is {formatHourAmPm(12 + data.diff.diffHours)} in {cityB.name}.{' '}
+              {data.diff.isEqual
+                ? `Both metropolises share the exact same civil clock time.`
+                : (data.overlapDurationHours > 0
+                  ? `Best shared business window: ${data.overlapDurationHours} overlapping office hours.`
+                  : 'Outside standard daytime business hours.')}
+            </span>
+          </div>
         </div>
       </div>
 
       <TimeDifferencePairClient cityA={cityA} cityB={cityB} />
+
+      {/* Server-Rendered Quick Hourly Conversion Table */}
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 space-y-4 shadow-sm">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider mb-2">
+            <Table className="w-3.5 h-3.5" />
+            <span>Hourly Comparison Table</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            {cityA.name} to {cityB.name} Hourly Time Chart
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+            Hour-by-hour cross-reference table for planning transatlantic calls, remote handoffs, and meetings between {cityA.name} ({cityA.country}) and {cityB.name} ({cityB.country}).
+          </p>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-[11px]">
+                <th className="py-3 px-4">{cityA.name} Local Time</th>
+                <th className="py-3 px-4">{cityB.name} Local Time</th>
+                <th className="py-3 px-4 hidden sm:table-cell">Collaboration Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+              {[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((hour) => {
+                const targetHour = hour + data.diff.diffHours;
+                const fromFormatted = formatHourAmPm(hour);
+                const toFormatted = formatHourAmPm(targetHour);
+                const isFromBiz = hour >= 9 && hour <= 17;
+                const isToBiz = ((targetHour % 24) + 24) % 24 >= 9 && ((targetHour % 24) + 24) % 24 <= 17;
+                const isShared = isFromBiz && isToBiz;
+
+                return (
+                  <tr key={hour} className={isShared ? 'bg-emerald-50/50 dark:bg-emerald-950/20 font-semibold' : 'hover:bg-slate-50/80 dark:hover:bg-slate-800/40'}>
+                    <td className="py-2.5 px-4 font-mono font-bold text-slate-900 dark:text-white">
+                      {fromFormatted} ({cityA.name})
+                    </td>
+                    <td className="py-2.5 px-4 font-mono font-bold text-blue-600 dark:text-blue-400">
+                      {toFormatted} ({cityB.name})
+                    </td>
+                    <td className="py-2.5 px-4 hidden sm:table-cell text-xs">
+                      {isShared ? (
+                        <span className="inline-flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-bold">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                          Shared Business Working Hour
+                        </span>
+                      ) : (
+                        <span className="text-slate-400 dark:text-slate-500">
+                          {isFromBiz ? `Working hours in ${cityA.name}` : (isToBiz ? `Working hours in ${cityB.name}` : 'Outside standard office hours')}
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       {/* Reciprocal Comparison & City Hub Link Banners */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

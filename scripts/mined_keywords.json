@@ -23,22 +23,16 @@
     "letter": "c"
   },
   {
-    "query": "time difference between texas and hawaii",
+    "query": "time difference between new york and california",
     "seed": "time difference between"
-  },
-  {
-    "query": "time difference between california and new york",
-    "seed": "time difference between",
-    "letter": "c"
   },
   {
     "query": "time difference between us and uk",
     "seed": "time difference between"
   },
   {
-    "query": "time difference between florida",
-    "seed": "time difference between",
-    "letter": "f"
+    "query": "time difference between texas and hawaii",
+    "seed": "time difference between"
   },
   {
     "query": "time difference between boston and london",
@@ -56,10 +50,6 @@
     "letter": "c"
   },
   {
-    "query": "time difference between new york and paris",
-    "seed": "time difference between"
-  },
-  {
     "query": "time difference between chicago and london",
     "seed": "time difference between",
     "letter": "c"
@@ -69,9 +59,9 @@
     "seed": "time difference between"
   },
   {
-    "query": "time difference between atlanta and london",
+    "query": "time difference between eastern and central",
     "seed": "time difference between",
-    "letter": "a"
+    "letter": "e"
   },
   {
     "query": "time difference between arizona and california",
@@ -79,12 +69,17 @@
     "letter": "a"
   },
   {
-    "query": "time difference between arizona and new york",
+    "query": "time difference between atlanta and london",
     "seed": "time difference between",
     "letter": "a"
   },
   {
     "query": "time difference between australia and usa",
+    "seed": "time difference between",
+    "letter": "a"
+  },
+  {
+    "query": "time difference between arizona and new york",
     "seed": "time difference between",
     "letter": "a"
   },
@@ -99,12 +94,7 @@
     "letter": "a"
   },
   {
-    "query": "time difference between atlanta and paris",
-    "seed": "time difference between",
-    "letter": "a"
-  },
-  {
-    "query": "time difference between arizona and florida",
+    "query": "time difference between australia and california",
     "seed": "time difference between",
     "letter": "a"
   },
@@ -114,12 +104,17 @@
     "letter": "a"
   },
   {
-    "query": "time difference between atlanta and hawaii",
+    "query": "time difference between arizona and florida",
     "seed": "time difference between",
     "letter": "a"
   },
   {
-    "query": "time difference between alaska and california",
+    "query": "time difference between atlanta and paris",
+    "seed": "time difference between",
+    "letter": "a"
+  },
+  {
+    "query": "time difference between atlanta and hawaii",
     "seed": "time difference between",
     "letter": "a"
   },
@@ -129,17 +124,17 @@
     "letter": "a"
   },
   {
-    "query": "time difference between alaska and texas",
-    "seed": "time difference between",
-    "letter": "a"
-  },
-  {
     "query": "time difference between australia and new york",
     "seed": "time difference between",
     "letter": "a"
   },
   {
-    "query": "time difference between australia and california",
+    "query": "time difference between alaska and california",
+    "seed": "time difference between",
+    "letter": "a"
+  },
+  {
+    "query": "time difference between atlanta and las vegas",
     "seed": "time difference between",
     "letter": "a"
   },
@@ -149,12 +144,12 @@
     "letter": "b"
   },
   {
-    "query": "time difference between boston and hawaii",
+    "query": "time difference between boston and italy",
     "seed": "time difference between",
     "letter": "b"
   },
   {
-    "query": "time difference between boston and italy",
+    "query": "time difference between boston and hawaii",
     "seed": "time difference between",
     "letter": "b"
   },
@@ -169,17 +164,12 @@
     "letter": "b"
   },
   {
-    "query": "time difference between boston and iceland",
-    "seed": "time difference between",
-    "letter": "b"
-  },
-  {
     "query": "time difference between boston and india",
     "seed": "time difference between",
     "letter": "b"
   },
   {
-    "query": "time difference between boston and dublin",
+    "query": "time difference between boston and iceland",
     "seed": "time difference between",
     "letter": "b"
   },
@@ -189,7 +179,7 @@
     "letter": "b"
   },
   {
-    "query": "time difference between boston and tokyo",
+    "query": "time difference between boston and dublin",
     "seed": "time difference between",
     "letter": "b"
   },
@@ -199,7 +189,12 @@
     "letter": "b"
   },
   {
-    "query": "time difference between boston and rome",
+    "query": "time difference between boston and tokyo",
+    "seed": "time difference between",
+    "letter": "b"
+  },
+  {
+    "query": "time difference between boston and japan",
     "seed": "time difference between",
     "letter": "b"
   },
@@ -209,7 +204,7 @@
     "letter": "b"
   },
   {
-    "query": "time difference between boston and japan",
+    "query": "time difference between boston and barcelona",
     "seed": "time difference between",
     "letter": "b"
   },
@@ -224,17 +219,7 @@
     "letter": "c"
   },
   {
-    "query": "time difference between california and london",
-    "seed": "time difference between",
-    "letter": "c"
-  },
-  {
-    "query": "time difference between chicago and california",
-    "seed": "time difference between",
-    "letter": "c"
-  },
-  {
-    "query": "time difference between california and italy",
+    "query": "time difference between california and new york",
     "seed": "time difference between",
     "letter": "c"
   },
@@ -245,6 +230,21 @@
   },
   {
     "query": "time difference between california and australia",
+    "seed": "time difference between",
+    "letter": "c"
+  },
+  {
+    "query": "time difference between california and london",
+    "seed": "time difference between",
+    "letter": "c"
+  },
+  {
+    "query": "time difference between california and chicago",
+    "seed": "time difference between",
+    "letter": "c"
+  },
+  {
+    "query": "time difference between california and italy",
     "seed": "time difference between",
     "letter": "c"
   },
@@ -294,12 +294,12 @@
     "letter": "d"
   },
   {
-    "query": "time difference between denver and new york",
+    "query": "time difference between detroit and hawaii",
     "seed": "time difference between",
     "letter": "d"
   },
   {
-    "query": "time difference between detroit and hawaii",
+    "query": "time difference between denver and new york",
     "seed": "time difference between",
     "letter": "d"
   },
@@ -309,12 +309,12 @@
     "letter": "d"
   },
   {
-    "query": "time difference between denver and paris",
+    "query": "time difference between dc and london",
     "seed": "time difference between",
     "letter": "d"
   },
   {
-    "query": "time difference between dc and london",
+    "query": "time difference between dc and hawaii",
     "seed": "time difference between",
     "letter": "d"
   },
@@ -324,19 +324,14 @@
     "letter": "d"
   },
   {
-    "query": "time difference between denver and italy",
-    "seed": "time difference between",
-    "letter": "d"
-  },
-  {
     "query": "time difference between dallas and phoenix",
     "seed": "time difference between",
     "letter": "d"
   },
   {
-    "query": "time difference between eastern and central",
+    "query": "time difference between denver and italy",
     "seed": "time difference between",
-    "letter": "e"
+    "letter": "d"
   },
   {
     "query": "time difference between est and cst",
@@ -359,12 +354,12 @@
     "letter": "e"
   },
   {
-    "query": "time difference between est and hawaii",
+    "query": "time difference between eastern and mountain",
     "seed": "time difference between",
     "letter": "e"
   },
   {
-    "query": "time difference between eastern and mountain",
+    "query": "time difference between est and hawaii",
     "seed": "time difference between",
     "letter": "e"
   },
@@ -375,6 +370,11 @@
   },
   {
     "query": "time difference between east coast and hawaii",
+    "seed": "time difference between",
+    "letter": "e"
+  },
+  {
+    "query": "time difference between est and australia",
     "seed": "time difference between",
     "letter": "e"
   },
@@ -394,7 +394,7 @@
     "letter": "e"
   },
   {
-    "query": "time difference between est and italy",
+    "query": "time difference between edt and est",
     "seed": "time difference between",
     "letter": "e"
   },
@@ -404,9 +404,9 @@
     "letter": "e"
   },
   {
-    "query": "time difference between est and australia",
+    "query": "time difference between florida",
     "seed": "time difference between",
-    "letter": "e"
+    "letter": "f"
   },
   {
     "query": "time difference between florida and hawaii",
@@ -459,7 +459,7 @@
     "letter": "f"
   },
   {
-    "query": "time difference between florida and london",
+    "query": "time difference between florida and australia",
     "seed": "time difference between",
     "letter": "f"
   },
@@ -469,12 +469,12 @@
     "letter": "f"
   },
   {
-    "query": "time difference between florida and australia",
+    "query": "time difference between france and new york",
     "seed": "time difference between",
     "letter": "f"
   },
   {
-    "query": "time difference between france and new york",
+    "query": "time difference between florida and london",
     "seed": "time difference between",
     "letter": "f"
   },
@@ -499,17 +499,22 @@
     "letter": "g"
   },
   {
+    "query": "time difference between game of thrones and house of the dragon",
+    "seed": "time difference between",
+    "letter": "g"
+  },
+  {
     "query": "time difference between germany and new york",
     "seed": "time difference between",
     "letter": "g"
   },
   {
-    "query": "time difference between gmt and est",
+    "query": "time difference between georgia and hawaii",
     "seed": "time difference between",
     "letter": "g"
   },
   {
-    "query": "time difference between game of thrones and house of the dragon",
+    "query": "time difference between gmt and est",
     "seed": "time difference between",
     "letter": "g"
   },
@@ -520,11 +525,6 @@
   },
   {
     "query": "time difference between germany and california",
-    "seed": "time difference between",
-    "letter": "g"
-  },
-  {
-    "query": "time difference between georgia and hawaii",
     "seed": "time difference between",
     "letter": "g"
   },
@@ -544,12 +544,12 @@
     "letter": "g"
   },
   {
-    "query": "time difference between georgia and arizona",
+    "query": "time difference between ghana and usa",
     "seed": "time difference between",
     "letter": "g"
   },
   {
-    "query": "time difference between gmt and cst",
+    "query": "time difference between georgia and arizona",
     "seed": "time difference between",
     "letter": "g"
   },
@@ -589,17 +589,12 @@
     "letter": "h"
   },
   {
-    "query": "time difference between houston and tokyo",
-    "seed": "time difference between",
-    "letter": "h"
-  },
-  {
     "query": "time difference between houston and new york",
     "seed": "time difference between",
     "letter": "h"
   },
   {
-    "query": "time difference between hawaii and chicago",
+    "query": "time difference between houston and tokyo",
     "seed": "time difference between",
     "letter": "h"
   },
@@ -609,17 +604,22 @@
     "letter": "h"
   },
   {
+    "query": "time difference between hawaii and chicago",
+    "seed": "time difference between",
+    "letter": "h"
+  },
+  {
     "query": "time difference between hawaii and australia",
     "seed": "time difference between",
     "letter": "h"
   },
   {
-    "query": "time difference between hawaii and new mexico",
+    "query": "time difference between hawaii and seattle",
     "seed": "time difference between",
     "letter": "h"
   },
   {
-    "query": "time difference between here and italy",
+    "query": "time difference between hawaii and arizona",
     "seed": "time difference between",
     "letter": "h"
   },
@@ -628,20 +628,11 @@
     "seed": "time in"
   },
   {
-    "query": "time in japan now",
+    "query": "time in italy",
     "seed": "time in"
   },
   {
     "query": "time in melbourne australia",
-    "seed": "time in"
-  },
-  {
-    "query": "time in germany",
-    "seed": "time in",
-    "letter": "g"
-  },
-  {
-    "query": "time in tokyo",
     "seed": "time in"
   },
   {
@@ -654,20 +645,19 @@
     "seed": "time in"
   },
   {
+    "query": "time in tokyo",
+    "seed": "time in"
+  },
+  {
     "query": "time in la",
     "seed": "time in"
   },
   {
-    "query": "time in arizona",
-    "seed": "time in",
-    "letter": "a"
-  },
-  {
-    "query": "time in italy right now",
+    "query": "time in korea",
     "seed": "time in"
   },
   {
-    "query": "time in philippines",
+    "query": "time in italy right now",
     "seed": "time in"
   },
   {
@@ -676,7 +666,16 @@
     "letter": "e"
   },
   {
-    "query": "time in paris now",
+    "query": "time in colorado",
+    "seed": "time in",
+    "letter": "c"
+  },
+  {
+    "query": "time in philippines",
+    "seed": "time in"
+  },
+  {
+    "query": "time in paris",
     "seed": "time in"
   },
   {
@@ -685,16 +684,11 @@
     "letter": "f"
   },
   {
-    "query": "time in india right now",
+    "query": "time in texas right now",
     "seed": "time in"
   },
   {
     "query": "time in alaska",
-    "seed": "time in",
-    "letter": "a"
-  },
-  {
-    "query": "time in arizona right now",
     "seed": "time in",
     "letter": "a"
   },
@@ -709,7 +703,22 @@
     "letter": "a"
   },
   {
+    "query": "time in arizona right now",
+    "seed": "time in",
+    "letter": "a"
+  },
+  {
     "query": "time in amsterdam",
+    "seed": "time in",
+    "letter": "a"
+  },
+  {
+    "query": "time in austin",
+    "seed": "time in",
+    "letter": "a"
+  },
+  {
+    "query": "time in australia now",
     "seed": "time in",
     "letter": "a"
   },
@@ -720,11 +729,6 @@
   },
   {
     "query": "time in argentina",
-    "seed": "time in",
-    "letter": "a"
-  },
-  {
-    "query": "time in australia now",
     "seed": "time in",
     "letter": "a"
   },
@@ -749,7 +753,7 @@
     "letter": "a"
   },
   {
-    "query": "time in anchorage alaska",
+    "query": "time in a bottle lyrics",
     "seed": "time in",
     "letter": "a"
   },
@@ -799,17 +803,17 @@
     "letter": "b"
   },
   {
-    "query": "time in brazil now",
-    "seed": "time in",
-    "letter": "b"
-  },
-  {
     "query": "time in bangalore",
     "seed": "time in",
     "letter": "b"
   },
   {
     "query": "time in brisbane",
+    "seed": "time in",
+    "letter": "b"
+  },
+  {
+    "query": "time in brazil now",
     "seed": "time in",
     "letter": "b"
   },
@@ -829,17 +833,12 @@
     "letter": "b"
   },
   {
-    "query": "time in china right now",
-    "seed": "time in",
-    "letter": "c"
-  },
-  {
     "query": "time in chicago now",
     "seed": "time in",
     "letter": "c"
   },
   {
-    "query": "time in ca",
+    "query": "time in china right now",
     "seed": "time in",
     "letter": "c"
   },
@@ -849,12 +848,12 @@
     "letter": "c"
   },
   {
-    "query": "time in colombia",
+    "query": "time in colorado now",
     "seed": "time in",
     "letter": "c"
   },
   {
-    "query": "time in costa rica",
+    "query": "time in colombia",
     "seed": "time in",
     "letter": "c"
   },
@@ -864,22 +863,17 @@
     "letter": "c"
   },
   {
+    "query": "time in costa rica",
+    "seed": "time in",
+    "letter": "c"
+  },
+  {
     "query": "time in croatia",
     "seed": "time in",
     "letter": "c"
   },
   {
-    "query": "time in colorado now",
-    "seed": "time in",
-    "letter": "c"
-  },
-  {
     "query": "time in cancun",
-    "seed": "time in",
-    "letter": "c"
-  },
-  {
-    "query": "time in co",
     "seed": "time in",
     "letter": "c"
   },
@@ -894,12 +888,17 @@
     "letter": "c"
   },
   {
-    "query": "time in cincinnati ohio",
+    "query": "time in charlotte nc",
     "seed": "time in",
     "letter": "c"
   },
   {
     "query": "time in calgary",
+    "seed": "time in",
+    "letter": "c"
+  },
+  {
+    "query": "time in cincinnati ohio",
     "seed": "time in",
     "letter": "c"
   },
@@ -919,12 +918,12 @@
     "letter": "d"
   },
   {
-    "query": "time in dallas tx",
+    "query": "time in dublin",
     "seed": "time in",
     "letter": "d"
   },
   {
-    "query": "time in dublin",
+    "query": "time in dallas tx",
     "seed": "time in",
     "letter": "d"
   },
@@ -1014,12 +1013,12 @@
     "letter": "e"
   },
   {
-    "query": "time in el salvador",
+    "query": "time in egypt right now",
     "seed": "time in",
     "letter": "e"
   },
   {
-    "query": "time in egypt right now",
+    "query": "time in el salvador",
     "seed": "time in",
     "letter": "e"
   },
@@ -1039,27 +1038,27 @@
     "letter": "e"
   },
   {
-    "query": "time in eastern time",
-    "seed": "time in",
-    "letter": "e"
-  },
-  {
     "query": "time in estonia",
     "seed": "time in",
     "letter": "e"
   },
   {
-    "query": "time in france now",
+    "query": "time in eastern time",
     "seed": "time in",
-    "letter": "f"
+    "letter": "e"
   },
   {
-    "query": "time in florida right now",
+    "query": "time in france",
     "seed": "time in",
     "letter": "f"
   },
   {
     "query": "time in fiji",
+    "seed": "time in",
+    "letter": "f"
+  },
+  {
+    "query": "time in florida right now",
     "seed": "time in",
     "letter": "f"
   },
@@ -1074,7 +1073,7 @@
     "letter": "f"
   },
   {
-    "query": "time in france",
+    "query": "time in florence",
     "seed": "time in",
     "letter": "f"
   },
@@ -1094,7 +1093,7 @@
     "letter": "f"
   },
   {
-    "query": "time in florida now",
+    "query": "time in france right now",
     "seed": "time in",
     "letter": "f"
   },
@@ -1104,12 +1103,12 @@
     "letter": "f"
   },
   {
-    "query": "time in fort worth texas",
+    "query": "time in florida now",
     "seed": "time in",
     "letter": "f"
   },
   {
-    "query": "time in florence",
+    "query": "time in fort worth texas",
     "seed": "time in",
     "letter": "f"
   },
@@ -1124,12 +1123,12 @@
     "letter": "g"
   },
   {
-    "query": "time in ga",
+    "query": "time in ghana",
     "seed": "time in",
     "letter": "g"
   },
   {
-    "query": "time in ghana",
+    "query": "time in georgia",
     "seed": "time in",
     "letter": "g"
   },
@@ -1145,6 +1144,16 @@
   },
   {
     "query": "time in guam",
+    "seed": "time in",
+    "letter": "g"
+  },
+  {
+    "query": "time in ga",
+    "seed": "time in",
+    "letter": "g"
+  },
+  {
+    "query": "time in germany",
     "seed": "time in",
     "letter": "g"
   },
@@ -1169,22 +1178,17 @@
     "letter": "g"
   },
   {
+    "query": "time in germany now",
+    "seed": "time in",
+    "letter": "g"
+  },
+  {
     "query": "time in geneva",
     "seed": "time in",
     "letter": "g"
   },
   {
     "query": "time in guam right now",
-    "seed": "time in",
-    "letter": "g"
-  },
-  {
-    "query": "time in gmt",
-    "seed": "time in",
-    "letter": "g"
-  },
-  {
-    "query": "time in guadalajara mexico",
     "seed": "time in",
     "letter": "g"
   },
@@ -1224,7 +1228,7 @@
     "letter": "h"
   },
   {
-    "query": "time in hungary",
+    "query": "time in honolulu hawaii",
     "seed": "time in",
     "letter": "h"
   },
@@ -1234,12 +1238,12 @@
     "letter": "h"
   },
   {
-    "query": "time in honolulu hawaii",
+    "query": "time in hyderabad",
     "seed": "time in",
     "letter": "h"
   },
   {
-    "query": "time in hyderabad",
+    "query": "time in hungary",
     "seed": "time in",
     "letter": "h"
   },
@@ -1288,6 +1292,11 @@
     "letter": "c"
   },
   {
+    "query": "convert gmt to cdt",
+    "seed": "convert gmt to",
+    "letter": "c"
+  },
+  {
     "query": "convert gmt to mst",
     "seed": "convert gmt to"
   },
@@ -1295,11 +1304,6 @@
     "query": "convert gmt to eastern time",
     "seed": "convert gmt to",
     "letter": "e"
-  },
-  {
-    "query": "convert gmt to cdt",
-    "seed": "convert gmt to",
-    "letter": "c"
   },
   {
     "query": "convert gmt to ist",
@@ -1314,16 +1318,17 @@
     "seed": "convert gmt to"
   },
   {
-    "query": "convert gmt to mountain time",
-    "seed": "convert gmt to"
-  },
-  {
     "query": "convert gmt to mdt",
     "seed": "convert gmt to"
   },
   {
-    "query": "convert gmt to pst in excel",
+    "query": "convert gmt to mountain time",
     "seed": "convert gmt to"
+  },
+  {
+    "query": "convert gmt to central",
+    "seed": "convert gmt to",
+    "letter": "c"
   },
   {
     "query": "convert gmt to pt",
@@ -1335,17 +1340,17 @@
     "letter": "a"
   },
   {
-    "query": "convert gmt to adelaide time",
-    "seed": "convert gmt to",
-    "letter": "a"
-  },
-  {
     "query": "convert gmt to australian time",
     "seed": "convert gmt to",
     "letter": "a"
   },
   {
     "query": "convert gmt to aedt",
+    "seed": "convert gmt to",
+    "letter": "a"
+  },
+  {
+    "query": "convert gmt to adelaide time",
     "seed": "convert gmt to",
     "letter": "a"
   },
@@ -1425,17 +1430,17 @@
     "letter": "b"
   },
   {
-    "query": "convert gmt to brazil time",
-    "seed": "convert gmt to",
-    "letter": "b"
-  },
-  {
-    "query": "convert gmt to berlin time",
+    "query": "convert brazil time to gmt",
     "seed": "convert gmt to",
     "letter": "b"
   },
   {
     "query": "convert gmt to bahrain time",
+    "seed": "convert gmt to",
+    "letter": "b"
+  },
+  {
+    "query": "convert gmt to berlin time",
     "seed": "convert gmt to",
     "letter": "b"
   },
@@ -1480,22 +1485,12 @@
     "letter": "b"
   },
   {
-    "query": "convert gmt to central",
-    "seed": "convert gmt to",
-    "letter": "c"
-  },
-  {
-    "query": "convert gmt to cst in excel",
+    "query": "convert gmt to central daylight time",
     "seed": "convert gmt to",
     "letter": "c"
   },
   {
     "query": "convert gmt to cet",
-    "seed": "convert gmt to",
-    "letter": "c"
-  },
-  {
-    "query": "convert gmt to cest",
     "seed": "convert gmt to",
     "letter": "c"
   },
@@ -1536,6 +1531,11 @@
   },
   {
     "query": "convert utc to cst in excel",
+    "seed": "convert gmt to",
+    "letter": "c"
+  },
+  {
+    "query": "convert utc to cest",
     "seed": "convert gmt to",
     "letter": "c"
   },
@@ -1615,11 +1615,6 @@
     "letter": "d"
   },
   {
-    "query": "convert gmt to edt time",
-    "seed": "convert gmt to",
-    "letter": "e"
-  },
-  {
     "query": "convert gmt to est in excel",
     "seed": "convert gmt to",
     "letter": "e"
@@ -1650,7 +1645,7 @@
     "letter": "e"
   },
   {
-    "query": "convert gmt to est in sql",
+    "query": "convert gmt to edt time",
     "seed": "convert gmt to",
     "letter": "e"
   },
@@ -1660,12 +1655,17 @@
     "letter": "e"
   },
   {
-    "query": "convert gmt to epoch",
+    "query": "convert gmt to eat time",
     "seed": "convert gmt to",
     "letter": "e"
   },
   {
-    "query": "convert gmt to eat time",
+    "query": "convert gmt to est in sql",
+    "seed": "convert gmt to",
+    "letter": "e"
+  },
+  {
+    "query": "convert gmt to epoch",
     "seed": "convert gmt to",
     "letter": "e"
   },
@@ -1675,12 +1675,17 @@
     "letter": "e"
   },
   {
-    "query": "convert utc to french time",
+    "query": "convert to gmt format",
     "seed": "convert gmt to",
     "letter": "f"
   },
   {
     "query": "convert utc to fiji time",
+    "seed": "convert gmt to",
+    "letter": "f"
+  },
+  {
+    "query": "convert utc to french time",
     "seed": "convert gmt to",
     "letter": "f"
   },
@@ -1745,11 +1750,6 @@
     "letter": "f"
   },
   {
-    "query": "convert from gmt to bst",
-    "seed": "convert gmt to",
-    "letter": "f"
-  },
-  {
     "query": "convert gmt to gst",
     "seed": "convert gmt to",
     "letter": "g"
@@ -1770,12 +1770,12 @@
     "letter": "g"
   },
   {
-    "query": "convert utc to gps",
+    "query": "convert utc to greece time",
     "seed": "convert gmt to",
     "letter": "g"
   },
   {
-    "query": "convert utc to greece time",
+    "query": "convert utc to gps",
     "seed": "convert gmt to",
     "letter": "g"
   },
@@ -1911,20 +1911,24 @@
     "letter": "g"
   },
   {
+    "query": "convert est to central time",
+    "seed": "convert est to",
+    "letter": "c"
+  },
+  {
     "query": "convert est to london time",
     "seed": "convert est to"
   },
   {
-    "query": "convert est to central time",
-    "seed": "convert est to",
-    "letter": "c"
+    "query": "convert est to utc time",
+    "seed": "convert est to"
   },
   {
     "query": "convert est to india time",
     "seed": "convert est to"
   },
   {
-    "query": "convert est to utc time",
+    "query": "convert est to ist time zone",
     "seed": "convert est to"
   },
   {
@@ -1933,7 +1937,7 @@
     "letter": "c"
   },
   {
-    "query": "convert est to ist time zone",
+    "query": "convert est to uk time",
     "seed": "convert est to"
   },
   {
@@ -1941,13 +1945,8 @@
     "seed": "convert est to"
   },
   {
-    "query": "convert est to uk time",
+    "query": "convert est to pdt",
     "seed": "convert est to"
-  },
-  {
-    "query": "convert est to edt",
-    "seed": "convert est to",
-    "letter": "e"
   },
   {
     "query": "convert est to australia time",
@@ -1970,11 +1969,6 @@
     "letter": "a"
   },
   {
-    "query": "convert est to athens time",
-    "seed": "convert est to",
-    "letter": "a"
-  },
-  {
     "query": "convert est to aest time",
     "seed": "convert est to",
     "letter": "a"
@@ -1986,6 +1980,11 @@
   },
   {
     "query": "convert est to aedt",
+    "seed": "convert est to",
+    "letter": "a"
+  },
+  {
+    "query": "convert est to athens time",
     "seed": "convert est to",
     "letter": "a"
   },
@@ -2005,6 +2004,11 @@
     "letter": "a"
   },
   {
+    "query": "convert 7pm est to aest",
+    "seed": "convert est to",
+    "letter": "a"
+  },
+  {
     "query": "convert 6pm est to aest",
     "seed": "convert est to",
     "letter": "a"
@@ -2020,11 +2024,6 @@
     "letter": "a"
   },
   {
-    "query": "convert est 9 am to ist",
-    "seed": "convert est to",
-    "letter": "a"
-  },
-  {
     "query": "convert est to bst",
     "seed": "convert est to",
     "letter": "b"
@@ -2035,22 +2034,7 @@
     "letter": "b"
   },
   {
-    "query": "convert est to british summer time",
-    "seed": "convert est to",
-    "letter": "b"
-  },
-  {
-    "query": "convert est to bst time",
-    "seed": "convert est to",
-    "letter": "b"
-  },
-  {
     "query": "convert est to beirut time",
-    "seed": "convert est to",
-    "letter": "b"
-  },
-  {
-    "query": "convert est to brussels time",
     "seed": "convert est to",
     "letter": "b"
   },
@@ -2075,17 +2059,17 @@
     "letter": "b"
   },
   {
-    "query": "convert est to berlin time",
-    "seed": "convert est to",
-    "letter": "b"
-  },
-  {
     "query": "convert est to brt",
     "seed": "convert est to",
     "letter": "b"
   },
   {
-    "query": "convert est to bahrain time",
+    "query": "convert est to berlin time",
+    "seed": "convert est to",
+    "letter": "b"
+  },
+  {
+    "query": "convert est to brussels time",
     "seed": "convert est to",
     "letter": "b"
   },
@@ -2095,7 +2079,22 @@
     "letter": "b"
   },
   {
+    "query": "convert est to bahrain time",
+    "seed": "convert est to",
+    "letter": "b"
+  },
+  {
     "query": "convert est to bangalore time",
+    "seed": "convert est to",
+    "letter": "b"
+  },
+  {
+    "query": "convert est to belgium time",
+    "seed": "convert est to",
+    "letter": "b"
+  },
+  {
+    "query": "convert est to bc time",
     "seed": "convert est to",
     "letter": "b"
   },
@@ -2110,12 +2109,12 @@
     "letter": "c"
   },
   {
-    "query": "convert est to cst in excel",
+    "query": "convert est to california time",
     "seed": "convert est to",
     "letter": "c"
   },
   {
-    "query": "convert est to california time",
+    "query": "convert est to cst in excel",
     "seed": "convert est to",
     "letter": "c"
   },
@@ -2135,17 +2134,12 @@
     "letter": "c"
   },
   {
-    "query": "convert est to cat",
-    "seed": "convert est to",
-    "letter": "c"
-  },
-  {
     "query": "convert est to cet time zone",
     "seed": "convert est to",
     "letter": "c"
   },
   {
-    "query": "convert est to cest time",
+    "query": "convert est to cat",
     "seed": "convert est to",
     "letter": "c"
   },
@@ -2156,6 +2150,11 @@
   },
   {
     "query": "convert est to cet time",
+    "seed": "convert est to",
+    "letter": "c"
+  },
+  {
+    "query": "convert eastern time to central standard time",
     "seed": "convert est to",
     "letter": "c"
   },
@@ -2181,6 +2180,11 @@
   },
   {
     "query": "convert est to doha time",
+    "seed": "convert est to",
+    "letter": "d"
+  },
+  {
+    "query": "convert est to delhi time",
     "seed": "convert est to",
     "letter": "d"
   },
@@ -2225,14 +2229,14 @@
     "letter": "d"
   },
   {
-    "query": "convert 4pm est to dubai time",
+    "query": "convert 12pm est to dubai time",
     "seed": "convert est to",
     "letter": "d"
   },
   {
-    "query": "convert est to abu dhabi time",
+    "query": "convert est to edt",
     "seed": "convert est to",
-    "letter": "d"
+    "letter": "e"
   },
   {
     "query": "convert est to edt time",
@@ -2255,11 +2259,6 @@
     "letter": "e"
   },
   {
-    "query": "convert est to egypt time",
-    "seed": "convert est to",
-    "letter": "e"
-  },
-  {
     "query": "convert est to epoch time",
     "seed": "convert est to",
     "letter": "e"
@@ -2270,7 +2269,7 @@
     "letter": "e"
   },
   {
-    "query": "translate est to eng",
+    "query": "translate est to english",
     "seed": "convert est to",
     "letter": "e"
   },
@@ -2296,6 +2295,11 @@
   },
   {
     "query": "time converter est to eet",
+    "seed": "convert est to",
+    "letter": "e"
+  },
+  {
+    "query": "convert est to ist in excel",
     "seed": "convert est to",
     "letter": "e"
   },
@@ -2355,22 +2359,22 @@
     "letter": "f"
   },
   {
-    "query": "convert from est to pst",
-    "seed": "convert est to",
-    "letter": "f"
-  },
-  {
     "query": "convert from est to cst",
     "seed": "convert est to",
     "letter": "f"
   },
   {
-    "query": "convert est to gmt time zone",
+    "query": "convert from est to pst",
+    "seed": "convert est to",
+    "letter": "f"
+  },
+  {
+    "query": "convert est to germany time",
     "seed": "convert est to",
     "letter": "g"
   },
   {
-    "query": "convert est to germany time",
+    "query": "convert est to gmt time zone",
     "seed": "convert est to",
     "letter": "g"
   },
@@ -2380,12 +2384,12 @@
     "letter": "g"
   },
   {
-    "query": "convert est to gmt+1",
+    "query": "convert est to gmt 7",
     "seed": "convert est to",
     "letter": "g"
   },
   {
-    "query": "convert est to gmt 7",
+    "query": "convert est to gmt 1",
     "seed": "convert est to",
     "letter": "g"
   },
@@ -2395,12 +2399,12 @@
     "letter": "g"
   },
   {
-    "query": "convert est to gmt 3",
+    "query": "convert est to german time",
     "seed": "convert est to",
     "letter": "g"
   },
   {
-    "query": "convert est to german time",
+    "query": "convert est to gmt 3",
     "seed": "convert est to",
     "letter": "g"
   },
@@ -2410,17 +2414,12 @@
     "letter": "g"
   },
   {
-    "query": "convert est to gmt 2",
-    "seed": "convert est to",
-    "letter": "g"
-  },
-  {
     "query": "convert est to guam time",
     "seed": "convert est to",
     "letter": "g"
   },
   {
-    "query": "convert est to ghana time",
+    "query": "convert est to gmt 2",
     "seed": "convert est to",
     "letter": "g"
   },
@@ -2430,7 +2429,12 @@
     "letter": "g"
   },
   {
-    "query": "convert est to gmt 4",
+    "query": "convert est to ghana time",
+    "seed": "convert est to",
+    "letter": "g"
+  },
+  {
+    "query": "convert greenwich mean time to est",
     "seed": "convert est to",
     "letter": "g"
   },
@@ -2485,17 +2489,12 @@
     "letter": "h"
   },
   {
-    "query": "convert 3pm est to hawaii time",
-    "seed": "convert est to",
-    "letter": "h"
-  },
-  {
     "query": "convert 4pm est to hst",
     "seed": "convert est to",
     "letter": "h"
   },
   {
-    "query": "convert 2pm est to hst",
+    "query": "convert 3pm est to hawaii time",
     "seed": "convert est to",
     "letter": "h"
   },
@@ -2506,6 +2505,11 @@
   },
   {
     "query": "convert 8pm est to hawaii time",
+    "seed": "convert est to",
+    "letter": "h"
+  },
+  {
+    "query": "convert 2pm est to hst",
     "seed": "convert est to",
     "letter": "h"
   },
@@ -2533,23 +2537,13 @@
     "letter": "c"
   },
   {
-    "query": "convert pst to mbox",
-    "seed": "convert pst to"
-  },
-  {
     "query": "convert pst to ist",
     "seed": "convert pst to",
     "letter": "d"
   },
   {
-    "query": "convert pst to central time",
-    "seed": "convert pst to",
-    "letter": "c"
-  },
-  {
-    "query": "convert pst to eml",
-    "seed": "convert pst to",
-    "letter": "e"
+    "query": "convert pst to mbox",
+    "seed": "convert pst to"
   },
   {
     "query": "convert pst to est time",
@@ -2562,22 +2556,27 @@
     "letter": "g"
   },
   {
+    "query": "convert pst to eml",
+    "seed": "convert pst to",
+    "letter": "e"
+  },
+  {
+    "query": "convert pst to central time",
+    "seed": "convert pst to",
+    "letter": "c"
+  },
+  {
     "query": "convert pst to mst",
     "seed": "convert pst to"
   },
   {
-    "query": "convert pst to cst time",
+    "query": "convert pst to excel",
     "seed": "convert pst to",
-    "letter": "c"
+    "letter": "e"
   },
   {
     "query": "convert pst to ost",
     "seed": "convert pst to"
-  },
-  {
-    "query": "convert pst to china time",
-    "seed": "convert pst to",
-    "letter": "c"
   },
   {
     "query": "convert pst to australia time",
@@ -2625,7 +2624,22 @@
     "letter": "a"
   },
   {
-    "query": "convert pst to atlantic time",
+    "query": "convert pacific time to aest",
+    "seed": "convert pst to",
+    "letter": "a"
+  },
+  {
+    "query": "convert pacific time to atlantic time",
+    "seed": "convert pst to",
+    "letter": "a"
+  },
+  {
+    "query": "convert pacific time to australian time",
+    "seed": "convert pst to",
+    "letter": "a"
+  },
+  {
+    "query": "convert pacific time to australian eastern time",
     "seed": "convert pst to",
     "letter": "a"
   },
@@ -2635,22 +2649,7 @@
     "letter": "a"
   },
   {
-    "query": "convert 9am pst to aest",
-    "seed": "convert pst to",
-    "letter": "a"
-  },
-  {
     "query": "convert 10am pst to aest",
-    "seed": "convert pst to",
-    "letter": "a"
-  },
-  {
-    "query": "convert 3pm pst to aest",
-    "seed": "convert pst to",
-    "letter": "a"
-  },
-  {
-    "query": "convert 5pm pst to aest",
     "seed": "convert pst to",
     "letter": "a"
   },
@@ -2660,7 +2659,7 @@
     "letter": "b"
   },
   {
-    "query": "convert pst to barcelona time",
+    "query": "convert pst to beijing time",
     "seed": "convert pst to",
     "letter": "b"
   },
@@ -2675,7 +2674,7 @@
     "letter": "b"
   },
   {
-    "query": "convert pst to beijing time",
+    "query": "convert pst to berlin time",
     "seed": "convert pst to",
     "letter": "b"
   },
@@ -2685,7 +2684,7 @@
     "letter": "b"
   },
   {
-    "query": "convert pst to berlin time",
+    "query": "convert pst to brussels time",
     "seed": "convert pst to",
     "letter": "b"
   },
@@ -2695,7 +2694,7 @@
     "letter": "b"
   },
   {
-    "query": "convert pst to brussels time",
+    "query": "convert pst to barcelona time",
     "seed": "convert pst to",
     "letter": "b"
   },
@@ -2730,6 +2729,21 @@
     "letter": "b"
   },
   {
+    "query": "convert pst to cet",
+    "seed": "convert pst to",
+    "letter": "c"
+  },
+  {
+    "query": "convert pst to cst time",
+    "seed": "convert pst to",
+    "letter": "c"
+  },
+  {
+    "query": "convert pst to china time",
+    "seed": "convert pst to",
+    "letter": "c"
+  },
+  {
     "query": "convert pst to cdt",
     "seed": "convert pst to",
     "letter": "c"
@@ -2740,17 +2754,7 @@
     "letter": "c"
   },
   {
-    "query": "convert pst to cet",
-    "seed": "convert pst to",
-    "letter": "c"
-  },
-  {
     "query": "convert pst to csv online free",
-    "seed": "convert pst to",
-    "letter": "c"
-  },
-  {
-    "query": "convert pst to csv free",
     "seed": "convert pst to",
     "letter": "c"
   },
@@ -2770,6 +2774,11 @@
     "letter": "c"
   },
   {
+    "query": "convert pst to csv free",
+    "seed": "convert pst to",
+    "letter": "c"
+  },
+  {
     "query": "convert pst to csv without outlook",
     "seed": "convert pst to",
     "letter": "c"
@@ -2780,17 +2789,17 @@
     "letter": "c"
   },
   {
+    "query": "convert pst to dublin time",
+    "seed": "convert pst to",
+    "letter": "d"
+  },
+  {
     "query": "convert pst to dubai time",
     "seed": "convert pst to",
     "letter": "d"
   },
   {
     "query": "convert pst to doc",
-    "seed": "convert pst to",
-    "letter": "d"
-  },
-  {
-    "query": "convert pst to dublin time",
     "seed": "convert pst to",
     "letter": "d"
   },
@@ -2820,12 +2829,12 @@
     "letter": "d"
   },
   {
-    "query": "convert utc to pst databricks",
+    "query": "convert ost to pst download",
     "seed": "convert pst to",
     "letter": "d"
   },
   {
-    "query": "convert ost to pst download",
+    "query": "convert utc to pst databricks",
     "seed": "convert pst to",
     "letter": "d"
   },
@@ -2850,17 +2859,12 @@
     "letter": "d"
   },
   {
-    "query": "convert pst to excel",
+    "query": "convert pst to eml free",
     "seed": "convert pst to",
     "letter": "e"
   },
   {
     "query": "convert pst to edt",
-    "seed": "convert pst to",
-    "letter": "e"
-  },
-  {
-    "query": "convert pst to eml free",
     "seed": "convert pst to",
     "letter": "e"
   },
@@ -2885,11 +2889,6 @@
     "letter": "e"
   },
   {
-    "query": "convert pst to emlx",
-    "seed": "convert pst to",
-    "letter": "e"
-  },
-  {
     "query": "convert pst to eastern time",
     "seed": "convert pst to",
     "letter": "e"
@@ -2906,6 +2905,11 @@
   },
   {
     "query": "convert pst to est in excel",
+    "seed": "convert pst to",
+    "letter": "e"
+  },
+  {
+    "query": "convert pst to emlx",
     "seed": "convert pst to",
     "letter": "e"
   },
@@ -2950,17 +2954,17 @@
     "letter": "f"
   },
   {
+    "query": "convert to pst file",
+    "seed": "convert pst to",
+    "letter": "f"
+  },
+  {
     "query": "convert pst file to thunderbird",
     "seed": "convert pst to",
     "letter": "f"
   },
   {
     "query": "convert pst file to ost",
-    "seed": "convert pst to",
-    "letter": "f"
-  },
-  {
-    "query": "convert to pst file",
     "seed": "convert pst to",
     "letter": "f"
   },
@@ -2995,16 +2999,6 @@
     "letter": "g"
   },
   {
-    "query": "convert pst to gmt 7",
-    "seed": "convert pst to",
-    "letter": "g"
-  },
-  {
-    "query": "convert pst to gmt 2",
-    "seed": "convert pst to",
-    "letter": "g"
-  },
-  {
     "query": "convert pst to gmt 8",
     "seed": "convert pst to",
     "letter": "g"
@@ -3015,27 +3009,7 @@
     "letter": "g"
   },
   {
-    "query": "convert pst to gmt time zone",
-    "seed": "convert pst to",
-    "letter": "g"
-  },
-  {
     "query": "convert pst to guam time",
-    "seed": "convert pst to",
-    "letter": "g"
-  },
-  {
-    "query": "convert pacific time to gmt",
-    "seed": "convert pst to",
-    "letter": "g"
-  },
-  {
-    "query": "convert pacific time to germany time",
-    "seed": "convert pst to",
-    "letter": "g"
-  },
-  {
-    "query": "convert pacific time to greenwich mean time",
     "seed": "convert pst to",
     "letter": "g"
   },
@@ -3045,17 +3019,47 @@
     "letter": "g"
   },
   {
+    "query": "convert pdt to gmt 7",
+    "seed": "convert pst to",
+    "letter": "g"
+  },
+  {
+    "query": "convert pdt to gmt 3",
+    "seed": "convert pst to",
+    "letter": "g"
+  },
+  {
+    "query": "convert pdt to gmt+8",
+    "seed": "convert pst to",
+    "letter": "g"
+  },
+  {
+    "query": "convert 10am pst to gmt",
+    "seed": "convert pst to",
+    "letter": "g"
+  },
+  {
+    "query": "convert 11am pst to gmt",
+    "seed": "convert pst to",
+    "letter": "g"
+  },
+  {
+    "query": "convert 7am pst to gmt",
+    "seed": "convert pst to",
+    "letter": "g"
+  },
+  {
     "query": "convert pst to hawaii time",
     "seed": "convert pst to",
     "letter": "h"
   },
   {
-    "query": "convert pst to html",
+    "query": "convert pst to hst",
     "seed": "convert pst to",
     "letter": "h"
   },
   {
-    "query": "convert pst to hst",
+    "query": "convert pst to html",
     "seed": "convert pst to",
     "letter": "h"
   },
@@ -3100,12 +3104,12 @@
     "letter": "h"
   },
   {
-    "query": "how to convert pst to eml",
+    "query": "how to convert pst to csv",
     "seed": "convert pst to",
     "letter": "h"
   },
   {
-    "query": "how to convert pst to csv",
+    "query": "how to convert pst to eml",
     "seed": "convert pst to",
     "letter": "h"
   },
@@ -3120,17 +3124,12 @@
     "letter": "h"
   },
   {
-    "query": "what time is it in california",
-    "seed": "what time is it in",
-    "letter": "c"
-  },
-  {
     "query": "what time is it in hawaii",
     "seed": "what time is it in",
     "letter": "h"
   },
   {
-    "query": "what time is it in japan",
+    "query": "what time is it in london",
     "seed": "what time is it in"
   },
   {
@@ -3139,21 +3138,11 @@
     "letter": "a"
   },
   {
-    "query": "what time is it in texas",
+    "query": "what time is it in japan",
     "seed": "what time is it in"
   },
   {
-    "query": "what time is it in australia",
-    "seed": "what time is it in",
-    "letter": "a"
-  },
-  {
-    "query": "what time is it in florida",
-    "seed": "what time is it in",
-    "letter": "f"
-  },
-  {
-    "query": "what time is it in london",
+    "query": "what time is it in texas",
     "seed": "what time is it in"
   },
   {
@@ -3161,13 +3150,33 @@
     "seed": "what time is it in"
   },
   {
+    "query": "what time is it in florida",
+    "seed": "what time is it in",
+    "letter": "f"
+  },
+  {
     "query": "what time is it in germany",
     "seed": "what time is it in",
     "letter": "g"
   },
   {
+    "query": "what time is it in australia",
+    "seed": "what time is it in",
+    "letter": "a"
+  },
+  {
     "query": "what time is it in spain",
     "seed": "what time is it in"
+  },
+  {
+    "query": "what time is it in france",
+    "seed": "what time is it in",
+    "letter": "f"
+  },
+  {
+    "query": "what time is it in california right now",
+    "seed": "what time is it in",
+    "letter": "c"
   },
   {
     "query": "what time is it in alaska",
@@ -3184,11 +3193,6 @@
     "seed": "what time is it in"
   },
   {
-    "query": "what time is it in hawaii right now",
-    "seed": "what time is it in",
-    "letter": "h"
-  },
-  {
     "query": "what time is it in atlanta",
     "seed": "what time is it in",
     "letter": "a"
@@ -3199,12 +3203,12 @@
     "letter": "a"
   },
   {
-    "query": "what time is it in alabama",
+    "query": "what time is it in australia right now",
     "seed": "what time is it in",
     "letter": "a"
   },
   {
-    "query": "what time is it in australia right now",
+    "query": "what time is it in alabama",
     "seed": "what time is it in",
     "letter": "a"
   },
@@ -3224,6 +3228,11 @@
     "letter": "a"
   },
   {
+    "query": "what time is it in argentina",
+    "seed": "what time is it in",
+    "letter": "a"
+  },
+  {
     "query": "what time is it in az",
     "seed": "what time is it in",
     "letter": "a"
@@ -3235,11 +3244,6 @@
   },
   {
     "query": "what time is it in anchorage alaska",
-    "seed": "what time is it in",
-    "letter": "a"
-  },
-  {
-    "query": "what time is it in austin texas",
     "seed": "what time is it in",
     "letter": "a"
   },
@@ -3294,22 +3298,22 @@
     "letter": "b"
   },
   {
-    "query": "what time is it in baltimore",
-    "seed": "what time is it in",
-    "letter": "b"
-  },
-  {
     "query": "what time is it in bangkok",
     "seed": "what time is it in",
     "letter": "b"
   },
   {
-    "query": "what time is it in birmingham alabama",
+    "query": "what time is it in baltimore",
     "seed": "what time is it in",
     "letter": "b"
   },
   {
     "query": "what time is it in beijing china",
+    "seed": "what time is it in",
+    "letter": "b"
+  },
+  {
+    "query": "what time is it in birmingham alabama",
     "seed": "what time is it in",
     "letter": "b"
   },
@@ -3324,7 +3328,7 @@
     "letter": "b"
   },
   {
-    "query": "what time is it in california right now",
+    "query": "what time is it in california",
     "seed": "what time is it in",
     "letter": "c"
   },
@@ -3344,17 +3348,12 @@
     "letter": "c"
   },
   {
-    "query": "what time is it in chicago illinois",
-    "seed": "what time is it in",
-    "letter": "c"
-  },
-  {
     "query": "what time is it in china right now",
     "seed": "what time is it in",
     "letter": "c"
   },
   {
-    "query": "what time is it in cancun",
+    "query": "what time is it in chicago illinois",
     "seed": "what time is it in",
     "letter": "c"
   },
@@ -3369,6 +3368,11 @@
     "letter": "c"
   },
   {
+    "query": "what time is it in cancun",
+    "seed": "what time is it in",
+    "letter": "c"
+  },
+  {
     "query": "what time is it in croatia",
     "seed": "what time is it in",
     "letter": "c"
@@ -3379,17 +3383,17 @@
     "letter": "c"
   },
   {
-    "query": "what time is it in cancun mexico",
-    "seed": "what time is it in",
-    "letter": "c"
-  },
-  {
     "query": "what time is it in central time right now",
     "seed": "what time is it in",
     "letter": "c"
   },
   {
-    "query": "what time is it in denver",
+    "query": "what time is it in cincinnati ohio",
+    "seed": "what time is it in",
+    "letter": "c"
+  },
+  {
+    "query": "what time is it in denver colorado",
     "seed": "what time is it in",
     "letter": "d"
   },
@@ -3399,7 +3403,7 @@
     "letter": "d"
   },
   {
-    "query": "what time is it in denver colorado",
+    "query": "what time is it in dublin ireland",
     "seed": "what time is it in",
     "letter": "d"
   },
@@ -3414,27 +3418,7 @@
     "letter": "d"
   },
   {
-    "query": "what time is it in dublin",
-    "seed": "what time is it in",
-    "letter": "d"
-  },
-  {
-    "query": "what time is it in dallas",
-    "seed": "what time is it in",
-    "letter": "d"
-  },
-  {
-    "query": "what time is it in dublin ireland",
-    "seed": "what time is it in",
-    "letter": "d"
-  },
-  {
-    "query": "what time is it in denver right now",
-    "seed": "what time is it in",
-    "letter": "d"
-  },
-  {
-    "query": "what time is it in destin florida",
+    "query": "what time is it in dominican republic",
     "seed": "what time is it in",
     "letter": "d"
   },
@@ -3444,22 +3428,42 @@
     "letter": "d"
   },
   {
-    "query": "what time is it in dominican republic",
-    "seed": "what time is it in",
-    "letter": "d"
-  },
-  {
-    "query": "what time is it in detroit michigan",
-    "seed": "what time is it in",
-    "letter": "d"
-  },
-  {
     "query": "what time is it in dc",
     "seed": "what time is it in",
     "letter": "d"
   },
   {
-    "query": "what time is it in dubai right now",
+    "query": "what time is it in destin florida",
+    "seed": "what time is it in",
+    "letter": "d"
+  },
+  {
+    "query": "what time is it in delaware",
+    "seed": "what time is it in",
+    "letter": "d"
+  },
+  {
+    "query": "what time is it in des moines iowa",
+    "seed": "what time is it in",
+    "letter": "d"
+  },
+  {
+    "query": "what time is it in dayton ohio",
+    "seed": "what time is it in",
+    "letter": "d"
+  },
+  {
+    "query": "what time is it in destin florida right now",
+    "seed": "what time is it in",
+    "letter": "d"
+  },
+  {
+    "query": "what time is it in durango colorado",
+    "seed": "what time is it in",
+    "letter": "d"
+  },
+  {
+    "query": "what time is it in djibouti africa",
     "seed": "what time is it in",
     "letter": "d"
   },
@@ -3479,12 +3483,12 @@
     "letter": "e"
   },
   {
-    "query": "what time is it in eastern time",
+    "query": "what time is it in egypt",
     "seed": "what time is it in",
     "letter": "e"
   },
   {
-    "query": "what time is it in egypt",
+    "query": "what time is it in eastern time",
     "seed": "what time is it in",
     "letter": "e"
   },
@@ -3534,17 +3538,12 @@
     "letter": "e"
   },
   {
-    "query": "what time is it in evansville indiana",
+    "query": "what time is it in el paso",
     "seed": "what time is it in",
     "letter": "e"
   },
   {
     "query": "what time is it in fiji",
-    "seed": "what time is it in",
-    "letter": "f"
-  },
-  {
-    "query": "what time is it in france",
     "seed": "what time is it in",
     "letter": "f"
   },
@@ -3579,12 +3578,12 @@
     "letter": "f"
   },
   {
-    "query": "what time is it in fort worth texas",
+    "query": "what time is it in fairbanks alaska",
     "seed": "what time is it in",
     "letter": "f"
   },
   {
-    "query": "what time is it in fairbanks alaska",
+    "query": "what time is it in fort worth texas",
     "seed": "what time is it in",
     "letter": "f"
   },
@@ -3679,6 +3678,11 @@
     "letter": "g"
   },
   {
+    "query": "what time is it in hawaii right now",
+    "seed": "what time is it in",
+    "letter": "h"
+  },
+  {
     "query": "what time is it in houston texas",
     "seed": "what time is it in",
     "letter": "h"
@@ -3719,12 +3723,12 @@
     "letter": "h"
   },
   {
-    "query": "what time is it in hungary",
+    "query": "what time is it in hong kong right now",
     "seed": "what time is it in",
     "letter": "h"
   },
   {
-    "query": "what time is it in hong kong right now",
+    "query": "what time is it in hungary",
     "seed": "what time is it in",
     "letter": "h"
   },
@@ -3774,6 +3778,10 @@
     "seed": "best time to call from"
   },
   {
+    "query": "best time to cold call on friday",
+    "seed": "best time to call from"
+  },
+  {
     "query": "when can i call you or when i can call you",
     "seed": "best time to call from"
   },
@@ -3807,6 +3815,11 @@
     "letter": "a"
   },
   {
+    "query": "best time to call alaska airlines customer service",
+    "seed": "best time to call from",
+    "letter": "a"
+  },
+  {
     "query": "best time to call apple support",
     "seed": "best time to call from",
     "letter": "a"
@@ -3817,17 +3830,17 @@
     "letter": "a"
   },
   {
-    "query": "best time to call alaska airlines customer service",
+    "query": "best time to call american airlines customer service",
+    "seed": "best time to call from",
+    "letter": "a"
+  },
+  {
+    "query": "best time to call ato australia",
     "seed": "best time to call from",
     "letter": "a"
   },
   {
     "query": "best time to call amazon customer service",
-    "seed": "best time to call from",
-    "letter": "a"
-  },
-  {
-    "query": "best time to call american airlines customer service",
     "seed": "best time to call from",
     "letter": "a"
   },
@@ -3838,11 +3851,6 @@
   },
   {
     "query": "best time to call alaska airlines",
-    "seed": "best time to call from",
-    "letter": "a"
-  },
-  {
-    "query": "best time to call ato australia",
     "seed": "best time to call from",
     "letter": "a"
   },
@@ -3862,12 +3870,12 @@
     "letter": "b"
   },
   {
-    "query": "best time to call bdo hotline",
+    "query": "best time to call bdo customer service",
     "seed": "best time to call from",
     "letter": "b"
   },
   {
-    "query": "best time to call bdo customer service",
+    "query": "best time to call bdo hotline",
     "seed": "best time to call from",
     "letter": "b"
   },
@@ -3917,7 +3925,7 @@
     "letter": "b"
   },
   {
-    "query": "best time to call booking.com",
+    "query": "best time to call benefits cal",
     "seed": "best time to call from",
     "letter": "b"
   },
@@ -3952,17 +3960,12 @@
     "letter": "c"
   },
   {
-    "query": "best time to call clients",
-    "seed": "best time to call from",
-    "letter": "c"
-  },
-  {
     "query": "best time to call calfresh",
     "seed": "best time to call from",
     "letter": "c"
   },
   {
-    "query": "best time to call canada revenue agency",
+    "query": "best time to call clients",
     "seed": "best time to call from",
     "letter": "c"
   },
@@ -3983,6 +3986,11 @@
   },
   {
     "query": "best time to call citizens advice",
+    "seed": "best time to call from",
+    "letter": "c"
+  },
+  {
+    "query": "best time to call canada revenue agency",
     "seed": "best time to call from",
     "letter": "c"
   },
@@ -4012,17 +4020,7 @@
     "letter": "d"
   },
   {
-    "query": "best time to call dla",
-    "seed": "best time to call from",
-    "letter": "d"
-  },
-  {
     "query": "best time to call direct express",
-    "seed": "best time to call from",
-    "letter": "d"
-  },
-  {
-    "query": "best time to call des",
     "seed": "best time to call from",
     "letter": "d"
   },
@@ -4032,12 +4030,12 @@
     "letter": "d"
   },
   {
-    "query": "best time to call dwp",
+    "query": "best time to call dla",
     "seed": "best time to call from",
     "letter": "d"
   },
   {
-    "query": "best time to call dmv",
+    "query": "best time to call des",
     "seed": "best time to call from",
     "letter": "d"
   },
@@ -4047,7 +4045,17 @@
     "letter": "d"
   },
   {
+    "query": "best time to call dwp",
+    "seed": "best time to call from",
+    "letter": "d"
+  },
+  {
     "query": "best time to call disability california",
+    "seed": "best time to call from",
+    "letter": "d"
+  },
+  {
+    "query": "best time to call dmv",
     "seed": "best time to call from",
     "letter": "d"
   },
@@ -4077,22 +4085,7 @@
     "letter": "e"
   },
   {
-    "query": "best time to call edd disability",
-    "seed": "best time to call from",
-    "letter": "e"
-  },
-  {
     "query": "best time to call edd paid family leave",
-    "seed": "best time to call from",
-    "letter": "e"
-  },
-  {
-    "query": "best time to call edd california",
-    "seed": "best time to call from",
-    "letter": "e"
-  },
-  {
-    "query": "best time to call edd sdi",
     "seed": "best time to call from",
     "letter": "e"
   },
@@ -4117,7 +4110,7 @@
     "letter": "e"
   },
   {
-    "query": "best time to call ez pass nj",
+    "query": "best time to call edd pfl",
     "seed": "best time to call from",
     "letter": "e"
   },
@@ -4127,12 +4120,12 @@
     "letter": "e"
   },
   {
-    "query": "best time to call employer",
+    "query": "best time to call ebt office",
     "seed": "best time to call from",
     "letter": "e"
   },
   {
-    "query": "best time to call ebt office",
+    "query": "best time to call ez pass nj",
     "seed": "best time to call from",
     "letter": "e"
   },
@@ -4143,6 +4136,21 @@
   },
   {
     "query": "best time to call expedia customer service",
+    "seed": "best time to call from",
+    "letter": "e"
+  },
+  {
+    "query": "best time to call employer",
+    "seed": "best time to call from",
+    "letter": "e"
+  },
+  {
+    "query": "best time to call eastwest customer service",
+    "seed": "best time to call from",
+    "letter": "e"
+  },
+  {
+    "query": "best time to call eversource",
     "seed": "best time to call from",
     "letter": "e"
   },
@@ -4182,22 +4190,22 @@
     "letter": "f"
   },
   {
-    "query": "best time to call for a job follow up",
-    "seed": "best time to call from",
-    "letter": "f"
-  },
-  {
     "query": "best time to call for job application",
     "seed": "best time to call from",
     "letter": "f"
   },
   {
-    "query": "best time to call for a job",
+    "query": "best time to call for a job follow up",
     "seed": "best time to call from",
     "letter": "f"
   },
   {
     "query": "best time to call for coyotes",
+    "seed": "best time to call from",
+    "letter": "f"
+  },
+  {
+    "query": "best time to call for a job",
     "seed": "best time to call from",
     "letter": "f"
   },
@@ -4262,12 +4270,12 @@
     "letter": "g"
   },
   {
-    "query": "best time to call girl",
+    "query": "best time to.call germany",
     "seed": "best time to call from",
     "letter": "g"
   },
   {
-    "query": "best time to.call germany",
+    "query": "best time to call girl",
     "seed": "best time to call from",
     "letter": "g"
   },
@@ -4347,12 +4355,12 @@
     "letter": "h"
   },
   {
-    "query": "best time to call hmrc tax",
+    "query": "best time to call hotel for reservations",
     "seed": "best time to call from",
     "letter": "h"
   },
   {
-    "query": "best time to call hotel for reservations",
+    "query": "best time to call hmrc tax",
     "seed": "best time to call from",
     "letter": "h"
   },

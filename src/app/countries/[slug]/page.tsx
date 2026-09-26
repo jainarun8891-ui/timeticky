@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return buildPageMetadata(
-    `What Time is it in ${country.name}? Current Time in ${country.name} Now`,
-    `What time is it in ${country.name} right now? Live official clocks for ${country.capital} and major cities, timezones, UTC offsets, daylight saving status, and local time converter.`,
+    `Current Time in ${country.name} Right Now — Official Clocks & Time Zones`,
+    `What time is it in ${country.name} right now? Check current local time in ${country.capital} and major cities with live running seconds, UTC offsets, and DST rules.`,
     `/countries/${country.slug}`
   );
 }

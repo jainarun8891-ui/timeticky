@@ -12,7 +12,7 @@ export interface FaqItem {
 // Temporal Helper Functions (Mathematical Time Rules)
 // -------------------------------------------------------------
 
-function formatHourAmPm(hour24: number): string {
+export function formatHourAmPm(hour24: number): string {
   const normalized = ((hour24 % 24) + 24) % 24;
   const h = Math.floor(normalized);
   const m = Math.round((normalized - h) * 60);

@@ -66,8 +66,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const targetName = abbr ? abbr.abbr : (cityName ? cityName : zone.toUpperCase());
 
   return buildPageMetadata(
-    `What Time is it in ${targetName}? Current ${displayLabel} Now`,
-    `What time is it in ${titleName} right now? Live atomic clock, standard UTC offset ${offset}, Daylight Saving Time (DST) status, military time, and major world city clocks.`,
+    `Current Time in ${targetName} (${offset}) — Exact Live Clock`,
+    `What time is it in ${titleName} right now? Exact local time with live running seconds, UTC offset ${offset}, Daylight Saving Time (DST) rules, and world clock converter.`,
     `/timezone/${slug}`
   );
 }

@@ -51,9 +51,9 @@ export const POPULAR_CONVERSION_COMBOS = [
   'eet-to-cet', 'cet-to-eet', 'awst-to-aest', 'aest-to-awst'
 ];
 
-import { getTimezoneComboData, getTimezoneComboFaqs } from '@/lib/seo/page-faqs';
+import { getTimezoneComboData, getTimezoneComboFaqs, formatHourAmPm } from '@/lib/seo/page-faqs';
 import { CONVERTER_COMBO_CUSTOM_CONTENT } from '@/lib/seo/converter-combo-custom-content';
-import { Clock, Compass } from 'lucide-react';
+import { Clock, Compass, Table } from 'lucide-react';
 
 export async function generateStaticParams() {
   const customSlugs = Object.keys(CONVERTER_COMBO_CUSTOM_CONTENT);
@@ -80,13 +80,12 @@ export async function generateMetadata({ params }: { params: Promise<{ combo: st
 
   const { fromTz, toTz, cleanSlug } = parsed;
   const custom = CONVERTER_COMBO_CUSTOM_CONTENT[cleanSlug];
-  if (custom) {
-    return buildPageMetadata(custom.title, custom.description, `/converter/${cleanSlug}`);
-  }
-
   const data = getTimezoneComboData(fromTz, toTz);
-  const title = `${fromTz.abbr} to ${toTz.abbr} Time Converter — Live Time Difference & Grid`;
-  const desc = `${data.relationshipText} Calculate overlapping business hours and find the best time to schedule cross-timezone calls between ${fromTz.abbr} and ${toTz.abbr}.`;
+
+  const vsTerm = `${fromTz.abbr} vs ${toTz.abbr}`;
+  const title = `${fromTz.abbr} to ${toTz.abbr} Time Converter (${vsTerm} Difference & Chart)`;
+  const baseDesc = custom?.description || `${data.relationshipText} Calculate overlapping business hours and schedule calls between ${fromTz.abbr} and ${toTz.abbr}.`;
+  const desc = baseDesc.includes('vs') ? baseDesc : `${data.relationshipText} Easily convert ${fromTz.abbr} to ${toTz.abbr} (${vsTerm}) with live 24-hour visual comparison slider, business overlap scheduler, and exact hourly conversion table.`;
 
   return buildPageMetadata(title, desc, `/converter/${cleanSlug}`);
 }
@@ -111,7 +110,7 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
       <Breadcrumbs items={breadcrumbs} />
       <JsonLd type="faq" data={faqs} />
 
-      {/* Header Banner with single canonical H1 */}
+      {/* Header Banner with single canonical H1 & Featured Snippet Quick Answer */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
         <div className="absolute right-0 top-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 max-w-3xl space-y-4">
@@ -127,10 +126,83 @@ export default async function ConvertComboPage({ params }: { params: Promise<{ c
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {custom?.description || `${data.relationshipText} Calculate overlapping business hours and find the best time to schedule cross-timezone calls between ${fromTz.abbr} and ${toTz.abbr}.`}
           </p>
+
+          {/* Featured Snippet Quick Answer Box */}
+          <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-xs border border-white/20 text-white text-xs sm:text-sm leading-relaxed mt-4">
+            <span className="font-bold text-amber-300">Quick Answer: </span>
+            <span>{data.relationshipText} </span>
+            <span className="text-slate-200">
+              When it is 12:00 PM (Noon) in {fromTz.abbr}, it is {formatHourAmPm(12 + data.diffHours)} in {toTz.abbr}.{' '}
+              {data.overlapHours > 0
+                ? `Optimal business overlap: ${data.overlapHours} mutual working hours.`
+                : 'Zero standard daytime business hours overlap.'}
+            </span>
+          </div>
         </div>
       </div>
 
       <ConvertComboClient fromTz={fromTz} toTz={toTz} comboSlug={cleanSlug} />
+
+      {/* Server-Rendered Quick Hourly Conversion Table for Google Featured Snippets */}
+      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 space-y-4 shadow-sm">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider mb-2">
+            <Table className="w-3.5 h-3.5" />
+            <span>Quick Hourly Reference Table</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            {fromTz.abbr} to {toTz.abbr} Hourly Conversion Chart ({fromTz.abbr} vs {toTz.abbr})
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+            Instant hour-by-hour reference table for common meeting times, morning calls, and evening handoffs between {fromTz.abbr} ({fromTz.primaryName}) and {toTz.abbr} ({toTz.primaryName}).
+          </p>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-[11px]">
+                <th className="py-3 px-4">{fromTz.abbr} Time ({fromTz.primaryName})</th>
+                <th className="py-3 px-4">{toTz.abbr} Time ({toTz.primaryName})</th>
+                <th className="py-3 px-4 hidden sm:table-cell">Collaboration Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+              {[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((hour) => {
+                const targetHour = hour + data.diffHours;
+                const fromFormatted = formatHourAmPm(hour);
+                const toFormatted = formatHourAmPm(targetHour);
+                const isFromBiz = hour >= 9 && hour <= 17;
+                const isToBiz = ((targetHour % 24) + 24) % 24 >= 9 && ((targetHour % 24) + 24) % 24 <= 17;
+                const isShared = isFromBiz && isToBiz;
+
+                return (
+                  <tr key={hour} className={isShared ? 'bg-emerald-50/50 dark:bg-emerald-950/20 font-semibold' : 'hover:bg-slate-50/80 dark:hover:bg-slate-800/40'}>
+                    <td className="py-2.5 px-4 font-mono font-bold text-slate-900 dark:text-white">
+                      {fromFormatted} {fromTz.abbr}
+                    </td>
+                    <td className="py-2.5 px-4 font-mono font-bold text-blue-600 dark:text-blue-400">
+                      {toFormatted} {toTz.abbr}
+                    </td>
+                    <td className="py-2.5 px-4 hidden sm:table-cell text-xs">
+                      {isShared ? (
+                        <span className="inline-flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-bold">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                          Shared Business Working Hour
+                        </span>
+                      ) : (
+                        <span className="text-slate-400 dark:text-slate-500">
+                          {isFromBiz ? `Standard work hour in ${fromTz.abbr}` : (isToBiz ? `Standard work hour in ${toTz.abbr}` : 'Outside standard office hours')}
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       {custom && (
         <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 space-y-8 shadow-sm">
