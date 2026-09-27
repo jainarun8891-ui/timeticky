@@ -7,6 +7,7 @@ const jiti = createJiti(path.join(process.cwd(), 'index.js'), {
 
 try {
   jiti('./src/tests/time.test.ts');
+  jiti('./src/tests/viral-features.test.ts');
 } catch (err) {
   console.error('Test execution failed:', err);
   process.exit(1);

@@ -98,6 +98,10 @@ export function Header() {
   };
 
   const featureTools = [
+    { name: 'Sleep Cycle Calculator', desc: '90-min cycles & optimal bedtimes', href: '/sleep-calculator', icon: Moon },
+    { name: 'Meeting Cost Calculator', desc: 'Real-time live dollar burn odometer', href: '/meeting-cost-calculator', icon: Users },
+    { name: 'Life in Weeks Grid', desc: 'Memento Mori 4,160-week longevity canvas', href: '/life-in-weeks', icon: Calendar },
+    { name: 'Event Countdown Studio', desc: 'Custom shareable live event timers', href: '/countdown', icon: Sparkles },
     { name: 'Time Zone Converter', desc: 'Convert hours across global zones', href: '/converter', icon: ArrowLeftRight },
     { name: 'Compare World Cities', desc: 'Direct side-by-side time difference', href: '/converter/compare', icon: ArrowLeftRight },
     { name: 'City Time Differences', desc: 'Exact hours ahead & overlap for 92+ pairs', href: '/converter/difference', icon: ArrowLeftRight },

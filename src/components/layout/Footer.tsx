@@ -55,6 +55,7 @@ export function Footer() {
               <li><Link href="/pomodoro" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pomodoro Timer</Link></li>
               <li><Link href="/timer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Timer</Link></li>
               <li><Link href="/countdown" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Events</Link></li>
+              <li><Link href="/life-in-weeks" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-rose-600 dark:text-rose-400">Life in Weeks (Memento Mori)</Link></li>
               <li><Link href="/stopwatch" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Stopwatch</Link></li>
               <li><Link href="/alarm" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Alarm Clock</Link></li>
               <li><Link href="/calendar" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Calendar</Link></li>
@@ -71,6 +72,8 @@ export function Footer() {
             </h5>
             <ul className="space-y-1.5">
               <li><Link href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Zone Converter</Link></li>
+              <li><Link href="/sleep-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-blue-600 dark:text-blue-400">Sleep Cycle Calculator</Link></li>
+              <li><Link href="/meeting-cost-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-emerald-600 dark:text-emerald-400">Meeting Cost Calculator</Link></li>
               <li><Link href="/converter/difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">City Time Differences</Link></li>
               <li><Link href="/converter/compare" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Compare World Cities</Link></li>
               <li><Link href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">552 Timezone Pairs</Link></li>

@@ -4,41 +4,45 @@ import Link from 'next/link';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
-import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { HUB_PAGES_CUSTOM_CONTENT } from '@/lib/seo/hub-pages-custom-content';
-import { CountdownClient } from './CountdownClient';
+import { CountdownGeneratorStudio } from './CountdownGeneratorStudio';
 
 const content = HUB_PAGES_CUSTOM_CONTENT['/countdown'];
 
 export const metadata: Metadata = buildPageMetadata(
-  content.title,
-  content.description,
+  'Custom Event Countdown Generator & Live Timers',
+  'Create custom live countdowns for weddings, birthdays, product launches, holidays, and milestones. Shareable links with dynamic Open Graph preview cards.',
   '/countdown'
 );
 
 export default function CountdownPage() {
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
-      <Breadcrumbs items={[{"name":"Event Countdown","url":"/countdown"}]} />
-      <JsonLd
-        type="breadcrumb"
-        data={[
-          { name: 'Home', url: '/' },
-          { name: 'Countdown Timer', url: '/countdown' },
-        ]}
-      />
-      <JsonLd type="faq" data={content.faqs} />
-      <JsonLd
-        type="application"
-        data={{
-          name: content.h1,
-          category: "UtilitiesApplication",
-          description: content.description
-        }}
-      />
+  const applicationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'TimeTicky Custom Event Countdown Generator',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'All',
+    browserRequirements: 'Requires modern web browser with JavaScript enabled',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    description:
+      'Universal live event countdown generator with dynamic shareable routing, precision second timers, and celebration milestones.',
+  };
 
-      <CountdownClient h1Title={content.h1} description={content.description} />
+  return (
+    <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(applicationSchema) }}
+      />
+      <Breadcrumbs items={[{ name: 'Countdown Generator', url: '/countdown' }]} />
+
+      {/* Main Interactive Studio */}
+      <CountdownGeneratorStudio />
 
       {/* Featured Holiday Countdowns Grid */}
       <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 space-y-6 shadow-sm">
@@ -59,7 +63,7 @@ export default function CountdownPage() {
           <Link href="/countdown/holi" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
             <span className="text-xs font-bold text-purple-600 dark:text-purple-400 block">Spring Equinox</span>
             <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors">Holi Festival of Colors</h3>
-            <p className="text-xs text-slate-500 mt-1">Live countdown to the vibrant Hindu festival of colors and joy.</p>
+            <p className="text-xs text-slate-500 mt-1">Live countdown to the vibrant springtime festival of colors and joy.</p>
           </Link>
           <Link href="/countdown/halloween" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
             <span className="text-xs font-bold text-orange-600 dark:text-orange-400 block">October 31</span>
@@ -86,42 +90,26 @@ export default function CountdownPage() {
 
       {/* Guide Section */}
       <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-8 sm:p-10 shadow-sm space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-        <div className="space-y-4">
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-            {content.headings[0]}
-          </h2>
-          {content.page_text.split('\n\n').map((paragraph, idx) => (
-            <p key={idx} className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-
-        {content.headings.length > 1 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-            {content.headings.slice(1).map((heading, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">
-                  {heading}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  High-contrast full-screen projection, atomic time synchronization, and shareable event countdown links.
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+          Precision Real-Time Chronometer Architecture
+        </h2>
+        <p>
+          Unlike naive JavaScript interval timers that drift when backgrounded or mobile screens go to sleep, TimeTicky countdowns compute differences directly from high-precision epoch millisecond timestamps synchronized against atomic world clocks.
+        </p>
+        <p>
+          Every custom countdown generates a permanent, shareable canonical link that accurately displays countdown intervals regardless of the viewer&apos;s geographic time zone.
+        </p>
       </section>
 
-      {/* FAQ Accordion */}
+      {/* Dynamic Event FAQ Accordion */}
       <FaqAccordion
         items={content.faqs}
         title="Frequently Asked Questions About Event Countdowns"
-        subtitle="Common questions regarding countdown accuracy, time zones, and holiday tracking."
+        subtitle="Time calculations, background execution, and dynamic sharing questions answered."
       />
 
-      {/* Hub */}
+      {/* Global Hub Navigation */}
       <RelatedLinksHub title="Explore More Countdowns & Calendars" />
-    </div>
+    </main>
   );
 }
