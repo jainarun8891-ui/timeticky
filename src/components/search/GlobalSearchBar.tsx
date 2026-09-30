@@ -7,6 +7,7 @@ import { searchCities } from '@/lib/geo/cities';
 import { getCityRootSlug } from '@/lib/geo/city-lookup';
 import { TIMEZONES } from '@/lib/time/timezones';
 import { COUNTRIES } from '@/lib/geo/countries';
+import { trackSearch, trackSearchResultClick } from '@/lib/analytics/gtag';
 
 export function GlobalSearchBar() {
   const router = useRouter();
@@ -57,6 +58,14 @@ export function GlobalSearchBar() {
     const combined = [...cityItems, ...countryItems, ...tzItems];
     setResults(combined);
     setIsOpen(combined.length > 0);
+
+    const debounceTimer = setTimeout(() => {
+      if (q.length >= 2) {
+        trackSearch(query.trim(), combined.length);
+      }
+    }, 800);
+
+    return () => clearTimeout(debounceTimer);
   }, [query]);
 
   useEffect(() => {
@@ -101,9 +110,16 @@ export function GlobalSearchBar() {
             <button
               key={item}
               onClick={() => {
-                if (item === 'IST') router.push('/timezone/ist');
-                else if (item === 'PST') router.push('/timezone/pt');
-                else router.push(`/${item.toLowerCase().replace(' ', '-')}`);
+                let targetSlug = `/${item.toLowerCase().replace(' ', '-')}`;
+                if (item === 'IST') targetSlug = '/timezone/ist';
+                else if (item === 'PST') targetSlug = '/timezone/pt';
+
+                trackSearchResultClick({
+                  title: item,
+                  type: 'quick_pill',
+                  slug: targetSlug
+                });
+                router.push(targetSlug);
               }}
               type="button"
               className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -125,6 +141,11 @@ export function GlobalSearchBar() {
               <li
                 key={`${item.type}-${item.id}`}
                 onClick={() => {
+                  trackSearchResultClick({
+                    title: item.title,
+                    type: item.type,
+                    slug: item.slug
+                  });
                   setIsOpen(false);
                   setQuery('');
                   router.push(item.slug);

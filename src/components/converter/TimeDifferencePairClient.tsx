@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { City } from '@/lib/geo/cities';
 import { getTimeDetails, getTimeDifferenceText, getUtcOffsetMinutes } from '@/lib/time/engine';
 import { Clock, Sun, Moon, ArrowRight, Briefcase, CheckCircle2, Calendar, Compass } from 'lucide-react';
+import { trackTimeConversion } from '@/lib/analytics/gtag';
 
 interface Props {
   cityA: City;
@@ -15,10 +16,11 @@ export function TimeDifferencePairClient({ cityA, cityB }: Props) {
   const [use24Hour, setUse24Hour] = useState(false);
 
   useEffect(() => {
+    trackTimeConversion(cityA.name, cityB.name, 'city_pair_comparison');
     setCurrentTime(new Date());
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [cityA, cityB]);
 
   const now = currentTime || new Date();
   const detailsA = useMemo(() => getTimeDetails(cityA.timezone, now, !use24Hour), [cityA, now, use24Hour]);

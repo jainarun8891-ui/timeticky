@@ -15,6 +15,7 @@ import {
   generateSlackReceipt,
   MeetingCostParams,
 } from '@/lib/meeting/cost-calc';
+import { trackToolUse, trackShare } from '@/lib/analytics/gtag';
 
 export function MeetingCostCalculatorClient() {
   const [attendees, setAttendees] = useState(8);
@@ -82,11 +83,21 @@ export function MeetingCostCalculatorClient() {
 
   const equivalents = calculateEquivalents(burnedCost);
 
-  const toggleRun = () => setIsRunning(!isRunning);
+  const toggleRun = () => {
+    const nextRunning = !isRunning;
+    setIsRunning(nextRunning);
+    trackToolUse('meeting_cost_calculator', nextRunning ? 'start_timer' : 'pause_timer', {
+      attendees,
+      duration,
+      scheduled_cost: rates.scheduledTotalCost,
+      currency: currency.code,
+    });
+  };
 
   const resetTimer = () => {
     setIsRunning(false);
     setElapsedSeconds(0);
+    trackToolUse('meeting_cost_calculator', 'reset_timer');
   };
 
   const copyReceipt = () => {
@@ -100,6 +111,7 @@ export function MeetingCostCalculatorClient() {
     );
     navigator.clipboard.writeText(text);
     setCopiedReceipt(true);
+    trackShare('slack_receipt', 'meeting_cost_calculator', meetingTitle);
     setTimeout(() => setCopiedReceipt(false), 2000);
   };
 
@@ -114,6 +126,7 @@ export function MeetingCostCalculatorClient() {
 
       navigator.clipboard.writeText(url.toString());
       setCopiedUrl(true);
+      trackShare('copy_link', 'meeting_cost_calculator', meetingTitle);
       setTimeout(() => setCopiedUrl(false), 2000);
     }
   };

@@ -7,6 +7,7 @@ import { getCityRootSlug, getTimeDifferencePairsForCity, findCityByRootSlug } fr
 import { getTimeDetails, getUtcOffsetString, getTimeDifferenceText } from '@/lib/time/engine';
 import { getSolarTimes } from '@/lib/astronomy/calculator';
 import { Clock, Sun, Sunrise, Sunset, Globe, Compass, Calendar, ArrowRight, ArrowLeftRight, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { trackCityView } from '@/lib/analytics/gtag';
 
 interface Props {
   city: City;
@@ -34,10 +35,16 @@ export function CityPageClient({ city, h1Title }: Props) {
   const [showSeconds, setShowSeconds] = useState(true);
 
   useEffect(() => {
+    trackCityView({
+      name: city.name,
+      country: city.country,
+      timezone: city.timezone,
+      slug: getCityRootSlug(city),
+    });
     setCurrentTime(new Date());
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [city]);
 
   const now = currentTime || new Date();
   const details = useMemo(() => {

@@ -14,6 +14,7 @@ import {
   POPULAR_SLEEP_PRESETS,
   formatTime12,
 } from '@/lib/sleep/sleep-calc';
+import { trackToolUse, trackShare } from '@/lib/analytics/gtag';
 
 interface Props {
   initialMode?: 'wake' | 'bed' | 'now';
@@ -48,6 +49,7 @@ export function SleepCalculatorClient({
   }
 
   const handleModeChange = (newMode: 'wake' | 'bed' | 'now') => {
+    trackToolUse('sleep_calculator', 'change_mode', { mode: newMode });
     startTransition(() => {
       setMode(newMode);
     });
@@ -71,6 +73,7 @@ export function SleepCalculatorClient({
 
     navigator.clipboard.writeText(text);
     setCopied(true);
+    trackShare('copy_results', 'sleep_calculator', mode);
     setTimeout(() => setCopied(false), 2000);
   };
 

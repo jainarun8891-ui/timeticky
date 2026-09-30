@@ -11,6 +11,7 @@ export interface SiteConfig {
   };
   defaultLocale: string;
   locales: string[];
+  googleAnalyticsId?: string;
 }
 
 export const siteConfig: SiteConfig = {
@@ -25,5 +26,6 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/timenumbers"
   },
   defaultLocale: "en",
-  locales: ["en", "hi", "es", "fr", "de", "ja"]
+  locales: ["en", "hi", "es", "fr", "de", "ja"],
+  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || "G-P2PKYW5TRP"
 };

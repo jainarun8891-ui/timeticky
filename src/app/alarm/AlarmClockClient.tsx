@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Bell, BellOff, Volume2, VolumeX, Maximize2, Minimize2, Plus, Trash2, Clock, Play, Moon, Sun, Check, AlertCircle } from 'lucide-react';
+import { trackToolUse } from '@/lib/analytics/gtag';
 
 interface AlarmItem {
   id: string;
@@ -171,9 +172,11 @@ export function AlarmClockClient() {
     if (!document.fullscreenElement) {
       containerRef.current?.requestFullscreen().catch(() => {});
       setIsFullscreen(true);
+      trackToolUse('alarm_clock', 'enter_fullscreen');
     } else {
       document.exitFullscreen().catch(() => {});
       setIsFullscreen(false);
+      trackToolUse('alarm_clock', 'exit_fullscreen');
     }
   };
 
@@ -191,6 +194,10 @@ export function AlarmClockClient() {
         snoozeCount: 0,
       },
     ]);
+    trackToolUse('alarm_clock', 'add_alarm', {
+      time: newTime,
+      sound: newSound,
+    });
     setNewLabel('New Alarm');
   };
 

@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/config/site.config";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 
 export const metadata: Metadata = {
   title: "Exact Time Now — What Time Is It Right Now? Live Atomic Clock & World Time",
@@ -105,8 +106,27 @@ export default function RootLayout({
         />
         <JsonLd type="website" />
         <JsonLd type="organization" />
+        {/* Google tag (gtag.js) */}
+        {siteConfig.googleAnalyticsId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAnalyticsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${siteConfig.googleAnalyticsId}');
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <body className="min-h-screen bg-[#f0f4f9] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 flex flex-col font-sans antialiased selection:bg-blue-600 selection:text-white transition-colors duration-200">
+        <AnalyticsTracker />
         <Header />
         <main className="flex-1">
           {children}
