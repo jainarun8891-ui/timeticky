@@ -81,7 +81,7 @@ export function CountdownEventClient({
 
   const shareToTwitter = () => {
     if (typeof window !== 'undefined') {
-      const text = encodeURIComponent(`Countdown to ${eventName} on TimeTicky!`);
+      const text = encodeURIComponent(`Countdown to ${eventName} on TimeNumbers!`);
       const url = encodeURIComponent(window.location.href);
       window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
     }

@@ -2,12 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { findCityByRootSlug } from '@/lib/geo/city-lookup';
 import { getSolarTimes } from '@/lib/astronomy/calculator';
 import { getUtcOffsetMinutes } from '@/lib/time/engine';
+import { checkRateLimit, createRateLimitHeaders, createRateLimitExceededResponse } from '@/lib/api/rate-limit';
 
 interface Props {
   params: Promise<{ city: string }>;
 }
 
 export async function GET(request: NextRequest, { params }: Props) {
+  const rateCheck = checkRateLimit(request);
+  if (!rateCheck.allowed) {
+    return createRateLimitExceededResponse(rateCheck);
+  }
+
   const { city: slug } = await params;
   const cityData = findCityByRootSlug(slug);
 
@@ -49,14 +55,17 @@ export async function GET(request: NextRequest, { params }: Props) {
       },
     },
     rateLimit: {
-      tier: 'anonymous',
-      limit: '100 requests per minute',
-      remaining: 99,
+      tier: rateCheck.plan.id,
+      tierName: rateCheck.plan.name,
+      limitPerMinute: rateCheck.limit,
+      remainingThisMinute: rateCheck.remaining,
+      resetSeconds: rateCheck.resetSeconds,
     }
   }, {
     headers: {
       'Cache-Control': 'public, max-age=3600',
       'Access-Control-Allow-Origin': '*',
+      ...createRateLimitHeaders(rateCheck),
     }
   });
 }

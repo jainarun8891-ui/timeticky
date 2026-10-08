@@ -4,7 +4,8 @@ import { Metadata } from 'next';
 import {
   COMMON_TIMEZONE_ABBREVIATIONS,
   TimezoneAbbrDefinition,
-  CANONICAL_CONVERTER_ABBREVIATIONS
+  CANONICAL_CONVERTER_ABBREVIATIONS,
+  getAllConverterCombos
 } from '@/lib/time/timezone-lookup';
 import { ConvertComboClient } from './ConvertComboClient';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
@@ -13,7 +14,7 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export const POPULAR_CONVERSION_COMBOS = [
   'edt-to-ist', 'ist-to-edt', 'kst-to-cdt', 'cdt-to-kst',
@@ -57,7 +58,8 @@ import { Clock, Compass, Table } from 'lucide-react';
 
 export async function generateStaticParams() {
   const customSlugs = Object.keys(CONVERTER_COMBO_CUSTOM_CONTENT);
-  const allCombos = Array.from(new Set([...customSlugs, ...POPULAR_CONVERSION_COMBOS]));
+  const canonicalCombos = getAllConverterCombos();
+  const allCombos = Array.from(new Set([...customSlugs, ...POPULAR_CONVERSION_COMBOS, ...canonicalCombos]));
   return allCombos.map(combo => ({ combo }));
 }
 
@@ -83,7 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ combo: st
   const data = getTimezoneComboData(fromTz, toTz);
 
   const vsTerm = `${fromTz.abbr} vs ${toTz.abbr}`;
-  const title = `${fromTz.abbr} to ${toTz.abbr} Time Converter (${vsTerm} Difference & Chart)`;
+  const title = `${fromTz.abbr} to ${toTz.abbr} Time Converter (${vsTerm})`;
   const baseDesc = custom?.description || `${data.relationshipText} Calculate overlapping business hours and schedule calls between ${fromTz.abbr} and ${toTz.abbr}.`;
   const desc = baseDesc.includes('vs') ? baseDesc : `${data.relationshipText} Easily convert ${fromTz.abbr} to ${toTz.abbr} (${vsTerm}) with live 24-hour visual comparison slider, business overlap scheduler, and exact hourly conversion table.`;
 

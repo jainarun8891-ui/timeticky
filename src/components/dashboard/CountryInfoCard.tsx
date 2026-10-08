@@ -25,21 +25,21 @@ export function CountryInfoCard({ currentCity, className = "" }: CountryInfoCard
     timezones: [currentCity?.timezone || 'Europe/Paris']
   };
 
-  // Select appropriate scenic thumbnail
-  let thumbImage = '/images/france_thumb.jpg';
+  // Select appropriate scenic thumbnail (lightweight WebP)
+  let thumbImage = '/images/france_thumb.webp';
   const cCode = countryCode.toUpperCase();
   const cId = (currentCity?.id || '').toLowerCase();
 
   if (cCode === 'FR' || cId.includes('paris')) {
-    thumbImage = '/images/france_thumb.jpg';
+    thumbImage = '/images/france_thumb.webp';
   } else if (cCode === 'US' || cId.includes('new-york')) {
-    thumbImage = '/images/newyork_hero.jpg';
+    thumbImage = '/images/newyork_hero.webp';
   } else if (cCode === 'JP' || cId.includes('tokyo')) {
-    thumbImage = '/images/tokyo_hero.jpg';
+    thumbImage = '/images/tokyo_hero.webp';
   } else if (cCode === 'GB' || cId.includes('london')) {
-    thumbImage = '/images/london_thumb.jpg';
+    thumbImage = '/images/london_thumb.webp';
   } else if (cCode === 'AU' || cId.includes('sydney')) {
-    thumbImage = '/images/sydney_thumb.jpg';
+    thumbImage = '/images/sydney_thumb.webp';
   }
 
   // Format short timezone offset display e.g. "CET (UTC +1)" or "EST (UTC -5)"

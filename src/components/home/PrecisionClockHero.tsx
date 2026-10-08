@@ -28,14 +28,16 @@ export function PrecisionClockHero() {
   const [showDate, setShowDate] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [accuracyDriftMs, setAccuracyDriftMs] = useState<number | null>(null);
-  const [cityName, setCityName] = useState('Delhi / Kolkata');
-  const [countryName, setCountryName] = useState('India');
-  const [coords, setCoords] = useState<{ lat: number; lng: number }>({ lat: 28.6139, lng: 77.2090 });
+  const [cityName, setCityName] = useState('Universal Time (UTC)');
+  const [countryName, setCountryName] = useState('Global Reference');
+  const [coords, setCoords] = useState<{ lat: number; lng: number }>({ lat: 51.4769, lng: 0.0005 });
+  const [isHydrated, setIsHydrated] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Initialize browser timezone and accuracy drift check
   useEffect(() => {
+    setIsHydrated(true);
     try {
       let resolvedTz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
       // Normalize Asia/Calcutta to Asia/Kolkata
@@ -44,7 +46,7 @@ export function PrecisionClockHero() {
 
       // Check for India timezone
       if (resolvedTz === 'Asia/Kolkata' || resolvedTz === 'Asia/Calcutta') {
-        setCityName('Delhi / Kolkata');
+        setCityName('New Delhi');
         setCountryName('India');
         setCoords({ lat: 28.6139, lng: 77.2090 });
       } else {
@@ -55,8 +57,10 @@ export function PrecisionClockHero() {
           setCoords({ lat: matched.lat, lng: matched.lng });
         } else {
           const parts = resolvedTz.split('/');
-          setCityName(parts.pop()?.replace(/_/g, ' ') || 'Local Time');
-          setCountryName(parts[0] || 'Worldwide');
+          const cityRaw = parts.pop()?.replace(/_/g, ' ') || 'Local Time';
+          const regionRaw = parts[0] || 'Worldwide';
+          setCityName(cityRaw);
+          setCountryName(regionRaw);
         }
       }
     } catch {}
@@ -171,17 +175,19 @@ export function PrecisionClockHero() {
           </div>
 
           {/* Accuracy & Controls */}
-          <div className="flex items-center gap-2">
-            <div className="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-800 text-[11px] font-semibold flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-800 text-[11px] font-semibold flex items-center gap-1.5 shrink-0 min-w-[155px] justify-center">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span suppressHydrationWarning>
-                {accuracyDriftMs === null || isNaN(accuracyDriftMs)
-                  ? 'Atomic Synchronized'
+              <span className="truncate" suppressHydrationWarning>
+                {!isHydrated
+                  ? 'Server Synchronized'
+                  : accuracyDriftMs === null || isNaN(accuracyDriftMs)
+                  ? 'Server Synchronized'
                   : Math.abs(accuracyDriftMs) < 150
-                  ? 'Clock is exact'
+                  ? 'Clock is synchronized'
                   : `${(Math.abs(accuracyDriftMs) / 1000).toFixed(1)}s ${accuracyDriftMs > 0 ? 'fast' : 'slow'}`}
               </span>
             </div>

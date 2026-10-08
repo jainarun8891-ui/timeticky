@@ -17,6 +17,8 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const customSlugs = Object.keys(CITY_DIFFERENCE_CUSTOM_CONTENT);
   const pairSlugs = POPULAR_TIME_DIFFERENCE_PAIRS.map(p => `${p.cityA}-to-${p.cityB}`);

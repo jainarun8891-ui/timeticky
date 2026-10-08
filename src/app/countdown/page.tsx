@@ -20,7 +20,7 @@ export default function CountdownPage() {
   const applicationSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'TimeTicky Custom Event Countdown Generator',
+    name: 'TimeNumbers Custom Event Countdown Generator',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with JavaScript enabled',
@@ -94,7 +94,7 @@ export default function CountdownPage() {
           Precision Real-Time Chronometer Architecture
         </h2>
         <p>
-          Unlike naive JavaScript interval timers that drift when backgrounded or mobile screens go to sleep, TimeTicky countdowns compute differences directly from high-precision epoch millisecond timestamps synchronized against atomic world clocks.
+          Unlike naive JavaScript interval timers that drift when backgrounded or mobile screens go to sleep, TimeNumbers countdowns compute differences directly from high-precision epoch millisecond timestamps synchronized against atomic world clocks.
         </p>
         <p>
           Every custom countdown generates a permanent, shareable canonical link that accurately displays countdown intervals regardless of the viewer&apos;s geographic time zone.

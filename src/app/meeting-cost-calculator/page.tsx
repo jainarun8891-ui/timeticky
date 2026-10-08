@@ -45,7 +45,7 @@ export default function MeetingCostCalculatorPage() {
   const applicationSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'TimeTicky Real-Time Meeting Cost Calculator',
+    name: 'TimeNumbers Real-Time Meeting Cost Calculator',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with JavaScript enabled',

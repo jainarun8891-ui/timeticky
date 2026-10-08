@@ -301,6 +301,7 @@ export function ConverterHubClient() {
               <Link
                 key={slug}
                 href={`/converter/difference/${slug}`}
+                prefetch={false}
                 className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-xs transition-all flex items-center justify-between group"
               >
                 <div className="truncate">
@@ -407,6 +408,7 @@ export function ConverterHubClient() {
               <Link
                 key={c.slug}
                 href={`/converter/${c.slug}`}
+                prefetch={false}
                 className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-md transition-all group flex flex-col justify-between"
               >
                 <div className="flex items-center justify-between">

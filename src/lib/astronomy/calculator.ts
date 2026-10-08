@@ -13,6 +13,8 @@ export interface SolarTimes {
   goldenHour: { morning: string; evening: string };
   blueHour: { morning: string; evening: string };
   isDaytime: boolean;
+  isPolarDay?: boolean;
+  isPolarNight?: boolean;
 }
 
 export interface MoonPhaseInfo {
@@ -57,13 +59,21 @@ export function getSolarTimes(
     0.002697 * Math.cos(3 * gamma) +
     0.00148 * Math.sin(3 * gamma);
 
+  let isPolarDay = false;
+  let isPolarNight = false;
+
   function calculateZenithTimes(zenithDeg: number) {
     const cosHA =
       Math.cos(zenithDeg * rad) / (Math.cos(lat * rad) * Math.cos(decl)) -
       Math.tan(lat * rad) * Math.tan(decl);
 
-    if (cosHA > 1 || cosHA < -1) {
-      return null; // Polar day or polar night
+    if (cosHA > 1) {
+      // Sun never rises above this angle
+      return { status: 'polar_night' as const };
+    }
+    if (cosHA < -1) {
+      // Sun never sets below this angle
+      return { status: 'polar_day' as const };
     }
 
     const ha = Math.acos(cosHA) / rad; // Hour angle in degrees
@@ -79,6 +89,7 @@ export function getSolarTimes(
     };
 
     return {
+      status: 'normal' as const,
       riseStr: toLocal(riseUtcMins),
       setStr: toLocal(setUtcMins),
       riseLocalMins: Math.round((riseUtcMins + tzOffsetMinutes + 1440) % 1440),
@@ -93,14 +104,39 @@ export function getSolarTimes(
   const goldenHour = calculateZenithTimes(86);
   const blueHour = calculateZenithTimes(94);
 
+  if (standard.status === 'polar_day') {
+    isPolarDay = true;
+  } else if (standard.status === 'polar_night') {
+    isPolarNight = true;
+  }
+
   const solarNoonMins = Math.round((720 - 4 * lng - eqtime + tzOffsetMinutes + 1440) % 1440);
   const noonH = Math.floor(solarNoonMins / 60);
   const noonM = solarNoonMins % 60;
   const noonStr = `${String(noonH).padStart(2, '0')}:${String(noonM).padStart(2, '0')}`;
 
-  const riseMins = standard ? standard.riseLocalMins : 360;
-  const setMins = standard ? standard.setLocalMins : 1080;
-  const dayLengthMins = (setMins - riseMins + 1440) % 1440;
+  let riseMins = 360;
+  let setMins = 1080;
+  let dayLengthMins = 0;
+  let sunriseStr = '06:00';
+  let sunsetStr = '18:00';
+
+  if (isPolarDay) {
+    dayLengthMins = 1440;
+    sunriseStr = 'Midnight Sun';
+    sunsetStr = 'Midnight Sun';
+  } else if (isPolarNight) {
+    dayLengthMins = 0;
+    sunriseStr = 'Polar Night';
+    sunsetStr = 'Polar Night';
+  } else if (standard.status === 'normal') {
+    riseMins = standard.riseLocalMins;
+    setMins = standard.setLocalMins;
+    dayLengthMins = (setMins - riseMins + 1440) % 1440;
+    sunriseStr = standard.riseStr;
+    sunsetStr = standard.setStr;
+  }
+
   const dayH = Math.floor(dayLengthMins / 60);
   const dayM = dayLengthMins % 60;
 
@@ -108,42 +144,59 @@ export function getSolarTimes(
   const nowUtcMins = date.getUTCHours() * 60 + date.getUTCMinutes();
   const nowLocalMins = (nowUtcMins + tzOffsetMinutes + 1440) % 1440;
 
-  const isDaytime = nowLocalMins >= riseMins && nowLocalMins <= setMins;
+  let isDaytime = false;
   let dayProgress = 0;
-  if (isDaytime && dayLengthMins > 0) {
-    dayProgress = Math.min(100, Math.max(0, Math.round(((nowLocalMins - riseMins) / dayLengthMins) * 100)));
-  } else if (nowLocalMins > setMins) {
-    dayProgress = 100;
+
+  if (isPolarDay) {
+    isDaytime = true;
+    dayProgress = 50;
+  } else if (isPolarNight) {
+    isDaytime = false;
+    dayProgress = 0;
+  } else {
+    isDaytime = nowLocalMins >= riseMins && nowLocalMins <= setMins;
+    if (isDaytime && dayLengthMins > 0) {
+      dayProgress = Math.min(100, Math.max(0, Math.round(((nowLocalMins - riseMins) / dayLengthMins) * 100)));
+    } else if (nowLocalMins > setMins) {
+      dayProgress = 100;
+    }
   }
 
+  const getTwilightStr = (t: ReturnType<typeof calculateZenithTimes>, fallbackDawn: string, fallbackDusk: string) => {
+    if (t.status === 'normal') {
+      return { dawn: t.riseStr, dusk: t.setStr };
+    }
+    if (isPolarDay) {
+      return { dawn: 'All Day', dusk: 'All Day' };
+    }
+    return { dawn: 'None', dusk: 'None' };
+  };
+
+  const getHourStr = (t: ReturnType<typeof calculateZenithTimes>, fallbackMorning: string, fallbackEvening: string) => {
+    if (t.status === 'normal') {
+      return { morning: t.riseStr, evening: t.setStr };
+    }
+    if (isPolarDay) {
+      return { morning: 'All Day', evening: 'All Day' };
+    }
+    return { morning: 'None', evening: 'None' };
+  };
+
   return {
-    sunrise: standard?.riseStr || '06:00',
-    sunset: standard?.setStr || '18:00',
+    sunrise: sunriseStr,
+    sunset: sunsetStr,
     solarNoon: noonStr,
     dayLength: `${dayH}h ${dayM}m`,
     dayLengthMinutes: dayLengthMins,
     dayProgressPercent: dayProgress,
-    civilTwilight: {
-      dawn: civil?.riseStr || '05:30',
-      dusk: civil?.setStr || '18:30',
-    },
-    nauticalTwilight: {
-      dawn: nautical?.riseStr || '05:00',
-      dusk: nautical?.setStr || '19:00',
-    },
-    astronomicalTwilight: {
-      dawn: astronomical?.riseStr || '04:30',
-      dusk: astronomical?.setStr || '19:30',
-    },
-    goldenHour: {
-      morning: goldenHour?.riseStr || '06:30',
-      evening: goldenHour?.setStr || '17:30',
-    },
-    blueHour: {
-      morning: blueHour?.riseStr || '05:45',
-      evening: blueHour?.setStr || '18:15',
-    },
+    civilTwilight: getTwilightStr(civil, '05:30', '18:30'),
+    nauticalTwilight: getTwilightStr(nautical, '05:00', '19:00'),
+    astronomicalTwilight: getTwilightStr(astronomical, '04:30', '19:30'),
+    goldenHour: getHourStr(goldenHour, '06:30', '17:30'),
+    blueHour: getHourStr(blueHour, '05:45', '18:15'),
     isDaytime,
+    isPolarDay,
+    isPolarNight,
   };
 }
 

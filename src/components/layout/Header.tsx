@@ -211,6 +211,7 @@ export function Header() {
                     <Link
                       key={c.href}
                       href={c.href}
+                      prefetch={false}
                       onClick={() => setConvertersOpen(false)}
                       className="p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 border border-slate-100 dark:border-slate-800/80 transition-colors group"
                     >
@@ -283,6 +284,7 @@ export function Header() {
                     <Link
                       key={tool.href}
                       href={tool.href}
+                      prefetch={false}
                       onClick={() => setToolsOpen(false)}
                       className="p-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all flex items-start gap-3 group"
                     >
@@ -730,6 +732,7 @@ export function Header() {
                         <Link
                           key={tool.href}
                           href={tool.href}
+                          prefetch={false}
                           onClick={() => setMobileMenuOpen(false)}
                           className="p-2.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 border border-transparent hover:border-slate-200/80 dark:hover:border-slate-800 transition-all flex items-start gap-3 group"
                         >

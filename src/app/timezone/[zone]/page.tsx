@@ -35,6 +35,10 @@ export async function generateStaticParams() {
     'america-chicago',
     'america-toronto',
     'europe-berlin',
+    'america-st-lucia',
+    'america-nassau',
+    'america-anguilla',
+    'america-dominica',
   ].map(slug => ({ zone: slug }));
 
   const seen = new Set<string>();

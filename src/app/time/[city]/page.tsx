@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : `permanent ${data.baseOffset} with zero DST clock shifts`;
 
   return buildPageMetadata(
-    `What Time is it in ${city.name}? Exact Local Time Now`,
+    `Current Time in ${city.name}, ${city.country} — Live Clock`,
     `Current local time in ${city.name}, ${city.country} right now: atomic clock with seconds, ${data.timezoneAbbr} (${data.baseOffset}), ${dstText}, today's sunrise & sunset, and time converter.`,
     `/time/${cleanSlug}`
   );

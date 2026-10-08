@@ -72,7 +72,7 @@ export function JsonLd({ type, data }: JsonLdProps) {
       "@type": "BlogPosting",
       "headline": data.title,
       "description": data.excerpt,
-      "image": data.image || (siteConfig.url + "/images/paris_hero.jpg"),
+      "image": data.image || (siteConfig.url + "/images/paris_hero.webp"),
       "datePublished": data.datePublished || "2026-01-15T08:00:00+00:00",
       "dateModified": data.dateModified || "2026-03-25T10:00:00+00:00",
       "author": {

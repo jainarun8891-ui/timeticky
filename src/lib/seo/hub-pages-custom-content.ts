@@ -481,7 +481,7 @@ export const HUB_PAGES_CUSTOM_CONTENT: Record<string, HubPageCustomContent> = {
     "url": "https://www.timenumbers.com/meeting-planner",
     "path": "/meeting-planner",
     "category": "2.0 Local Time, Converters & Meetings",
-    "title": "Schedule Meetings Across Time Zones — Free Global Meeting Planner",
+    "title": "Meeting Time Planner — Find Overlapping Work Hours",
     "description": "The easiest tool to schedule meetings across multiple time zones. Visual 24-hour business hours overlap grid for remote teams in Zoom, Teams, and Outlook.",
     "h1": "Schedule Meetings Across Time Zones — Global Meeting Planner",
     "headings": [
@@ -825,7 +825,7 @@ export const HUB_PAGES_CUSTOM_CONTENT: Record<string, HubPageCustomContent> = {
     "url": "https://www.timenumbers.com/world-clock",
     "path": "/world-clock",
     "category": "3.0 Global Geography, Cities & Timezones",
-    "title": "Personal World Clock Dashboard — Track International Local Time",
+    "title": "World Clock — Compare Time Across Cities",
     "description": "Create a custom world clock dashboard. Track the exact live time in New York, London, Tokyo, and hundreds of other international cities with instant day/night indicators.",
     "h1": "Your Custom World Clock Dashboard",
     "headings": [
@@ -1048,7 +1048,7 @@ export const HUB_PAGES_CUSTOM_CONTENT: Record<string, HubPageCustomContent> = {
     "url": "https://www.timenumbers.com/today",
     "path": "/today",
     "category": "5.0 Calendars, Dates & Event Countdowns",
-    "title": "What is Today's Date? Exact Day of Year, Week Number & Time Now",
+    "title": "What is Today's Date & Time Now? Live Calendar Stats",
     "description": "Today's date with complete calendar stats: current day of the year (DOY), ISO week number, days remaining in 2026, and live atomic clock synchronization.",
     "h1": "What is Today's Date? Live Calendar & Year Progress",
     "headings": [
@@ -1437,9 +1437,9 @@ export const HUB_PAGES_CUSTOM_CONTENT: Record<string, HubPageCustomContent> = {
     "url": "https://www.timenumbers.com/widgets",
     "path": "/widgets",
     "category": "6.0 Standards, Developers & Technical Time",
-    "title": "Embeddable Clock Widgets — Free Digital & Analog HTML Clocks",
-    "description": "Add live digital, analog, and multi-city world clocks to your website, blog, or Notion workspace for free. Fully responsive with clean dark and light styles.",
-    "h1": "Embeddable Web Clock & Timer Widgets",
+    "title": "Free HTML Clock Widget for Websites",
+    "description": "Create a customizable live clock for your website. Choose a timezone, select from 7 modern themes, and copy the responsive embed code for WordPress, Webflow, or Notion.",
+    "h1": "Add a Live Clock Widget to Your Website",
     "headings": [
       "Customizable Digital and Analog Designs",
       "Simple Copy-Paste Embed Codes for Any CMS",

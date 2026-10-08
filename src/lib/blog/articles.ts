@@ -24,7 +24,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Mar 1, 2026',
     author: 'TimeNumbers Research Lab',
     authorRole: 'Workplace Chronometry & Data Team',
-    image: '/images/paris_hero.jpg',
+    image: '/images/paris_hero.webp',
     keywords: ['time zone productivity study', 'remote team scheduling cost', 'international meeting overlap', 'timezone fatigue statistics'],
     content: [
       'As remote and distributed teams become the global default, time zone friction has quietly emerged as one of the largest unmeasured productivity drains in modern enterprise operations.',
@@ -47,7 +47,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Mar 10, 2026',
     author: 'TimeNumbers Research Lab',
     authorRole: 'Public Policy & Chronometry Division',
-    image: '/images/paris_hero.jpg',
+    image: '/images/paris_hero.webp',
     keywords: ['daylight saving time study', 'sunshine protection act statistics', 'countries without daylight saving', 'DST health and cardiac impacts'],
     content: [
       'Twice every year, hundreds of millions of people in North America and Europe alter their clocks. Yet global data shows a seismic shift toward permanent standard time.',
@@ -71,7 +71,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Feb 10, 2025',
     author: 'Dr. Julian Vance',
     authorRole: 'Chief Chronometry Architect',
-    image: '/images/paris_hero.jpg',
+    image: '/images/paris_hero.webp',
     keywords: ['atomic clock online', 'NTP synchronization', 'cesium clock accuracy', 'sub-second internet time', 'stratum 1 servers'],
     content: [
       'Every time you load a webpage, execute a financial trade, or navigate with GPS, your device relies on an invisible global infrastructure: synchronized atomic time.',
@@ -97,7 +97,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Feb 18, 2025',
     author: 'Elena Rostova',
     authorRole: 'Geopolitical Time Historian',
-    image: '/images/newyork_hero.jpg',
+    image: '/images/newyork_hero.webp',
     keywords: ['UTC vs GMT', 'time zones explained', 'Greenwich Mean Time history', 'Coordinated Universal Time', 'Prime Meridian'],
     content: [
       'While the terms GMT (Greenwich Mean Time) and UTC (Coordinated Universal Time) are often used interchangeably in casual conversation, their scientific foundations are fundamentally distinct.',
@@ -124,7 +124,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Mar 01, 2025',
     author: 'Marcus Aurel',
     authorRole: 'Regulatory Policy Analyst',
-    image: '/images/tokyo_hero.jpg',
+    image: '/images/tokyo_hero.webp',
     keywords: ['Daylight saving time 2025', 'spring forward 2025', 'DST clock change dates', 'EU DST abolition debate', 'fall back schedule'],
     content: [
       'Twice each year, roughly 1.5 billion people across over 70 countries participate in the ritual of Daylight Saving Time (DST). In 2025, major regional transitions will occur as follows:',
@@ -149,7 +149,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Mar 05, 2025',
     author: 'Sarah Chen',
     authorRole: 'VP of Remote Operations',
-    image: '/images/paris_hero.jpg',
+    image: '/images/paris_hero.webp',
     keywords: ['meeting planner across time zones', 'async collaboration across time zones', 'international team scheduling', 'golden overlap hours'],
     content: [
       'Managing a distributed workforce across San Francisco, London, Dubai, and Tokyo is one of the greatest operational hurdles of modern tech companies. Without clear rules, someone is always waking up at 5:00 AM or answering Slack at 11:00 PM.',
@@ -175,7 +175,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Mar 12, 2025',
     author: 'David K. Hoffman',
     authorRole: 'Systems Infrastructure Engineer',
-    image: '/images/newyork_hero.jpg',
+    image: '/images/newyork_hero.webp',
     keywords: ['Unix timestamp converter', 'Y2K38 problem', '32-bit epoch overflow', 'seconds since Jan 1 1970', 'epoch conversion'],
     content: [
       'Deep inside operating systems, database engines, and network protocols, time is not stored as "March 25, 2025, 10:42:18". It is represented as a single integer: the number of seconds that have elapsed since **January 1, 1970 at 00:00:00 UTC**.',
@@ -199,7 +199,7 @@ export const BLOG_ARTICLES: Article[] = [
     dateFormatted: 'Mar 20, 2025',
     author: 'Dr. Clara Montero',
     authorRole: 'Neurobiologist & Sleep Clinician',
-    image: '/images/tokyo_hero.jpg',
+    image: '/images/tokyo_hero.webp',
     keywords: ['jet lag recovery', 'circadian rhythm adjustment', 'time zone travel tips', 'melatonin timing', 'suprachiasmatic nucleus'],
     content: [
       'When you board a flight in Tokyo and land in London 14 hours later, your watch says morning, but your body cellular machinery is convinced it is the middle of the night. This disorientation is not just fatigue; it is a physiological desynchronization.',

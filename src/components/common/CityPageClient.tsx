@@ -29,6 +29,8 @@ const COMPARISON_CITIES = [
   { name: 'Sydney', tz: 'Australia/Sydney', slug: 'sydney' },
 ];
 
+import { subscribeToClock } from '@/lib/time/sync';
+
 export function CityPageClient({ city, h1Title }: Props) {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [use24Hour, setUse24Hour] = useState(false);
@@ -41,9 +43,10 @@ export function CityPageClient({ city, h1Title }: Props) {
       timezone: city.timezone,
       slug: getCityRootSlug(city),
     });
-    setCurrentTime(new Date());
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-    return () => clearInterval(timer);
+    const unsubscribe = subscribeToClock((now) => {
+      setCurrentTime(now);
+    });
+    return unsubscribe;
   }, [city]);
 
   const now = currentTime || new Date();
@@ -132,14 +135,14 @@ export function CityPageClient({ city, h1Title }: Props) {
 
         {/* Huge Digital Numerals */}
         <div className="py-8 sm:py-10">
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-400 block mb-2">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-400 block mb-2" suppressHydrationWarning>
             {details.dateStr}
           </span>
-          <div className="text-6xl sm:text-8xl lg:text-9xl font-mono font-black tracking-tight text-slate-900 dark:text-white select-none">
+          <div className="text-6xl sm:text-8xl lg:text-9xl font-mono font-black tracking-tight text-slate-900 dark:text-white select-none" suppressHydrationWarning>
             {showSeconds ? details.timeStr : details.timeStr.substring(0, details.timeStr.lastIndexOf(':'))}
           </div>
           {!use24Hour && details.dayPeriod && (
-            <span className="text-sm sm:text-base font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400 mt-2 block">
+            <span className="text-sm sm:text-base font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400 mt-2 block" suppressHydrationWarning>
               {details.dayPeriod}
             </span>
           )}

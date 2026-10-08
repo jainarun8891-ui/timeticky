@@ -11,10 +11,16 @@ export interface SyncState {
 }
 
 export async function syncWithServer(): Promise<SyncState> {
+  // Prevent aggressive re-syncing if already synced within the last 10 minutes
+  if (isSynchronized && (Date.now() - lastSyncTimestamp < 10 * 60 * 1000)) {
+    return getSyncState();
+  }
+
   const samples: number[] = [];
   const latencies: number[] = [];
+  const iterations = isSynchronized ? 1 : 2;
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < iterations; i++) {
     try {
       const t0 = performance.now();
       const res = await fetch('/api/time', { cache: 'no-store' });
@@ -61,3 +67,63 @@ export function getSyncState(): SyncState {
     lastSyncedAt: lastSyncTimestamp
   };
 }
+
+// -------------------------------------------------------------
+// Central Clock Ticker & Mobile Tab Resume Optimization
+// -------------------------------------------------------------
+
+type ClockListener = (date: Date) => void;
+const subscribers = new Set<ClockListener>();
+let globalTickerId: ReturnType<typeof setInterval> | null = null;
+
+function broadcastTick() {
+  const now = getSyncedDate();
+  subscribers.forEach((cb) => {
+    try {
+      cb(now);
+    } catch {}
+  });
+}
+
+function ensureGlobalTickerRunning() {
+  if (typeof window === 'undefined') return;
+  if (!globalTickerId && subscribers.size > 0) {
+    globalTickerId = setInterval(broadcastTick, 1000);
+  }
+}
+
+function stopGlobalTickerIfIdle() {
+  if (subscribers.size === 0 && globalTickerId) {
+    clearInterval(globalTickerId);
+    globalTickerId = null;
+  }
+}
+
+if (typeof window !== 'undefined') {
+  // Instant tick without network call on mobile tab resume or screen wake
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      broadcastTick();
+      if (!isSynchronized || (Date.now() - lastSyncTimestamp > 10 * 60 * 1000)) {
+        syncWithServer().catch(() => {});
+      }
+    }
+  });
+
+  window.addEventListener('focus', () => {
+    broadcastTick();
+  });
+}
+
+export function subscribeToClock(callback: ClockListener): () => void {
+  subscribers.add(callback);
+  ensureGlobalTickerRunning();
+  // Immediately invoke with current time
+  callback(getSyncedDate());
+
+  return () => {
+    subscribers.delete(callback);
+    stopGlobalTickerIfIdle();
+  };
+}
+

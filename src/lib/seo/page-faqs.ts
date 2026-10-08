@@ -81,33 +81,75 @@ export function getCityTemporalData(city: City, date = new Date()): CityTimeData
   let dstAction: 'forward' | 'backward' | undefined;
   let dstScheduleNote: string | undefined;
 
+  // Helper functions for dynamic astronomical & calendar DST transitions
+  const getNthSunday = (y: number, m: number, n: number): Date => {
+    const d = new Date(Date.UTC(y, m, 1));
+    let count = 0;
+    while (d.getUTCMonth() === m) {
+      if (d.getUTCDay() === 0) {
+        count++;
+        if (count === n) return d;
+      }
+      d.setUTCDate(d.getUTCDate() + 1);
+    }
+    return d;
+  };
+
+  const getLastSunday = (y: number, m: number): Date => {
+    const d = new Date(Date.UTC(y, m + 1, 0));
+    while (d.getUTCDay() !== 0) {
+      d.setUTCDate(d.getUTCDate() - 1);
+    }
+    return d;
+  };
+
+  const formatDstDate = (d: Date): string => {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+  };
+
   if (observesDST) {
     const cc = city.countryCode.toUpperCase();
     if (cc === 'US' || cc === 'CA') {
-      dstScheduleNote = 'Clocks spring forward 1 hour on the second Sunday in March (March 8, 2026 at 02:00 AM) and fall back on the first Sunday in November (November 1, 2026).';
+      const springSunday = getNthSunday(year, 2, 2); // 2nd Sunday in March
+      const fallSunday = getNthSunday(year, 10, 1);   // 1st Sunday in November
+      const springFormatted = formatDstDate(springSunday);
+      const fallFormatted = formatDstDate(fallSunday);
+
+      dstScheduleNote = `Clocks spring forward 1 hour on the second Sunday in March (${springFormatted} at 02:00 AM) and fall back on the first Sunday in November (${fallFormatted}).`;
       if (isDstCurrentlyActive) {
-        nextDSTChange = `November 1, ${year}`;
+        nextDSTChange = fallFormatted;
         dstAction = 'backward';
       } else {
-        nextDSTChange = `March 8, ${year}`;
+        nextDSTChange = date > fallSunday ? formatDstDate(getNthSunday(year + 1, 2, 2)) : springFormatted;
         dstAction = 'forward';
       }
-    } else if (['GB', 'UK', 'FR', 'DE', 'IT', 'ES', 'NL', 'BE', 'CH', 'AT', 'SE', 'NO', 'DK', 'PL', 'IE', 'PT'].includes(cc)) {
-      dstScheduleNote = 'Clocks spring forward 1 hour on the last Sunday in March (March 29, 2026 at 01:00 AM) and fall back to GMT on the last Sunday in October (October 25, 2026).';
+    } else if (['GB', 'UK', 'FR', 'DE', 'IT', 'ES', 'NL', 'BE', 'CH', 'AT', 'SE', 'NO', 'DK', 'PL', 'IE', 'PT', 'CZ', 'GR', 'FI'].includes(cc)) {
+      const springSunday = getLastSunday(year, 2);  // Last Sunday in March
+      const fallSunday = getLastSunday(year, 9);    // Last Sunday in October
+      const springFormatted = formatDstDate(springSunday);
+      const fallFormatted = formatDstDate(fallSunday);
+
+      dstScheduleNote = `Clocks spring forward 1 hour on the last Sunday in March (${springFormatted} at 01:00 UTC) and fall back on the last Sunday in October (${fallFormatted}).`;
       if (isDstCurrentlyActive) {
-        nextDSTChange = `October 25, ${year}`;
+        nextDSTChange = fallFormatted;
         dstAction = 'backward';
       } else {
-        nextDSTChange = `March 29, ${year}`;
+        nextDSTChange = date > fallSunday ? formatDstDate(getLastSunday(year + 1, 2)) : springFormatted;
         dstAction = 'forward';
       }
     } else if (cc === 'AU' || cc === 'NZ') {
-      dstScheduleNote = 'Southern Hemisphere schedule: clocks fall back 1 hour on the first Sunday in April (April 5, 2026) and spring forward on the first Sunday in October (October 4, 2026).';
+      const fallSunday = getNthSunday(year, 3, 1);    // 1st Sunday in April (Southern autumn)
+      const springSunday = getNthSunday(year, 9, 1);  // 1st Sunday in October (Southern spring)
+      const fallFormatted = formatDstDate(fallSunday);
+      const springFormatted = formatDstDate(springSunday);
+
+      dstScheduleNote = `Southern Hemisphere schedule: clocks fall back 1 hour on the first Sunday in April (${fallFormatted}) and spring forward on the first Sunday in October (${springFormatted}).`;
       if (isDstCurrentlyActive) {
-        nextDSTChange = `April 5, ${year}`;
+        nextDSTChange = date > springSunday ? formatDstDate(getNthSunday(year + 1, 3, 1)) : fallFormatted;
         dstAction = 'backward';
       } else {
-        nextDSTChange = `October 4, ${year}`;
+        nextDSTChange = springFormatted;
         dstAction = 'forward';
       }
     } else {

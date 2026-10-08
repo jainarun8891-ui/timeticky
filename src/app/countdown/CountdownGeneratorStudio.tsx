@@ -242,7 +242,7 @@ export function CountdownGeneratorStudio() {
 
               {/* Slug Preview Pill */}
               <div className="p-3 rounded-xl bg-slate-900 border border-slate-800/80 text-[11px] font-mono text-slate-400 truncate flex items-center justify-between gap-2">
-                <span className="truncate">timeticky.com{fullSharePath}</span>
+                <span className="truncate">timenumbers.com{fullSharePath}</span>
                 <Link
                   href={fullSharePath}
                   className="text-blue-400 hover:text-blue-300 shrink-0 font-bold flex items-center gap-1"

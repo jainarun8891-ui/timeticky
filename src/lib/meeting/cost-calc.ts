@@ -117,7 +117,7 @@ export function generateSlackReceipt(
   currencySymbol = '$'
 ): string {
   return [
-    `🧾 *Meeting Financial Burn Receipt* | *TimeTicky*`,
+    `🧾 *Meeting Financial Burn Receipt* | *TimeNumbers*`,
     `━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
     `📌 *Meeting:* ${title || 'Team Sync'}`,
     `👥 *Attendees:* ${attendees} participants`,

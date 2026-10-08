@@ -116,6 +116,7 @@ export function ConvertDirectoryClient() {
             <Link
               key={c.slug}
               href={`/convert/${c.slug}`}
+              prefetch={false}
               className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-md transition-all group flex flex-col justify-between"
             >
               <div className="flex items-center justify-between">

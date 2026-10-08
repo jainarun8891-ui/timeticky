@@ -28,7 +28,7 @@ const SLEEP_FAQS: FaqItem[] = [
   {
     question: 'What is the 14-minute rule for falling asleep?',
     answer:
-      'Sleep latency is the amount of time it takes to transition from full wakefulness to stage 1 sleep. Clinical sleep studies indicate the healthy human average is approximately 14 minutes. The TimeTicky Sleep Calculator automatically factors this 14-minute runway into every bedtime calculation so you reach target cycles accurately.'
+      'Sleep latency is the amount of time it takes to transition from full wakefulness to stage 1 sleep. Clinical sleep studies indicate the healthy human average is approximately 14 minutes. The TimeNumbers Sleep Calculator automatically factors this 14-minute runway into every bedtime calculation so you reach target cycles accurately.'
   },
   {
     question: 'How many sleep cycles does an adult need per night?',
@@ -46,7 +46,7 @@ export default function SleepCalculatorPage() {
   const applicationSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'TimeTicky Sleep Cycle Calculator',
+    name: 'TimeNumbers Sleep Cycle Calculator',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with JavaScript enabled',

@@ -53,7 +53,7 @@ export default async function ProgrammaticSleepPage({ params }: Props) {
   const applicationSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: `TimeTicky Sleep Cycle Calculator — ${parsed.title}`,
+    name: `TimeNumbers Sleep Cycle Calculator — ${parsed.title}`,
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with JavaScript enabled',

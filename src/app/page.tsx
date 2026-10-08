@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GlobalSearchBar } from '@/components/search/GlobalSearchBar';
 import { PrecisionClockHero } from '@/components/home/PrecisionClockHero';
 import { HeroClockCard } from '@/components/dashboard/HeroClockCard';
@@ -23,7 +23,21 @@ import { Clock, Globe, Calendar, ShieldCheck, Sparkles, Compass } from 'lucide-r
 const content = HUB_PAGES_CUSTOM_CONTENT['/'];
 
 export default function HomePage() {
-  const [selectedCity, setSelectedCity] = useState<City>(CITIES[0]); // Paris default
+  const [selectedCity, setSelectedCity] = useState<City>(CITIES[0]); // Paris default SSR
+
+  // On client hydration, synchronize spotlight with visitor's detected timezone if matched
+  useEffect(() => {
+    try {
+      let resolvedTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (resolvedTz === 'Asia/Calcutta') resolvedTz = 'Asia/Kolkata';
+      if (resolvedTz) {
+        const localMatch = CITIES.find(c => c.timezone === resolvedTz);
+        if (localMatch) {
+          setSelectedCity(localMatch);
+        }
+      }
+    } catch {}
+  }, []);
 
   return (
     <div className="w-full min-h-full pb-16">
@@ -83,13 +97,13 @@ export default function HomePage() {
           <div className="space-y-4 max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Stratum-1 Atomic Synchronization</span>
+              <span>Network-Calibrated Precision Chronometry</span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               Exact Time Now — Live Atomic Clock &amp; Global World Time
             </h1>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-              Need to know the exact time right now? TimeNumbers delivers atomic-level precision straight to your screen, calibrated directly against Stratum-1 time servers. Whether you are synchronizing an automatic chronograph, verifying server logs, or jumping onto a cross-border video call, our live clock accounts for browser latency and device drift to display true Coordinated Universal Time (UTC) and your exact local time.
+              Need to know the exact time right now? TimeNumbers delivers millisecond-calibrated civil time straight to your screen, synchronized against network time protocol (NTP) reference servers. Whether you are synchronizing an automatic chronograph, verifying server logs, or jumping onto a cross-border video call, our live clock accounts for browser latency and device drift to display true Coordinated Universal Time (UTC) and your exact local time.
             </p>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
               Beyond your immediate second, explore live clocks across 500+ major metropolitan areas, calculate precise time differences between time zones, and coordinate multi-city team schedules without timezone confusion. Bookmark this page to check your device accuracy anytime, or grab our responsive clock widgets to display real-time clocks on your own web projects.

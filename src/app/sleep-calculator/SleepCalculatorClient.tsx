@@ -69,7 +69,7 @@ export function SleepCalculatorClient({
       )
       .join('\n');
 
-    const text = `${header}\n${body}\n\nCalculated with TimeTicky Sleep Cycle Calculator\nhttps://www.timenumbers.com/sleep-calculator`;
+    const text = `${header}\n${body}\n\nCalculated with TimeNumbers Sleep Cycle Calculator\nhttps://www.timenumbers.com/sleep-calculator`;
 
     navigator.clipboard.writeText(text);
     setCopied(true);

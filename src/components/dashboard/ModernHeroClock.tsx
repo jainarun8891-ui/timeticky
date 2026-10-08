@@ -24,14 +24,14 @@ interface ModernHeroClockProps {
 }
 
 const FEATURED_CITIES = [
-  { id: 'tokyo-jp', name: 'Tokyo', country: 'Japan', flag: '🇯🇵', img: '/images/tokyo_hero.jpg', vibe: 'Neon Twilight & Mount Fuji' },
-  { id: 'new-york-us', name: 'New York', country: 'USA', flag: '🇺🇸', img: '/images/newyork_hero.jpg', vibe: 'Golden Hour Manhattan' },
-  { id: 'paris-fr', name: 'Paris', country: 'France', flag: '🇫🇷', img: '/images/paris_hero.jpg', vibe: 'Seine River & Eiffel Tower' },
-  { id: 'london-gb', name: 'London', country: 'UK', flag: '🇬🇧', img: '/images/paris_hero.jpg', vibe: 'Thames & Big Ben' },
-  { id: 'dubai-ae', name: 'Dubai', country: 'UAE', flag: '🇦🇪', img: '/images/newyork_hero.jpg', vibe: 'Burj Khalifa Horizon' },
-  { id: 'new-delhi-in', name: 'New Delhi', country: 'India', flag: '🇮🇳', img: '/images/tokyo_hero.jpg', vibe: 'India Gate Twilight' },
-  { id: 'sydney-au', name: 'Sydney', country: 'Australia', flag: '🇦🇺', img: '/images/tokyo_hero.jpg', vibe: 'Harbour & Opera House' },
-  { id: 'san-francisco-us', name: 'San Francisco', country: 'USA', flag: '🇺🇸', img: '/images/newyork_hero.jpg', vibe: 'Golden Gate Mist' }
+  { id: 'tokyo-jp', name: 'Tokyo', country: 'Japan', flag: '🇯🇵', img: '/images/tokyo_hero.webp', vibe: 'Neon Twilight & Mount Fuji' },
+  { id: 'new-york-us', name: 'New York', country: 'USA', flag: '🇺🇸', img: '/images/newyork_hero.webp', vibe: 'Golden Hour Manhattan' },
+  { id: 'paris-fr', name: 'Paris', country: 'France', flag: '🇫🇷', img: '/images/paris_hero.webp', vibe: 'Seine River & Eiffel Tower' },
+  { id: 'london-gb', name: 'London', country: 'UK', flag: '🇬🇧', img: '/images/london_thumb.webp', vibe: 'Thames & Big Ben' },
+  { id: 'dubai-ae', name: 'Dubai', country: 'UAE', flag: '🇦🇪', img: '/images/newyork_hero.webp', vibe: 'Burj Khalifa Horizon' },
+  { id: 'new-delhi-in', name: 'New Delhi', country: 'India', flag: '🇮🇳', img: '/images/tokyo_hero.webp', vibe: 'India Gate Twilight' },
+  { id: 'sydney-au', name: 'Sydney', country: 'Australia', flag: '🇦🇺', img: '/images/sydney_thumb.webp', vibe: 'Harbour & Opera House' },
+  { id: 'san-francisco-us', name: 'San Francisco', country: 'USA', flag: '🇺🇸', img: '/images/newyork_hero.webp', vibe: 'Golden Gate Mist' }
 ];
 
 export function ModernHeroClock({ currentCity, onSelectCity, onOpenSearch }: ModernHeroClockProps) {

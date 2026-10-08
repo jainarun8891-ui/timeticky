@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getTimeDetails, getUtcOffsetMinutes, getTimeDifferenceText } from '@/lib/time/engine';
+import { checkRateLimit, createRateLimitHeaders, createRateLimitExceededResponse } from '@/lib/api/rate-limit';
 
 export async function GET(request: NextRequest) {
+  const rateCheck = checkRateLimit(request);
+  if (!rateCheck.allowed) {
+    return createRateLimitExceededResponse(rateCheck);
+  }
+
   const { searchParams } = new URL(request.url);
   const fromTz = searchParams.get('from') || 'UTC';
   const toParam = searchParams.get('to') || 'Europe/London';
@@ -67,14 +73,17 @@ export async function GET(request: NextRequest) {
       },
       conversions: converted,
       rateLimit: {
-        tier: 'anonymous',
-        limit: '100 requests per minute',
-        remaining: 99,
+        tier: rateCheck.plan.id,
+        tierName: rateCheck.plan.name,
+        limitPerMinute: rateCheck.limit,
+        remainingThisMinute: rateCheck.remaining,
+        resetSeconds: rateCheck.resetSeconds,
       }
     }, {
       headers: {
         'Cache-Control': 'no-store, max-age=0',
         'Access-Control-Allow-Origin': '*',
+        ...createRateLimitHeaders(rateCheck),
       }
     });
   } catch (err) {

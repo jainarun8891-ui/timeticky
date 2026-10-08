@@ -1,7 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getAllCountries } from '@/lib/geo/countries';
+import { checkRateLimit, createRateLimitHeaders, createRateLimitExceededResponse } from '@/lib/api/rate-limit';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const rateCheck = checkRateLimit(request);
+  if (!rateCheck.allowed) {
+    return createRateLimitExceededResponse(rateCheck);
+  }
+
   const countries = getAllCountries();
 
   return NextResponse.json({
@@ -21,14 +27,17 @@ export async function GET() {
       dstNotes: c.dstNotes || null,
     })),
     rateLimit: {
-      tier: 'anonymous',
-      limit: '100 requests per minute',
-      remaining: 99,
+      tier: rateCheck.plan.id,
+      tierName: rateCheck.plan.name,
+      limitPerMinute: rateCheck.limit,
+      remainingThisMinute: rateCheck.remaining,
+      resetSeconds: rateCheck.resetSeconds,
     }
   }, {
     headers: {
       'Cache-Control': 'public, max-age=86400',
       'Access-Control-Allow-Origin': '*',
+      ...createRateLimitHeaders(rateCheck),
     }
   });
 }

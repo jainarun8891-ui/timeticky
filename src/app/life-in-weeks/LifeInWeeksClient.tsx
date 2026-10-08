@@ -221,7 +221,7 @@ export function LifeInWeeksClient({
     // Footer Branding
     exportCtx.fillStyle = '#64748b';
     exportCtx.font = 'bold 16px sans-serif';
-    exportCtx.fillText('TIMETICKY • PRECISE CHRONOMETRY & PERSPECTIVE', width / 2, height - 35);
+    exportCtx.fillText('TIMENUMBERS.COM • PRECISE CHRONOMETRY & PERSPECTIVE', width / 2, height - 35);
 
     // Download Link
     const link = document.createElement('a');

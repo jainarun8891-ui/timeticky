@@ -50,11 +50,11 @@ export default async function CountdownEventPage({ params, searchParams }: Props
     },
     {
       question: `Does the countdown continue to run accurately in background tabs?`,
-      answer: `Yes. TimeTicky utilizes continuous epoch timestamps rather than simple interval increments. Whether your phone screen turns off or you switch apps, the countdown will reflect the exact remaining duration the instant you return.`
+      answer: `Yes. TimeNumbers utilizes continuous epoch timestamps rather than simple interval increments. Whether your phone screen turns off or you switch apps, the countdown will reflect the exact remaining duration the instant you return.`
     },
     {
       question: `What happens when the countdown to ${item.name} reaches zero?`,
-      answer: `When the countdown reaches zero, TimeTicky automatically triggers a celebratory confetti explosion and presents a congratulatory completion card.`
+      answer: `When the countdown reaches zero, TimeNumbers automatically triggers a celebratory confetti explosion and presents a congratulatory completion card.`
     }
   ];
 
@@ -117,7 +117,7 @@ export default async function CountdownEventPage({ params, searchParams }: Props
                   As the Earth rotates eastward, celebrations ripple across the 24 primary longitudinal time zones.
                 </p>
                 <p>
-                  TimeTicky allows families, organizers, and international teams to stay synchronized with precise countdowns, regardless of geographic distance.
+                  TimeNumbers allows families, organizers, and international teams to stay synchronized with precise countdowns, regardless of geographic distance.
                 </p>
               </div>
             </div>
@@ -128,7 +128,7 @@ export default async function CountdownEventPage({ params, searchParams }: Props
               About This Custom Countdown
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              This live countdown timer was generated via TimeTicky&apos;s universal chronometer. Every second is measured against atomic NTP clocks to ensure your group countdown stays synchronized to the exact millisecond across all participants worldwide.
+              This live countdown timer was generated via TimeNumbers&apos;s universal chronometer. Every second is measured against atomic NTP clocks to ensure your group countdown stays synchronized to the exact millisecond across all participants worldwide.
             </p>
           </section>
         )}

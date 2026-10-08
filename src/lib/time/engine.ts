@@ -34,9 +34,32 @@ export interface TimeDifferenceSummary {
 
 export function getUtcOffsetMinutes(timeZone: string, date: Date = new Date()): number {
   try {
-    const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-    const tzDate = new Date(date.toLocaleString('en-US', { timeZone }));
-    return Math.round((tzDate.getTime() - utcDate.getTime()) / 60000);
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: timeZone === 'UTC' ? 'UTC' : timeZone,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false
+    });
+    const parts = formatter.formatToParts(date);
+    const getPart = (type: string) => parseInt(parts.find(p => p.type === type)?.value || '0', 10);
+
+    let hour = getPart('hour');
+    if (hour === 24) hour = 0;
+
+    const localUtcMs = Date.UTC(
+      getPart('year'),
+      getPart('month') - 1,
+      getPart('day'),
+      hour,
+      getPart('minute'),
+      getPart('second')
+    );
+
+    return Math.round((localUtcMs - date.getTime()) / 60000);
   } catch {
     return 0;
   }

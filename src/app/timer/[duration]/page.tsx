@@ -22,6 +22,22 @@ const DURATION_MAP: Record<string, { seconds: number; label: string; name: strin
     tips: 'Ideal for 4-7-8 breathing exercises, flash speed tasks, stepping away from the screen, or rapid decision drills.',
     idealFor: 'Box breathing, micro-meditation, steeped tea brewing, and quick stretch intervals.'
   },
+  '2-minutes': {
+    seconds: 120,
+    label: '2 Minutes',
+    name: '2 Minute Timer',
+    description: 'Set a 2 minute online timer with loud audio alarm. Perfect for tooth brushing, green tea steeping, plank challenges, and quick micro-breaks.',
+    tips: 'Recommended by dentists worldwide as the gold-standard oral hygiene brushing timer interval.',
+    idealFor: 'Teeth brushing, plank holds, matcha brewing, and quick breathing resets.'
+  },
+  '3-minutes': {
+    seconds: 180,
+    label: '3 Minutes',
+    name: '3 Minute Timer',
+    description: 'Set a 3 minute countdown timer with audio chime. Ideal for boiling soft eggs, debate speeches, elevator pitches, and workout rest periods.',
+    tips: 'The standard interval for parliamentary debate rounds, 3-minute thesis presentations, and soft-boiled egg timing.',
+    idealFor: 'Soft-boiled eggs, debate speeches, gym rest intervals, and pour-over coffee.'
+  },
   '5-minutes': {
     seconds: 300,
     label: '5 Minutes',
@@ -54,6 +70,14 @@ const DURATION_MAP: Record<string, { seconds: number; label: string; name: strin
     tips: 'Matches the 20-20-20 ophthalmology rule: every 20 minutes, look at an object 20 feet away for 20 seconds.',
     idealFor: 'Yoga flows, eye strain relief cycles, study intervals, and culinary simmer steps.'
   },
+  '25-minutes': {
+    seconds: 1500,
+    label: '25 Minutes',
+    name: '25 Minute Timer',
+    description: 'Set a 25 minute online Pomodoro focus timer with audible alert. Designed for deep productivity blocks, study sessions, and writing sprints.',
+    tips: 'The official core Pomodoro Technique interval: 25 minutes of single-task distraction-free focus followed by a 5-minute break.',
+    idealFor: 'Pomodoro work sprints, academic homework blocks, exam study, and creative writing.'
+  },
   '30-minutes': {
     seconds: 1800,
     label: '30 Minutes',
@@ -69,6 +93,14 @@ const DURATION_MAP: Record<string, { seconds: number; label: string; name: strin
     description: 'Set a 45 minute academic class period and deep work session timer with audio alarm.',
     tips: 'The classic academic lecture and university class period length, maximizing memory retention before mental fatigue sets in.',
     idealFor: 'Classroom periods, focused coding sprints, thesis drafting, and gym workouts.'
+  },
+  '60-minutes': {
+    seconds: 3600,
+    label: '60 Minutes',
+    name: '60 Minute Timer',
+    description: 'Set a 60 minute countdown timer with audio alert. Full one-hour deep work block for standardized exams, study, and roasting.',
+    tips: 'Classic one-hour timeblock interval. Ideal for silent study, timed practice exams, and uninterrupted focus.',
+    idealFor: 'Timed practice exams, 1-hour study sessions, kitchen roasting, and meeting blocks.'
   },
   '1-hour': {
     seconds: 3600,
@@ -101,7 +133,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return buildPageMetadata(
-    `${item.name} — Online Countdown Timer`,
+    `${item.name} — Fullscreen Countdown with Alarm`,
     item.description,
     `/timer/${duration.toLowerCase()}`
   );

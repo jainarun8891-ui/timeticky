@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   authors: [{ name: "TimeNumbers Chronometry Team" }],
   openGraph: {
     title: `${siteConfig.name} - Exact World Time & Atomic Clock Platform`,
-    description: "Sub-second NTP atomic time synchronization for 500+ world cities. Beautiful, accurate, and ad-free.",
+    description: "Millisecond-calibrated civil time synchronization for 500+ world cities. Beautiful, fast, and accurate.",
     url: siteConfig.url,
     siteName: siteConfig.name,
     images: [
@@ -79,6 +79,31 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Critical Performance Hints: Early Preconnects */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* LCP Hero Image Preload Discovery (fetchPriority high for sub-1s LCP) */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/paris_hero.webp"
+          type="image/webp"
+          // @ts-ignore
+          fetchPriority="high"
+        />
+
+        {/* Non-Render-Blocking Webfonts with swap display */}
+        <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        />
+
         <script
           src="https://quge5.com/88/tag.min.js"
           data-zone="289432"
@@ -112,14 +137,14 @@ export default function RootLayout({
         />
         <JsonLd type="website" />
         <JsonLd type="organization" />
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js) - Defer to browser idle time to free main thread */}
         {siteConfig.googleAnalyticsId && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAnalyticsId}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+            <Script id="google-analytics" strategy="lazyOnload">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}

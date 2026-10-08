@@ -100,6 +100,7 @@ export function RelatedLinksHub({
         </div>
         <Link
           href="/world-map"
+          prefetch={false}
           className="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline"
         >
           <span>Explore Interactive Map</span>
@@ -119,6 +120,7 @@ export function RelatedLinksHub({
               <Link
                 key={t.url}
                 href={t.url}
+                prefetch={false}
                 className="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-blue-50 dark:hover:bg-slate-700/60 border border-slate-100 dark:border-slate-800 transition-all flex items-start gap-3"
               >
                 <div className="p-2 rounded-xl bg-white dark:bg-slate-800 shadow-xs text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform shrink-0">
@@ -148,6 +150,7 @@ export function RelatedLinksHub({
             <Link
               key={c.url}
               href={c.url}
+              prefetch={false}
               className="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/40 border border-slate-200/60 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
             >
               {c.label}
@@ -168,6 +171,7 @@ export function RelatedLinksHub({
               <Link
                 key={city.id}
                 href={`/time/${canonicalSlug}`}
+                prefetch={false}
                 className="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/40 border border-slate-200/60 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
               >
                 {city.name}, {city.country}

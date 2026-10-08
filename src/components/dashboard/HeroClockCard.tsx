@@ -6,7 +6,7 @@ import { MapPin, ChevronDown, Check, Search, X } from 'lucide-react';
 import { City, CITIES } from '@/lib/geo/cities';
 import { formatTimeInZone, formatDateInZone, getUtcOffsetString } from '@/lib/time/timezones';
 import { getTimeDetails } from '@/lib/time/engine';
-import { getSyncedDate, syncWithServer } from '@/lib/time/sync';
+import { getSyncedDate, syncWithServer, subscribeToClock } from '@/lib/time/sync';
 import { getCountryFlagEmoji } from '@/lib/geo/flags';
 import { getCityRootSlug } from '@/lib/geo/city-lookup';
 
@@ -29,17 +29,22 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
     setActiveCity(currentCity);
   }, [currentCity]);
 
+  const activeCityRef = useRef<City>(activeCity);
+  useEffect(() => {
+    activeCityRef.current = activeCity;
+  }, [activeCity]);
+
   useEffect(() => {
     syncWithServer();
-    const interval = setInterval(() => {
-      const now = getSyncedDate();
+    const unsubscribe = subscribeToClock((now) => {
       setTime(now);
-      const ts = formatTimeInZone(now, activeCity.timezone, false, true);
+      const current = activeCityRef.current;
+      const ts = formatTimeInZone(now, current.timezone, false, true);
       if (typeof document !== 'undefined') {
-        document.title = `${ts} • Time in ${activeCity.name}, ${activeCity.country} • TimeNumbers`;
+        document.title = `${ts} • Time in ${current.name}, ${current.country} • TimeNumbers`;
       }
-    }, 1000);
-    return () => clearInterval(interval);
+    });
+    return unsubscribe;
   }, []);
 
   // Click outside listener to reliably close dropdown
@@ -80,18 +85,18 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
     return getTimeDetails(activeCity.timezone, time, false);
   }, [activeCity.timezone, time]);
 
-  // Dynamic scenic background based on city
+  // Dynamic scenic background based on city (optimized lightweight WebP)
   const bgImage = useMemo(() => {
     if (activeCity.id === 'paris-fr' || activeCity.countryCode === 'FR') {
-      return "url('/images/paris_hero.jpg')";
+      return "url('/images/paris_hero.webp')";
     }
     if (activeCity.id === 'new-york-us' || activeCity.countryCode === 'US') {
-      return "url('/images/newyork_hero.jpg')";
+      return "url('/images/newyork_hero.webp')";
     }
     if (activeCity.id === 'tokyo-jp' || activeCity.countryCode === 'JP') {
-      return "url('/images/tokyo_hero.jpg')";
+      return "url('/images/tokyo_hero.webp')";
     }
-    return "url('/images/france_thumb.jpg')";
+    return "url('/images/france_thumb.webp')";
   }, [activeCity]);
 
   // Filtered city list for search
@@ -300,7 +305,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
 
         <div className="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Synchronized with atomic time &bull; Precision: &plusmn;0.01 seconds</span>
+          <span>Synchronized with authoritative time servers &bull; NTP calibrated</span>
         </div>
       </div>
 

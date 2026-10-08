@@ -79,7 +79,7 @@ export function BlogIndexClient({ h1Title, description }: Props) {
       {activeCategory === 'All' && !searchQuery && (
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm overflow-hidden p-6 sm:p-8 hover:shadow-md transition-shadow">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div className="lg:col-span-5 h-64 rounded-2xl overflow-hidden bg-cover bg-center border border-slate-200/80" style={{ backgroundImage: "url('/images/paris_hero.jpg')" }} />
+            <div className="lg:col-span-5 h-64 rounded-2xl overflow-hidden bg-cover bg-center border border-slate-200/80" style={{ backgroundImage: "url('/images/paris_hero.webp')" }} />
             <div className="lg:col-span-7 space-y-4">
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800">

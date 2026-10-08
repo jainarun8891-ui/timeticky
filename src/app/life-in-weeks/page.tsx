@@ -45,7 +45,7 @@ export default function LifeInWeeksPage() {
   const applicationSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'TimeTicky Life in Weeks (Memento Mori) Grid',
+    name: 'TimeNumbers Life in Weeks (Memento Mori) Grid',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with JavaScript enabled',

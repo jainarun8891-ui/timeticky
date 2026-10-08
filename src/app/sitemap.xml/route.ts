@@ -21,12 +21,16 @@ export async function GET() {
     '/alarm',
     '/timer',
     '/timer/1-minute',
+    '/timer/2-minutes',
+    '/timer/3-minutes',
     '/timer/5-minutes',
     '/timer/10-minutes',
     '/timer/15-minutes',
     '/timer/20-minutes',
+    '/timer/25-minutes',
     '/timer/30-minutes',
     '/timer/45-minutes',
+    '/timer/60-minutes',
     '/timer/1-hour',
     '/timer/2-hours',
     '/pomodoro',
@@ -210,7 +214,30 @@ export async function GET() {
     ...blogUrls,
   ]));
 
-  const todayDate = new Date().toISOString().split('T')[0];
+  // Meaningful content revision dates (Google guidelines: do not set todayDate unconditionally)
+  const getUrlLastMod = (url: string): string => {
+    if (url.startsWith('/blog/')) {
+      const slug = url.replace('/blog/', '');
+      const article = BLOG_ARTICLES.find(b => b.slug === slug);
+      if (article?.datePublished) {
+        return article.datePublished.split('T')[0];
+      }
+      return '2026-03-01';
+    }
+    if (url.startsWith('/daylight-saving-time') || url.startsWith('/calendar')) {
+      return '2026-01-05';
+    }
+    if (url.startsWith('/time/') || url.startsWith('/sun/') || url.startsWith('/moon/')) {
+      return '2026-03-15';
+    }
+    if (url.startsWith('/converter') || url.startsWith('/utc-offset')) {
+      return '2026-02-20';
+    }
+    if (url === '') {
+      return '2026-04-01';
+    }
+    return '2026-02-15';
+  };
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -219,8 +246,8 @@ export async function GET() {
       (url) => `
     <url>
       <loc>${baseUrl}${url}</loc>
-      <lastmod>${todayDate}</lastmod>
-      <changefreq>${url === '' ? 'always' : (url.startsWith('/time/') || url.length < 15 ? 'hourly' : 'daily')}</changefreq>
+      <lastmod>${getUrlLastMod(url)}</lastmod>
+      <changefreq>${url === '' ? 'daily' : (url.startsWith('/time/') ? 'weekly' : 'monthly')}</changefreq>
       <priority>${url === '' ? '1.0' : (url.startsWith('/time/') || url.startsWith('/converter') ? '0.9' : '0.8')}</priority>
     </url>
   `

@@ -71,7 +71,7 @@ export default async function ProgrammaticLifePage({ params }: Props) {
   const applicationSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: `TimeTicky Life in Weeks at Age ${age}`,
+    name: `TimeNumbers Life in Weeks at Age ${age}`,
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with JavaScript enabled',
