@@ -12,6 +12,7 @@ import { trackCityView } from '@/lib/analytics/gtag';
 interface Props {
   city: City;
   h1Title?: string;
+  locale?: 'en' | 'es';
 }
 
 const COMPARISON_CITIES = [
@@ -31,7 +32,9 @@ const COMPARISON_CITIES = [
 
 import { subscribeToClock } from '@/lib/time/sync';
 
-export function CityPageClient({ city, h1Title }: Props) {
+export function CityPageClient({ city, h1Title, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
+  const prefix = isEs ? '/es' : '';
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [use24Hour, setUse24Hour] = useState(false);
   const [showSeconds, setShowSeconds] = useState(true);
@@ -65,11 +68,17 @@ export function CityPageClient({ city, h1Title }: Props) {
       const targetDetails = getTimeDetails(target.tz, now, !use24Hour);
       let sentence = '';
       if (diff.diffHours === 0) {
-        sentence = `${target.name} has the exact same local time as ${city.name}.`;
+        sentence = isEs
+          ? `${target.name} tiene la misma hora que ${city.name}.`
+          : `${target.name} has the exact same local time as ${city.name}.`;
       } else if (diff.diffHours > 0) {
-        sentence = `${target.name} is ${diff.summary} of ${city.name}.`;
+        sentence = isEs
+          ? `${target.name} está ${diff.summary} por delante de ${city.name}.`
+          : `${target.name} is ${diff.summary} of ${city.name}.`;
       } else {
-        sentence = `${target.name} is ${diff.summary} of ${city.name}.`;
+        sentence = isEs
+          ? `${target.name} está ${diff.summary} por detrás de ${city.name}.`
+          : `${target.name} is ${diff.summary} of ${city.name}.`;
       }
 
       return {
@@ -80,7 +89,7 @@ export function CityPageClient({ city, h1Title }: Props) {
         diffSummary: diff.summary,
       };
     });
-  }, [city, now, use24Hour]);
+  }, [city, now, use24Hour, isEs]);
 
   const cityRootSlug = useMemo(() => getCityRootSlug(city), [city]);
   const cityDifferencePairs = useMemo(() => {
@@ -110,7 +119,7 @@ export function CityPageClient({ city, h1Title }: Props) {
               {city.country} ({city.countryCode})
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-0.5">
-              {h1Title || `Current Time in ${city.name}`}
+              {h1Title || (isEs ? `Hora actual en ${city.name}` : `Current Time in ${city.name}`)}
             </h1>
             <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
               {city.timezone} • {details.utcOffsetString}
@@ -128,7 +137,7 @@ export function CityPageClient({ city, h1Title }: Props) {
               onClick={() => setShowSeconds(!showSeconds)}
               className="px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs hover:bg-slate-200 transition-all cursor-pointer"
             >
-              {showSeconds ? 'Hide Sec' : 'Show Sec'}
+              {showSeconds ? (isEs ? 'Ocultar seg' : 'Hide Sec') : (isEs ? 'Mostrar seg' : 'Show Sec')}
             </button>
           </div>
         </div>
@@ -152,7 +161,7 @@ export function CityPageClient({ city, h1Title }: Props) {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 text-center">
           <div>
             <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center justify-center gap-1">
-              <Sunrise className="w-3.5 h-3.5 text-amber-500" /> Sunrise
+              <Sunrise className="w-3.5 h-3.5 text-amber-500" /> {isEs ? 'Amanecer' : 'Sunrise'}
             </span>
             <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
               {solar.sunrise}
@@ -160,7 +169,7 @@ export function CityPageClient({ city, h1Title }: Props) {
           </div>
           <div>
             <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center justify-center gap-1">
-              <Sunset className="w-3.5 h-3.5 text-orange-500" /> Sunset
+              <Sunset className="w-3.5 h-3.5 text-orange-500" /> {isEs ? 'Atardecer' : 'Sunset'}
             </span>
             <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
               {solar.sunset}
@@ -168,7 +177,7 @@ export function CityPageClient({ city, h1Title }: Props) {
           </div>
           <div>
             <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center justify-center gap-1">
-              <Sun className="w-3.5 h-3.5 text-yellow-500" /> Solar Noon
+              <Sun className="w-3.5 h-3.5 text-yellow-500" /> {isEs ? 'Mediodía solar' : 'Solar Noon'}
             </span>
             <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
               {solar.solarNoon}
@@ -176,7 +185,7 @@ export function CityPageClient({ city, h1Title }: Props) {
           </div>
           <div>
             <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center justify-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-indigo-500" /> Day Length
+              <Clock className="w-3.5 h-3.5 text-indigo-500" /> {isEs ? 'Duración del día' : 'Day Length'}
             </span>
             <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5">
               {solar.dayLength}
@@ -188,28 +197,28 @@ export function CityPageClient({ city, h1Title }: Props) {
       {/* City Geospatial & Political Data Table */}
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-4">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-          {city.name} Geographic & Administrative Facts
+          {isEs ? `Datos geográficos y administrativos de ${city.name}` : `${city.name} Geographic & Administrative Facts`}
         </h3>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
-            <span className="text-slate-400 block font-medium">Country</span>
+            <span className="text-slate-400 block font-medium">{isEs ? 'País' : 'Country'}</span>
             <strong className="text-slate-900 dark:text-white text-sm block mt-0.5">{city.country}</strong>
           </div>
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
-            <span className="text-slate-400 block font-medium">Coordinates</span>
+            <span className="text-slate-400 block font-medium">{isEs ? 'Coordenadas' : 'Coordinates'}</span>
             <strong className="text-slate-900 dark:text-white text-sm block mt-0.5 font-mono">
               {city.lat.toFixed(2)}°N, {city.lng.toFixed(2)}°E
             </strong>
           </div>
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
-            <span className="text-slate-400 block font-medium">IANA Timezone</span>
+            <span className="text-slate-400 block font-medium">{isEs ? 'Zona horaria IANA' : 'IANA Timezone'}</span>
             <strong className="text-slate-900 dark:text-white text-sm block mt-0.5 font-mono">{city.timezone}</strong>
           </div>
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
-            <span className="text-slate-400 block font-medium">Daylight Saving</span>
+            <span className="text-slate-400 block font-medium">{isEs ? 'Horario de verano' : 'Daylight Saving'}</span>
             <strong className="text-slate-900 dark:text-white text-sm block mt-0.5">
-              {details.isDst ? 'Active (Summer Time)' : 'Standard Time (Winter)'}
+              {details.isDst ? (isEs ? 'Activo (Horario de verano)' : 'Active (Summer Time)') : (isEs ? 'Horario estándar (Invierno)' : 'Standard Time (Winter)')}
             </strong>
           </div>
         </div>
@@ -219,13 +228,13 @@ export function CityPageClient({ city, h1Title }: Props) {
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
         <div>
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Real-Time Horology Differential
+            {isEs ? 'Diferencial Horario en Tiempo Real' : 'Real-Time Horology Differential'}
           </span>
           <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
-            Time Difference From {city.name}
+            {isEs ? `Diferencia de hora con ${city.name}` : `Time Difference From ${city.name}`}
           </h3>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-            Instantaneous hours ahead or behind across key global metropolises.
+            {isEs ? 'Horas de diferencia en vivo con las principales metrópolis mundiales.' : 'Instantaneous hours ahead or behind across key global metropolises.'}
           </p>
         </div>
 
@@ -270,20 +279,20 @@ export function CityPageClient({ city, h1Title }: Props) {
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
               <ArrowLeftRight className="w-3.5 h-3.5" />
-              <span>Bilateral Time Corridors</span>
+              <span>{isEs ? 'Corredores Horarios Bilaterales' : 'Bilateral Time Corridors'}</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
-              Time Difference Guides for {city.name}
+              {isEs ? `Guías de diferencia horaria para ${city.name}` : `Time Difference Guides for ${city.name}`}
             </h3>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-              Live dual atomic clocks, daylight saving variations, and shared working hours.
+              {isEs ? 'Relojes duales sincronizados, cambios de horario de verano y ventanas de trabajo compartidas.' : 'Live dual atomic clocks, daylight saving variations, and shared working hours.'}
             </p>
           </div>
           <Link
-            href="/converter/difference"
+            href={`${prefix}/converter/difference`}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline"
           >
-            <span>All 92 City Differences Directory</span>
+            <span>{isEs ? 'Directorio de 92 diferencias entre ciudades' : 'All 92 City Differences Directory'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -293,7 +302,7 @@ export function CityPageClient({ city, h1Title }: Props) {
             cityDifferencePairs.map((pair) => (
               <Link
                 key={pair.slug}
-                href={`/converter/difference/${pair.slug}`}
+                href={`${prefix}/converter/difference/${pair.slug}`}
                 className="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 hover:border-blue-500/40 transition-all flex items-center justify-between"
               >
                 <div className="truncate">
@@ -301,7 +310,7 @@ export function CityPageClient({ city, h1Title }: Props) {
                     {pair.label}
                   </div>
                   <div className="text-[11px] text-slate-400 truncate">
-                    Compare Clocks & Overlap
+                    {isEs ? 'Comparar relojes y coincidencia' : 'Compare Clocks & Overlap'}
                   </div>
                 </div>
                 <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
@@ -311,7 +320,7 @@ export function CityPageClient({ city, h1Title }: Props) {
             ['new-york-to-london', 'london-to-tokyo', 'new-york-to-sao-paulo', 'new-york-to-honolulu'].map((slug) => (
               <Link
                 key={slug}
-                href={`/converter/difference/${slug}`}
+                href={`${prefix}/converter/difference/${slug}`}
                 className="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 hover:border-blue-500/40 transition-all flex items-center justify-between"
               >
                 <div className="truncate">
@@ -319,7 +328,7 @@ export function CityPageClient({ city, h1Title }: Props) {
                     {slug.replace(/-/g, ' ')}
                   </div>
                   <div className="text-[11px] text-slate-400 truncate">
-                    Compare Clocks & Overlap
+                    {isEs ? 'Comparar relojes y coincidencia' : 'Compare Clocks & Overlap'}
                   </div>
                 </div>
                 <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />

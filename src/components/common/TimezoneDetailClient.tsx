@@ -24,6 +24,7 @@ interface Props {
   notes?: string;
   isAmbiguous?: boolean;
   description?: string;
+  locale?: 'en' | 'es';
 }
 
 export function TimezoneDetailClient({
@@ -35,8 +36,10 @@ export function TimezoneDetailClient({
   hasDst,
   notes,
   isAmbiguous,
-  description
+  description,
+  locale = 'en'
 }: Props) {
+  const isEs = locale === 'es';
   const [now, setNow] = useState<Date | null>(null);
   const [is24Hour, setIs24Hour] = useState(false);
   const [localTz, setLocalTz] = useState<string>('UTC');
@@ -76,7 +79,9 @@ export function TimezoneDetailClient({
                   ? 'bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300'
                   : 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300'
               }`}>
-                {timeInfo.isDst ? 'DST Active (Summer Time)' : 'Standard Time (No DST)'}
+                {timeInfo.isDst
+                  ? (isEs ? 'Horario de Verano Activo (Verano)' : 'DST Active (Summer Time)')
+                  : (isEs ? 'Hora Estándar (Sin Horario de Verano)' : 'Standard Time (No DST)')}
               </span>
             </div>
 
@@ -87,8 +92,11 @@ export function TimezoneDetailClient({
             <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xl">
               {description || (
                 <>
-                  Representative reference: <span className="font-mono text-slate-700 dark:text-slate-300">{representativeTz}</span>.
-                  Calculated using live astronomical and IANA civil chronometry rules.
+                  {isEs ? 'Referencia representativa: ' : 'Representative reference: '}
+                  <span className="font-mono text-slate-700 dark:text-slate-300">{representativeTz}</span>.
+                  {isEs
+                    ? ' Calculado mediante reglas astronómicas en vivo y cronometría civil IANA.'
+                    : ' Calculated using live astronomical and IANA civil chronometry rules.'}
                 </>
               )}
             </p>
@@ -102,7 +110,7 @@ export function TimezoneDetailClient({
                 !is24Hour ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-slate-600 dark:text-slate-400'
               }`}
             >
-              12-Hour
+              {isEs ? '12 Horas' : '12-Hour'}
             </button>
             <button
               onClick={() => setIs24Hour(true)}
@@ -110,7 +118,7 @@ export function TimezoneDetailClient({
                 is24Hour ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-slate-600 dark:text-slate-400'
               }`}
             >
-              24-Hour
+              {isEs ? '24 Horas' : '24-Hour'}
             </button>
           </div>
         </div>
@@ -132,7 +140,9 @@ export function TimezoneDetailClient({
               <span>{formatDate(timeInfo)}</span>
             </div>
             <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">
-              Day {timeInfo.dayOfYear} of {timeInfo.year} • Week {timeInfo.weekNumber}
+              {isEs
+                ? `Día ${timeInfo.dayOfYear} de ${timeInfo.year} • Semana ${timeInfo.weekNumber}`
+                : `Day ${timeInfo.dayOfYear} of ${timeInfo.year} • Week ${timeInfo.weekNumber}`}
             </div>
           </div>
         </div>
@@ -142,14 +152,14 @@ export function TimezoneDetailClient({
           <div className="flex items-center gap-2.5">
             <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
             <span>
-              <strong>Your location vs this zone:</strong> {localDiff.summary}.
+              <strong>{isEs ? 'Tu ubicación vs esta zona:' : 'Your location vs this zone:'}</strong> {localDiff.summary}.
             </span>
           </div>
           <Link
-            href={`/time-converter?from=${encodeURIComponent(representativeTz)}`}
+            href={isEs ? `/es/time-converter?from=${encodeURIComponent(representativeTz)}` : `/time-converter?from=${encodeURIComponent(representativeTz)}`}
             className="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap"
           >
-            Convert time <ArrowRight className="w-3.5 h-3.5" />
+            {isEs ? 'Convertir hora' : 'Convert time'} <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
@@ -160,7 +170,7 @@ export function TimezoneDetailClient({
           <Info className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
           <div className="space-y-1">
             <h3 className="text-sm font-bold text-amber-900 dark:text-amber-200">
-              Multiple Global Meanings for {abbreviation}
+              {isEs ? `Múltiples Significados Globales para ${abbreviation}` : `Multiple Global Meanings for ${abbreviation}`}
             </h3>
             <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
               {notes}
@@ -175,9 +185,11 @@ export function TimezoneDetailClient({
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Globe className="w-5 h-5 text-blue-600" />
-              Major Cities in this Zone
+              {isEs ? 'Ciudades Principales en esta Zona' : 'Major Cities in this Zone'}
             </h2>
-            <span className="text-xs text-slate-500">Live synchronized clocks</span>
+            <span className="text-xs text-slate-500">
+              {isEs ? 'Relojes sincronizados en vivo' : 'Live synchronized clocks'}
+            </span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -186,7 +198,7 @@ export function TimezoneDetailClient({
               return (
                 <Link
                   key={city.id}
-                  href={`/${getCityRootSlug(city)}`}
+                  href={isEs ? `/es/time/${getCityRootSlug(city)}` : `/${getCityRootSlug(city)}`}
                   className="group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-sm flex items-center justify-between"
                 >
                   <div className="space-y-1">

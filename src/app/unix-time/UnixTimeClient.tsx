@@ -3,7 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
 
-export function UnixTimeClient() {
+interface UnixTimeClientProps {
+  locale?: 'en' | 'es';
+}
+
+export function UnixTimeClient({ locale = 'en' }: UnixTimeClientProps) {
+  const isEs = locale === 'es';
   const [t, setT] = useState(Date.now());
   const [c, setC] = useState(false);
 
@@ -21,11 +26,18 @@ export function UnixTimeClient() {
 
   return (
     <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
-      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Epoch Seconds</span>
+      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+        {isEs ? 'Segundos Epoch Unix' : 'Epoch Seconds'}
+      </span>
       <div className="text-6xl sm:text-7xl font-mono font-black text-slate-900 dark:text-white my-4 select-all">{sec}</div>
-      <p className="text-xs text-slate-400 font-mono">Milliseconds: {t}</p>
+      <p className="text-xs text-slate-400 font-mono">
+        {isEs ? 'Milisegundos' : 'Milliseconds'}: {t}
+      </p>
       <button onClick={copy} className="mt-6 px-4 py-2 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer hover:bg-blue-700 transition-colors">
-        {c ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}<span>{c ? 'Copied' : 'Copy Timestamp'}</span>
+        {c ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+        <span>
+          {c ? (isEs ? '¡Copiado!' : 'Copied') : (isEs ? 'Copiar Timestamp' : 'Copy Timestamp')}
+        </span>
       </button>
     </div>
   );

@@ -11,17 +11,28 @@ import { HubPageCustomContent } from '@/lib/seo/hub-pages-custom-content';
 import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 
 interface Props {
-  content: HubPageCustomContent;
+  content: HubPageCustomContent | any;
+  locale?: 'en' | 'es';
 }
 
-export function CalendarClient({ content }: Props) {
+export function CalendarClient({ content, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [d, setD] = useState(new Date());
   const y = d.getFullYear();
   const m = d.getMonth();
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
+  const months = isEs
+    ? [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+      ]
+    : [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+  const weekDays = isEs
+    ? ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+    : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
   const first = new Date(y, m, 1).getDay();
   const daysInMonth = new Date(y, m + 1, 0).getDate();
   const prevDays = new Date(y, m, 0).getDate();
@@ -36,17 +47,18 @@ export function CalendarClient({ content }: Props) {
 
   const prevMonth = () => setD(new Date(y, m - 1, 1));
   const nextMonth = () => setD(new Date(y, m + 1, 1));
+  const baseHref = isEs ? '/es' : '';
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
-        <Breadcrumbs items={[{ name: 'Calendar', url: '/calendar' }]} />
+        <Breadcrumbs items={[{ name: isEs ? 'Calendario' : 'Calendar', url: `${baseHref}/calendar` }]} locale={locale} />
         <JsonLd
           type="breadcrumb"
           data={[
-            { name: 'Home', url: '/' },
-            { name: 'Calendar', url: '/calendar' },
+            { name: isEs ? 'Inicio' : 'Home', url: isEs ? '/es' : '/' },
+            { name: isEs ? 'Calendario' : 'Calendar', url: `${baseHref}/calendar` },
           ]}
         />
         <JsonLd type="faq" data={content.faqs} />
@@ -56,7 +68,7 @@ export function CalendarClient({ content }: Props) {
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-2">
               <CalendarIcon className="w-3.5 h-3.5" />
-              Gregorian Astronomical Calendar
+              {isEs ? 'Calendario Astronómico Gregoriano' : 'Gregorian Astronomical Calendar'}
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               {content.h1}
@@ -68,33 +80,33 @@ export function CalendarClient({ content }: Props) {
 
           <div className="flex flex-wrap items-center gap-1.5">
             <Link
-              href="/calendar/2026"
+              href={`${baseHref}/calendar/2026`}
               className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
             >
               2026
             </Link>
             <Link
-              href="/calendar/2027"
+              href={`${baseHref}/calendar/2027`}
               className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
             >
               2027
             </Link>
             <Link
-              href="/calendar/2028"
+              href={`${baseHref}/calendar/2028`}
               className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
             >
               2028
             </Link>
             <Link
-              href="/compact-calendar"
+              href={`${baseHref}/compact-calendar`}
               className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors"
             >
-              Compact
+              {isEs ? 'Compacto' : 'Compact'}
             </Link>
             <button
               onClick={() => window.print()}
               className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 transition-colors"
-              title="Print Calendar"
+              title={isEs ? 'Imprimir calendario' : 'Print Calendar'}
             >
               <Printer className="w-4 h-4" />
             </button>
@@ -111,14 +123,14 @@ export function CalendarClient({ content }: Props) {
               <button
                 onClick={prevMonth}
                 className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
-                title="Previous Month"
+                title={isEs ? 'Mes anterior' : 'Previous Month'}
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={nextMonth}
                 className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
-                title="Next Month"
+                title={isEs ? 'Mes siguiente' : 'Next Month'}
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -127,7 +139,7 @@ export function CalendarClient({ content }: Props) {
 
           {/* Days Header */}
           <div className="grid grid-cols-7 gap-1 text-center font-bold text-xs uppercase tracking-wider text-slate-400">
-            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+            {weekDays.map(day => (
               <div key={day} className="py-2">{day}</div>
             ))}
           </div>
@@ -147,7 +159,7 @@ export function CalendarClient({ content }: Props) {
               >
                 <span className="text-sm font-semibold">{item.num}</span>
                 {item.isToday && (
-                  <span className="text-[10px] uppercase font-bold tracking-wider opacity-90">Today</span>
+                  <span className="text-[10px] uppercase font-bold tracking-wider opacity-90">{isEs ? 'Hoy' : 'Today'}</span>
                 )}
               </div>
             ))}
@@ -155,17 +167,17 @@ export function CalendarClient({ content }: Props) {
         </div>
 
         {/* Editorial Guide Section */}
-        <EditorialContentBlock content={content} badgeLabel="Multi-Year Planning & Gregorian Chronometry" />
+        <EditorialContentBlock content={content} badgeLabel={content.badgeLabel || "Multi-Year Planning & Gregorian Chronometry"} />
 
         {/* FAQ Accordion */}
         <FaqAccordion
           items={content.faqs}
-          title="Frequently Asked Questions About Yearly Calendars"
-          subtitle="Learn about the Gregorian calendar system, ISO week numbering, printing modes, and public holidays."
+          title={isEs ? 'Preguntas Frecuentes sobre el Calendario Anual' : 'Frequently Asked Questions About Yearly Calendars'}
+          subtitle={isEs ? 'Aprende sobre el sistema gregoriano, numeración ISO y festivos.' : 'Learn about the Gregorian calendar system, ISO week numbering, printing modes, and public holidays.'}
         />
 
         {/* Hub Navigation */}
-        <RelatedLinksHub currentPath="/calendar" title="Explore More Calendars & Tools" />
+        <RelatedLinksHub currentPath="/calendar" title={isEs ? 'Explorar más calendarios y herramientas' : 'Explore More Calendars & Tools'} locale={locale} />
       </div>
     </div>
   );

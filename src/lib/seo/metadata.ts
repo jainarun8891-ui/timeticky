@@ -58,15 +58,34 @@ export function formatSeoTitle(rawTitle: string): string {
   return cleanDanglingEnds(cleanBase);
 }
 
-export function buildPageMetadata(title: string, description: string, path = "") {
-  const canonical = buildCanonicalUrl(path);
+import { getLocalizedPath } from '../i18n';
+
+export function buildPageMetadata(
+  title: string,
+  description: string,
+  path = "",
+  locale: 'en' | 'es' = 'en',
+  customOgImage?: string
+) {
+  const isSpanish = locale === 'es' || path.startsWith('/es');
+  const enPath = getLocalizedPath(path, 'en');
+  const esPath = getLocalizedPath(path, 'es');
+
+  const enUrl = buildCanonicalUrl(enPath);
+  const esUrl = buildCanonicalUrl(esPath);
+  const canonical = isSpanish ? esUrl : enUrl;
   const cleanTitle = formatSeoTitle(title);
 
   return {
     title: cleanTitle,
     description,
     alternates: {
-      canonical
+      canonical,
+      languages: {
+        en: enUrl,
+        es: esUrl,
+        'x-default': enUrl,
+      },
     },
     openGraph: {
       title: cleanTitle,
@@ -75,20 +94,20 @@ export function buildPageMetadata(title: string, description: string, path = "")
       siteName: siteConfig.name,
       images: [
         {
-          url: siteConfig.ogImage,
+          url: customOgImage || siteConfig.ogImage,
           width: 1200,
           height: 630,
           alt: cleanTitle
         }
       ],
-      locale: "en_US",
+      locale: isSpanish ? "es_ES" : "en_US",
       type: "website"
     },
     twitter: {
       card: "summary_large_image",
       title: cleanTitle,
       description,
-      images: [siteConfig.ogImage]
+      images: [customOgImage || siteConfig.ogImage]
     }
   };
 }

@@ -9,9 +9,11 @@ import { trackTimeConversion } from '@/lib/analytics/gtag';
 interface Props {
   cityA: City;
   cityB: City;
+  locale?: 'en' | 'es';
 }
 
-export function TimeDifferencePairClient({ cityA, cityB }: Props) {
+export function TimeDifferencePairClient({ cityA, cityB, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [use24Hour, setUse24Hour] = useState(false);
 
@@ -68,7 +70,9 @@ export function TimeDifferencePairClient({ cityA, cityB }: Props) {
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 shadow-sm">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Reference City</span>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                {isEs ? 'Ciudad de referencia' : 'Reference City'}
+              </span>
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">{cityA.name}</h2>
             </div>
             <span className="text-xs font-mono font-bold text-slate-500">{detailsA.utcOffsetString}</span>
@@ -84,7 +88,9 @@ export function TimeDifferencePairClient({ cityA, cityB }: Props) {
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-8 shadow-sm">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Target City</span>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                {isEs ? 'Ciudad de destino' : 'Target City'}
+              </span>
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">{cityB.name}</h2>
             </div>
             <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">{detailsB.utcOffsetString}</span>
@@ -100,15 +106,22 @@ export function TimeDifferencePairClient({ cityA, cityB }: Props) {
       {/* Difference Summary Callout */}
       <div className="p-6 rounded-3xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200/60 dark:border-blue-900/40 text-center">
         <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
-          Exact Difference Summary
+          {isEs ? 'Resumen de Diferencia Horaria' : 'Exact Difference Summary'}
         </span>
         <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-          {cityB.name} is <span className="text-blue-600 dark:text-blue-400">{diff.summary}</span> of {cityA.name}
+          {isEs ? (
+            <>{cityB.name} está <span className="text-blue-600 dark:text-blue-400">{diff.summary}</span> de {cityA.name}</>
+          ) : (
+            <>{cityB.name} is <span className="text-blue-600 dark:text-blue-400">{diff.summary}</span> of {cityA.name}</>
+          )}
         </div>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 max-w-lg mx-auto">
           {diff.diffHours === 0
-            ? `${cityA.name} and ${cityB.name} currently share the identical local standard time.`
-            : `When it is 12:00 PM (Noon) in ${cityA.name}, it is ${diff.diffHours > 0 ? `${diff.diffHours} hours ahead` : `${Math.abs(diff.diffHours)} hours behind`} in ${cityB.name}.`
+            ? (isEs ? `${cityA.name} y ${cityB.name} comparten actualmente la misma hora oficial.` : `${cityA.name} and ${cityB.name} currently share the identical local standard time.`)
+            : (isEs
+              ? `Cuando en ${cityA.name} son las 12:00 del mediodía, en ${cityB.name} son ${diff.diffHours > 0 ? `${diff.diffHours} horas por delante` : `${Math.abs(diff.diffHours)} horas por detrás`}.`
+              : `When it is 12:00 PM (Noon) in ${cityA.name}, it is ${diff.diffHours > 0 ? `${diff.diffHours} hours ahead` : `${Math.abs(diff.diffHours)} hours behind`} in ${cityB.name}.`
+            )
           }
         </p>
       </div>
@@ -118,16 +131,16 @@ export function TimeDifferencePairClient({ cityA, cityB }: Props) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-              24-Hour Time Conversion & Business Overlap
+              {isEs ? 'Conversión de 24 Horas y Solapamiento Laboral' : '24-Hour Time Conversion & Business Overlap'}
             </h3>
             <p className="text-xs text-slate-400">
-              Highlighted green rows represent mutual office hours (9:00 AM – 6:00 PM).
+              {isEs ? 'Las celdas en verde destacan las horas de oficina coincidentes (9:00 - 18:00).' : 'Highlighted green rows represent mutual office hours (9:00 AM – 6:00 PM).'}
             </p>
           </div>
           <div className="flex items-center gap-3 text-xs">
             <span className="flex items-center gap-1.5 font-medium text-emerald-600 dark:text-emerald-400">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-              Shared Business Hours
+              {isEs ? 'Horario de Oficina Compartido' : 'Shared Business Hours'}
             </span>
           </div>
         </div>

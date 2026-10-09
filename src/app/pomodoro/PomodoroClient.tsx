@@ -11,7 +11,12 @@ const DEFAULT_DURATIONS: Record<Mode, number> = {
   longBreak: 15 * 60,
 };
 
-export function PomodoroClient() {
+interface Props {
+  locale?: 'en' | 'es';
+}
+
+export function PomodoroClient({ locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [mode, setMode] = useState<Mode>('work');
   const [timeLeft, setTimeLeft] = useState<number>(DEFAULT_DURATIONS.work);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -130,7 +135,7 @@ export function PomodoroClient() {
             }`}
           >
             <Brain className="w-3.5 h-3.5" />
-            <span>Focus (25m)</span>
+            <span>{isEs ? 'Enfoque (25m)' : 'Focus (25m)'}</span>
           </button>
           <button
             onClick={() => switchMode('shortBreak')}
@@ -141,7 +146,7 @@ export function PomodoroClient() {
             }`}
           >
             <Coffee className="w-3.5 h-3.5" />
-            <span>Short Break (5m)</span>
+            <span>{isEs ? 'Pausa Corta (5m)' : 'Short Break (5m)'}</span>
           </button>
           <button
             onClick={() => switchMode('longBreak')}
@@ -152,7 +157,7 @@ export function PomodoroClient() {
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Long Break (15m)</span>
+            <span>{isEs ? 'Pausa Larga (15m)' : 'Long Break (15m)'}</span>
           </button>
         </div>
 
@@ -162,7 +167,9 @@ export function PomodoroClient() {
             {timeDisplay}
           </div>
           <div className="mt-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400">
-            {mode === 'work' ? 'Time to Focus & Deep Work' : 'Time to Rest & Recharge'}
+            {mode === 'work'
+              ? (isEs ? 'Momento de Concentración y Trabajo Profundo' : 'Time to Focus & Deep Work')
+              : (isEs ? 'Momento de Descanso y Recarga' : 'Time to Rest & Recharge')}
           </div>
         </div>
 
@@ -191,13 +198,13 @@ export function PomodoroClient() {
             }`}
           >
             {isRunning ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current" />}
-            <span>{isRunning ? 'Pause' : 'Start Focus'}</span>
+            <span>{isRunning ? (isEs ? 'Pausar' : 'Pause') : (isEs ? 'Iniciar Enfoque' : 'Start Focus')}</span>
           </button>
 
           <button
             onClick={resetTimer}
             className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-            title="Reset Timer"
+            title={isEs ? "Reiniciar Temporizador" : "Reset Timer"}
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -208,7 +215,7 @@ export function PomodoroClient() {
               else switchMode('work');
             }}
             className="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-            title="Skip to next session"
+            title={isEs ? "Pasar a la siguiente sesión" : "Skip to next session"}
           >
             <SkipForward className="w-4 h-4" />
           </button>
@@ -218,10 +225,16 @@ export function PomodoroClient() {
         <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-center gap-6 text-xs text-slate-500 dark:text-slate-400 font-medium">
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-            <span>Completed Pomodoros: <strong>{completedCycles}</strong></span>
+            <span>
+              {isEs ? 'Pomodoros completados: ' : 'Completed Pomodoros: '}<strong>{completedCycles}</strong>
+            </span>
           </div>
           <div>&bull;</div>
-          <div>Cycle: <strong>{(completedCycles % 4) + 1} / 4</strong> before long break</div>
+          <div>
+            {isEs
+              ? <>Ciclo: <strong>{(completedCycles % 4) + 1} / 4</strong> antes de pausa larga</>
+              : <>Cycle: <strong>{(completedCycles % 4) + 1} / 4</strong> before long break</>}
+          </div>
         </div>
       </div>
     </div>

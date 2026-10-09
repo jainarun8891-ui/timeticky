@@ -4,7 +4,12 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { Calendar, Clock, Compass, CheckCircle2, Globe, Sparkles, Copy, Check } from 'lucide-react';
 
-export function TodayStatsClient() {
+interface Props {
+  locale?: 'en' | 'es';
+}
+
+export function TodayStatsClient({ locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [now, setNow] = useState<Date | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
@@ -44,18 +49,18 @@ export function TodayStatsClient() {
     // Julian Date: Julian epoch Jan 1, 1970 UTC = 2440587.5
     const julianDate = (d.getTime() / 86400000 + 2440587.5).toFixed(4);
 
-    const fullDateFormatted = new Intl.DateTimeFormat('en-US', {
+    const fullDateFormatted = new Intl.DateTimeFormat(isEs ? 'es-ES' : 'en-US', {
       weekday: 'long',
       month: 'long',
       day: 'numeric',
       year: 'numeric',
     }).format(d);
 
-    const timeFormatted = new Intl.DateTimeFormat('en-US', {
+    const timeFormatted = new Intl.DateTimeFormat(isEs ? 'es-ES' : 'en-US', {
       hour: 'numeric',
       minute: '2-digit',
       second: '2-digit',
-      hour12: true,
+      hour12: !isEs,
     }).format(d);
 
     const unixSeconds = Math.floor(d.getTime() / 1000);
@@ -76,7 +81,7 @@ export function TodayStatsClient() {
       yearProgressPercent,
       year,
     };
-  }, [d]);
+  }, [d, isEs]);
 
   const copyVal = (val: string, key: string) => {
     navigator.clipboard.writeText(val);
@@ -84,15 +89,37 @@ export function TodayStatsClient() {
     setTimeout(() => setCopiedKey(null), 2000);
   };
 
+  const items = isEs
+    ? [
+        { label: 'Día del Año', value: `Día ${stats.dayOfYear}`, note: `${stats.daysRemaining} días restantes`, key: 'dayOfYear' },
+        { label: 'Número de Semana ISO', value: `Semana ${stats.isoWeek}`, note: `${stats.weeksRemaining} semanas restantes`, key: 'week' },
+        { label: 'Trimestre del Año', value: `T${stats.quarter}`, note: `Meses ${(stats.quarter - 1) * 3 + 1} al ${stats.quarter * 3}`, key: 'q' },
+        { label: 'Estado de Año Bisiesto', value: stats.isLeap ? 'Año Bisiesto (366 días)' : 'Año Común (365 días)', note: stats.isLeap ? 'Febrero tiene 29 días' : 'Febrero tiene 28 días', key: 'leap' },
+        { label: 'Marca Temporal Unix', value: `${stats.unixSeconds}`, note: 'Segundos desde el 1 de enero de 1970', key: 'unix' },
+        { label: 'Fecha Juliana (JD)', value: `${stats.julianDate}`, note: 'Conteo continuo desde el 4713 a.C.', key: 'julian' },
+        { label: 'Días en el Mes Actual', value: `${new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()} Días`, note: `${new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(d)}`, key: 'daysInMonth' },
+        { label: 'Era del Calendario', value: 'EC / d.C.', note: 'Era Común / Gregoriana', key: 'era' },
+      ]
+    : [
+        { label: 'Day of Year', value: `Day ${stats.dayOfYear}`, note: `${stats.daysRemaining} days left`, key: 'dayOfYear' },
+        { label: 'ISO Week Number', value: `Week ${stats.isoWeek}`, note: `${stats.weeksRemaining} weeks left`, key: 'week' },
+        { label: 'Quarter of Year', value: `Q${stats.quarter}`, note: `Months ${(stats.quarter - 1) * 3 + 1} to ${stats.quarter * 3}`, key: 'q' },
+        { label: 'Leap Year Status', value: stats.isLeap ? 'Leap Year (366 days)' : 'Common Year (365 days)', note: stats.isLeap ? 'February has 29 days' : 'February has 28 days', key: 'leap' },
+        { label: 'Unix Timestamp', value: `${stats.unixSeconds}`, note: 'Seconds since Jan 1, 1970', key: 'unix' },
+        { label: 'Julian Date (JD)', value: `${stats.julianDate}`, note: 'Continuous day count since 4713 BC', key: 'julian' },
+        { label: 'Days in Current Month', value: `${new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()} Days`, note: `${new Intl.DateTimeFormat('en-US', { month: 'long' }).format(d)}`, key: 'daysInMonth' },
+        { label: 'Calendar Era', value: 'CE / AD', note: 'Common Era / Gregorian', key: 'era' },
+      ];
+
   return (
     <div className="space-y-8">
       {/* Hero Today Display */}
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-8 sm:p-12 shadow-sm text-center relative overflow-hidden">
         <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 block mb-2">
-          Chronometry Calendar Overview
+          {isEs ? 'Resumen Cronológico del Calendario' : 'Chronometry Calendar Overview'}
         </span>
 
-        <h2 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+        <h2 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight capitalize">
           {stats.fullDateFormatted}
         </h2>
 
@@ -103,8 +130,8 @@ export function TodayStatsClient() {
         {/* Year Progress Bar */}
         <div className="max-w-md mx-auto space-y-2 pt-2">
           <div className="flex justify-between text-xs text-slate-500 font-semibold">
-            <span>Year Progress ({stats.year})</span>
-            <span className="text-blue-600 dark:text-blue-400 font-bold">{stats.yearProgressPercent}% Completed</span>
+            <span>{isEs ? `Progreso del Año (${stats.year})` : `Year Progress (${stats.year})`}</span>
+            <span className="text-blue-600 dark:text-blue-400 font-bold">{stats.yearProgressPercent}% {isEs ? 'Completado' : 'Completed'}</span>
           </div>
           <div className="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-200/60 dark:border-slate-700">
             <div
@@ -113,23 +140,17 @@ export function TodayStatsClient() {
             />
           </div>
           <span className="text-[11px] text-slate-400 block">
-            Day <strong>{stats.dayOfYear}</strong> of {stats.totalDaysInYear} • {stats.daysRemaining} days remaining in {stats.year}
+            {isEs
+              ? <>Día <strong>{stats.dayOfYear}</strong> de {stats.totalDaysInYear} • {stats.daysRemaining} días restantes en {stats.year}</>
+              : <>Day <strong>{stats.dayOfYear}</strong> of {stats.totalDaysInYear} • {stats.daysRemaining} days remaining in {stats.year}</>
+            }
           </span>
         </div>
       </div>
 
       {/* Grid of Calendar & Chronological Facts */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {[
-          { label: 'Day of Year', value: `Day ${stats.dayOfYear}`, note: `${stats.daysRemaining} days left`, key: 'dayOfYear' },
-          { label: 'ISO Week Number', value: `Week ${stats.isoWeek}`, note: `${stats.weeksRemaining} weeks left`, key: 'week' },
-          { label: 'Quarter of Year', value: `Q${stats.quarter}`, note: `Months ${(stats.quarter - 1) * 3 + 1} to ${stats.quarter * 3}`, key: 'q' },
-          { label: 'Leap Year Status', value: stats.isLeap ? 'Leap Year (366 days)' : 'Common Year (365 days)', note: stats.isLeap ? 'February has 29 days' : 'February has 28 days', key: 'leap' },
-          { label: 'Unix Timestamp', value: `${stats.unixSeconds}`, note: 'Seconds since Jan 1, 1970', key: 'unix' },
-          { label: 'Julian Date (JD)', value: `${stats.julianDate}`, note: 'Continuous day count since 4713 BC', key: 'julian' },
-          { label: 'Days in Current Month', value: `${new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()} Days`, note: `${new Intl.DateTimeFormat('en-US', { month: 'long' }).format(d)}`, key: 'daysInMonth' },
-          { label: 'Calendar Era', value: 'CE / AD', note: 'Common Era / Gregorian', key: 'era' },
-        ].map((item) => (
+        {items.map((item) => (
           <div
             key={item.key}
             className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:border-blue-400 transition-all flex flex-col justify-between"

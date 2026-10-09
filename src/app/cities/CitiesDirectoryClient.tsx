@@ -11,9 +11,11 @@ interface Props {
   initialCities?: City[];
   countryFilter?: string;
   countryName?: string;
+  locale?: 'en' | 'es';
 }
 
-export function CitiesDirectoryClient({ initialCities, countryFilter, countryName }: Props) {
+export function CitiesDirectoryClient({ initialCities, countryFilter, countryName, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [search, setSearch] = useState('');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [sortBy, setSortBy] = useState<'name' | 'population'>('name');
@@ -161,7 +163,7 @@ export function CitiesDirectoryClient({ initialCities, countryFilter, countryNam
           return (
             <Link
               key={city.id}
-              href={`/${getCityRootSlug(city)}`}
+              href={isEs ? `/es/${getCityRootSlug(city)}` : `/${getCityRootSlug(city)}`}
               className="group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-sm flex items-center justify-between"
             >
               <div className="space-y-1 min-w-0 pr-3">

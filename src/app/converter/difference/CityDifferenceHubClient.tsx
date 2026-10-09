@@ -22,9 +22,12 @@ export interface DiffPairItem {
 
 interface Props {
   pairs: DiffPairItem[];
+  locale?: 'en' | 'es';
 }
 
-export function CityDifferenceHubClient({ pairs }: Props) {
+export function CityDifferenceHubClient({ pairs, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
+  const prefix = isEs ? '/es' : '';
   const [search, setSearch] = useState('');
   const [activeFilter, setActiveFilter] = useState<'all' | 'new-york' | 'london' | 'us' | 'transatlantic' | 'asia-pacific'>('all');
 
@@ -65,12 +68,12 @@ export function CityDifferenceHubClient({ pairs }: Props) {
 
   // Major anchor hub city shortcuts
   const anchorCities = [
-    { label: 'All Pairs', count: pairs.length, key: 'all' },
-    { label: 'New York Corridors', count: pairs.filter(p => p.cityA === 'new-york' || p.cityB === 'new-york').length, key: 'new-york' },
-    { label: 'London Corridors', count: pairs.filter(p => p.cityA === 'london' || p.cityB === 'london').length, key: 'london' },
-    { label: 'US Domestic Routes', count: pairs.filter(p => p.countryA === 'United States' && p.countryB === 'United States').length, key: 'us' },
-    { label: 'Transatlantic Financial', count: pairs.filter(p => (p.countryA === 'United States' && (p.countryB === 'United Kingdom' || p.countryB === 'France' || p.countryB === 'Germany')) || (p.countryB === 'United States' && (p.countryA === 'United Kingdom' || p.countryA === 'France' || p.countryA === 'Germany'))).length, key: 'transatlantic' },
-    { label: 'Asia & Pacific Hubs', count: pairs.filter(p => ['Japan', 'Singapore', 'India', 'Australia', 'Hong Kong'].includes(p.countryA) || ['Japan', 'Singapore', 'India', 'Australia', 'Hong Kong'].includes(p.countryB)).length, key: 'asia-pacific' },
+    { label: isEs ? 'Todos los Pares' : 'All Pairs', count: pairs.length, key: 'all' },
+    { label: isEs ? 'Rutas de Nueva York' : 'New York Corridors', count: pairs.filter(p => p.cityA === 'new-york' || p.cityB === 'new-york').length, key: 'new-york' },
+    { label: isEs ? 'Rutas de Londres' : 'London Corridors', count: pairs.filter(p => p.cityA === 'london' || p.cityB === 'london').length, key: 'london' },
+    { label: isEs ? 'Rutas Nacionales EE. UU.' : 'US Domestic Routes', count: pairs.filter(p => p.countryA === 'United States' && p.countryB === 'United States').length, key: 'us' },
+    { label: isEs ? 'Finanzas Transatlánticas' : 'Transatlantic Financial', count: pairs.filter(p => (p.countryA === 'United States' && (p.countryB === 'United Kingdom' || p.countryB === 'France' || p.countryB === 'Germany')) || (p.countryB === 'United States' && (p.countryA === 'United Kingdom' || p.countryA === 'France' || p.countryA === 'Germany'))).length, key: 'transatlantic' },
+    { label: isEs ? 'Centros de Asia y Pacífico' : 'Asia & Pacific Hubs', count: pairs.filter(p => ['Japan', 'Singapore', 'India', 'Australia', 'Hong Kong'].includes(p.countryA) || ['Japan', 'Singapore', 'India', 'Australia', 'Hong Kong'].includes(p.countryB)).length, key: 'asia-pacific' },
   ];
 
   return (
@@ -136,7 +139,7 @@ export function CityDifferenceHubClient({ pairs }: Props) {
           return (
             <Link
               key={p.slug}
-              href={`/converter/difference/${p.slug}`}
+              href={`${prefix}/converter/difference/${p.slug}`}
               className="group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/60 dark:hover:border-blue-500/50 hover:shadow-md transition-all flex flex-col justify-between space-y-4"
             >
               {/* Header: Cities & Direction */}
@@ -167,7 +170,7 @@ export function CityDifferenceHubClient({ pairs }: Props) {
 
                 {/* Subtitle / Descriptive sentence */}
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 line-clamp-2 leading-relaxed">
-                  {p.nameB} is {p.diffSummary} of {p.nameA}. View live atomic clocks & business overlap matrix.
+                  {isEs ? `${p.nameB} está ${p.diffSummary} de ${p.nameA}. Relojes atómicos y matriz de solapamiento laboral.` : `${p.nameB} is ${p.diffSummary} of ${p.nameA}. View live atomic clocks & business overlap matrix.`}
                 </p>
               </div>
 
@@ -181,11 +184,11 @@ export function CityDifferenceHubClient({ pairs }: Props) {
                 {p.overlapHours > 0 ? (
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
                     <CheckCircle2 className="w-3 h-3 text-emerald-500 shrink-0" />
-                    <span>{p.overlapHours}h Overlap</span>
+                    <span>{p.overlapHours}h {isEs ? 'Coincidencia' : 'Overlap'}</span>
                   </span>
                 ) : (
                   <span className="text-[11px] text-slate-400">
-                    Limited Overlap
+                    {isEs ? 'Coincidencia Limitada' : 'Limited Overlap'}
                   </span>
                 )}
               </div>

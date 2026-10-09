@@ -9,9 +9,11 @@ import { ArrowLeftRight, Plus, X, Globe, Clock, ShieldCheck, Share2 } from 'luci
 
 interface CompareCitiesClientProps {
   initialCities: City[];
+  locale?: 'en' | 'es';
 }
 
-export function CompareCitiesClient({ initialCities }: CompareCitiesClientProps) {
+export function CompareCitiesClient({ initialCities, locale = 'en' }: CompareCitiesClientProps) {
+  const isEs = locale === 'es';
   const [selectedCities, setSelectedCities] = useState<City[]>(
     initialCities.length >= 2 ? initialCities : CITIES.slice(0, 3)
   );
@@ -45,6 +47,7 @@ export function CompareCitiesClient({ initialCities }: CompareCitiesClientProps)
           const date = formatDateInZone(now, city.timezone);
           const offset = getUtcOffsetString(now, city.timezone);
           const diff = idx === 0 ? null : getTimeDifference(baseCity.timezone, city.timezone, now);
+          const cityHref = isEs ? `/es/time/${city.slug}` : `/time/${city.slug}`;
 
           return (
             <div
@@ -60,7 +63,7 @@ export function CompareCitiesClient({ initialCities }: CompareCitiesClientProps)
                   type="button"
                   onClick={() => removeCity(city.id)}
                   className="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-                  title="Remove city"
+                  title={isEs ? 'Eliminar ciudad' : 'Remove city'}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -70,7 +73,7 @@ export function CompareCitiesClient({ initialCities }: CompareCitiesClientProps)
                 <span className="text-xl leading-none">{getCountryFlagEmoji(city.countryCode)}</span>
                 <div>
                   <h2 className="font-extrabold text-slate-900 dark:text-white text-base">
-                    <Link href={`/time/${city.slug}`} className="hover:text-blue-600 transition-colors">
+                    <Link href={cityHref} className="hover:text-blue-600 transition-colors">
                       {city.name}
                     </Link>
                   </h2>
@@ -91,22 +94,22 @@ export function CompareCitiesClient({ initialCities }: CompareCitiesClientProps)
 
               <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
                 <div className="flex justify-between">
-                  <span>UTC Offset:</span>
+                  <span>{isEs ? 'Compensación UTC:' : 'UTC Offset:'}</span>
                   <span className="font-mono font-semibold text-slate-900 dark:text-white">{offset}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Timezone:</span>
+                  <span>{isEs ? 'Zona Horaria:' : 'Timezone:'}</span>
                   <span className="font-mono font-semibold text-slate-900 dark:text-white">{city.timezone}</span>
                 </div>
                 {diff && (
                   <div className="flex justify-between pt-1 text-blue-600 dark:text-blue-400 font-bold">
-                    <span>Rel. to {baseCity.name}:</span>
+                    <span>{isEs ? `Rel. a ${baseCity.name}:` : `Rel. to ${baseCity.name}:`}</span>
                     <span>{diff.formatted}</span>
                   </div>
                 )}
                 {idx === 0 && (
                   <div className="text-center pt-1 text-xs text-slate-400 font-medium">
-                    (Base comparison city)
+                    {isEs ? '(Ciudad base de comparación)' : '(Base comparison city)'}
                   </div>
                 )}
               </div>
@@ -119,7 +122,7 @@ export function CompareCitiesClient({ initialCities }: CompareCitiesClientProps)
       <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xs space-y-3">
         <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <Plus className="w-4 h-4 text-blue-600" />
-          <span>Add More World Cities to Comparison:</span>
+          <span>{isEs ? 'Añadir Más Ciudades del Mundo a la Comparación:' : 'Add More World Cities to Comparison:'}</span>
         </h3>
         <div className="flex flex-wrap gap-2">
           {CITIES.filter(c => !selectedCities.some(sc => sc.id === c.id)).slice(0, 16).map(city => (

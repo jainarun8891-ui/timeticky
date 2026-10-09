@@ -17,46 +17,70 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { EditorialContentBlock } from '@/components/common/EditorialContentBlock';
 import { HubPageCustomContent } from '@/lib/seo/hub-pages-custom-content';
+import { HubPageSpanishContent } from '@/lib/i18n/hub-pages-es';
 
 interface Props {
-  content: HubPageCustomContent;
+  content: HubPageCustomContent | HubPageSpanishContent;
+  locale?: 'en' | 'es';
 }
 
-export function FaqClient({ content }: Props) {
+export function FaqClient({ content, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState<'all' | 'general' | 'accuracy' | 'timezones' | 'dst' | 'meeting' | 'unix'>('all');
 
   const allFaqs = [
-    ...content.faqs.map(f => ({ ...f, section: 'Core Questions' })),
-    ...HOME_FAQS.map(f => ({ ...f, section: 'General & Accuracy' })),
-    ...CLOCK_ACCURACY_FAQS.map(f => ({ ...f, section: 'General & Accuracy' })),
-    ...TIME_DIFFERENCE_FAQS.map(f => ({ ...f, section: 'Time Zones & Difference' })),
-    ...DST_FAQS.map(f => ({ ...f, section: 'Daylight Saving Time' })),
-    ...MEETING_PLANNER_FAQS.map(f => ({ ...f, section: 'Meeting Planning' })),
-    ...UNIX_TIME_FAQS.map(f => ({ ...f, section: 'Unix & Developer' }))
+    ...content.faqs.map(f => ({ ...f, section: isEs ? 'Preguntas Principales' : 'Core Questions' })),
+    ...HOME_FAQS.map(f => ({ ...f, section: isEs ? 'General y Precisión' : 'General & Accuracy' })),
+    ...CLOCK_ACCURACY_FAQS.map(f => ({ ...f, section: isEs ? 'General y Precisión' : 'General & Accuracy' })),
+    ...TIME_DIFFERENCE_FAQS.map(f => ({ ...f, section: isEs ? 'Zonas Horarias' : 'Time Zones & Difference' })),
+    ...DST_FAQS.map(f => ({ ...f, section: isEs ? 'Horario de Verano' : 'Daylight Saving Time' })),
+    ...MEETING_PLANNER_FAQS.map(f => ({ ...f, section: isEs ? 'Planificador de Reuniones' : 'Meeting Planning' })),
+    ...UNIX_TIME_FAQS.map(f => ({ ...f, section: isEs ? 'Unix y Desarrolladores' : 'Unix & Developer' }))
   ];
 
   const filtered = allFaqs.filter(f => {
     const matchesSearch = f.question.toLowerCase().includes(search.toLowerCase()) || 
                           f.answer.toLowerCase().includes(search.toLowerCase());
     if (activeTab === 'all') return matchesSearch;
-    if (activeTab === 'general') return matchesSearch && f.section === 'Core Questions';
-    if (activeTab === 'accuracy') return matchesSearch && f.section === 'General & Accuracy';
-    if (activeTab === 'timezones') return matchesSearch && f.section === 'Time Zones & Difference';
-    if (activeTab === 'dst') return matchesSearch && f.section === 'Daylight Saving Time';
-    if (activeTab === 'meeting') return matchesSearch && f.section === 'Meeting Planning';
-    if (activeTab === 'unix') return matchesSearch && f.section === 'Unix & Developer';
+    if (activeTab === 'general') return matchesSearch && f.section === (isEs ? 'Preguntas Principales' : 'Core Questions');
+    if (activeTab === 'accuracy') return matchesSearch && f.section === (isEs ? 'General y Precisión' : 'General & Accuracy');
+    if (activeTab === 'timezones') return matchesSearch && f.section === (isEs ? 'Zonas Horarias' : 'Time Zones & Difference');
+    if (activeTab === 'dst') return matchesSearch && f.section === (isEs ? 'Horario de Verano' : 'Daylight Saving Time');
+    if (activeTab === 'meeting') return matchesSearch && f.section === (isEs ? 'Planificador de Reuniones' : 'Meeting Planning');
+    if (activeTab === 'unix') return matchesSearch && f.section === (isEs ? 'Unix y Desarrolladores' : 'Unix & Developer');
     return matchesSearch;
   });
 
+  const tabs = isEs ? [
+    { id: 'all', label: 'Todas las Preguntas' },
+    { id: 'general', label: 'Preguntas Frecuentes' },
+    { id: 'accuracy', label: 'Sincronización y NTP' },
+    { id: 'timezones', label: 'Zonas Horarias' },
+    { id: 'dst', label: 'Horario de Verano' },
+    { id: 'meeting', label: 'Planificador de Reuniones' },
+    { id: 'unix', label: 'Unix y Desarrolladores' }
+  ] : [
+    { id: 'all', label: 'All Questions' },
+    { id: 'general', label: 'Top FAQs' },
+    { id: 'accuracy', label: 'Atomic Sync & NTP' },
+    { id: 'timezones', label: 'Time Zones & Offsets' },
+    { id: 'dst', label: 'Daylight Saving 2026' },
+    { id: 'meeting', label: 'Meeting Planner' },
+    { id: 'unix', label: 'Unix & Developers' }
+  ];
+
+  const pagePath = isEs ? '/es/faq' : '/faq';
+  const pageName = isEs ? 'Preguntas Frecuentes' : 'Frequently Asked Questions';
+
   return (
     <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
-      <Breadcrumbs items={[{"name":"Frequently Asked Questions","url":"/faq"}]} />
+      <Breadcrumbs items={[{ name: pageName, url: pagePath }]} locale={locale} />
       <JsonLd
         type="breadcrumb"
         data={[
-          { name: "Home", url: "/" },
-          { name: "Frequently Asked Questions", url: "/faq" }
+          { name: isEs ? 'Inicio' : 'Home', url: isEs ? '/es' : '/' },
+          { name: pageName, url: pagePath }
         ]}
       />
       <JsonLd type="faq" data={content.faqs} />
@@ -65,7 +89,7 @@ export function FaqClient({ content }: Props) {
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-bold shadow-2xs">
           <HelpCircle className="w-3.5 h-3.5" />
-          <span>Knowledge Base & Support</span>
+          <span>{isEs ? 'Base de Conocimiento y Soporte' : 'Knowledge Base & Support'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
           {content.h1}
@@ -80,7 +104,7 @@ export function FaqClient({ content }: Props) {
         <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
-          placeholder="Search any question or keyword (e.g. atomic, DST 2026, NTP, UTC)..."
+          placeholder={isEs ? 'Buscar cualquier pregunta o tema (ej. atómico, DST, NTP, UTC)...' : 'Search any question or keyword (e.g. atomic, DST 2026, NTP, UTC)...'}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-semibold text-slate-900 dark:text-white placeholder-slate-400 outline-hidden shadow-xs focus:border-blue-500"
@@ -89,15 +113,7 @@ export function FaqClient({ content }: Props) {
 
       {/* Category Pills */}
       <div className="flex justify-center overflow-x-auto no-scrollbar gap-1.5 py-1">
-        {[
-          { id: 'all', label: 'All Questions' },
-          { id: 'general', label: 'Top FAQs' },
-          { id: 'accuracy', label: 'Atomic Sync & NTP' },
-          { id: 'timezones', label: 'Time Zones & Offsets' },
-          { id: 'dst', label: 'Daylight Saving 2026' },
-          { id: 'meeting', label: 'Meeting Planner' },
-          { id: 'unix', label: 'Unix & Developers' }
-        ].map((tab) => (
+        {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
@@ -115,20 +131,24 @@ export function FaqClient({ content }: Props) {
 
       {/* Editorial Guide */}
       <div className="max-w-4xl mx-auto">
-        <EditorialContentBlock content={content} badgeLabel="Knowledge Base & Horological Standards" />
+        <EditorialContentBlock
+          content={content}
+          badgeLabel={isEs ? 'Base de Conocimiento y Normas Horológicas' : 'Knowledge Base & Horological Standards'}
+          locale={locale}
+        />
       </div>
 
       {/* Filtered Accordion */}
       <div className="max-w-4xl mx-auto">
         <FaqAccordion
           items={filtered}
-          title={`${filtered.length} Answered Questions`}
-          subtitle="Click on any question below to view detailed chronometry explanations and reference sources."
+          title={isEs ? `${filtered.length} Preguntas Respondidas` : `${filtered.length} Answered Questions`}
+          subtitle={isEs ? 'Haz clic en cualquier pregunta para ver explicaciones detalladas y fuentes de referencia.' : 'Click on any question below to view detailed chronometry explanations and reference sources.'}
         />
       </div>
 
       {/* Ubiquitous Related Links */}
-      <RelatedLinksHub />
+      <RelatedLinksHub currentPath={pagePath} />
     </div>
   );
 }

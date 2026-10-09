@@ -7,9 +7,11 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 
 interface Props {
   h1Title?: string;
+  locale?: 'en' | 'es';
 }
 
-export function BusinessDaysClient({ h1Title }: Props) {
+export function BusinessDaysClient({ h1Title, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const todayStr = new Date().toISOString().split('T')[0];
   const ninetyDaysStr = new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0];
 
@@ -67,7 +69,7 @@ export function BusinessDaysClient({ h1Title }: Props) {
     }
 
     return {
-      resultDate: current.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+      resultDate: current.toLocaleDateString(isEs ? 'es-ES' : 'en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
       iso: current.toISOString().split('T')[0]
     };
   };
@@ -75,33 +77,50 @@ export function BusinessDaysClient({ h1Title }: Props) {
   const betweenResult = calculateDaysBetween();
   const addResult = calculateAddBusinessDays();
 
-  const faqs = [
-    {
-      question: "How many business days between two dates calculator?",
-      answer: "Our business day calculator counts working days by iterating between your selected start and end dates and automatically excluding Saturdays and Sundays (standard 5-day working week)."
-    },
-    {
-      question: "What date is 90 days from today excluding weekends?",
-      answer: `Adding 90 business days (excluding Saturdays and Sundays) to today produces ${addResult?.resultDate || 'the calculated deadline'}, approximately 18 calendar weeks in the future.`
-    },
-    {
-      question: "Is Saturday considered a business day?",
-      answer: "Under standard commercial, banking, and legal definitions in North America, Europe, and India, business days are Monday through Friday. Saturdays and Sundays are classified as weekend non-working days."
-    }
-  ];
+  const faqs = isEs
+    ? [
+        {
+          question: "¿Cómo calcula esta herramienta los días hábiles entre dos fechas?",
+          answer: "Nuestra calculadora cuenta los días laborables iterando entre las fechas seleccionadas y excluyendo automáticamente los sábados y domingos (semana laboral estándar de 5 días)."
+        },
+        {
+          question: "¿Qué fecha cae a 90 días hábiles a partir de hoy sin fines de semana?",
+          answer: `Añadir 90 días hábiles (excluyendo sábados y domingos) a la fecha de hoy resulta en ${addResult?.resultDate || 'la fecha objetivo calculada'}, aproximadamente 18 semanas de calendario en el futuro.`
+        },
+        {
+          question: "¿Se considera el sábado un día hábil?",
+          answer: "Bajo las definiciones comerciales, bancarias y legales estándar en la mayoría de los países, los días hábiles son de lunes a viernes. Los sábados y domingos se clasifican como días no laborables de fin de semana."
+        }
+      ]
+    : [
+        {
+          question: "How many business days between two dates calculator?",
+          answer: "Our business day calculator counts working days by iterating between your selected start and end dates and automatically excluding Saturdays and Sundays (standard 5-day working week)."
+        },
+        {
+          question: "What date is 90 days from today excluding weekends?",
+          answer: `Adding 90 business days (excluding Saturdays and Sundays) to today produces ${addResult?.resultDate || 'the calculated deadline'}, approximately 18 calendar weeks in the future.`
+        },
+        {
+          question: "Is Saturday considered a business day?",
+          answer: "Under standard commercial, banking, and legal definitions in North America, Europe, and India, business days are Monday through Friday. Saturdays and Sundays are classified as weekend non-working days."
+        }
+      ];
 
   return (
     <div className="space-y-10">
       <header className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
           <Briefcase className="w-3.5 h-3.5" />
-          <span>Workday &amp; Deadline Calculator</span>
+          <span>{isEs ? 'Calculadora de Días Hábiles y Plazos' : 'Workday & Deadline Calculator'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-          {h1Title || "Business Days Calculator"}
+          {h1Title || (isEs ? "Calculadora de Días Hábiles" : "Business Days Calculator")}
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
-          Calculate working business days between two dates or add 30, 60, or 90 business days excluding weekends.
+          {isEs
+            ? "Calcula los días hábiles entre dos fechas o suma 30, 60 o 90 días laborables excluyendo fines de semana."
+            : "Calculate working business days between two dates or add 30, 60, or 90 business days excluding weekends."}
         </p>
       </header>
 
@@ -114,7 +133,7 @@ export function BusinessDaysClient({ h1Title }: Props) {
               mode === 'between' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm' : 'text-slate-600 dark:text-slate-400'
             }`}
           >
-            Business Days Between Two Dates
+            {isEs ? 'Días hábiles entre dos fechas' : 'Business Days Between Two Dates'}
           </button>
           <button
             onClick={() => setMode('add')}
@@ -122,7 +141,7 @@ export function BusinessDaysClient({ h1Title }: Props) {
               mode === 'add' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm' : 'text-slate-600 dark:text-slate-400'
             }`}
           >
-            Add / Subtract Business Days (+90 Days)
+            {isEs ? 'Sumar / Restar días hábiles (+90 días)' : 'Add / Subtract Business Days (+90 Days)'}
           </button>
         </div>
       </div>
@@ -130,9 +149,9 @@ export function BusinessDaysClient({ h1Title }: Props) {
       {mode === 'between' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-4">
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">Select Date Range</h2>
+            <h2 className="text-base font-bold text-slate-900 dark:text-white">{isEs ? 'Seleccionar rango de fechas' : 'Select Date Range'}</h2>
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Start Date</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">{isEs ? 'Fecha de inicio' : 'Start Date'}</label>
               <input
                 type="date"
                 value={startDate}
@@ -141,7 +160,7 @@ export function BusinessDaysClient({ h1Title }: Props) {
               />
             </div>
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">End Date</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">{isEs ? 'Fecha de finalización' : 'End Date'}</label>
               <input
                 type="date"
                 value={endDate}
@@ -153,28 +172,28 @@ export function BusinessDaysClient({ h1Title }: Props) {
 
           {betweenResult && (
             <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-4">
-              <h2 className="text-base font-bold text-slate-900 dark:text-white">Calculated Workdays</h2>
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">{isEs ? 'Días hábiles calculados' : 'Calculated Workdays'}</h2>
               <div className="p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-center">
                 <span className="text-xs uppercase font-bold tracking-wider text-emerald-600 dark:text-emerald-400 block">
-                  Business Working Days
+                  {isEs ? 'Días Hábiles Laborables' : 'Business Working Days'}
                 </span>
                 <div className="text-5xl font-black font-mono text-emerald-600 dark:text-emerald-400 my-1">
                   {betweenResult.businessDays}
                 </div>
-                <span className="text-xs text-slate-500">Excluding Saturdays and Sundays</span>
+                <span className="text-xs text-slate-500">{isEs ? 'Excluyendo sábados y domingos' : 'Excluding Saturdays and Sundays'}</span>
               </div>
 
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                  <span className="text-slate-400 block font-bold">Total Days</span>
+                  <span className="text-slate-400 block font-bold">{isEs ? 'Total Días' : 'Total Days'}</span>
                   <span className="font-mono font-bold text-slate-900 dark:text-white text-base">{betweenResult.totalDays}</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                  <span className="text-slate-400 block font-bold">Weekend Days</span>
+                  <span className="text-slate-400 block font-bold">{isEs ? 'Fin de Semana' : 'Weekend Days'}</span>
                   <span className="font-mono font-bold text-slate-900 dark:text-white text-base">{betweenResult.weekendDays}</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                  <span className="text-slate-400 block font-bold">Work Hours (8h)</span>
+                  <span className="text-slate-400 block font-bold">{isEs ? 'Horas Laborales (8h)' : 'Work Hours (8h)'}</span>
                   <span className="font-mono font-bold text-slate-900 dark:text-white text-base">{betweenResult.workingHours}</span>
                 </div>
               </div>
@@ -183,10 +202,10 @@ export function BusinessDaysClient({ h1Title }: Props) {
         </div>
       ) : (
         <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm space-y-6">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white">Calculate Future Business Deadline</h2>
+          <h2 className="text-base font-bold text-slate-900 dark:text-white">{isEs ? 'Calcular plazo de entrega futuro' : 'Calculate Future Business Deadline'}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Starting From</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">{isEs ? 'A partir de' : 'Starting From'}</label>
               <input
                 type="date"
                 value={startDate}
@@ -195,7 +214,7 @@ export function BusinessDaysClient({ h1Title }: Props) {
               />
             </div>
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Business Days to Add</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">{isEs ? 'Días hábiles a sumar' : 'Business Days to Add'}</label>
               <input
                 type="number"
                 value={daysToAdd}
@@ -216,7 +235,7 @@ export function BusinessDaysClient({ h1Title }: Props) {
                     : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300'
                 }`}
               >
-                +{n} Business Days
+                +{n} {isEs ? 'Días Hábiles' : 'Business Days'}
               </button>
             ))}
           </div>
@@ -224,9 +243,9 @@ export function BusinessDaysClient({ h1Title }: Props) {
           {addResult && (
             <div className="p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-center space-y-1">
               <span className="text-xs uppercase font-bold tracking-wider text-emerald-600 dark:text-emerald-400 block">
-                Calculated Target Deadline
+                {isEs ? 'Fecha Límite Objetivo Calculada' : 'Calculated Target Deadline'}
               </span>
-              <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white capitalize">
                 {addResult.resultDate}
               </div>
               <span className="text-xs text-slate-400 font-mono">ISO: {addResult.iso}</span>
@@ -236,10 +255,10 @@ export function BusinessDaysClient({ h1Title }: Props) {
       )}
 
       <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
-        <FaqAccordion items={faqs} title="Frequently Asked Questions About Business Days" />
+        <FaqAccordion items={faqs} title={isEs ? "Preguntas Frecuentes sobre Días Hábiles" : "Frequently Asked Questions About Business Days"} />
       </section>
 
-      <RelatedLinksHub />
+      <RelatedLinksHub locale={locale} />
     </div>
   );
 }

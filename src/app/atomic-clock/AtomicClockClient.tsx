@@ -4,7 +4,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ShieldCheck, Volume2, VolumeX, Maximize2, Minimize2, Radio, Zap, Activity } from 'lucide-react';
 import { getSyncedDate, syncWithServer } from '@/lib/time/sync';
 
-export function AtomicClockClient() {
+interface Props {
+  locale?: 'en' | 'es';
+}
+
+export function AtomicClockClient({ locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [time, setTime] = useState<Date>(new Date());
   const [use24Hour, setUse24Hour] = useState(false);
   const [showMillis, setShowMillis] = useState(true);
@@ -76,7 +81,7 @@ export function AtomicClockClient() {
   const msStr = String(time.getMilliseconds()).padStart(3, '0');
   const period = !use24Hour ? (time.getHours() >= 12 ? 'PM' : 'AM') : '';
 
-  const dateStr = time.toLocaleDateString('en-US', {
+  const dateStr = time.toLocaleDateString(isEs ? 'es-ES' : 'en-US', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -98,7 +103,9 @@ export function AtomicClockClient() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
             </span>
             <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
-              NIST Stratum-1 Calibrated &bull; Offset: &plusmn;0.00{offsetMs}s
+              {isEs
+                ? `Calibrado NIST Estrato-1 • Desfase: ±0.00${offsetMs}s`
+                : `NIST Stratum-1 Calibrated • Offset: ±0.00${offsetMs}s`}
             </span>
           </div>
 
@@ -117,21 +124,21 @@ export function AtomicClockClient() {
                 showMillis ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'
               }`}
             >
-              {showMillis ? 'Milliseconds' : 'Seconds Only'}
+              {isEs ? (showMillis ? 'Milisegundos' : 'Solo Segundos') : (showMillis ? 'Milliseconds' : 'Seconds Only')}
             </button>
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
               className={`p-2 rounded-xl text-xs transition-colors ${
                 soundEnabled ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'
               }`}
-              title={soundEnabled ? 'Mute Atomic Tick' : 'Enable Atomic Tick Sound'}
+              title={soundEnabled ? (isEs ? 'Silenciar tictac atómico' : 'Mute Atomic Tick') : (isEs ? 'Activar sonido tictac' : 'Enable Atomic Tick Sound')}
             >
               {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
             </button>
             <button
               onClick={toggleFullscreen}
               className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 transition-colors"
-              title="Toggle Fullscreen"
+              title={isEs ? 'Pantalla completa' : 'Toggle Fullscreen'}
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
             </button>

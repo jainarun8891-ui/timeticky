@@ -239,20 +239,41 @@ export async function GET() {
     return '2026-02-15';
   };
 
+  const entries: string[] = [];
+
+  for (const url of allUrls) {
+    const enUrl = `${baseUrl}${url}`;
+    const esUrl = url === '' ? `${baseUrl}/es` : `${baseUrl}/es${url}`;
+    const lastmod = getUrlLastMod(url);
+    const changefreq = url === '' ? 'daily' : (url.startsWith('/time/') ? 'weekly' : 'monthly');
+    const priority = url === '' ? '1.0' : (url.startsWith('/time/') || url.startsWith('/converter') ? '0.9' : '0.8');
+
+    // Canonical English URL entry with reciprocal hreflang links
+    entries.push(`  <url>
+    <loc>${enUrl}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}" />
+    <xhtml:link rel="alternate" hreflang="es" href="${esUrl}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${enUrl}" />
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`);
+
+    // Canonical Spanish URL entry with reciprocal hreflang links
+    entries.push(`  <url>
+    <loc>${esUrl}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}" />
+    <xhtml:link rel="alternate" hreflang="es" href="${esUrl}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${enUrl}" />
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`);
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${allUrls
-    .map(
-      (url) => `
-    <url>
-      <loc>${baseUrl}${url}</loc>
-      <lastmod>${getUrlLastMod(url)}</lastmod>
-      <changefreq>${url === '' ? 'daily' : (url.startsWith('/time/') ? 'weekly' : 'monthly')}</changefreq>
-      <priority>${url === '' ? '1.0' : (url.startsWith('/time/') || url.startsWith('/converter') ? '0.9' : '0.8')}</priority>
-    </url>
-  `
-    )
-    .join('')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join('\n')}
 </urlset>`;
 
   return new NextResponse(xml, {

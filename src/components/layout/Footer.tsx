@@ -1,9 +1,16 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Globe } from 'lucide-react';
 import { siteConfig } from '@/lib/config/site.config';
 
 export function Footer() {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   return (
     <footer className="w-full bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800 mt-16 py-10 text-xs text-slate-500 dark:text-slate-400">
       <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
@@ -17,13 +24,15 @@ export function Footer() {
               {siteConfig.name}
             </span>
             <span className="text-slate-400 text-xs hidden sm:inline">
-              A more connected world
+              {isSpanish ? 'Un mundo más conectado' : 'A more connected world'}
             </span>
           </div>
 
           {/* Right: Tagline */}
           <div className="text-xs font-medium text-slate-400 dark:text-slate-500 text-center md:text-right">
-            Precision Chronometry • Canonical IANA Timezones • Sub-Millisecond NTP Synchronization
+            {isSpanish
+              ? 'Cronometría de Precisión • Husos Horarios IANA Canónicos • Sincronización NTP Sub-Milisegundo'
+              : 'Precision Chronometry • Canonical IANA Timezones • Sub-Millisecond NTP Synchronization'}
           </div>
         </div>
 
@@ -32,138 +41,133 @@ export function Footer() {
           {/* 1. Clocks & Dials */}
           <div>
             <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
-              Clocks & Dials
+              {isSpanish ? 'Relojes y Esferas' : 'Clocks & Dials'}
             </h5>
             <ul className="space-y-1.5">
-              <li><Link prefetch={false} href="/world-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Clock Dashboard</Link></li>
-              <li><Link prefetch={false} href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Clocks Home</Link></li>
-              <li><Link prefetch={false} href="/clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Exact Time Clock</Link></li>
-              <li><Link prefetch={false} href="/analog-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Analog Clock Dial</Link></li>
-              <li><Link prefetch={false} href="/fullscreen-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Fullscreen Desk Clock</Link></li>
-              <li><Link prefetch={false} href="/world-clock-wall" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Multi-Clock World Wall</Link></li>
-              <li><Link prefetch={false} href="/atomic-clock" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Atomic Clock Standard</Link></li>
-              <li><Link prefetch={false} href="/clock-accuracy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Clock Accuracy Test</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/world-clock`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Reloj Mundial' : 'World Clock Dashboard'}</Link></li>
+              <li><Link prefetch={false} href={prefix || '/'} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Inicio de Relojes' : 'Global Clocks Home'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/clock`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Reloj de Hora Exacta' : 'Exact Time Clock'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/analog-clock`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Reloj Analógico' : 'Analog Clock Dial'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/fullscreen-clock`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Pantalla Completa' : 'Fullscreen Desk Clock'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/world-clock-wall`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Muro Multireloj' : 'Multi-Clock World Wall'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/atomic-clock`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Reloj Atómico UTC' : 'Atomic Clock Standard'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/clock-accuracy`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Test de Precisión' : 'Clock Accuracy Test'}</Link></li>
             </ul>
           </div>
 
           {/* 2. Timers & Productivity */}
           <div>
             <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
-              Timers & Audio
+              {isSpanish ? 'Temporizadores' : 'Timers & Audio'}
             </h5>
             <ul className="space-y-1.5">
-              <li><Link prefetch={false} href="/pomodoro" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pomodoro Timer</Link></li>
-              <li><Link prefetch={false} href="/timer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Timer</Link></li>
-              <li><Link prefetch={false} href="/countdown" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Countdown Events</Link></li>
-              <li><Link prefetch={false} href="/life-in-weeks" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-rose-600 dark:text-rose-400">Life in Weeks (Memento Mori)</Link></li>
-              <li><Link prefetch={false} href="/stopwatch" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Stopwatch</Link></li>
-              <li><Link prefetch={false} href="/alarm" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Online Alarm Clock</Link></li>
-              <li><Link prefetch={false} href="/calendar" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Calendar</Link></li>
-              <li><Link prefetch={false} href="/holidays" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Public Holidays</Link></li>
-              <li><Link prefetch={false} href="/today" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Today&apos;s Date & Details</Link></li>
-              <li><Link prefetch={false} href="/week-number" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ISO Week Number</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/pomodoro`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Temporizador Pomodoro' : 'Pomodoro Timer'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/timer`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Cuenta Regresiva' : 'Countdown Timer'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/countdown`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Cuenta Atrás para Eventos' : 'Countdown Events'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/life-in-weeks`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-rose-600 dark:text-rose-400">{isSpanish ? 'La Vida en Semanas' : 'Life in Weeks (Memento Mori)'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/stopwatch`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Cronómetro Online' : 'Online Stopwatch'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/alarm`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Reloj con Alarma' : 'Online Alarm Clock'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/calendar`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Calendario Global' : 'Global Calendar'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/holidays`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Días Feriados' : 'World Public Holidays'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/today`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Detalles de Hoy' : "Today's Date & Details"}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/week-number`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Número de Semana ISO' : 'ISO Week Number'}</Link></li>
             </ul>
           </div>
 
           {/* 3. Calculators & Converters */}
           <div>
             <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
-              Calculators
+              {isSpanish ? 'Calculadoras' : 'Calculators'}
             </h5>
             <ul className="space-y-1.5">
-              <li><Link prefetch={false} href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Time Zone Converter</Link></li>
-              <li><Link prefetch={false} href="/sleep-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-blue-600 dark:text-blue-400">Sleep Cycle Calculator</Link></li>
-              <li><Link prefetch={false} href="/meeting-cost-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-emerald-600 dark:text-emerald-400">Meeting Cost Calculator</Link></li>
-              <li><Link prefetch={false} href="/converter/difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">City Time Differences</Link></li>
-              <li><Link prefetch={false} href="/converter/compare" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Compare World Cities</Link></li>
-              <li><Link prefetch={false} href="/converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">552 Timezone Pairs</Link></li>
-              <li><Link prefetch={false} href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner Grid</Link></li>
-              <li><Link prefetch={false} href="/overlap-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Overlap Calculator</Link></li>
-              <li><Link prefetch={false} href="/date-difference" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Date Difference</Link></li>
-              <li><Link prefetch={false} href="/date-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Date Add / Subtract</Link></li>
-              <li><Link prefetch={false} href="/business-days-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Business Days</Link></li>
-              <li><Link prefetch={false} href="/birthday-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Birthday & Age</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/converter`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Conversor de Zonas' : 'Time Zone Converter'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sleep-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-blue-600 dark:text-blue-400">{isSpanish ? 'Calculadora de Sueño' : 'Sleep Cycle Calculator'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/meeting-cost-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-emerald-600 dark:text-emerald-400">{isSpanish ? 'Costo de Reuniones' : 'Meeting Cost Calculator'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/converter/difference`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Diferencias Horarias' : 'City Time Differences'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/converter/compare`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Comparar Ciudades' : 'Compare World Cities'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/converter`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? '552 Pares Horarios' : '552 Timezone Pairs'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/meeting-planner`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Planificador de Reuniones' : 'Meeting Planner Grid'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/overlap-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Solapamiento Horario' : 'Overlap Calculator'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/date-difference`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Diferencia de Fechas' : 'Date Difference'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/date-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Sumar / Restar Fechas' : 'Date Add / Subtract'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/business-days-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Días Hábiles' : 'Business Days'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/birthday-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Edad y Cumpleaños' : 'Birthday & Age'}</Link></li>
             </ul>
           </div>
 
           {/* 4. Timezones & Travel */}
           <div>
             <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
-              Timezones & Map
+              {isSpanish ? 'Husos y Mapa' : 'Timezones & Map'}
             </h5>
             <ul className="space-y-1.5">
-              <li><Link prefetch={false} href="/united-states-time-now" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">US Time Now</Link></li>
-              <li><Link prefetch={false} href="/time-zones" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">400+ Time Zones</Link></li>
-              <li><Link prefetch={false} href="/timezone-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Time Map</Link></li>
-              <li><Link prefetch={false} href="/world-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Sun Map (Live)</Link></li>
-              <li><Link prefetch={false} href="/cities" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">World Cities Directory</Link></li>
-              <li><Link prefetch={false} href="/countries" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Country Time Directory</Link></li>
-              <li><Link prefetch={false} href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Meeting Planner</Link></li>
-              <li><Link prefetch={false} href="/overlap-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Overlap Calculator</Link></li>
-              <li><Link prefetch={false} href="/dialing-codes" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dialing Codes</Link></li>
-              <li><Link prefetch={false} href="/jet-lag-calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Jet Lag Calculator</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/united-states-time-now`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Hora en EE. UU.' : 'US Time Now'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/time-zones`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? '400+ Husos Horarios' : '400+ Time Zones'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/timezone-map`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Mapa Interactivo' : 'Interactive Time Map'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/world-map`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Mapa Solar Mundial' : 'World Sun Map (Live)'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/cities`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Directorio de Ciudades' : 'World Cities Directory'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/countries`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Directorio de Países' : 'Country Time Directory'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/dialing-codes`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Prefijos Telefónicos' : 'Dialing Codes'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/jet-lag-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Calculadora de Jet Lag' : 'Jet Lag Calculator'}</Link></li>
             </ul>
           </div>
 
           {/* 5. Solar, Lunar & Ephemeris */}
           <div>
             <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
-              Sun & Moon Lab
+              {isSpanish ? 'Sol y Luna' : 'Sun & Moon Lab'}
             </h5>
             <ul className="space-y-1.5">
-              <li><Link prefetch={false} href="/sun" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Astronomy & Sun Hub</Link></li>
-              <li><Link prefetch={false} href="/golden-hour" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Golden Hour Times</Link></li>
-              <li><Link prefetch={false} href="/sun" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sunrise & Sunset</Link></li>
-              <li><Link prefetch={false} href="/sun/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: New York</Link></li>
-              <li><Link prefetch={false} href="/sun/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: London</Link></li>
-              <li><Link prefetch={false} href="/sun/delhi" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Delhi</Link></li>
-              <li><Link prefetch={false} href="/sun/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Tokyo</Link></li>
-              <li><Link prefetch={false} href="/sun/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sun: Paris</Link></li>
-              <li><Link prefetch={false} href="/moon" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon Phases</Link></li>
-              <li><Link prefetch={false} href="/moon/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: New York</Link></li>
-              <li><Link prefetch={false} href="/moon/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: London</Link></li>
-              <li><Link prefetch={false} href="/moon/delhi" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: Delhi</Link></li>
-              <li><Link prefetch={false} href="/moon/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Moon: Tokyo</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sun`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Centro de Astronomía' : 'Astronomy & Sun Hub'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/golden-hour`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Hora Dorada' : 'Golden Hour Times'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sun`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Amanecer y Atardecer' : 'Sunrise & Sunset'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sun/new-york`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Sol: Nueva York' : 'Sun: New York'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sun/london`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Sol: Londres' : 'Sun: London'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sun/madrid`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Sol: Madrid' : 'Sun: Madrid'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sun/tokyo`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Sol: Tokio' : 'Sun: Tokyo'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/sun/paris`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Sol: París' : 'Sun: Paris'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/moon`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Fases de la Luna' : 'Moon Phases'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/moon/new-york`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Luna: Nueva York' : 'Moon: New York'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/moon/london`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Luna: Londres' : 'Moon: London'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/moon/tokyo`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Luna: Tokio' : 'Moon: Tokyo'}</Link></li>
             </ul>
           </div>
 
           {/* 6. Daylight Saving & Standards */}
           <div>
             <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
-              DST & Standards
+              {isSpanish ? 'DST y Estándares' : 'DST & Standards'}
             </h5>
             <ul className="space-y-1.5">
-              <li><Link prefetch={false} href="/utc" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Coordinated Universal Time (UTC)</Link></li>
-              <li><Link prefetch={false} href="/daylight-saving-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">DST Hub</Link></li>
-              <li><Link prefetch={false} href="/daylight-saving-time/2026" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daylight Saving 2026</Link></li>
-              <li><Link prefetch={false} href="/daylight-saving-time/2027" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daylight Saving 2027</Link></li>
-              <li><Link prefetch={false} href="/daylight-saving-time/united-states" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">United States DST</Link></li>
-              <li><Link prefetch={false} href="/daylight-saving-time/europe" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Europe Summer Time</Link></li>
-              <li><Link prefetch={false} href="/daylight-saving-time/arizona" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Arizona MST Rules</Link></li>
-              <li><Link prefetch={false} href="/daylight-saving-time/non-observing-countries" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Non-Observing Nations</Link></li>
-              <li><Link prefetch={false} href="/unix-time" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Unix Timestamp Studio</Link></li>
-              <li><Link prefetch={false} href="/unix-time-converter" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Unix Epoch Converter</Link></li>
-              <li><Link prefetch={false} href="/iso-8601" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ISO 8601 Parser</Link></li>
-              <li><Link prefetch={false} href="/api-docs" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Developer Time API</Link></li>
-              <li><Link prefetch={false} href="/learn" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Horology Academy</Link></li>
-              <li><Link prefetch={false} href="/learn/seo-simulator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">SERP Simulator</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/utc`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Tiempo Universal (UTC)' : 'Coordinated Universal Time (UTC)'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/daylight-saving-time`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Horario de Verano' : 'DST Hub'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/daylight-saving-time/2026`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Horario de Verano 2026' : 'Daylight Saving 2026'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/daylight-saving-time/2027`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Horario de Verano 2027' : 'Daylight Saving 2027'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/daylight-saving-time/united-states`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'DST Estados Unidos' : 'United States DST'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/daylight-saving-time/europe`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Hora de Verano Europa' : 'Europe Summer Time'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/unix-time`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Timestamp Unix' : 'Unix Timestamp Studio'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/unix-time-converter`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Conversor Epoch' : 'Unix Epoch Converter'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/iso-8601`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Analizador ISO 8601' : 'ISO 8601 Parser'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/api-docs`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'API para Desarrolladores' : 'Developer Time API'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/learn`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Academia de Horología' : 'Horology Academy'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/learn/seo-simulator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Simulador SERP' : 'SERP Simulator'}</Link></li>
             </ul>
           </div>
 
           {/* 7. Company & Support */}
           <div>
             <h5 className="font-bold text-slate-900 dark:text-white text-xs mb-2.5 uppercase tracking-wider">
-              About & Legal
+              {isSpanish ? 'Acerca de y Legal' : 'About & Legal'}
             </h5>
             <ul className="space-y-1.5">
-              <li><Link prefetch={false} href="/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About TimeNumbers</Link></li>
-              <li><Link prefetch={false} href="/contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact & Support</Link></li>
-              <li><Link prefetch={false} href="/blog" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chronometry Blog</Link></li>
-              <li><Link prefetch={false} href="/faq" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Global Time FAQs</Link></li>
-              <li><Link prefetch={false} href="/widgets" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Embed Clock Widgets</Link></li>
-              <li><Link prefetch={false} href="/data-sources" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Data Sources</Link></li>
-              <li><Link prefetch={false} href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-              <li><Link prefetch={false} href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms of Service</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/about`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Acerca de TimeNumbers' : 'About TimeNumbers'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/contact`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Contacto y Soporte' : 'Contact & Support'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/blog`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Blog de Cronometría' : 'Chronometry Blog'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/faq`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Preguntas Frecuentes' : 'Global Time FAQs'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/widgets`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Widgets de Reloj Web' : 'Embed Clock Widgets'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/data-sources`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Fuentes de Datos' : 'Data Sources'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/privacy`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Política de Privacidad' : 'Privacy Policy'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/terms`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Términos de Servicio' : 'Terms of Service'}</Link></li>
             </ul>
           </div>
         </div>
@@ -171,37 +175,32 @@ export function Footer() {
         {/* Global Metropolitan City Clocks (Canonical Direct Links) */}
         <div className="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
           <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-            Popular World City Clocks
+            {isSpanish ? 'Relojes de Ciudades Principales del Mundo' : 'Popular World City Clocks'}
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs">
-            <Link prefetch={false} href="/time/new-york" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">New York</Link>
-            <Link prefetch={false} href="/time/london" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">London</Link>
-            <Link prefetch={false} href="/time/tokyo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tokyo</Link>
-            <Link prefetch={false} href="/time/paris" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Paris</Link>
-            <Link prefetch={false} href="/time/berlin" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Berlin</Link>
-            <Link prefetch={false} href="/time/zurich" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Zurich</Link>
-            <Link prefetch={false} href="/time/madrid" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Madrid</Link>
-            <Link prefetch={false} href="/time/mumbai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Mumbai</Link>
-            <Link prefetch={false} href="/time/bengaluru" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Bengaluru</Link>
-            <Link prefetch={false} href="/time/hong-kong" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Hong Kong</Link>
-            <Link prefetch={false} href="/time/rome" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Rome</Link>
-            <Link prefetch={false} href="/time/chicago" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chicago</Link>
-            <Link prefetch={false} href="/time/los-angeles" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Los Angeles</Link>
-            <Link prefetch={false} href="/time/san-francisco" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">San Francisco</Link>
-            <Link prefetch={false} href="/time/washington-dc" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Washington D.C.</Link>
-            <Link prefetch={false} href="/time/sao-paulo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">São Paulo</Link>
-            <Link prefetch={false} href="/time/toronto" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Toronto</Link>
-            <Link prefetch={false} href="/time/seoul" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Seoul</Link>
-            <Link prefetch={false} href="/time/cairo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Cairo</Link>
-            <Link prefetch={false} href="/time/dubai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dubai</Link>
-            <Link prefetch={false} href="/time/sydney" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sydney</Link>
-            <Link prefetch={false} href="/time/singapore" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Singapore</Link>
+            <Link prefetch={false} href={`${prefix}/time/new-york`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Nueva York</Link>
+            <Link prefetch={false} href={`${prefix}/time/london`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Londres</Link>
+            <Link prefetch={false} href={`${prefix}/time/madrid`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Madrid</Link>
+            <Link prefetch={false} href={`${prefix}/time/mexico-city`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Ciudad de México</Link>
+            <Link prefetch={false} href={`${prefix}/time/buenos-aires`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Buenos Aires</Link>
+            <Link prefetch={false} href={`${prefix}/time/bogota`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Bogotá</Link>
+            <Link prefetch={false} href={`${prefix}/time/santiago`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Santiago</Link>
+            <Link prefetch={false} href={`${prefix}/time/tokyo`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tokio</Link>
+            <Link prefetch={false} href={`${prefix}/time/paris`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">París</Link>
+            <Link prefetch={false} href={`${prefix}/time/berlin`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Berlín</Link>
+            <Link prefetch={false} href={`${prefix}/time/rome`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Roma</Link>
+            <Link prefetch={false} href={`${prefix}/time/sao-paulo`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">São Paulo</Link>
+            <Link prefetch={false} href={`${prefix}/time/los-angeles`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Los Ángeles</Link>
+            <Link prefetch={false} href={`${prefix}/time/chicago`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Chicago</Link>
+            <Link prefetch={false} href={`${prefix}/time/toronto`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Toronto</Link>
+            <Link prefetch={false} href={`${prefix}/time/dubai`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dubái</Link>
+            <Link prefetch={false} href={`${prefix}/time/sydney`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sídney</Link>
+            <Link prefetch={false} href={`${prefix}/time/singapore`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Singapur</Link>
           </div>
         </div>
 
-
         <div className="pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-[11px] text-slate-400" suppressHydrationWarning>
-          © {new Date().getFullYear()} {siteConfig.name}. All global times synchronized to UTC atomic reference standard.
+          © {new Date().getFullYear()} {siteConfig.name}. {isSpanish ? 'Todos los relojes mundiales sincronizados con el estándar de referencia atómica UTC.' : 'All global times synchronized to UTC atomic reference standard.'}
         </div>
       </div>
     </footer>

@@ -7,11 +7,13 @@ import { Country } from '@/lib/geo/countries';
 
 interface CountryDirectoryClientProps {
   countries: Country[];
+  locale?: 'en' | 'es';
 }
 
 const REGIONS = ['All', 'Americas', 'Europe', 'Asia', 'Oceania', 'Africa'] as const;
 
-export function CountryDirectoryClient({ countries }: CountryDirectoryClientProps) {
+export function CountryDirectoryClient({ countries, locale = 'en' }: CountryDirectoryClientProps) {
+  const isEs = locale === 'es';
   const [search, setSearch] = useState('');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
 
@@ -43,39 +45,48 @@ export function CountryDirectoryClient({ countries }: CountryDirectoryClientProp
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search country, code, or capital..."
+            placeholder={isEs ? "Buscar país, código o capital..." : "Search country, code, or capital..."}
             className="w-full pl-10 pr-4 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* Region pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
-          {REGIONS.map((region) => (
-            <button
-              key={region}
-              type="button"
-              onClick={() => setSelectedRegion(region)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                selectedRegion === region
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-              }`}
-            >
-              {region}
-            </button>
-          ))}
+          {REGIONS.map((region) => {
+            const label = isEs
+              ? (region === 'All' ? 'Todos' : region === 'Americas' ? 'América' : region === 'Europe' ? 'Europa' : region === 'Asia' ? 'Asia' : region === 'Oceania' ? 'Oceanía' : 'África')
+              : region;
+            return (
+              <button
+                key={region}
+                type="button"
+                onClick={() => setSelectedRegion(region)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  selectedRegion === region
+                    ? 'bg-blue-600 text-white shadow-xs'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Results Count */}
       <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
-        <span>Showing {filteredCountries.length} of {countries.length} countries</span>
+        <span>
+          {isEs
+            ? `Mostrando ${filteredCountries.length} de ${countries.length} países`
+            : `Showing ${filteredCountries.length} of ${countries.length} countries`}
+        </span>
         {search && (
           <button
             onClick={() => setSearch('')}
             className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
           >
-            Clear filter
+            {isEs ? 'Borrar filtro' : 'Clear filter'}
           </button>
         )}
       </div>
@@ -85,7 +96,7 @@ export function CountryDirectoryClient({ countries }: CountryDirectoryClientProp
         {filteredCountries.map((country) => (
           <Link
             key={country.code}
-            href={`/countries/${country.slug}`}
+            href={isEs ? `/es/countries/${country.slug}` : `/countries/${country.slug}`}
             className="group bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all flex flex-col justify-between"
           >
             <div>
@@ -103,21 +114,21 @@ export function CountryDirectoryClient({ countries }: CountryDirectoryClientProp
               <div className="mt-2 space-y-1 text-xs text-slate-500 dark:text-slate-400">
                 <div className="flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span>Capital: <strong className="text-slate-700 dark:text-slate-300 font-semibold">{country.capital}</strong></span>
+                  <span>{isEs ? 'Capital:' : 'Capital:'} <strong className="text-slate-700 dark:text-slate-300 font-semibold">{country.capital}</strong></span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Globe className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span>Region: <strong className="text-slate-700 dark:text-slate-300 font-semibold">{country.region}</strong></span>
+                  <span>{isEs ? 'Región:' : 'Region:'} <strong className="text-slate-700 dark:text-slate-300 font-semibold">{country.region}</strong></span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span>Timezones: <strong className="text-slate-700 dark:text-slate-300 font-semibold">{country.timezones.length}</strong></span>
+                  <span>{isEs ? 'Husos horarios:' : 'Timezones:'} <strong className="text-slate-700 dark:text-slate-300 font-semibold">{country.timezones.length}</strong></span>
                 </div>
               </div>
             </div>
 
             <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
-              <span>View Country Clocks</span>
+              <span>{isEs ? 'Ver Relojes del País' : 'View Country Clocks'}</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </div>
           </Link>

@@ -3,7 +3,12 @@
 import React, { useState, useMemo } from 'react';
 import { Calendar, Plus, Minus, ArrowRight, CheckCircle2 } from 'lucide-react';
 
-export function DateCalculatorClient() {
+interface Props {
+  locale?: 'en' | 'es';
+}
+
+export function DateCalculatorClient({ locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [startDate, setStartDate] = useState('2026-09-14');
   const [operation, setOperation] = useState<'add' | 'subtract'>('add');
   const [days, setDays] = useState(30);
@@ -29,7 +34,7 @@ export function DateCalculatorClient() {
           count--;
         }
       }
-      const formatted = new Intl.DateTimeFormat('en-US', {
+      const formatted = new Intl.DateTimeFormat(isEs ? 'es-ES' : 'en-US', {
         weekday: 'long',
         month: 'long',
         day: 'numeric',
@@ -39,7 +44,7 @@ export function DateCalculatorClient() {
       return {
         targetDate: cur,
         formatted,
-        dayOfWeek: new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(cur),
+        dayOfWeek: new Intl.DateTimeFormat(isEs ? 'es-ES' : 'en-US', { weekday: 'long' }).format(cur),
       };
     } else {
       // Standard calendar add/subtract
@@ -48,7 +53,7 @@ export function DateCalculatorClient() {
       target.setMonth(target.getMonth() + multiplier * months);
       target.setDate(target.getDate() + multiplier * (days + weeks * 7));
 
-      const formatted = new Intl.DateTimeFormat('en-US', {
+      const formatted = new Intl.DateTimeFormat(isEs ? 'es-ES' : 'en-US', {
         weekday: 'long',
         month: 'long',
         day: 'numeric',
@@ -58,10 +63,10 @@ export function DateCalculatorClient() {
       return {
         targetDate: target,
         formatted,
-        dayOfWeek: new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(target),
+        dayOfWeek: new Intl.DateTimeFormat(isEs ? 'es-ES' : 'en-US', { weekday: 'long' }).format(target),
       };
     }
-  }, [startDate, operation, days, weeks, months, years, businessDaysOnly]);
+  }, [startDate, operation, days, weeks, months, years, businessDaysOnly, isEs]);
 
   return (
     <div className="space-y-8">
@@ -70,7 +75,7 @@ export function DateCalculatorClient() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-            Date Math Configuration
+            {isEs ? 'Configuración de Cálculo' : 'Date Math Configuration'}
           </h2>
 
           <div className="flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-xs font-semibold">
@@ -82,7 +87,7 @@ export function DateCalculatorClient() {
                   : 'text-slate-600 dark:text-slate-300'
               }`}
             >
-              <Plus className="w-3.5 h-3.5" /> Add
+              <Plus className="w-3.5 h-3.5" /> {isEs ? 'Sumar' : 'Add'}
             </button>
             <button
               onClick={() => setOperation('subtract')}
@@ -92,14 +97,14 @@ export function DateCalculatorClient() {
                   : 'text-slate-600 dark:text-slate-300'
               }`}
             >
-              <Minus className="w-3.5 h-3.5" /> Subtract
+              <Minus className="w-3.5 h-3.5" /> {isEs ? 'Restar' : 'Subtract'}
             </button>
           </div>
         </div>
 
         <div>
           <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
-            Starting Date
+            {isEs ? 'Fecha de Inicio' : 'Starting Date'}
           </label>
           <input
             type="date"
@@ -113,7 +118,7 @@ export function DateCalculatorClient() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
           <div>
             <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
-              Days
+              {isEs ? 'Días' : 'Days'}
             </label>
             <input
               type="number"
@@ -126,7 +131,7 @@ export function DateCalculatorClient() {
 
           <div>
             <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
-              Weeks
+              {isEs ? 'Semanas' : 'Weeks'}
             </label>
             <input
               type="number"
@@ -140,7 +145,7 @@ export function DateCalculatorClient() {
 
           <div>
             <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
-              Months
+              {isEs ? 'Meses' : 'Months'}
             </label>
             <input
               type="number"
@@ -154,7 +159,7 @@ export function DateCalculatorClient() {
 
           <div>
             <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
-              Years
+              {isEs ? 'Años' : 'Years'}
             </label>
             <input
               type="number"
@@ -176,7 +181,7 @@ export function DateCalculatorClient() {
               onChange={(e) => setBusinessDaysOnly(e.target.checked)}
               className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
             />
-            <span>Business days only (add/subtract working days, skip weekends)</span>
+            <span>{isEs ? 'Solo días laborables (omitir sábados y domingos)' : 'Business days only (add/subtract working days, skip weekends)'}</span>
           </label>
         </div>
       </div>
@@ -185,12 +190,12 @@ export function DateCalculatorClient() {
       {result && (
         <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm text-center space-y-2">
           <span className="text-xs font-bold uppercase tracking-widest text-slate-400 block">
-            Calculated Target Date
+            {isEs ? 'Fecha Objetivo Calculada' : 'Calculated Target Date'}
           </span>
-          <div className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white py-2">
+          <div className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white py-2 capitalize">
             {result.formatted}
           </div>
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800 capitalize">
             {result.dayOfWeek}
           </span>
         </div>

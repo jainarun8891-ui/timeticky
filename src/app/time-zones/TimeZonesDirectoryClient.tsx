@@ -7,9 +7,11 @@ import { Search, Globe, Clock, Filter, Copy, Check, ArrowUpRight, Compass } from
 
 interface Props {
   initialZones: IanaTimeZone[];
+  locale?: 'en' | 'es';
 }
 
-export function TimeZonesDirectoryClient({ initialZones }: Props) {
+export function TimeZonesDirectoryClient({ initialZones, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedContinent, setSelectedContinent] = useState<string>('All');
@@ -341,9 +343,9 @@ export function TimeZonesDirectoryClient({ initialZones }: Props) {
                   </div>
 
                   <Link
-                    href={`/time-zone-converter?tz=${encodeURIComponent(tz.id)}`}
+                    href={isEs ? `/es/converter?tz=${encodeURIComponent(tz.id)}` : `/converter?tz=${encodeURIComponent(tz.id)}`}
                     className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-400 hover:text-blue-600 dark:hover:text-white hover:bg-blue-50 dark:hover:bg-blue-900/40 transition-all"
-                    title="Open in Time Zone Converter"
+                    title={isEs ? "Abrir en Conversor de Husos Horarios" : "Open in Time Zone Converter"}
                   >
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>

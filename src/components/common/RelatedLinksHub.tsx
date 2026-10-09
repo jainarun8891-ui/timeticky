@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Globe, ArrowRight, ArrowLeftRight, Users, Sparkles, BookOpen, Clock, Calendar, Sun, Phone, Monitor, Plane, Bell, ShieldCheck, Map, Moon, Camera, Code, Layers } from 'lucide-react';
 import { CITIES } from '@/lib/geo/cities';
 import { TIMEZONES } from '@/lib/time/timezones';
@@ -11,13 +12,20 @@ interface RelatedLinksHubProps {
   currentPath?: string;
   title?: string;
   subtitle?: string;
+  locale?: 'en' | 'es' | string;
 }
 
 export function RelatedLinksHub({
   currentPath = '',
-  title = 'Explore Global Time & Related Directories',
-  subtitle = 'Quick access to international capitals, timezone offsets, chronometry tools, and horology guides',
+  title,
+  subtitle,
+  locale,
 }: RelatedLinksHubProps) {
+  const pathname = usePathname();
+  const isEs = locale === 'es' || pathname?.startsWith('/es') || currentPath.startsWith('/es');
+  const resolvedTitle = title || (isEs ? 'Explorar herramientas de hora y zonas horarias' : 'Explore Global Time & Related Directories');
+  const resolvedSubtitle = subtitle || (isEs ? 'Acceso rápido a relojes de capitales internacionales, husos horarios y cronómetros' : 'Quick access to international capitals, timezone offsets, chronometry tools, and horology guides');
+  const prefix = isEs ? '/es' : '';
   const targetCitySlugs = [
     'new-york', 'london', 'tokyo', 'paris', 'berlin', 'zurich',
     'madrid', 'mumbai', 'bengaluru', 'hong-kong', 'rome',
@@ -92,18 +100,18 @@ export function RelatedLinksHub({
       <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
         <div>
           <h3 className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
-            {title}
+            {resolvedTitle}
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400">
-            {subtitle}
+            {resolvedSubtitle}
           </p>
         </div>
         <Link
-          href="/world-map"
+          href={`${prefix}/world-map`}
           prefetch={false}
           className="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline"
         >
-          <span>Explore Interactive Map</span>
+          <span>{isEs ? 'Explorar mapa interactivo' : 'Explore Interactive Map'}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
@@ -111,7 +119,7 @@ export function RelatedLinksHub({
       {/* Grid: Global Tools */}
       <div className="space-y-3">
         <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
-          Precision Horology & Global Time Tools
+          {isEs ? 'Herramientas de Precisión Horológica' : 'Precision Horology & Global Time Tools'}
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
           {filteredTools.map((t) => {
@@ -119,7 +127,7 @@ export function RelatedLinksHub({
             return (
               <Link
                 key={t.url}
-                href={t.url}
+                href={`${prefix}${t.url}`}
                 prefetch={false}
                 className="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-blue-50 dark:hover:bg-slate-700/60 border border-slate-100 dark:border-slate-800 transition-all flex items-start gap-3"
               >
@@ -143,13 +151,13 @@ export function RelatedLinksHub({
       {/* Popular Global Comparisons */}
       <div className="space-y-3">
         <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
-          High-Volume City Time Differences
+          {isEs ? 'Diferencias Horarias Entre Ciudades' : 'High-Volume City Time Differences'}
         </h4>
         <div className="flex flex-wrap gap-2">
           {topComparisons.map((c) => (
             <Link
               key={c.url}
-              href={c.url}
+              href={`${prefix}${c.url}`}
               prefetch={false}
               className="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/40 border border-slate-200/60 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
             >
@@ -162,7 +170,7 @@ export function RelatedLinksHub({
       {/* Popular World Cities */}
       <div className="space-y-3">
         <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
-          Global Financial & Metropolitan Capitals
+          {isEs ? 'Capitales Mundiales y Centros Financieros' : 'Global Financial & Metropolitan Capitals'}
         </h4>
         <div className="flex flex-wrap gap-2">
           {topCities.map((city) => {
@@ -170,7 +178,7 @@ export function RelatedLinksHub({
             return (
               <Link
                 key={city.id}
-                href={`/time/${canonicalSlug}`}
+                href={`${prefix}/time/${canonicalSlug}`}
                 prefetch={false}
                 className="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/40 border border-slate-200/60 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
               >

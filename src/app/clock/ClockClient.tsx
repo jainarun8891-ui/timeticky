@@ -12,10 +12,19 @@ import { getSyncedDate } from '@/lib/time/sync';
 import { HubPageCustomContent } from '@/lib/seo/hub-pages-custom-content';
 
 interface Props {
-  content: HubPageCustomContent;
+  content: {
+    h1: string;
+    description: string;
+    headings: string[];
+    page_text: string;
+    faqs: { question: string; answer: string }[];
+    badgeLabel?: string;
+  };
+  locale?: 'en' | 'es';
 }
 
-export function ClockClient({ content }: Props) {
+export function ClockClient({ content, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [time, setTime] = useState(new Date());
   const [is24, setIs24] = useState(false);
   const [showSec, setShowSec] = useState(true);
@@ -56,19 +65,19 @@ export function ClockClient({ content }: Props) {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
-        <Breadcrumbs items={[{ name: 'Digital Clock', url: '/clock' }]} />
+        <Breadcrumbs items={[{ name: isEs ? 'Reloj Digital' : 'Digital Clock', url: isEs ? '/es/clock' : '/clock' }]} />
         <JsonLd
           type="breadcrumb"
           data={[
-            { name: 'Home', url: '/' },
-            { name: 'Digital Clock', url: '/clock' },
+            { name: isEs ? 'Inicio' : 'Home', url: isEs ? '/es' : '/' },
+            { name: isEs ? 'Reloj Digital' : 'Digital Clock', url: isEs ? '/es/clock' : '/clock' },
           ]}
         />
         <JsonLd type="faq" data={content.faqs} />
         <JsonLd
           type="application"
           data={{
-            name: "Online Digital Clock with Seconds",
+            name: isEs ? "Reloj Digital Online con Segundos" : "Online Digital Clock with Seconds",
             category: "UtilitiesApplication",
             description: content.description
           }}
@@ -86,7 +95,9 @@ export function ClockClient({ content }: Props) {
           {/* Top Info Header */}
           <div className="flex items-center justify-between w-full mb-10">
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-              <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">Synchronized Live Atomic Chronometer</span>
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+                {isEs ? 'Cronómetro Atómico Sincronizado en Vivo' : 'Synchronized Live Atomic Chronometer'}
+              </span>
             </div>
 
             <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl">
@@ -104,19 +115,19 @@ export function ClockClient({ content }: Props) {
                   showSec ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'
                 }`}
               >
-                {showSec ? 'Seconds' : 'Minutes Only'}
+                {isEs ? (showSec ? 'Segundos' : 'Solo Minutos') : (showSec ? 'Seconds' : 'Minutes Only')}
               </button>
               <button
                 onClick={() => setIsDark(!isDark)}
                 className="p-1.5 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 transition-colors"
-                title="Toggle Dark Mode"
+                title={isEs ? "Modo Oscuro" : "Toggle Dark Mode"}
               >
                 {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </button>
               <button
                 onClick={toggleFullscreen}
                 className="p-1.5 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 transition-colors"
-                title="Fullscreen Mode"
+                title={isEs ? "Pantalla Completa" : "Fullscreen Mode"}
               >
                 {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
               </button>
@@ -135,23 +146,27 @@ export function ClockClient({ content }: Props) {
             </div>
 
             <p className="text-base sm:text-xl font-bold text-slate-500 dark:text-slate-400">
-              {time.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              {time.toLocaleDateString(isEs ? 'es-ES' : undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
             </p>
           </div>
         </div>
 
         {/* Informative Science Guide */}
-        <EditorialContentBlock content={content} badgeLabel="Digital Chronometer Architecture" />
+        <EditorialContentBlock
+          content={content}
+          badgeLabel={content.badgeLabel || (isEs ? "Arquitectura de Cronometría Digital" : "Digital Chronometer Architecture")}
+          locale={locale}
+        />
 
         {/* FAQ Accordion */}
         <FaqAccordion
           items={content.faqs}
-          title="Digital Clock FAQs"
-          subtitle="Answers to common questions regarding atomic clock synchronization and digital time displays."
+          title={isEs ? "Preguntas Frecuentes sobre el Reloj Digital" : "Digital Clock FAQs"}
+          subtitle={isEs ? "Respuestas a preguntas comunes sobre sincronización con reloj atómico y visualización de la hora." : "Answers to common questions regarding atomic clock synchronization and digital time displays."}
         />
 
         {/* Related Links Hub */}
-        <RelatedLinksHub title="Explore More Clocks & Tools" />
+        <RelatedLinksHub title={isEs ? "Explora Más Relojes y Herramientas" : "Explore More Clocks & Tools"} />
       </div>
     </div>
   );

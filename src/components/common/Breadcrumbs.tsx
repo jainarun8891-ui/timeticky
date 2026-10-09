@@ -11,13 +11,20 @@ interface Props {
   items: BreadcrumbItem[];
   className?: string;
   showHomeIcon?: boolean;
+  locale?: 'en' | 'es' | string;
 }
 
-export function Breadcrumbs({ items, className = '', showHomeIcon = true }: Props) {
-  const fullItems: BreadcrumbItem[] = [
-    { name: 'Home', url: '/' },
-    ...items.filter(item => item.url !== '/'),
-  ];
+export function Breadcrumbs({ items, className = '', showHomeIcon = true, locale }: Props) {
+  const isEs = locale === 'es' || items.some(item => item.url.startsWith('/es'));
+  const fullItems: BreadcrumbItem[] = isEs
+    ? [
+        { name: 'Inicio', url: '/es' },
+        ...items.filter(item => item.url !== '/es' && item.url !== '/'),
+      ]
+    : [
+        { name: 'Home', url: '/' },
+        ...items.filter(item => item.url !== '/'),
+      ];
 
   const jsonLd = {
     '@context': 'https://schema.org',

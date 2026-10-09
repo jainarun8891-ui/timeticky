@@ -9,10 +9,19 @@ import { Play, Pause, RotateCcw, Flag, Timer, Copy, Check, Zap, Target } from 'l
 import { HubPageCustomContent } from '@/lib/seo/hub-pages-custom-content';
 
 interface Props {
-  content: HubPageCustomContent;
+  content: {
+    h1: string;
+    description: string;
+    headings: string[];
+    page_text: string;
+    faqs: { question: string; answer: string }[];
+    badgeLabel?: string;
+  };
+  locale?: 'en' | 'es';
 }
 
-export function StopwatchClient({ content }: Props) {
+export function StopwatchClient({ content, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [ms, setMs] = useState(0);
   const [running, setRunning] = useState(false);
   const [laps, setLaps] = useState<number[]>([]);
@@ -70,7 +79,7 @@ export function StopwatchClient({ content }: Props) {
   const cs = Math.floor((ms % 1000) / 10);
 
   const copyLaps = () => {
-    const text = laps.map((l, i) => `Lap ${laps.length - i}: ${(l / 1000).toFixed(2)}s`).join('\n');
+    const text = laps.map((l, i) => `${isEs ? 'Vuelta' : 'Lap'} ${laps.length - i}: ${(l / 1000).toFixed(2)}s`).join('\n');
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -80,12 +89,12 @@ export function StopwatchClient({ content }: Props) {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Semantic Breadcrumbs & Schema.org JSON-LD */}
-        <Breadcrumbs items={[{ name: 'Stopwatch', url: '/stopwatch' }]} />
+        <Breadcrumbs items={[{ name: isEs ? 'Cronómetro' : 'Stopwatch', url: isEs ? '/es/stopwatch' : '/stopwatch' }]} />
         <JsonLd type="faq" data={content.faqs} />
         <JsonLd
           type="application"
           data={{
-            name: "Online Precision Stopwatch",
+            name: isEs ? "Cronómetro Online de Precisión" : "Online Precision Stopwatch",
             category: "UtilitiesApplication",
             description: content.description
           }}
@@ -95,7 +104,7 @@ export function StopwatchClient({ content }: Props) {
         <div className="space-y-1 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold">
             <Timer className="w-3.5 h-3.5" />
-            Millisecond Precision Chronometer
+            {content.badgeLabel || (isEs ? 'Cronómetro de precisión de milisegundos' : 'Millisecond Precision Chronometer')}
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             {content.h1}
@@ -121,7 +130,7 @@ export function StopwatchClient({ content }: Props) {
               }`}
             >
               {running ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              {running ? 'Pause' : 'Start'}
+              {running ? (isEs ? 'Pausar' : 'Pause') : (isEs ? 'Iniciar' : 'Start')}
             </button>
 
             {running && (
@@ -130,7 +139,7 @@ export function StopwatchClient({ content }: Props) {
                 className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-800 dark:text-slate-200 flex items-center gap-2 transition-colors"
               >
                 <Flag className="w-4 h-4" />
-                Lap Split
+                {isEs ? 'Vuelta' : 'Lap Split'}
               </button>
             )}
 
@@ -139,12 +148,16 @@ export function StopwatchClient({ content }: Props) {
               className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-800 dark:text-slate-200 flex items-center gap-2 transition-colors"
             >
               <RotateCcw className="w-4 h-4" />
-              Reset
+              {isEs ? 'Reiniciar' : 'Reset'}
             </button>
           </div>
 
           <div className="pt-2 text-xs text-slate-400">
-            Keyboard Shortcuts: <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">Space</kbd> Start/Pause &middot; <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">L</kbd> Lap Split &middot; <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">R</kbd> Reset
+            {isEs ? (
+              <>Atajos de teclado: <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">Espacio</kbd> Iniciar/Pausar &middot; <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">L</kbd> Vuelta &middot; <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">R</kbd> Reiniciar</>
+            ) : (
+              <>Keyboard Shortcuts: <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">Space</kbd> Start/Pause &middot; <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">L</kbd> Lap Split &middot; <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">R</kbd> Reset</>
+            )}
           </div>
 
           {/* Laps List */}
@@ -152,21 +165,21 @@ export function StopwatchClient({ content }: Props) {
             <div className="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6 max-w-md mx-auto text-left">
               <div className="flex justify-between items-center mb-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Recorded Lap Splits ({laps.length})
+                  {isEs ? `Vueltas Registradas (${laps.length})` : `Recorded Lap Splits (${laps.length})`}
                 </span>
                 <button
                   onClick={copyLaps}
                   className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
                 >
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                  {copied ? 'Copied' : 'Copy All Laps'}
+                  {copied ? (isEs ? 'Copiado' : 'Copied') : (isEs ? 'Copiar Todas las Vueltas' : 'Copy All Laps')}
                 </button>
               </div>
 
               <div className="max-h-60 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800 font-mono text-xs">
                 {laps.map((l, i) => (
                   <div key={i} className="py-2.5 flex justify-between items-center text-slate-600 dark:text-slate-400">
-                    <span className="font-semibold text-slate-500">Lap {laps.length - i}</span>
+                    <span className="font-semibold text-slate-500">{isEs ? 'Vuelta' : 'Lap'} {laps.length - i}</span>
                     <span className="font-bold text-slate-900 dark:text-white text-sm">{(l / 1000).toFixed(2)}s</span>
                   </div>
                 ))}
@@ -180,7 +193,7 @@ export function StopwatchClient({ content }: Props) {
           <div className="space-y-4 max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
               <Zap className="w-3.5 h-3.5" />
-              <span>Sub-Millisecond Chronometry</span>
+              <span>{isEs ? 'Cronometría de Sub-Milisegundos' : 'Sub-Millisecond Chronometry'}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               {content.headings[0]}
@@ -200,7 +213,7 @@ export function StopwatchClient({ content }: Props) {
                     {heading}
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Accurate interval measurements, split mathematics, and athletic training applications.
+                    {isEs ? 'Mediciones precisas de intervalos, matemáticas de fracciones y cronometraje atlético.' : 'Accurate interval measurements, split mathematics, and athletic training applications.'}
                   </p>
                 </div>
               ))}
@@ -211,12 +224,12 @@ export function StopwatchClient({ content }: Props) {
         {/* FAQ Accordion */}
         <FaqAccordion
           items={content.faqs}
-          title="Frequently Asked Questions About Online Stopwatch"
-          subtitle="Answers on hardware timing accuracy, lap tracking, background tab persistence, and shortcuts."
+          title={isEs ? 'Preguntas Frecuentes sobre el Cronómetro Online' : 'Frequently Asked Questions About Online Stopwatch'}
+          subtitle={isEs ? 'Respuestas sobre precisión de hardware, registro de vueltas, persistencia en pestañas secundarias y atajos.' : 'Answers on hardware timing accuracy, lap tracking, background tab persistence, and shortcuts.'}
         />
 
         {/* Hub Navigation */}
-        <RelatedLinksHub title="Explore More Clocks & Timers" />
+        <RelatedLinksHub title={isEs ? 'Explora Más Relojes y Temporizadores' : 'Explore More Clocks & Timers'} />
       </div>
     </div>
   );

@@ -16,7 +16,13 @@ import {
   Plane, Layers, Clock, Globe, Sparkles
 } from 'lucide-react';
 
-export function ConverterHubClient() {
+interface ConverterHubClientProps {
+  locale?: 'en' | 'es';
+}
+
+export function ConverterHubClient({ locale = 'en' }: ConverterHubClientProps = {}) {
+  const isEs = locale === 'es';
+  const prefix = isEs ? '/es' : '';
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState<string>('all');
   const [quickCityAId, setQuickCityAId] = useState('delhi-in');
@@ -91,7 +97,7 @@ export function ConverterHubClient() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link
-            href="/converter/compare"
+            href={`${prefix}/converter/compare`}
             className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/60 hover:shadow-md transition-all group flex flex-col justify-between"
           >
             <div>
@@ -112,7 +118,7 @@ export function ConverterHubClient() {
           </Link>
 
           <Link
-            href="/meeting-planner"
+            href={`${prefix}/meeting-planner`}
             className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500/60 hover:shadow-md transition-all group flex flex-col justify-between"
           >
             <div>
@@ -133,7 +139,7 @@ export function ConverterHubClient() {
           </Link>
 
           <Link
-            href="/overlap-calculator"
+            href={`${prefix}/overlap-calculator`}
             className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-purple-500/60 hover:shadow-md transition-all group flex flex-col justify-between"
           >
             <div>
@@ -154,7 +160,7 @@ export function ConverterHubClient() {
           </Link>
 
           <Link
-            href="/jet-lag-calculator"
+            href={`${prefix}/jet-lag-calculator`}
             className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-amber-500/60 hover:shadow-md transition-all group flex flex-col justify-between"
           >
             <div>
@@ -260,10 +266,10 @@ export function ConverterHubClient() {
             </div>
 
             <Link
-              href={`/converter/difference/${quickCityA.id.replace(/-[a-z]{2}$/, '')}-to-${quickCityB.id.replace(/-[a-z]{2}$/, '')}`}
+              href={`${prefix}/converter/difference/${quickCityA.id.replace(/-[a-z]{2}$/, '')}-to-${quickCityB.id.replace(/-[a-z]{2}$/, '')}`}
               className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
             >
-              <span>View Full 24-Hour Comparison Table</span>
+              <span>{isEs ? 'Ver tabla completa de comparación de 24 horas' : 'View Full 24-Hour Comparison Table'}</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -275,17 +281,17 @@ export function ConverterHubClient() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
-              Popular City Pair Differences
+              {isEs ? 'Diferencias Horarias Populares entre Ciudades' : 'Popular City Pair Differences'}
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-              Exact hour offset and time difference between major metropolitan centers.
+              {isEs ? 'Desfases exactos y diferencias horarias entre centros metropolitanos mundiales.' : 'Exact hour offset and time difference between major metropolitan centers.'}
             </p>
           </div>
           <Link
-            href="/converter/difference"
+            href={`${prefix}/converter/difference`}
             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-xs font-bold text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors w-fit"
           >
-            <span>View All 92 Differences Directory</span>
+            <span>{isEs ? 'Ver directorio de 92 diferencias' : 'View All 92 Differences Directory'}</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -300,7 +306,7 @@ export function ConverterHubClient() {
             return (
               <Link
                 key={slug}
-                href={`/converter/difference/${slug}`}
+                href={`${prefix}/converter/difference/${slug}`}
                 prefetch={false}
                 className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-xs transition-all flex items-center justify-between group"
               >
@@ -309,7 +315,7 @@ export function ConverterHubClient() {
                     {nameA} vs {nameB}
                   </div>
                   <div className="text-[11px] text-slate-400 truncate">
-                    {nameA} to {nameB} Time Difference
+                    {nameA} {isEs ? 'a' : 'to'} {nameB} {isEs ? 'Diferencia Horaria' : 'Time Difference'}
                   </div>
                 </div>
                 <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-0.5 shrink-0 ml-2" />
@@ -322,17 +328,17 @@ export function ConverterHubClient() {
         <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800/80 dark:to-indigo-950/40 border border-blue-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-0.5 text-center sm:text-left">
             <span className="text-xs font-bold text-slate-900 dark:text-white block">
-              Looking for other city-to-city comparisons?
+              {isEs ? '¿Buscas otras comparaciones entre ciudades?' : 'Looking for other city-to-city comparisons?'}
             </span>
             <p className="text-[11px] text-slate-500 dark:text-slate-400">
-              Explore our full directory of 92 bilateral routes including New York to São Paulo, Honolulu, Tokyo, and London.
+              {isEs ? 'Explora nuestro directorio completo de 92 rutas bilaterales como Nueva York a São Paulo, Honolulu, Tokio y Londres.' : 'Explore our full directory of 92 bilateral routes including New York to São Paulo, Honolulu, Tokyo, and London.'}
             </p>
           </div>
           <Link
-            href="/converter/difference"
+            href={`${prefix}/converter/difference`}
             className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition-all whitespace-nowrap"
           >
-            Open 92-City Difference Directory →
+            {isEs ? 'Abrir Directorio de 92 Diferencias →' : 'Open 92-City Difference Directory →'}
           </Link>
         </div>
       </div>
@@ -407,7 +413,7 @@ export function ConverterHubClient() {
             {filteredCombos.slice(0, 120).map((c) => (
               <Link
                 key={c.slug}
-                href={`/converter/${c.slug}`}
+                href={`${prefix}/converter/${c.slug}`}
                 prefetch={false}
                 className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-md transition-all group flex flex-col justify-between"
               >

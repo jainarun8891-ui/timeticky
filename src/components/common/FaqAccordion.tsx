@@ -10,12 +10,14 @@ export interface FaqItem {
 }
 
 interface FaqAccordionProps {
-  items: FaqItem[];
+  items?: FaqItem[];
+  faqs?: FaqItem[];
   title?: string;
   subtitle?: string;
 }
 
-export function FaqAccordion({ items, title = "Frequently Asked Questions", subtitle = "Common queries, time calculations, and scientific explanations" }: FaqAccordionProps) {
+export function FaqAccordion({ items, faqs, title = "Frequently Asked Questions", subtitle = "Common queries, time calculations, and scientific explanations" }: FaqAccordionProps) {
+  const activeItems = items || faqs || [];
   const [openIndexes, setOpenIndexes] = useState<number[]>([0]);
 
   const toggle = (idx: number) => {
@@ -29,7 +31,7 @@ export function FaqAccordion({ items, title = "Frequently Asked Questions", subt
   return (
     <section className="w-full bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm p-6 sm:p-8 mt-10 space-y-6">
       {/* Schema.org FAQPage JSON-LD embedded for Google rich snippets */}
-      <JsonLd type="faq" data={items} />
+      <JsonLd type="faq" data={activeItems} />
 
       <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
         <div className="flex items-center gap-3">
@@ -54,7 +56,7 @@ export function FaqAccordion({ items, title = "Frequently Asked Questions", subt
 
       {/* Accordion List */}
       <div className="divide-y divide-slate-100 dark:divide-slate-800">
-        {items.map((item, index) => {
+        {activeItems.map((item, index) => {
           const isOpen = openIndexes.includes(index);
           return (
             <div key={index} className="py-3.5 first:pt-0 last:pb-0">

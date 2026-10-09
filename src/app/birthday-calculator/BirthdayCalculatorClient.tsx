@@ -7,9 +7,11 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 
 interface Props {
   h1Title?: string;
+  locale?: 'en' | 'es';
 }
 
-export function BirthdayCalculatorClient({ h1Title }: Props) {
+export function BirthdayCalculatorClient({ h1Title, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [birthDate, setBirthDate] = useState<string>('2000-01-01');
   const [now, setNow] = useState<Date>(new Date());
 
@@ -50,42 +52,59 @@ export function BirthdayCalculatorClient({ h1Title }: Props) {
 
   const totalDays = Math.floor((now.getTime() - bDate.getTime()) / (1000 * 60 * 60 * 24));
   const totalWeeks = Math.floor(totalDays / 7);
-  const estimatedHeartbeats = Math.floor(totalDays * 24 * 60 * 72).toLocaleString();
+  const estimatedHeartbeats = Math.floor(totalDays * 24 * 60 * 72).toLocaleString(isEs ? 'es-ES' : 'en-US');
 
-  const faqs = [
-    {
-      question: "How many weeks and days until my birthday calculator works?",
-      answer: "Our birthday countdown calculates the exact difference between current atomic time and midnight of your upcoming birthday, displaying weeks, remaining days, hours, minutes, and seconds."
-    },
-    {
-      question: "How does the chronological age calculator determine exact age?",
-      answer: "The calculator accurately accounts for leap years, variable calendar month lengths (28, 30, or 31 days), and daylight saving time adjustments to deliver precise years, months, days, and hours lived."
-    },
-    {
-      question: "Can I calculate my age in total days and hours?",
-      answer: "Yes, our tool shows total lifetime days, weeks, and an estimated heartbeat tally based on standard healthy human resting pulse rates."
-    }
-  ];
+  const faqs = isEs
+    ? [
+        {
+          question: "¿Cómo funciona la cuenta regresiva para mi próximo cumpleaños?",
+          answer: "Nuestra cuenta regresiva calcula la diferencia exacta entre la hora atómica actual y la medianoche de tu próximo cumpleaños, desglosando semanas, días restantes, horas, minutos y segundos."
+        },
+        {
+          question: "¿Cómo calcula la herramienta la edad cronológica exacta?",
+          answer: "La calculadora toma en cuenta los años bisiestos, la duración variable de los meses (28, 30 o 31 días) y los ajustes de horario para entregar con exactitud los años, meses, días y horas vividos."
+        },
+        {
+          question: "¿Puedo calcular mi edad en días totales y latidos estimados?",
+          answer: "Sí, la herramienta muestra el total de días y semanas vividos, así como una estimación de latidos cardíacos basada en una frecuencia en reposo estándar de 72 lpm."
+        }
+      ]
+    : [
+        {
+          question: "How many weeks and days until my birthday calculator works?",
+          answer: "Our birthday countdown calculates the exact difference between current atomic time and midnight of your upcoming birthday, displaying weeks, remaining days, hours, minutes, and seconds."
+        },
+        {
+          question: "How does the chronological age calculator determine exact age?",
+          answer: "The calculator accurately accounts for leap years, variable calendar month lengths (28, 30, or 31 days), and daylight saving time adjustments to deliver precise years, months, days, and hours lived."
+        },
+        {
+          question: "Can I calculate my age in total days and hours?",
+          answer: "Yes, our tool shows total lifetime days, weeks, and an estimated heartbeat tally based on standard healthy human resting pulse rates."
+        }
+      ];
 
   return (
     <div className="space-y-10">
       <header className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-xs font-bold uppercase tracking-wider">
           <Cake className="w-3.5 h-3.5" />
-          <span>Milestone Life Tracking</span>
+          <span>{isEs ? 'Seguimiento de Hitos de Vida' : 'Milestone Life Tracking'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-          {h1Title || "Birthday & Age Calculator"}
+          {h1Title || (isEs ? "Calculadora de Cumpleaños y Edad" : "Birthday & Age Calculator")}
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
-          Calculate how many weeks and days until your next birthday and discover your exact chronological age down to the second.
+          {isEs
+            ? "Calcula cuántas semanas y días faltan para tu próximo cumpleaños y descubre tu edad cronológica exacta al segundo."
+            : "Calculate how many weeks and days until your next birthday and discover your exact chronological age down to the second."}
         </p>
       </header>
 
       {/* Input Card */}
       <section className="max-w-md mx-auto bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-3">
         <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block">
-          Select Your Date of Birth
+          {isEs ? 'Selecciona tu fecha de nacimiento' : 'Select Your Date of Birth'}
         </label>
         <input
           type="date"
@@ -102,67 +121,71 @@ export function BirthdayCalculatorClient({ h1Title }: Props) {
           <section className="bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl p-8 sm:p-12 text-white shadow-lg text-center space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur text-xs font-bold uppercase tracking-wider">
               <Flame className="w-3.5 h-3.5" />
-              <span>Upcoming Birthday Countdown</span>
+              <span>{isEs ? 'Cuenta Regresiva para tu Próximo Cumpleaños' : 'Upcoming Birthday Countdown'}</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
               <div className="p-4 rounded-2xl bg-white/10 backdrop-blur">
                 <span className="text-3xl sm:text-5xl font-black font-mono block">{nextWeeks}</span>
-                <span className="text-xs uppercase font-bold tracking-wider opacity-80">Weeks</span>
+                <span className="text-xs uppercase font-bold tracking-wider opacity-80">{isEs ? 'Semanas' : 'Weeks'}</span>
               </div>
               <div className="p-4 rounded-2xl bg-white/10 backdrop-blur">
                 <span className="text-3xl sm:text-5xl font-black font-mono block">{nextRemainingDays}</span>
-                <span className="text-xs uppercase font-bold tracking-wider opacity-80">Days</span>
+                <span className="text-xs uppercase font-bold tracking-wider opacity-80">{isEs ? 'Días' : 'Days'}</span>
               </div>
               <div className="p-4 rounded-2xl bg-white/10 backdrop-blur">
                 <span className="text-3xl sm:text-5xl font-black font-mono block">{nextHours}</span>
-                <span className="text-xs uppercase font-bold tracking-wider opacity-80">Hours</span>
+                <span className="text-xs uppercase font-bold tracking-wider opacity-80">{isEs ? 'Horas' : 'Hours'}</span>
               </div>
               <div className="p-4 rounded-2xl bg-white/10 backdrop-blur">
                 <span className="text-3xl sm:text-5xl font-black font-mono block">{nextMinutes}:{nextSeconds.toString().padStart(2, '0')}</span>
-                <span className="text-xs uppercase font-bold tracking-wider opacity-80">Min : Sec</span>
+                <span className="text-xs uppercase font-bold tracking-wider opacity-80">{isEs ? 'Min : Seg' : 'Min : Sec'}</span>
               </div>
             </div>
 
             <p className="text-sm font-medium opacity-90">
-              Only <strong>{nextDays} total days</strong> remaining until you turn <strong>{years + 1}</strong>!
+              {isEs ? (
+                <>¡Solo quedan <strong>{nextDays} días en total</strong> para cumplir <strong>{years + 1}</strong>!</>
+              ) : (
+                <>Only <strong>{nextDays} total days</strong> remaining until you turn <strong>{years + 1}</strong>!</>
+              )}
             </p>
           </section>
 
           {/* Exact Chronological Age */}
           <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">Exact Age</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">{isEs ? 'Edad Exacta' : 'Exact Age'}</span>
               <div className="text-3xl font-black text-slate-900 dark:text-white">
-                {years} <span className="text-sm text-slate-400 font-normal">yrs</span> {months} <span className="text-sm text-slate-400 font-normal">mo</span> {days} <span className="text-sm text-slate-400 font-normal">days</span>
+                {years} <span className="text-sm text-slate-400 font-normal">{isEs ? 'años' : 'yrs'}</span> {months} <span className="text-sm text-slate-400 font-normal">{isEs ? 'meses' : 'mo'}</span> {days} <span className="text-sm text-slate-400 font-normal">{isEs ? 'días' : 'days'}</span>
               </div>
-              <p className="text-xs text-slate-500">Calculated with full leap-year calendar accuracy.</p>
+              <p className="text-xs text-slate-500">{isEs ? 'Calculada con precisión de año bisiesto.' : 'Calculated with full leap-year calendar accuracy.'}</p>
             </div>
 
             <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">Total Lifetime Days</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">{isEs ? 'Días Totales Vividos' : 'Total Lifetime Days'}</span>
               <div className="text-3xl font-black font-mono text-slate-900 dark:text-white">
-                {totalDays.toLocaleString()}
+                {totalDays.toLocaleString(isEs ? 'es-ES' : 'en-US')}
               </div>
-              <p className="text-xs text-slate-500">Equivalent to approximately {totalWeeks.toLocaleString()} weeks.</p>
+              <p className="text-xs text-slate-500">{isEs ? `Aproximadamente ${totalWeeks.toLocaleString('es-ES')} semanas.` : `Equivalent to approximately ${totalWeeks.toLocaleString()} weeks.`}</p>
             </div>
 
             <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">Estimated Heartbeats</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">{isEs ? 'Latidos Estimados' : 'Estimated Heartbeats'}</span>
               <div className="text-3xl font-black font-mono text-rose-600 dark:text-rose-400">
                 {estimatedHeartbeats}
               </div>
-              <p className="text-xs text-slate-500">Based on standard resting average of 72 bpm.</p>
+              <p className="text-xs text-slate-500">{isEs ? 'Basado en promedio de 72 lpm en reposo.' : 'Based on standard resting average of 72 bpm.'}</p>
             </div>
           </section>
         </>
       )}
 
       <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
-        <FaqAccordion items={faqs} title="Frequently Asked Questions About Age & Birthday Math" />
+        <FaqAccordion items={faqs} title={isEs ? "Preguntas Frecuentes sobre Edad y Cumpleaños" : "Frequently Asked Questions About Age & Birthday Math"} />
       </section>
 
-      <RelatedLinksHub />
+      <RelatedLinksHub locale={locale} />
     </div>
   );
 }

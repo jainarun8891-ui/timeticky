@@ -10,6 +10,7 @@ import {
   BookOpen, Newspaper, MapPin, Compass, Calendar, Camera
 } from 'lucide-react';
 import { siteConfig } from '@/lib/config/site.config';
+import { getLocalizedPath } from '@/lib/i18n';
 
 type ThemeMode = 'daylight' | 'evening' | 'dark';
 
@@ -97,7 +98,33 @@ export function Header() {
     }
   };
 
-  const featureTools = [
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
+  const featureTools = isSpanish ? [
+    { name: 'Calculadora de Ciclos de Sueño', desc: 'Ciclos de 90 min y hora óptima', href: '/es/sleep-calculator', icon: Moon },
+    { name: 'Costo de Reuniones en Vivo', desc: 'Gasto por segundo en tiempo real', href: '/es/meeting-cost-calculator', icon: Users },
+    { name: 'La Vida en Semanas Grid', desc: 'Lienzo Memento Mori de 4.160 semanas', href: '/es/life-in-weeks', icon: Calendar },
+    { name: 'Estudio de Cuenta Atrás', desc: 'Temporizadores para eventos', href: '/es/countdown', icon: Sparkles },
+    { name: 'Conversor de Zonas Horarias', desc: 'Convierte horas entre zonas', href: '/es/converter', icon: ArrowLeftRight },
+    { name: 'Comparar Ciudades del Mundo', desc: 'Diferencia horaria directa', href: '/es/converter/compare', icon: ArrowLeftRight },
+    { name: 'Diferencia Horaria entre Ciudades', desc: 'Horas y solapamiento para 92+ pares', href: '/es/converter/difference', icon: ArrowLeftRight },
+    { name: '552 Conversores Horarios', desc: 'Cuadrícula visual de 552 zonas', href: '/es/converter', icon: ArrowLeftRight },
+    { name: 'Reloj de Hora Exacta', desc: 'Cronómetro digital atómico', href: '/es/clock', icon: Clock },
+    { name: 'Mapa Mundial Interactivo', desc: 'Terminador solar y 46 relojes', href: '/es/world-map', icon: Globe },
+    { name: 'Temporizador Pomodoro Online', desc: 'Intervalos 25/5 de productividad', href: '/es/pomodoro', icon: Bell },
+    { name: 'Muro Multireloj Mundial', desc: 'Kiosco con esferas suizas', href: '/es/world-clock-wall', icon: Monitor },
+    { name: 'Astronomía Solar y Lunar', desc: 'Amanecer, atardecer y fases lunares', href: '/es/sun', icon: SunMedium },
+    { name: 'Diferencia de Fechas', desc: 'Días y meses exactos entre fechas', href: '/es/date-difference', icon: Calendar },
+    { name: 'Sumar o Restar a una Fecha', desc: 'Días naturales y días hábiles', href: '/es/date-calculator', icon: Calendar },
+    { name: 'Calculadora de Hora Dorada', desc: 'Iluminación y fotografía', href: '/es/golden-hour', icon: Camera },
+    { name: 'Prefijos Telefónicos', desc: 'Códigos internacionales por país', href: '/es/dialing-codes', icon: Phone },
+    { name: 'Calculadora de Jet Lag', desc: 'Protocolo de ajuste circadiano', href: '/es/jet-lag-calculator', icon: Plane },
+    { name: 'Reloj Despertador Online', desc: 'Alarma de cabecera con sonido', href: '/es/alarm', icon: Bell },
+    { name: 'Planificador de Reuniones', desc: 'Ventana de solapamiento internacional', href: '/es/meeting-planner', icon: Users },
+    { name: 'Estudio de Timestamp Unix', desc: 'Conversor epoch y laboratorio 2038', href: '/es/unix-time', icon: Clock },
+    { name: 'Reloj Analógico Suizo', desc: 'Esfera con segundero continuo', href: '/es/analog-clock', icon: Clock },
+  ] : [
     { name: 'Sleep Cycle Calculator', desc: '90-min cycles & optimal bedtimes', href: '/sleep-calculator', icon: Moon },
     { name: 'Meeting Cost Calculator', desc: 'Real-time live dollar burn odometer', href: '/meeting-cost-calculator', icon: Users },
     { name: 'Life in Weeks Grid', desc: 'Memento Mori 4,160-week longevity canvas', href: '/life-in-weeks', icon: Calendar },
@@ -123,16 +150,16 @@ export function Header() {
   ];
 
   const popularConverters = [
-    { label: 'GMT to EST', desc: 'London → New York', href: '/converter/gmt-to-est' },
-    { label: 'EST to GMT', desc: 'New York → London', href: '/converter/est-to-gmt' },
-    { label: 'IST to PST', desc: 'India → California', href: '/converter/ist-to-pst' },
-    { label: 'PST to EST', desc: 'Pacific → Eastern', href: '/converter/pst-to-est' },
-    { label: 'GMT to IST', desc: 'London → India', href: '/converter/gmt-to-ist' },
-    { label: 'CET to EST', desc: 'Europe → New York', href: '/converter/cet-to-est' },
-    { label: 'BST to EST', desc: 'UK Summer → Eastern', href: '/converter/bst-to-est' },
-    { label: 'UTC to IST', desc: 'UTC Standard → India', href: '/converter/utc-to-ist' },
-    { label: 'KST to GMT', desc: 'Korea → London', href: '/converter/kst-to-gmt' },
-    { label: 'AEST to GMT', desc: 'Sydney → London', href: '/converter/aest-to-gmt' },
+    { label: 'GMT to EST', desc: isSpanish ? 'Londres → Nueva York' : 'London → New York', href: `${prefix}/converter/gmt-to-est` },
+    { label: 'EST to GMT', desc: isSpanish ? 'Nueva York → Londres' : 'New York → London', href: `${prefix}/converter/est-to-gmt` },
+    { label: 'IST to PST', desc: isSpanish ? 'India → California' : 'India → California', href: `${prefix}/converter/ist-to-pst` },
+    { label: 'PST to EST', desc: isSpanish ? 'Pacífico → Oriental' : 'Pacific → Eastern', href: `${prefix}/converter/pst-to-est` },
+    { label: 'GMT to IST', desc: isSpanish ? 'Londres → India' : 'London → India', href: `${prefix}/converter/gmt-to-ist` },
+    { label: 'CET to EST', desc: isSpanish ? 'Europa → Nueva York' : 'Europe → New York', href: `${prefix}/converter/cet-to-est` },
+    { label: 'BST to EST', desc: isSpanish ? 'UK Verano → Oriental' : 'UK Summer → Eastern', href: `${prefix}/converter/bst-to-est` },
+    { label: 'UTC to IST', desc: isSpanish ? 'Estándar UTC → India' : 'UTC Standard → India', href: `${prefix}/converter/utc-to-ist` },
+    { label: 'KST to GMT', desc: isSpanish ? 'Corea → Londres' : 'Korea → London', href: `${prefix}/converter/kst-to-gmt` },
+    { label: 'AEST to GMT', desc: isSpanish ? 'Sídney → Londres' : 'Sydney → London', href: `${prefix}/converter/aest-to-gmt` },
   ];
 
   return (
@@ -141,7 +168,7 @@ export function Header() {
         <div className="max-w-[1720px] w-full mx-auto px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between gap-3 sm:gap-4">
         {/* Left: Brand Logo & Tagline */}
         <Link
-          href="/"
+          href={prefix || "/"}
           onClick={() => setMobileMenuOpen(false)}
           className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
         >
@@ -153,24 +180,24 @@ export function Header() {
               {siteConfig.name}
             </span>
             <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium leading-none">
-              A more connected world
+              {isSpanish ? 'Un mundo más conectado' : 'A more connected world'}
             </span>
           </div>
         </Link>
 
         {/* Center: Navigation Links (Desktop) */}
         <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-600 dark:text-slate-300">
-          <Link href="/" className="text-blue-600 dark:text-blue-400 font-extrabold hover:text-blue-700 transition-colors">
-            World Clock
+          <Link href={isSpanish ? "/es/world-clock" : "/world-clock"} className="text-blue-600 dark:text-blue-400 font-extrabold hover:text-blue-700 transition-colors">
+            {isSpanish ? "Reloj Mundial" : "World Clock"}
           </Link>
 
           {/* Converters Mega Dropdown */}
           <div ref={convertersRef} className="relative flex items-center">
             <Link
-              href="/converter"
+              href={`${prefix}/converter`}
               className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1.5 py-2 font-bold"
             >
-              <span>Converters</span>
+              <span>{isSpanish ? "Conversores" : "Converters"}</span>
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-black">
                 552
               </span>
@@ -193,14 +220,14 @@ export function Header() {
                 <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-1.5 text-xs font-black text-slate-900 dark:text-white">
                     <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Timezone Converters</span>
+                    <span>{isSpanish ? "Conversores Horarios" : "Timezone Converters"}</span>
                   </div>
                   <Link
-                    href="/converter"
+                    href={`${prefix}/converter`}
                     onClick={() => setConvertersOpen(false)}
                     className="text-[11px] font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
                   >
-                    <span>View All 552</span>
+                    <span>{isSpanish ? "Ver los 552" : "View All 552"}</span>
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
@@ -227,13 +254,13 @@ export function Header() {
 
                 {/* Footer Banner */}
                 <Link
-                  href="/converter"
+                  href={`${prefix}/converter`}
                   onClick={() => setConvertersOpen(false)}
                   className="w-full py-2 px-3 rounded-2xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-200/70 dark:border-blue-800/70 text-blue-700 dark:text-blue-300 text-xs font-bold flex items-center justify-between transition-colors"
                 >
                   <span className="flex items-center gap-2">
                     <Layers className="w-3.5 h-3.5" />
-                    <span>Browse All 552 Timezone Combinations</span>
+                    <span>{isSpanish ? "Explorar las 552 Combinaciones" : "Browse All 552 Timezone Combinations"}</span>
                   </span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -241,26 +268,26 @@ export function Header() {
             )}
           </div>
 
-          <Link href="/world-map" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
-            <span>World Map</span>
+          <Link href={isSpanish ? "/es/world-map" : "/world-map"} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
+            <span>{isSpanish ? "Mapa" : "World Map"}</span>
             <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800">
               Live
             </span>
           </Link>
 
-          <Link href="/time-zones" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
-            <span>Time Zones</span>
+          <Link href={isSpanish ? "/es/time-zones" : "/time-zones"} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
+            <span>{isSpanish ? "Zonas" : "Time Zones"}</span>
             <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">
               400+
             </span>
           </Link>
 
-          <Link href="/world-clock-wall" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            Wall Clock
+          <Link href={isSpanish ? "/es/world-clock-wall" : "/world-clock-wall"} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            {isSpanish ? "Muro" : "Wall Clock"}
           </Link>
 
-          <Link href="/astronomy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            Astronomy
+          <Link href={isSpanish ? "/es/sun" : "/astronomy"} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            {isSpanish ? "Sol y Luna" : "Astronomy"}
           </Link>
 
           {/* Tools Dropdown Menu */}
@@ -272,7 +299,7 @@ export function Header() {
               }}
               className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1 py-2 cursor-pointer font-bold"
             >
-              <span>Tools</span>
+              <span>{isSpanish ? "Herramientas" : "Tools"}</span>
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${toolsOpen ? 'rotate-180' : ''}`} />
             </button>
 
@@ -383,8 +410,36 @@ export function Header() {
             </button>
           </div>
 
+          {/* Desktop Language Switcher: EN | ES */}
+          <div className="flex items-center p-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 shadow-2xs">
+            <Link
+              href={getLocalizedPath(pathname, 'en')}
+              prefetch={false}
+              className={`px-2 sm:px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
+                !isSpanish
+                  ? 'bg-blue-600 text-white shadow-xs font-extrabold'
+                  : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+              }`}
+              title="English"
+            >
+              EN
+            </Link>
+            <Link
+              href={getLocalizedPath(pathname, 'es')}
+              prefetch={false}
+              className={`px-2 sm:px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
+                isSpanish
+                  ? 'bg-blue-600 text-white shadow-xs font-extrabold'
+                  : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+              }`}
+              title="Español"
+            >
+              ES
+            </Link>
+          </div>
+
           <span className="hidden xl:inline text-xs font-medium text-slate-400 dark:text-slate-500">
-            A more connected tomorrow
+            {isSpanish ? 'Un mañana más conectado' : 'A more connected tomorrow'}
           </span>
 
           {/* Hamburger Menu Toggle Button (Visible on Mobile / Tablet, < lg) */}
@@ -429,7 +484,7 @@ export function Header() {
           {/* Side Nav Top Bar with Brand & Close Button */}
           <div className="h-16 px-4 flex items-center justify-between border-b border-slate-200/90 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 shrink-0">
             <Link
-              href="/"
+              href={prefix || "/"}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2.5"
             >
@@ -441,7 +496,7 @@ export function Header() {
                   {siteConfig.name}
                 </span>
                 <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium leading-none">
-                  A more connected world
+                  {isSpanish ? 'Un mundo más conectado' : 'A more connected world'}
                 </span>
               </div>
             </Link>
@@ -458,6 +513,39 @@ export function Header() {
 
           {/* Scrollable Side Nav Body */}
           <div className="flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
+            {/* Language Switcher inside Mobile Drawer */}
+            <div className="p-3.5 bg-slate-50/70 dark:bg-slate-950/50 flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+                <Globe className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                <span>{isSpanish ? 'Idioma' : 'Language'}</span>
+              </span>
+              <div className="flex items-center p-0.5 rounded-full bg-slate-200/80 dark:bg-slate-800 border border-slate-300/80 dark:border-slate-700 shadow-2xs">
+                <Link
+                  href={getLocalizedPath(pathname, 'en')}
+                  prefetch={false}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
+                    !isSpanish
+                      ? 'bg-blue-600 text-white shadow-xs font-extrabold'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  }`}
+                >
+                  English
+                </Link>
+                <Link
+                  href={getLocalizedPath(pathname, 'es')}
+                  prefetch={false}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
+                    isSpanish
+                      ? 'bg-blue-600 text-white shadow-xs font-extrabold'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  }`}
+                >
+                  Español
+                </Link>
+              </div>
+            </div>
             {/* Quick Search Trigger inside Side Nav */}
             <div className="p-3.5 bg-slate-50/60 dark:bg-slate-950/40 shrink-0">
               <button
@@ -483,7 +571,7 @@ export function Header() {
             <nav className="p-3 space-y-1.5 text-sm font-semibold text-slate-700 dark:text-slate-200">
               {/* World Clock */}
               <Link
-                href="/"
+                href={isSpanish ? "/es/world-clock" : "/world-clock"}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -493,10 +581,10 @@ export function Header() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      World Clock
+                      {isSpanish ? "Reloj Mundial" : "World Clock"}
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Real-time world clocks & time differences
+                      {isSpanish ? "Relojes mundiales y diferencias horarias en vivo" : "Real-time world clocks & time differences"}
                     </div>
                   </div>
                 </div>
@@ -505,7 +593,7 @@ export function Header() {
 
               {/* United States Time Now */}
               <Link
-                href="/united-states-time-now"
+                href={`${prefix}/united-states-time-now`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -516,10 +604,10 @@ export function Header() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        USA Time Now
+                        {isSpanish ? "Hora en Estados Unidos" : "USA Time Now"}
                       </span>
                       <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-bold">
-                        All US Zones
+                        {isSpanish ? "Todas las Zonas" : "All US Zones"}
                       </span>
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
@@ -545,14 +633,14 @@ export function Header() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-slate-900 dark:text-white">
-                          Converters
+                          {isSpanish ? "Conversores" : "Converters"}
                         </span>
                         <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-black">
                           552
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-normal">
-                        Visual timeline grid & converter pairs
+                        {isSpanish ? "Línea de tiempo visual y 552 combinaciones" : "Visual timeline grid & converter pairs"}
                       </div>
                     </div>
                   </div>

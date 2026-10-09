@@ -8,7 +8,12 @@ const PRESET_FINANCIAL = ['new-york-us', 'london-gb', 'tokyo-jp', 'hong-kong-hk'
 const PRESET_TECH = ['san-francisco-us', 'london-gb', 'bengaluru-in', 'tokyo-jp', 'berlin-de', 'new-york-us', 'singapore-sg', 'paris-fr'];
 const PRESET_SOLAR = ['sydney-au', 'tokyo-jp', 'dubai-ae', 'paris-fr', 'london-gb', 'new-york-us', 'san-francisco-us', 'los-angeles-us'];
 
-export function WorldClockWallClient() {
+interface Props {
+  locale?: 'en' | 'es';
+}
+
+export function WorldClockWallClient({ locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [selectedCityIds, setSelectedCityIds] = useState<string[]>(PRESET_FINANCIAL);
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [displayMode, setDisplayMode] = useState<'digital' | 'analog'>('digital');
@@ -52,7 +57,7 @@ export function WorldClockWallClient() {
 
   const getCityDateParts = (timezone: string) => {
     try {
-      const formatter = new Intl.DateTimeFormat('en-US', {
+      const formatter = new Intl.DateTimeFormat(isEs ? 'es-ES' : 'en-US', {
         timeZone: timezone,
         hour: 'numeric',
         minute: '2-digit',
@@ -130,25 +135,25 @@ export function WorldClockWallClient() {
         {/* Presets */}
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">
-            Presets:
+            {isEs ? 'Ajustes:' : 'Presets:'}
           </span>
           <button
             onClick={() => setSelectedCityIds(PRESET_FINANCIAL)}
             className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600 transition-all"
           >
-            Financial Markets
+            {isEs ? 'Mercados Financieros' : 'Financial Markets'}
           </button>
           <button
             onClick={() => setSelectedCityIds(PRESET_TECH)}
             className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600 transition-all"
           >
-            Global Tech Hubs
+            {isEs ? 'Hubs Tecnológicos' : 'Global Tech Hubs'}
           </button>
           <button
             onClick={() => setSelectedCityIds(PRESET_SOLAR)}
             className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600 transition-all"
           >
-            24h Planetary Cycle
+            {isEs ? 'Ciclo Planetario 24h' : '24h Planetary Cycle'}
           </button>
         </div>
 
@@ -164,7 +169,7 @@ export function WorldClockWallClient() {
                   : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Digital
+              {isEs ? 'Digital' : 'Digital'}
             </button>
             <button
               onClick={() => setDisplayMode('analog')}
@@ -174,7 +179,7 @@ export function WorldClockWallClient() {
                   : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Swiss Analog
+              {isEs ? 'Analógico Suizo' : 'Swiss Analog'}
             </button>
           </div>
 
@@ -194,14 +199,14 @@ export function WorldClockWallClient() {
             className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all"
           >
             <Plus className="w-3.5 h-3.5" />
-            Add Clock
+            {isEs ? 'Agregar Reloj' : 'Add Clock'}
           </button>
 
           {/* Fullscreen Button */}
           <button
             onClick={toggleFullscreen}
             className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-all"
-            title="Toggle Fullscreen Kiosk Mode (F)"
+            title={isEs ? 'Pantalla Completa (F)' : 'Toggle Fullscreen Kiosk Mode (F)'}
           >
             {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>

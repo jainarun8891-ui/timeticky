@@ -8,6 +8,7 @@ interface Props {
   initialSeconds?: number;
   title?: string;
   presetSlug?: string;
+  locale?: 'en' | 'es';
 }
 
 const PRESET_DURATIONS = [
@@ -22,7 +23,9 @@ const PRESET_DURATIONS = [
   { slug: '2-hours', label: '2 Hours', seconds: 7200 },
 ];
 
-export function TimerSuiteClient({ initialSeconds = 300, title = 'Online Timer', presetSlug }: Props) {
+export function TimerSuiteClient({ initialSeconds = 300, title = 'Online Timer', presetSlug, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
+  const prefix = isEs ? '/es' : '';
   const [totalSeconds, setTotalSeconds] = useState<number>(initialSeconds);
   const [remainingMs, setRemainingMs] = useState<number>(initialSeconds * 1000);
   const [isRunning, setIsRunning] = useState(false);
@@ -142,7 +145,7 @@ export function TimerSuiteClient({ initialSeconds = 300, title = 'Online Timer',
             return (
               <Link
                 key={preset.slug}
-                href={`/timer/${preset.slug}`}
+                href={`${prefix}/timer/${preset.slug}`}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   isActive
                     ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20'
@@ -173,21 +176,23 @@ export function TimerSuiteClient({ initialSeconds = 300, title = 'Online Timer',
         {/* Top Action Icons */}
         <div className="flex items-center justify-between mb-8">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-            {isFinished ? 'Timer Completed' : (isRunning ? 'Running Background Timestamp Sync' : 'Ready')}
+            {isFinished
+              ? (isEs ? 'Temporizador Finalizado' : 'Timer Completed')
+              : (isRunning ? (isEs ? 'En Ejecución' : 'Running Background Timestamp Sync') : (isEs ? 'Listo' : 'Ready'))}
           </span>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
               className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors"
-              title={soundEnabled ? 'Mute Alert Sound' : 'Enable Alert Sound'}
+              title={soundEnabled ? (isEs ? 'Silenciar Alarma' : 'Mute Alert Sound') : (isEs ? 'Activar Sonido' : 'Enable Alert Sound')}
             >
               {soundEnabled ? <Volume2 className="w-4 h-4 text-blue-600" /> : <VolumeX className="w-4 h-4 text-slate-400" />}
             </button>
             <button
               onClick={toggleFullscreen}
               className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors"
-              title="Fullscreen"
+              title={isEs ? 'Pantalla Completa' : 'Fullscreen'}
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
             </button>
@@ -207,7 +212,9 @@ export function TimerSuiteClient({ initialSeconds = 300, title = 'Online Timer',
               className="px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-base shadow-md shadow-blue-500/20 flex items-center gap-2 transition-all hover:scale-105 active:scale-95"
             >
               <Play className="w-5 h-5 fill-current" />
-              {remainingMs < totalSeconds * 1000 && !isFinished ? 'Resume' : 'Start Timer'}
+              {remainingMs < totalSeconds * 1000 && !isFinished
+                ? (isEs ? 'Reanudar' : 'Resume')
+                : (isEs ? 'Iniciar' : 'Start Timer')}
             </button>
           ) : (
             <button
@@ -215,7 +222,7 @@ export function TimerSuiteClient({ initialSeconds = 300, title = 'Online Timer',
               className="px-8 py-4 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-base shadow-md shadow-amber-500/20 flex items-center gap-2 transition-all hover:scale-105 active:scale-95"
             >
               <Pause className="w-5 h-5 fill-current" />
-              Pause
+              {isEs ? 'Pausar' : 'Pause'}
             </button>
           )}
 
@@ -224,13 +231,15 @@ export function TimerSuiteClient({ initialSeconds = 300, title = 'Online Timer',
             className="px-6 py-4 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-base flex items-center gap-2 transition-all"
           >
             <RotateCcw className="w-5 h-5" />
-            Reset
+            {isEs ? 'Reiniciar' : 'Reset'}
           </button>
         </div>
 
         {/* Inactive Tab Accuracy Note */}
         <p className="text-xs text-slate-400 dark:text-slate-500 mt-8 max-w-sm mx-auto">
-          Synchronized to absolute epoch timestamps. The timer continues counting down with 100% mathematical accuracy even when your device screen is locked or browser tab is inactive.
+          {isEs
+            ? 'Sincronizado con marcas de tiempo epoch absolutas. El temporizador continúa con precisión matemática del 100% incluso en pestañas en segundo plano o con pantalla bloqueada.'
+            : 'Synchronized to absolute epoch timestamps. The timer continues counting down with 100% mathematical accuracy even when your device screen is locked or browser tab is inactive.'}
         </p>
       </div>
     </div>

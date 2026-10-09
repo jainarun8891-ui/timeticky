@@ -21,10 +21,19 @@ import {
 import { HubPageCustomContent } from '@/lib/seo/hub-pages-custom-content';
 
 interface Props {
-  content: HubPageCustomContent;
+  content: {
+    h1: string;
+    description: string;
+    headings: string[];
+    page_text: string;
+    faqs: { question: string; answer: string }[];
+    badgeLabel?: string;
+  };
+  locale?: 'en' | 'es';
 }
 
-export function ClockAccuracyClient({ content }: Props) {
+export function ClockAccuracyClient({ content, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [sync, setSync] = useState<SyncState | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -49,13 +58,13 @@ export function ClockAccuracyClient({ content }: Props) {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
-      <Breadcrumbs items={[{ name: "Clock Accuracy", url: "/clock-accuracy" }]} />
+      <Breadcrumbs items={[{ name: isEs ? "Precisión del Reloj" : "Clock Accuracy", url: isEs ? "/es/clock-accuracy" : "/clock-accuracy" }]} />
       <JsonLd type="faq" data={content.faqs} />
 
       <header className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Stratum-1 Atomic Synchronization</span>
+          <span>{isEs ? 'Sincronización Atómica Estrato-1' : 'Stratum-1 Atomic Synchronization'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
           {content.h1}
@@ -80,33 +89,39 @@ export function ClockAccuracyClient({ content }: Props) {
 
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-slate-400 block mb-1">
-              Device Synchronization Status
+              {isEs ? 'Estado de Sincronización del Dispositivo' : 'Device Synchronization Status'}
             </span>
             <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
               {loading ? (
-                'Measuring offset...'
+                isEs ? 'Midiendo desfase...' : 'Measuring offset...'
               ) : isExact ? (
-                'Your clock is synchronized!'
+                isEs ? '¡Tu reloj está sincronizado!' : 'Your clock is synchronized!'
               ) : isFast ? (
-                `Your clock is fast by ${absOffset} ms`
+                isEs ? `Tu reloj está adelantado ${absOffset} ms` : `Your clock is fast by ${absOffset} ms`
               ) : (
-                `Your clock is slow by ${absOffset} ms`
+                isEs ? `Tu reloj está retrasado ${absOffset} ms` : `Your clock is slow by ${absOffset} ms`
               )}
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
-              Estimated measurement accuracy: ±{sync?.accuracyMs || 10} ms via NTP-synchronized server round-trip.
+              {isEs
+                ? `Precisión de medición estimada: ±${sync?.accuracyMs || 10} ms mediante ida y vuelta a servidor NTP.`
+                : `Estimated measurement accuracy: ±${sync?.accuracyMs || 10} ms via NTP-synchronized server round-trip.`}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-100 dark:border-slate-800 text-left">
             <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-[10px] uppercase font-bold text-slate-400 block">Calculated Drift</span>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                {isEs ? 'Desviación Calculada' : 'Calculated Drift'}
+              </span>
               <span className="font-mono font-bold text-sm text-slate-900 dark:text-white">
                 {offset > 0 ? `+${offset} ms` : `${offset} ms`}
               </span>
             </div>
             <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-[10px] uppercase font-bold text-slate-400 block">Atomic Reference</span>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                {isEs ? 'Referencia Atómica' : 'Atomic Reference'}
+              </span>
               <span className="font-mono font-bold text-sm text-slate-900 dark:text-white">UTC (NIST)</span>
             </div>
           </div>
@@ -118,21 +133,21 @@ export function ClockAccuracyClient({ content }: Props) {
               className="px-5 py-2.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs inline-flex items-center gap-2 transition-all shadow-sm active:scale-95 disabled:opacity-50"
             >
               <RotateCcw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-              <span>{loading ? 'Measuring...' : 'Re-verify Clock Accuracy'}</span>
+              <span>{loading ? (isEs ? 'Midiendo...' : 'Measuring...') : (isEs ? 'Volver a Verificar' : 'Re-verify Clock Accuracy')}</span>
             </button>
             <Link
-              href="/atomic-clock"
+              href={isEs ? "/es/atomic-clock" : "/atomic-clock"}
               className="px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs inline-flex items-center gap-2 transition-all"
             >
               <Clock className="w-3.5 h-3.5" />
-              <span>View Atomic Clock</span>
+              <span>{isEs ? 'Ver Reloj Atómico' : 'View Atomic Clock'}</span>
             </Link>
             <Link
-              href="/fullscreen-clock"
+              href={isEs ? "/es/fullscreen-clock" : "/fullscreen-clock"}
               className="px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs inline-flex items-center gap-2 transition-all"
             >
               <Maximize2 className="w-3.5 h-3.5" />
-              <span>Full Screen Seconds</span>
+              <span>{isEs ? 'Pantalla Completa' : 'Full Screen Seconds'}</span>
             </Link>
           </div>
         </div>
@@ -143,7 +158,7 @@ export function ClockAccuracyClient({ content }: Props) {
         <div className="space-y-4 max-w-4xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Hardware Clock Diagnostics</span>
+            <span>{isEs ? 'Diagnóstico de Reloj de Hardware' : 'Hardware Clock Diagnostics'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
             {content.headings[0]}
@@ -163,7 +178,9 @@ export function ClockAccuracyClient({ content }: Props) {
                   {heading}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                  Diagnose quartz oscillator drift caused by processor thermal throttling, CMOS battery aging, or NTP poll latency.
+                  {isEs
+                    ? 'Diagnóstico de deriva del oscilador de cuarzo causada por temperatura, envejecimiento de batería CMOS o latencia NTP.'
+                    : 'Diagnose quartz oscillator drift caused by processor thermal throttling, CMOS battery aging, or NTP poll latency.'}
                 </p>
               </div>
             ))}
@@ -172,7 +189,10 @@ export function ClockAccuracyClient({ content }: Props) {
       </section>
 
       {/* FAQ Accordion */}
-      <FaqAccordion items={content.faqs} title="Frequently Asked Questions About Clock Accuracy" />
+      <FaqAccordion
+        items={content.faqs}
+        title={isEs ? 'Preguntas Frecuentes sobre la Precisión del Reloj' : 'Frequently Asked Questions About Clock Accuracy'}
+      />
 
       <RelatedLinksHub />
     </div>

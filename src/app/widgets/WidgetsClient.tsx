@@ -13,9 +13,11 @@ import {
 interface Props {
   h1Title?: string;
   description?: string;
+  locale?: 'en' | 'es';
 }
 
-export function WidgetsClient({ h1Title, description }: Props) {
+export function WidgetsClient({ h1Title, description, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [widgetType, setWidgetType] = useState<'clock' | 'countdown'>('clock');
   const [slug, setSlug] = useState('london-united-kingdom');
   const [theme, setTheme] = useState<'light' | 'navy' | 'dark' | 'glass' | 'neon' | 'minimal' | 'gold'>('light');
@@ -77,13 +79,16 @@ export function WidgetsClient({ h1Title, description }: Props) {
       <header className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
           <Code className="w-3.5 h-3.5" />
-          <span>Responsive Embed Generator</span>
+          <span>{isEs ? 'Generador de Widgets Responsivos' : 'Responsive Embed Generator'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-          {h1Title || "Embeddable Clock & Timer Widgets"}
+          {h1Title || (isEs ? 'Widgets de Reloj y Cuenta Regresiva Incrustables' : 'Embeddable Clock & Timer Widgets')}
         </h1>
         <p className="text-base text-slate-600 dark:text-slate-400">
-          {description || "Embed lightweight, atomic-synchronized live clocks and event countdowns on any website, blog, or internal portal."}
+          {description ||
+            (isEs
+              ? 'Incrusta relojes en vivo sincronizados con hora atómica y cuentas regresivas en cualquier web, blog o intranet.'
+              : 'Embed lightweight, atomic-synchronized live clocks and event countdowns on any website, blog, or internal portal.')}
         </p>
       </header>
 
@@ -98,7 +103,7 @@ export function WidgetsClient({ h1Title, description }: Props) {
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
             }`}
           >
-            World Clock Widget
+            {isEs ? 'Widget de Reloj Mundial' : 'World Clock Widget'}
           </button>
           <button
             onClick={() => setWidgetType('countdown')}
@@ -108,7 +113,7 @@ export function WidgetsClient({ h1Title, description }: Props) {
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
             }`}
           >
-            Event Countdown Widget
+            {isEs ? 'Widget de Cuenta Regresiva' : 'Event Countdown Widget'}
           </button>
         </div>
       </div>
@@ -119,13 +124,13 @@ export function WidgetsClient({ h1Title, description }: Props) {
         <section className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
           <h2 className="text-base font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-blue-600" />
-            <span>Customize Widget Settings</span>
+            <span>{isEs ? 'Personalizar Ajustes del Widget' : 'Customize Widget Settings'}</span>
           </h2>
 
           {widgetType === 'clock' ? (
             <div>
               <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
-                Select World City
+                {isEs ? 'Seleccionar Ciudad del Mundo' : 'Select World City'}
               </label>
               <select
                 value={slug}

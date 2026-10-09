@@ -8,16 +8,32 @@ import { BLOG_ARTICLES, Article } from '@/lib/blog/articles';
 interface Props {
   h1Title?: string;
   description?: string;
+  locale?: 'en' | 'es';
 }
 
-export function BlogIndexClient({ h1Title, description }: Props) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+const CATEGORY_MAP_ES_TO_EN: Record<string, string> = {
+  'Todos': 'All',
+  'Tecnología': 'Technology',
+  'Horología': 'Horology',
+  'Tiempo Global': 'Global Time',
+  'Productividad': 'Productivity',
+  'Ingeniería': 'Engineering',
+  'Ciencia': 'Science',
+};
 
-  const categories = ['All', 'Technology', 'Horology', 'Global Time', 'Productivity', 'Engineering', 'Science'];
+export function BlogIndexClient({ h1Title, description, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
+  const basePath = isEs ? '/es/blog' : '/blog';
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState<string>(isEs ? 'Todos' : 'All');
+
+  const categories = isEs
+    ? ['Todos', 'Tecnología', 'Horología', 'Tiempo Global', 'Productividad', 'Ingeniería', 'Ciencia']
+    : ['All', 'Technology', 'Horology', 'Global Time', 'Productivity', 'Engineering', 'Science'];
 
   const filtered = BLOG_ARTICLES.filter(a => {
-    const matchesCat = activeCategory === 'All' || a.category === activeCategory;
+    const targetCat = isEs ? (CATEGORY_MAP_ES_TO_EN[activeCategory] || 'All') : activeCategory;
+    const matchesCat = targetCat === 'All' || a.category === targetCat;
     const matchesQuery = a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          a.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          a.keywords.some(k => k.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -67,7 +83,7 @@ export function BlogIndexClient({ h1Title, description }: Props) {
           <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder="Search articles & keywords..."
+            placeholder={isEs ? 'Buscar artículos y temas...' : 'Search articles & keywords...'}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-100 placeholder-slate-400 border border-slate-200 dark:border-slate-700 outline-hidden focus:border-blue-500"
@@ -76,14 +92,14 @@ export function BlogIndexClient({ h1Title, description }: Props) {
       </div>
 
       {/* Featured Article Card */}
-      {activeCategory === 'All' && !searchQuery && (
+      {(activeCategory === 'All' || activeCategory === 'Todos') && !searchQuery && (
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm overflow-hidden p-6 sm:p-8 hover:shadow-md transition-shadow">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             <div className="lg:col-span-5 h-64 rounded-2xl overflow-hidden bg-cover bg-center border border-slate-200/80" style={{ backgroundImage: "url('/images/paris_hero.webp')" }} />
             <div className="lg:col-span-7 space-y-4">
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800">
-                  Featured Article
+                  {isEs ? 'Artículo Destacado' : 'Featured Article'}
                 </span>
                 <span className="text-xs text-slate-400 font-medium">
                   {featured.readTime}
@@ -91,7 +107,7 @@ export function BlogIndexClient({ h1Title, description }: Props) {
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight hover:text-blue-600 transition-colors">
-                <Link href={`/blog/${featured.slug}`}>
+                <Link href={`${basePath}/${featured.slug}`}>
                   {featured.title}
                 </Link>
               </h2>
@@ -111,10 +127,10 @@ export function BlogIndexClient({ h1Title, description }: Props) {
                 </div>
 
                 <Link
-                  href={`/blog/${featured.slug}`}
+                  href={`${basePath}/${featured.slug}`}
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors"
                 >
-                  <span>Read Article</span>
+                  <span>{isEs ? 'Leer Artículo' : 'Read Article'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -141,7 +157,7 @@ export function BlogIndexClient({ h1Title, description }: Props) {
               </div>
 
               <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors leading-snug">
-                <Link href={`/blog/${art.slug}`}>
+                <Link href={`${basePath}/${art.slug}`}>
                   {art.title}
                 </Link>
               </h3>
@@ -165,10 +181,10 @@ export function BlogIndexClient({ h1Title, description }: Props) {
                 {art.dateFormatted} • {art.author.split(' ')[0]} {art.author.split(' ')[1]}
               </div>
               <Link
-                href={`/blog/${art.slug}`}
+                href={`${basePath}/${art.slug}`}
                 className="inline-flex items-center gap-1 font-bold text-blue-600 dark:text-blue-400 group-hover:translate-x-0.5 transition-transform"
               >
-                <span>Read</span>
+                <span>{isEs ? 'Leer' : 'Read'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

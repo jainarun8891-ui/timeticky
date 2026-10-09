@@ -21,9 +21,12 @@ interface Props {
   fromTz: TimezoneAbbrDefinition;
   toTz: TimezoneAbbrDefinition;
   comboSlug: string;
+  locale?: 'en' | 'es';
 }
 
-export function ConvertComboClient({ fromTz, toTz, comboSlug }: Props) {
+export function ConvertComboClient({ fromTz, toTz, comboSlug, locale = 'en' }: Props) {
+  const isEs = locale === 'es';
+  const prefix = isEs ? '/es' : '';
   const router = useRouter();
   const [currentTime, setCurrentTime] = useState<Date>(getSyncedDate());
   const [quickFrom, setQuickFrom] = useState<string>(fromTz.slug);
@@ -53,7 +56,7 @@ export function ConvertComboClient({ fromTz, toTz, comboSlug }: Props) {
   const handleQuickJump = (e: React.FormEvent) => {
     e.preventDefault();
     if (quickFrom && quickTo && quickFrom !== quickTo) {
-      router.push(`/converter/${quickFrom}-to-${quickTo}`);
+      router.push(`${prefix}/converter/${quickFrom}-to-${quickTo}`);
     }
   };
 
@@ -182,14 +185,14 @@ export function ConvertComboClient({ fromTz, toTz, comboSlug }: Props) {
       {/* Swap Button Ribbon */}
       <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700">
         <div className="text-xs text-slate-600 dark:text-slate-300">
-          <strong>Instant Direction Toggle:</strong> Need to view the inverse time difference?
+          <strong>{isEs ? 'Inversión de Dirección:' : 'Instant Direction Toggle:'}</strong> {isEs ? '¿Quieres ver la diferencia en sentido contrario?' : 'Need to view the inverse time difference?'}
         </div>
         <Link
-          href={`/converter/${swapCombo}`}
+          href={`${prefix}/converter/${swapCombo}`}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-xs font-bold hover:text-blue-600 border border-slate-200 dark:border-slate-700 shadow-xs transition-colors"
         >
           <ArrowLeftRight className="w-3.5 h-3.5 text-blue-500" />
-          <span>Convert {toTz.abbr} to {fromTz.abbr} instead</span>
+          <span>{isEs ? `Convertir ${toTz.abbr} a ${fromTz.abbr}` : `Convert ${toTz.abbr} to ${fromTz.abbr} instead`}</span>
         </Link>
       </div>
 

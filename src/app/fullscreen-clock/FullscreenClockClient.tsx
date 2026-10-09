@@ -5,7 +5,12 @@ import Link from 'next/link';
 import { getTimeDetails, formatTime, formatDate } from '@/lib/time/engine';
 import { Maximize2, Minimize2, Settings, ArrowLeft, Moon, Sun } from 'lucide-react';
 
-export function FullscreenClockClient() {
+interface Props {
+  locale?: 'en' | 'es';
+}
+
+export function FullscreenClockClient({ locale = 'en' }: Props) {
+  const isEs = locale === 'es';
   const [now, setNow] = useState<Date | null>(null);
   const [is24Hour, setIs24Hour] = useState(true);
   const [showSeconds, setShowSeconds] = useState(true);
@@ -123,13 +128,13 @@ export function FullscreenClockClient() {
         showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}>
         <Link
-          href="/"
+          href={isEs ? '/es' : '/'}
           className={`flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-xl border transition-colors ${
             isDark ? 'border-slate-800 text-slate-400 hover:text-white bg-slate-900/60' : 'border-slate-200 text-slate-600 hover:text-slate-900 bg-white'
           }`}
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to TimeNumbers
+          {isEs ? 'Volver a TimeNumbers' : 'Back to TimeNumbers'}
         </Link>
 
         {/* Quick Shortcut Pills */}
@@ -225,8 +230,14 @@ export function FullscreenClockClient() {
       <div className={`flex items-center justify-between text-[11px] text-slate-500 transition-opacity duration-300 ${
         showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}>
-        <span>Shortcuts: <strong>F</strong> Fullscreen • <strong>S</strong> Seconds • <strong>M</strong> Milliseconds • <strong>D</strong> Theme</span>
-        <span>Controls auto-hide after 3s idle</span>
+        <span>
+          {isEs ? (
+            <>Atajos: <strong>F</strong> Pantalla completa • <strong>S</strong> Segundos • <strong>M</strong> Milisegundos • <strong>D</strong> Tema</>
+          ) : (
+            <>Shortcuts: <strong>F</strong> Fullscreen • <strong>S</strong> Seconds • <strong>M</strong> Milliseconds • <strong>D</strong> Theme</>
+          )}
+        </span>
+        <span>{isEs ? 'Los controles se ocultan tras 3s de inactividad' : 'Controls auto-hide after 3s idle'}</span>
       </div>
     </div>
   );

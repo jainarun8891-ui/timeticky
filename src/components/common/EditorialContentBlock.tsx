@@ -9,10 +9,12 @@ interface Props {
     category?: string;
   };
   badgeLabel?: string;
+  locale?: 'en' | 'es';
 }
 
-export function EditorialContentBlock({ content, badgeLabel = "Chronometric Analysis & Standards" }: Props) {
+export function EditorialContentBlock({ content, badgeLabel = "Chronometric Analysis & Standards", locale = 'en' }: Props) {
   if (!content) return null;
+  const isEs = locale === 'es';
   return (
     <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 space-y-8 shadow-sm">
       <div className="space-y-4 max-w-4xl">
@@ -38,7 +40,9 @@ export function EditorialContentBlock({ content, badgeLabel = "Chronometric Anal
                 {heading}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                Comprehensive reference data, atomic synchronization standards, and international temporal guidelines.
+                {isEs
+                  ? 'Datos de referencia detallados, estándares de sincronización atómica y directrices temporales internacionales.'
+                  : 'Comprehensive reference data, atomic synchronization standards, and international temporal guidelines.'}
               </p>
             </div>
           ))}
