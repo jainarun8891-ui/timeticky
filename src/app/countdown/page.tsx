@@ -55,35 +55,60 @@ export default function CountdownPage() {
             <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">New Year</h3>
             <p className="text-xs text-slate-500 mt-1">Live countdown to the stroke of midnight across world timezones.</p>
           </Link>
-          <Link href="/countdown/valentines-day" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+          <Link href="/countdown/summer" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 block">June 21 • Solstice</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">First Day of Summer</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to the longest day of sunlight and summer warmth.</p>
+          </Link>
+          <Link href="/countdown/halloween" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-orange-50 dark:hover:bg-orange-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-orange-600 dark:text-orange-400 block">October 31</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors">Halloween</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to costumes, candy, and autumn harvest celebrations.</p>
+          </Link>
+          <Link href="/countdown/black-friday" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-purple-600 dark:text-purple-400 block">Late November</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors">Black Friday</h3>
+            <p className="text-xs text-slate-500 mt-1">Live countdown to the biggest holiday shopping discounts of the year.</p>
+          </Link>
+          <Link href="/countdown/christmas" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 block">December 25</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors">Christmas Day</h3>
+            <p className="text-xs text-slate-500 mt-1">Track days and hours until Christmas morning and holiday gatherings.</p>
+          </Link>
+          <Link href="/countdown/winter" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-cyan-50 dark:hover:bg-cyan-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 block">December 21 • Solstice</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors">First Day of Winter</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to the shortest day and longest cozy night of the year.</p>
+          </Link>
+          <Link href="/countdown/super-bowl" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-red-50 dark:hover:bg-red-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-red-600 dark:text-red-400 block">Mid February</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-red-600 transition-colors">Super Bowl LXI</h3>
+            <p className="text-xs text-slate-500 mt-1">Live countdown to kickoff, championship football, and halftime show.</p>
+          </Link>
+          <Link href="/countdown/valentines-day" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-pink-50 dark:hover:bg-pink-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
             <span className="text-xs font-bold text-pink-600 dark:text-pink-400 block">February 14</span>
             <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-pink-600 transition-colors">Valentine&apos;s Day</h3>
             <p className="text-xs text-slate-500 mt-1">Countdown to romantic celebrations, flowers, and special moments.</p>
           </Link>
-          <Link href="/countdown/holi" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
-            <span className="text-xs font-bold text-purple-600 dark:text-purple-400 block">Spring Equinox</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors">Holi Festival of Colors</h3>
-            <p className="text-xs text-slate-500 mt-1">Live countdown to the vibrant springtime festival of colors and joy.</p>
+          <Link href="/countdown/spring" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-green-50 dark:hover:bg-green-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-green-600 dark:text-green-400 block">March 20 • Equinox</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-green-600 transition-colors">First Day of Spring</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to equal day and night, blooming flowers, and renewal.</p>
           </Link>
-          <Link href="/countdown/halloween" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
-            <span className="text-xs font-bold text-orange-600 dark:text-orange-400 block">October 31</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors">Halloween</h3>
-            <p className="text-xs text-slate-500 mt-1">Countdown to trick-or-treating and autumn harvest celebrations.</p>
+          <Link href="/countdown/easter" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 block">Spring Sunday</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">Easter Sunday</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to family gatherings, egg hunts, and spring feasts.</p>
           </Link>
-          <Link href="/countdown/diwali" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
-            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 block">Kartik Amavasya</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">Diwali Festival of Lights</h3>
-            <p className="text-xs text-slate-500 mt-1">Track days and hours until the auspicious celebration of lights.</p>
+          <Link href="/countdown/fourth-of-july" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 block">July 4</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">4th of July</h3>
+            <p className="text-xs text-slate-500 mt-1">Countdown to American Independence Day fireworks and barbecues.</p>
           </Link>
-          <Link href="/countdown/thanksgiving" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
-            <span className="text-xs font-bold text-amber-700 dark:text-amber-400 block">4th Thursday in Nov</span>
+          <Link href="/countdown/thanksgiving" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
+            <span className="text-xs font-bold text-amber-700 dark:text-amber-400 block">November</span>
             <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-700 transition-colors">Thanksgiving Day</h3>
-            <p className="text-xs text-slate-500 mt-1">Countdown to American Thanksgiving feast and family reunions.</p>
-          </Link>
-          <Link href="/countdown/christmas" className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group">
-            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 block">December 25</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors">Christmas Day</h3>
-            <p className="text-xs text-slate-500 mt-1">Track days and hours until Christmas morning and holiday gatherings.</p>
+            <p className="text-xs text-slate-500 mt-1">Countdown to gratitude, family reunions, and festive dinners.</p>
           </Link>
         </div>
       </section>

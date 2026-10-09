@@ -122,6 +122,10 @@ export function Header() {
     { name: 'Calculadora de Jet Lag', desc: 'Protocolo de ajuste circadiano', href: '/es/jet-lag-calculator', icon: Plane },
     { name: 'Reloj Despertador Online', desc: 'Alarma de cabecera con sonido', href: '/es/alarm', icon: Bell },
     { name: 'Planificador de Reuniones', desc: 'Ventana de solapamiento internacional', href: '/es/meeting-planner', icon: Users },
+    { name: 'Hora Militar y Reloj 24h', desc: 'Conversor a 24 horas y pronunciación', href: '/es/military-time', icon: Clock },
+    { name: 'Calculadora de Horas de Trabajo', desc: 'Hojas de horas, descansos y horas extras', href: '/es/hours-calculator', icon: Calendar },
+    { name: 'Mejor Hora para Llamar', desc: 'Ventana de llamadas internacionales sin despertar', href: '/es/best-time-to-call', icon: Phone },
+    { name: 'Comparador de Zonas (VS)', desc: 'Diferencias cara a cara (CST vs EST, PST vs MST)', href: '/es/timezone/vs', icon: ArrowLeftRight },
     { name: 'Estudio de Timestamp Unix', desc: 'Conversor epoch y laboratorio 2038', href: '/es/unix-time', icon: Clock },
     { name: 'Reloj Analógico Suizo', desc: 'Esfera con segundero continuo', href: '/es/analog-clock', icon: Clock },
   ] : [
@@ -145,6 +149,10 @@ export function Header() {
     { name: 'Flight & Jet Lag Calculator', desc: 'Flight duration & circadian protocol', href: '/jet-lag-calculator', icon: Plane },
     { name: 'Online Alarm Clock', desc: 'Bedside display with audio chimes', href: '/alarm', icon: Bell },
     { name: 'Meeting Planner', desc: 'Overlap window across global hubs', href: '/meeting-planner', icon: Users },
+    { name: 'Military Time & 24h Chart', desc: '12h to 24h converter & spoken phonetic guide', href: '/military-time', icon: Clock },
+    { name: 'Work Hours Calculator', desc: 'Timesheet, lunch breaks & overtime wages', href: '/hours-calculator', icon: Calendar },
+    { name: 'Best Time to Call', desc: 'International calling window & daylight overlap', href: '/best-time-to-call', icon: Phone },
+    { name: 'Time Zone VS Comparisons', desc: 'Side-by-side differences (CST vs EST, PST vs MST)', href: '/timezone/vs', icon: ArrowLeftRight },
     { name: 'Unix Timestamp Studio', desc: 'Epoch seconds converter & 2038 lab', href: '/unix-time', icon: Clock },
     { name: 'Analog Watch Dial', desc: 'Smooth sweeping second hand dial', href: '/analog-clock', icon: Clock },
   ];

@@ -81,6 +81,10 @@ export function Footer() {
             </h5>
             <ul className="space-y-1.5">
               <li><Link prefetch={false} href={`${prefix}/converter`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Conversor de Zonas' : 'Time Zone Converter'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/hours-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-blue-600 dark:text-blue-400">{isSpanish ? 'Calculadora de Horas' : 'Work Hours Calculator'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/best-time-to-call`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Mejor Hora para Llamar' : 'Best Time to Call'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/military-time`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Hora Militar 24h' : 'Military Time 24h'}</Link></li>
+              <li><Link prefetch={false} href={`${prefix}/timezone/vs`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Comparador Zonas (VS)' : 'Timezone VS Pairs'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/sleep-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-blue-600 dark:text-blue-400">{isSpanish ? 'Calculadora de Sueño' : 'Sleep Cycle Calculator'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/meeting-cost-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-emerald-600 dark:text-emerald-400">{isSpanish ? 'Costo de Reuniones' : 'Meeting Cost Calculator'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/converter/difference`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Diferencias Horarias' : 'City Time Differences'}</Link></li>

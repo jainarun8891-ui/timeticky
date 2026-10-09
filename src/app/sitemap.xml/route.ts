@@ -4,6 +4,7 @@ import { getCityRootSlug, POPULAR_TIME_DIFFERENCE_PAIRS } from '@/lib/geo/city-l
 import { getAllCountries } from '@/lib/geo/countries';
 import { BLOG_ARTICLES } from '@/lib/blog/articles';
 import { COMMON_TIMEZONE_ABBREVIATIONS, getAllConverterCombos } from '@/lib/time/timezone-lookup';
+import { TIMEZONE_VS_PAIRS } from '@/lib/time/timezone-vs-data';
 
 export async function GET() {
   const baseUrl = 'https://www.timenumbers.com';
@@ -34,6 +35,7 @@ export async function GET() {
     '/timer/1-hour',
     '/timer/2-hours',
     '/pomodoro',
+    '/military-time',
 
     // 2.0 LOCAL TIME, CONVERTERS & MEETINGS
     '/converter',
@@ -57,6 +59,9 @@ export async function GET() {
     '/meeting-cost-calculator',
     '/overlap-calculator',
     '/jet-lag-calculator',
+    '/hours-calculator',
+    '/best-time-to-call',
+    '/timezone/vs',
     '/sleep-calculator',
     '/sleep-calculator/wake-up-at-5am',
     '/sleep-calculator/wake-up-at-6am',
@@ -130,6 +135,17 @@ export async function GET() {
     '/countdown/diwali',
     '/countdown/holi',
     '/countdown/thanksgiving',
+    '/countdown/summer',
+    '/countdown/winter',
+    '/countdown/spring',
+    '/countdown/fall',
+    '/countdown/black-friday',
+    '/countdown/cyber-monday',
+    '/countdown/easter',
+    '/countdown/super-bowl',
+    '/countdown/fourth-of-july',
+    '/countdown/ramadan',
+    '/countdown/eid',
 
     // 6.0 STANDARDS, DEVELOPERS & TECHNICAL TIME
     '/unix-time',
@@ -217,11 +233,15 @@ export async function GET() {
   // Blogs / Learn
   const blogUrls = (BLOG_ARTICLES || []).map(b => `/blog/${b.slug}`);
 
+  // Timezone VS Comparisons (/timezone/vs/[pair])
+  const timezoneVsUrls = Object.keys(TIMEZONE_VS_PAIRS).map(p => `/timezone/vs/${p}`);
+
   const allUrls = Array.from(new Set([
     '', // Root domain
     ...staticUrls,
     ...conversionCombos,
     ...timeDifferenceUrls,
+    ...timezoneVsUrls,
     ...tzAbbrUrls,
     ...popularIanaUrls,
     ...offsetUrls,

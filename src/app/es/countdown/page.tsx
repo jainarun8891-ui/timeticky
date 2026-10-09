@@ -68,8 +68,80 @@ export default function SpanishCountdownPage() {
             </p>
           </Link>
           <Link
+            href="/es/countdown/summer"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+          >
+            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 block">21 de junio • Solsticio</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
+              Primer Día de Verano
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Cuenta regresiva para el día más largo de sol y el calor veraniego.
+            </p>
+          </Link>
+          <Link
+            href="/es/countdown/halloween"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-orange-50 dark:hover:bg-orange-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+          >
+            <span className="text-xs font-bold text-orange-600 dark:text-orange-400 block">31 de octubre</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors">
+              Halloween
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Cuenta regresiva para disfraces, dulces y celebraciones de otoño.
+            </p>
+          </Link>
+          <Link
+            href="/es/countdown/black-friday"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+          >
+            <span className="text-xs font-bold text-purple-600 dark:text-purple-400 block">Fin de Noviembre</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors">
+              Black Friday
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Cuenta regresiva para las mayores ofertas y descuentos de compras del año.
+            </p>
+          </Link>
+          <Link
+            href="/es/countdown/christmas"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+          >
+            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 block">25 de diciembre</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors">
+              Navidad
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Sigue los días y horas hasta la mañana de Navidad y encuentros festivos.
+            </p>
+          </Link>
+          <Link
+            href="/es/countdown/winter"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-cyan-50 dark:hover:bg-cyan-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+          >
+            <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 block">21 de diciembre • Solsticio</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 transition-colors">
+              Primer Día de Invierno
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Cuenta regresiva para el día más corto y la noche más acogedora del año.
+            </p>
+          </Link>
+          <Link
+            href="/es/countdown/super-bowl"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-red-50 dark:hover:bg-red-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+          >
+            <span className="text-xs font-bold text-red-600 dark:text-red-400 block">Mediados de Febrero</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-red-600 transition-colors">
+              Super Bowl LXI
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Cuenta regresiva en vivo para el gran espectáculo deportivo y de entretenimiento.
+            </p>
+          </Link>
+          <Link
             href="/es/countdown/valentines-day"
-            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-pink-50 dark:hover:bg-pink-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
           >
             <span className="text-xs font-bold text-pink-600 dark:text-pink-400 block">14 de febrero</span>
             <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-pink-600 transition-colors">
@@ -80,63 +152,51 @@ export default function SpanishCountdownPage() {
             </p>
           </Link>
           <Link
-            href="/es/countdown/holi"
-            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+            href="/es/countdown/spring"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-green-50 dark:hover:bg-green-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
           >
-            <span className="text-xs font-bold text-purple-600 dark:text-purple-400 block">Equinoccio de Primavera</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors">
-              Holi Festival de Colores
+            <span className="text-xs font-bold text-green-600 dark:text-green-400 block">20 de marzo • Equinoccio</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-green-600 transition-colors">
+              Primer Día de Primavera
             </h3>
             <p className="text-xs text-slate-500 mt-1">
-              Cuenta regresiva en vivo para el vibrante festival de colores y primavera.
+              Cuenta regresiva para la igualdad de luz y sombra, florecimiento y renovación.
             </p>
           </Link>
           <Link
-            href="/es/countdown/halloween"
-            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+            href="/es/countdown/easter"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
           >
-            <span className="text-xs font-bold text-orange-600 dark:text-orange-400 block">31 de octubre</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors">
-              Halloween
+            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 block">Domingo de Pascua</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">
+              Domingo de Resurrección
             </h3>
             <p className="text-xs text-slate-500 mt-1">
-              Cuenta regresiva para la noche de brujas y celebraciones de otoño.
+              Cuenta regresiva para reuniones en familia y tradiciones de Pascua.
             </p>
           </Link>
           <Link
-            href="/es/countdown/diwali"
+            href="/es/countdown/fourth-of-july"
             className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
           >
-            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 block">Kartik Amavasya</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
-              Diwali Festival de las Luces
+            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 block">4 de julio</span>
+            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
+              4 de Julio (Independencia)
             </h3>
             <p className="text-xs text-slate-500 mt-1">
-              Sigue los días y horas hasta la auspiciosa celebración de las luces.
+              Cuenta regresiva para fuegos artificiales y fiestas en EE. UU.
             </p>
           </Link>
           <Link
             href="/es/countdown/thanksgiving"
-            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
+            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
           >
-            <span className="text-xs font-bold text-amber-700 dark:text-amber-400 block">4º Jueves de Noviembre</span>
+            <span className="text-xs font-bold text-amber-700 dark:text-amber-400 block">Noviembre</span>
             <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-amber-700 transition-colors">
-              Día de Acción de Gracias
+              Acción de Gracias
             </h3>
             <p className="text-xs text-slate-500 mt-1">
-              Cuenta regresiva para la tradicional cena y reuniones familiares.
-            </p>
-          </Link>
-          <Link
-            href="/es/countdown/christmas"
-            className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-slate-200/70 dark:border-slate-700 transition-colors group"
-          >
-            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 block">25 de diciembre</span>
-            <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors">
-              Navidad
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Sigue los días y horas hasta la mañana de Navidad y encuentros festivos.
+              Cuenta regresiva para la cena de gratitud y reencuentros familiares.
             </p>
           </Link>
         </div>
