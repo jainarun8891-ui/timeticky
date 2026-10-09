@@ -393,8 +393,8 @@ export function DashboardClient() {
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   Target: 250,000 monthly pageviews at ₹125 CPM ($1.50) using Google AdSense / Header Bidding once organic traffic grows via SEO fixes.
                 </p>
-                <div className="text-[11px] font-mono text-amber-600 dark:text-amber-400">
-                  Current: Monetag popunder/vignette ($0.50 CPM). Migration planned.
+                <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                  Current: Disabled. No advertisements displayed.
                 </div>
               </div>
             </div>
@@ -448,15 +448,15 @@ export function DashboardClient() {
             <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-amber-500" />
-                  <span className="font-bold text-xs">Monetag Advertising Tag</span>
+                  <span className="w-2 h-2 rounded-full bg-slate-400" />
+                  <span className="font-bold text-xs">Display Advertising Tags</span>
                 </div>
                 <p className="text-xs text-slate-500">
-                  Zone 289432 script loaded. Policy migration to Google AdSense / Header Bidding requires approval.
+                  All third-party ad scripts and containers removed. Site is ad-free.
                 </p>
               </div>
-              <span className="text-[10px] font-mono font-bold px-2 py-1 bg-amber-100 text-amber-800 rounded">
-                Active (Audit Pending)
+              <span className="text-[10px] font-mono font-bold px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded">
+                Disabled
               </span>
             </div>
 
