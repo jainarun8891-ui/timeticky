@@ -179,7 +179,7 @@ export function Header() {
             <span className="text-base font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               {siteConfig.name}
             </span>
-            <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium leading-none">
+            <span className="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 font-medium leading-none truncate max-w-[130px] sm:max-w-none">
               {isSpanish ? 'Un mundo más conectado' : 'A more connected world'}
             </span>
           </div>
@@ -333,19 +333,19 @@ export function Header() {
             )}
           </div>
 
-          <Link href="/meeting-planner" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            Meeting Planner
+          <Link href={`${prefix}/meeting-planner`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            {isSpanish ? "Planificador" : "Meeting Planner"}
           </Link>
-          <Link href="/learn" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            Learn
+          <Link href={`${prefix}/learn`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            {isSpanish ? "Aprender" : "Learn"}
           </Link>
-          <Link href="/blog" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <Link href={`${prefix}/blog`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             Blog
           </Link>
         </nav>
 
         {/* Right: Search, 3-State Theme Switcher, Perspective Tagline & Mobile Hamburger */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           <button
             onClick={() => {
               const input = document.querySelector('input[placeholder*="Search"]') as HTMLInputElement;
@@ -355,15 +355,15 @@ export function Header() {
               }
             }}
             type="button"
-            className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors cursor-pointer"
-            title="Search"
-            aria-label="Search"
+            className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+            title={isSpanish ? "Buscar" : "Search"}
+            aria-label={isSpanish ? "Buscar" : "Search"}
           >
             <Search className="w-4 h-4" />
           </button>
 
-          {/* 3-State Segmented Theme Control: Daylight | Evening (Navy Blue) | Dark */}
-          <div className="flex items-center p-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 shadow-2xs">
+          {/* 3-State Segmented Theme Control: Daylight | Evening (Navy Blue) | Dark (Hidden on mobile < sm to keep navbar spacious, available in mobile menu) */}
+          <div className="hidden sm:flex items-center p-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 shadow-2xs shrink-0">
             {/* Daylight / Light */}
             <button
               onClick={() => changeTheme('daylight')}
@@ -376,7 +376,7 @@ export function Header() {
               title="Daylight Theme (Light)"
             >
               <Sun className={`w-3.5 h-3.5 ${theme === 'daylight' ? 'text-amber-500 fill-amber-500/20' : 'text-slate-400'}`} />
-              <span className="hidden sm:inline">Day</span>
+              <span className="hidden sm:inline">{isSpanish ? 'Día' : 'Day'}</span>
             </button>
 
             {/* Evening / Navy Blue Shade */}
@@ -391,7 +391,7 @@ export function Header() {
               title="Evening Theme (Navy Blue Shade)"
             >
               <Sunset className={`w-3.5 h-3.5 ${theme === 'evening' ? 'text-orange-400' : 'text-slate-400'}`} />
-              <span className="hidden sm:inline">Evening</span>
+              <span className="hidden sm:inline">{isSpanish ? 'Tarde' : 'Evening'}</span>
             </button>
 
             {/* Dark / Midnight */}
@@ -406,16 +406,16 @@ export function Header() {
               title="Dark Theme (Deep Midnight)"
             >
               <Moon className={`w-3.5 h-3.5 ${theme === 'dark' ? 'text-blue-400 fill-blue-400/20' : 'text-slate-400'}`} />
-              <span className="hidden sm:inline">Dark</span>
+              <span className="hidden sm:inline">{isSpanish ? 'Noche' : 'Dark'}</span>
             </button>
           </div>
 
-          {/* Desktop Language Switcher: EN | ES */}
-          <div className="flex items-center p-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 shadow-2xs">
+          {/* Desktop & Mobile Language Switcher: EN | ES (Compact on mobile) */}
+          <div className="flex items-center p-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 shadow-2xs shrink-0">
             <Link
               href={getLocalizedPath(pathname, 'en')}
               prefetch={false}
-              className={`px-2 sm:px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
+              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                 !isSpanish
                   ? 'bg-blue-600 text-white shadow-xs font-extrabold'
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -427,7 +427,7 @@ export function Header() {
             <Link
               href={getLocalizedPath(pathname, 'es')}
               prefetch={false}
-              className={`px-2 sm:px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
+              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                 isSpanish
                   ? 'bg-blue-600 text-white shadow-xs font-extrabold'
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -563,7 +563,7 @@ export function Header() {
                 className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-slate-800/90 border border-slate-200/90 dark:border-slate-700/80 text-xs text-slate-400 dark:text-slate-400 shadow-xs text-left group hover:border-blue-400 dark:hover:border-blue-500 transition-colors cursor-pointer"
               >
                 <Search className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors shrink-0" />
-                <span className="truncate">Search 50,000+ cities & zones...</span>
+                <span className="truncate">{isSpanish ? "Buscar en más de 50.000 ciudades y zonas..." : "Search 50,000+ cities & zones..."}</span>
               </button>
             </div>
 
@@ -650,7 +650,7 @@ export function Header() {
                 {mobileConvertersOpen && (
                   <div className="p-3 pt-1 space-y-2.5 border-t border-slate-100 dark:border-slate-800 animate-in fade-in duration-150">
                     <div className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider px-1">
-                      Popular Converter Pairs
+                      {isSpanish ? "Pares de Conversión Populares" : "Popular Converter Pairs"}
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       {popularConverters.map((c) => (
@@ -671,13 +671,13 @@ export function Header() {
                     </div>
 
                     <Link
-                      href="/converter"
+                      href={`${prefix}/converter`}
                       onClick={() => setMobileMenuOpen(false)}
                       className="w-full py-2.5 px-3 rounded-xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-200/70 dark:border-blue-800/70 text-blue-700 dark:text-blue-300 text-xs font-bold flex items-center justify-between transition-colors"
                     >
                       <span className="flex items-center gap-2">
                         <Layers className="w-3.5 h-3.5" />
-                        <span>Browse All 552 Combinations</span>
+                        <span>{isSpanish ? "Explorar las 552 Combinaciones" : "Browse All 552 Combinations"}</span>
                       </span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
@@ -687,7 +687,7 @@ export function Header() {
 
               {/* World Map */}
               <Link
-                href="/world-map"
+                href={isSpanish ? "/es/world-map" : "/world-map"}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -698,14 +698,14 @@ export function Header() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        World Map
+                        {isSpanish ? "Mapa Mundial" : "World Map"}
                       </span>
                       <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800">
                         Live
                       </span>
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Solar terminator & 46 live clocks
+                      {isSpanish ? "Terminador solar y 46 relojes en vivo" : "Solar terminator & 46 live clocks"}
                     </div>
                   </div>
                 </div>
@@ -714,7 +714,7 @@ export function Header() {
 
               {/* Time Zones */}
               <Link
-                href="/time-zones"
+                href={isSpanish ? "/es/time-zones" : "/time-zones"}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -725,14 +725,14 @@ export function Header() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        Time Zones
+                        {isSpanish ? "Zonas Horarias" : "Time Zones"}
                       </span>
                       <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">
                         400+
                       </span>
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Canonical IANA timezones & offsets
+                      {isSpanish ? "Zonas canónicas IANA y husos horarios" : "Canonical IANA timezones & offsets"}
                     </div>
                   </div>
                 </div>
@@ -741,7 +741,7 @@ export function Header() {
 
               {/* Wall Clock */}
               <Link
-                href="/world-clock-wall"
+                href={isSpanish ? "/es/world-clock-wall" : "/world-clock-wall"}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -751,10 +751,10 @@ export function Header() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Wall Clock
+                      {isSpanish ? "Muro Multireloj" : "Wall Clock"}
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Trading floor kiosk with Swiss dials
+                      {isSpanish ? "Kiosco bursátil con esferas suizas" : "Trading floor kiosk with Swiss dials"}
                     </div>
                   </div>
                 </div>
@@ -763,7 +763,7 @@ export function Header() {
 
               {/* Astronomy */}
               <Link
-                href="/astronomy"
+                href={isSpanish ? "/es/sun" : "/astronomy"}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -773,10 +773,10 @@ export function Header() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Astronomy
+                      {isSpanish ? "Astronomía Solar y Lunar" : "Astronomy"}
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Sunrise, sunset & moon phases
+                      {isSpanish ? "Amanecer, atardecer y fases lunares" : "Sunrise, sunset & moon phases"}
                     </div>
                   </div>
                 </div>
@@ -798,14 +798,14 @@ export function Header() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-slate-900 dark:text-white">
-                          Tools & Calculators
+                          {isSpanish ? "Herramientas y Calculadoras" : "Tools & Calculators"}
                         </span>
                         <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-teal-100 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 font-bold border border-teal-200/50 dark:border-teal-800">
-                          {featureTools.length} Tools
+                          {featureTools.length} {isSpanish ? "Herramientas" : "Tools"}
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-normal">
-                        Horological tools, calculators & utilities
+                        {isSpanish ? "Herramientas de relojería, calculadoras y utilidades" : "Horological tools, calculators & utilities"}
                       </div>
                     </div>
                   </div>
@@ -844,7 +844,7 @@ export function Header() {
 
               {/* Meeting Planner */}
               <Link
-                href="/meeting-planner"
+                href={`${prefix}/meeting-planner`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -854,10 +854,10 @@ export function Header() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Meeting Planner
+                      {isSpanish ? "Planificador de Reuniones" : "Meeting Planner"}
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Overlap window across 4+ global hubs
+                      {isSpanish ? "Ventana de solapamiento en más de 4 centros globales" : "Overlap window across 4+ global hubs"}
                     </div>
                   </div>
                 </div>
@@ -866,7 +866,7 @@ export function Header() {
 
               {/* Country Directory */}
               <Link
-                href="/countries"
+                href={`${prefix}/countries`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -876,10 +876,10 @@ export function Header() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Country Directory
+                      {isSpanish ? "Directorio de Países" : "Country Directory"}
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      240+ countries & territories with clocks
+                      {isSpanish ? "Más de 240 países y territorios con relojes" : "240+ countries & territories with clocks"}
                     </div>
                   </div>
                 </div>
@@ -888,7 +888,7 @@ export function Header() {
 
               {/* Learn */}
               <Link
-                href="/learn"
+                href={`${prefix}/learn`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -898,10 +898,10 @@ export function Header() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Learn
+                      {isSpanish ? "Aprender" : "Learn"}
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Horology academy, time fundamentals & history
+                      {isSpanish ? "Academia de relojería, fundamentos del tiempo e historia" : "Horology academy, time fundamentals & history"}
                     </div>
                   </div>
                 </div>
@@ -910,7 +910,7 @@ export function Header() {
 
               {/* Blog */}
               <Link
-                href="/blog"
+                href={`${prefix}/blog`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition-all group"
               >
@@ -923,7 +923,7 @@ export function Header() {
                       Blog
                     </div>
                     <div className="text-[11px] text-slate-400 font-normal">
-                      Articles, international time news & guides
+                      {isSpanish ? "Artículos, noticias horarias internacionales y guías" : "Articles, international time news & guides"}
                     </div>
                   </div>
                 </div>
@@ -934,7 +934,7 @@ export function Header() {
             {/* Side Nav Footer Area */}
             <div className="p-4 bg-slate-50/70 dark:bg-slate-950/50 space-y-3 shrink-0">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Theme</span>
+                <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{isSpanish ? "Tema" : "Theme"}</span>
                 <div className="flex items-center p-0.5 rounded-full bg-slate-200/70 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 shadow-2xs">
                   <button
                     onClick={() => changeTheme('daylight')}
@@ -946,7 +946,7 @@ export function Header() {
                     }`}
                   >
                     <Sun className={`w-3.5 h-3.5 ${theme === 'daylight' ? 'text-amber-500 fill-amber-500/20' : 'text-slate-400'}`} />
-                    <span>Day</span>
+                    <span>{isSpanish ? "Día" : "Day"}</span>
                   </button>
                   <button
                     onClick={() => changeTheme('evening')}
@@ -958,7 +958,7 @@ export function Header() {
                     }`}
                   >
                     <Sunset className={`w-3.5 h-3.5 ${theme === 'evening' ? 'text-orange-400' : 'text-slate-400'}`} />
-                    <span>Evening</span>
+                    <span>{isSpanish ? "Tarde" : "Evening"}</span>
                   </button>
                   <button
                     onClick={() => changeTheme('dark')}
@@ -970,12 +970,12 @@ export function Header() {
                     }`}
                   >
                     <Moon className={`w-3.5 h-3.5 ${theme === 'dark' ? 'text-blue-400 fill-blue-400/20' : 'text-slate-400'}`} />
-                    <span>Dark</span>
+                    <span>{isSpanish ? "Noche" : "Dark"}</span>
                   </button>
                 </div>
               </div>
               <div className="text-[11px] text-slate-400 dark:text-slate-500 text-center" suppressHydrationWarning>
-                © {new Date().getFullYear()} {siteConfig.name} • Precision Chronometry
+                © {new Date().getFullYear()} {siteConfig.name} • {isSpanish ? "Cronometría de Precisión" : "Precision Chronometry"}
               </div>
             </div>
           </div>

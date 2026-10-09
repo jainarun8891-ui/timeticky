@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { getTimeDetails } from '@/lib/time/engine';
 import { getSolarTimes } from '@/lib/astronomy/calculator';
 import { CITIES } from '@/lib/geo/cities';
@@ -19,6 +20,10 @@ import {
 } from 'lucide-react';
 
 export function PrecisionClockHero() {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   const [timeZone, setTimeZone] = useState<string>('UTC');
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [use24Hour, setUse24Hour] = useState(false);
@@ -144,6 +149,75 @@ export function PrecisionClockHero() {
     return s;
   }, [details, showSeconds, showMilliseconds]);
 
+  // Localized city and country names
+  const displayCityName = useMemo(() => {
+    if (isSpanish) {
+      if (cityName === 'New Delhi') return 'Nueva Delhi';
+      if (cityName === 'Universal Time (UTC)') return 'Tiempo Universal Coordinado (UTC)';
+      if (cityName === 'Local Time') return 'Hora Local';
+    }
+    return cityName;
+  }, [cityName, isSpanish]);
+
+  const displayCountryName = useMemo(() => {
+    if (isSpanish) {
+      if (countryName === 'Global Reference') return 'Referencia Global';
+      if (countryName === 'Worldwide') return 'Mundial';
+    }
+    return countryName;
+  }, [countryName, isSpanish]);
+
+  // Localized date string
+  const displayDateStr = useMemo(() => {
+    if (isSpanish) {
+      try {
+        const str = new Intl.DateTimeFormat('es-ES', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone
+        }).format(now);
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      } catch {
+        return details.dateStr;
+      }
+    }
+    return details.dateStr;
+  }, [isSpanish, timeZone, now, details.dateStr]);
+
+  const directoryPills = useMemo(() => {
+    return isSpanish
+      ? [
+          { label: 'Zonas Horarias', url: '/es/time-zones' },
+          { label: 'Conversor de Horas', url: '/es/converter' },
+          { label: 'Reloj Mundial', url: '/es/world-clock' },
+          { label: 'Muro Multireloj', url: '/es/world-clock-wall' },
+          { label: 'Calendario', url: '/es/calendar' },
+          { label: 'Cuenta Atrás', url: '/es/countdown' },
+          { label: 'Temporizador', url: '/es/timer' },
+          { label: 'Cronómetro', url: '/es/stopwatch' },
+          { label: 'Timestamp Unix', url: '/es/unix-time' },
+          { label: 'Astronomía', url: '/es/sun' },
+          { label: 'Prefijos Telefónicos', url: '/es/dialing-codes' },
+          { label: 'Planificador de Reuniones', url: '/es/meeting-planner' },
+        ]
+      : [
+          { label: 'Time Zones', url: '/time-zones' },
+          { label: 'Time Converter', url: '/converter' },
+          { label: 'World Clock', url: '/world-clock' },
+          { label: 'Multi-Clock Wall', url: '/world-clock-wall' },
+          { label: 'Calendar', url: '/calendar' },
+          { label: 'Countdown', url: '/countdown' },
+          { label: 'Timer', url: '/timer' },
+          { label: 'Stopwatch', url: '/stopwatch' },
+          { label: 'Unix Timestamp', url: '/unix-time' },
+          { label: 'Astronomy', url: '/astronomy' },
+          { label: 'Dialing Codes', url: '/dialing-codes' },
+          { label: 'Meeting Planner', url: '/meeting-planner' },
+        ];
+  }, [isSpanish]);
+
   return (
     <div ref={containerRef} className="w-full space-y-3.5">
       {/* Compact Precision Clock Card */}
@@ -158,7 +232,8 @@ export function PrecisionClockHero() {
             <div>
               <div className="flex items-center gap-2">
                 <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight" suppressHydrationWarning>
-                  Exact Time &amp; World Clock &mdash; {cityName}, {countryName}
+                  {isSpanish ? 'Hora Exacta y Reloj Mundial — ' : 'Exact Time & World Clock — '}
+                  {displayCityName}, {displayCountryName}
                 </div>
                 <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800" suppressHydrationWarning>
                   {details.abbreviation || details.timeZoneAbbr}
@@ -169,7 +244,9 @@ export function PrecisionClockHero() {
                 <span className="text-slate-300 dark:text-slate-600">&bull;</span>
                 <span suppressHydrationWarning>{details.utcOffsetString}</span>
                 <span className="text-slate-300 dark:text-slate-600">&bull;</span>
-                <span suppressHydrationWarning>{details.isDst ? 'DST Active' : 'Standard Time'}</span>
+                <span suppressHydrationWarning>
+                  {details.isDst ? (isSpanish ? 'Horario de verano activo' : 'DST Active') : (isSpanish ? 'Hora estándar' : 'Standard Time')}
+                </span>
               </div>
             </div>
           </div>
@@ -183,12 +260,12 @@ export function PrecisionClockHero() {
               </span>
               <span className="truncate" suppressHydrationWarning>
                 {!isHydrated
-                  ? 'Server Synchronized'
+                  ? (isSpanish ? 'Sincronizado con servidor' : 'Server Synchronized')
                   : accuracyDriftMs === null || isNaN(accuracyDriftMs)
-                  ? 'Server Synchronized'
+                  ? (isSpanish ? 'Sincronizado con servidor' : 'Server Synchronized')
                   : Math.abs(accuracyDriftMs) < 150
-                  ? 'Clock is synchronized'
-                  : `${(Math.abs(accuracyDriftMs) / 1000).toFixed(1)}s ${accuracyDriftMs > 0 ? 'fast' : 'slow'}`}
+                  ? (isSpanish ? 'Reloj sincronizado' : 'Clock is synchronized')
+                  : `${(Math.abs(accuracyDriftMs) / 1000).toFixed(1)}s ${accuracyDriftMs > 0 ? (isSpanish ? 'adelantado' : 'fast') : (isSpanish ? 'lento' : 'slow')}`}
               </span>
             </div>
 
@@ -210,7 +287,7 @@ export function PrecisionClockHero() {
                 }`}
                 title="Toggle seconds"
               >
-                Sec
+                {isSpanish ? 'Seg' : 'Sec'}
               </button>
               <button
                 onClick={() => setShowMilliseconds(!showMilliseconds)}
@@ -226,7 +303,7 @@ export function PrecisionClockHero() {
             <button
               onClick={toggleFullscreen}
               className="p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-              title="Toggle Fullscreen (F)"
+              title={isSpanish ? "Pantalla completa (F)" : "Toggle Fullscreen (F)"}
             >
               {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
             </button>
@@ -251,10 +328,10 @@ export function PrecisionClockHero() {
             {showDate && (
               <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400">
                 <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                <span suppressHydrationWarning>{details.dateStr}</span>
+                <span suppressHydrationWarning>{displayDateStr}</span>
                 <span className="text-slate-300 dark:text-slate-600">&bull;</span>
                 <span className="font-mono text-[11px] text-slate-400" suppressHydrationWarning>
-                  Day {details.dayOfYear} of {details.year}
+                  {isSpanish ? `Día ${details.dayOfYear} de ${details.year}` : `Day ${details.dayOfYear} of ${details.year}`}
                 </span>
               </div>
             )}
@@ -265,7 +342,7 @@ export function PrecisionClockHero() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded-2xl border border-slate-100 dark:border-slate-800/70 text-left md:text-center self-stretch md:self-auto">
               <div className="px-2">
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
-                  <Sunrise className="w-3 h-3 text-amber-500" /> Sunrise
+                  <Sunrise className="w-3 h-3 text-amber-500" /> {isSpanish ? 'Amanecer' : 'Sunrise'}
                 </span>
                 <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.sunrise}
@@ -273,7 +350,7 @@ export function PrecisionClockHero() {
               </div>
               <div className="px-2">
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
-                  <Sunset className="w-3 h-3 text-orange-500" /> Sunset
+                  <Sunset className="w-3 h-3 text-orange-500" /> {isSpanish ? 'Atardecer' : 'Sunset'}
                 </span>
                 <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.sunset}
@@ -281,7 +358,7 @@ export function PrecisionClockHero() {
               </div>
               <div className="px-2">
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
-                  <Sun className="w-3 h-3 text-yellow-500" /> Noon
+                  <Sun className="w-3 h-3 text-yellow-500" /> {isSpanish ? 'Mediodía' : 'Noon'}
                 </span>
                 <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.solarNoon}
@@ -289,7 +366,7 @@ export function PrecisionClockHero() {
               </div>
               <div className="px-2">
                 <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center md:justify-center gap-1">
-                  <Clock className="w-3 h-3 text-indigo-500" /> Light
+                  <Clock className="w-3 h-3 text-indigo-500" /> {isSpanish ? 'Luz' : 'Light'}
                 </span>
                 <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 block mt-0.5" suppressHydrationWarning>
                   {solar.dayLength}
@@ -303,20 +380,7 @@ export function PrecisionClockHero() {
       {/* Quick Navigation Directory Pills */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-2.5 shadow-2xs">
         <div className="flex flex-wrap items-center justify-center gap-1.5 font-medium text-xs">
-          {[
-            { label: 'Time Zones', url: '/time-zones' },
-            { label: 'Time Converter', url: '/time-converter' },
-            { label: 'World Clock', url: '/world-clock' },
-            { label: 'Multi-Clock Wall', url: '/world-clock-wall' },
-            { label: 'Calendar', url: '/calendar' },
-            { label: 'Countdown', url: '/countdown' },
-            { label: 'Timer', url: '/timer' },
-            { label: 'Stopwatch', url: '/stopwatch' },
-            { label: 'Unix Timestamp', url: '/unix-time' },
-            { label: 'Astronomy', url: '/astronomy' },
-            { label: 'Dialing Codes', url: '/dialing-codes' },
-            { label: 'Meeting Planner', url: '/meeting-planner' },
-          ].map((item) => (
+          {directoryPills.map((item) => (
             <Link
               key={item.url}
               href={item.url}

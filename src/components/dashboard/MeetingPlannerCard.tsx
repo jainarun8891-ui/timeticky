@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Users } from 'lucide-react';
 import { City } from '@/lib/geo/cities';
 
@@ -10,11 +11,15 @@ interface MeetingPlannerCardProps {
 }
 
 export function MeetingPlannerCard({ currentCity }: MeetingPlannerCardProps) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   const cities = [
     { name: currentCity?.name || 'Paris', hours: '9:00 – 17:00' },
-    { name: currentCity?.id === 'new-york-us' ? 'Paris' : 'New York', hours: '9:00 – 17:00' },
-    { name: currentCity?.id === 'london-gb' ? 'Tokyo' : 'London', hours: '9:00 – 17:00' },
-    { name: currentCity?.id === 'tokyo-jp' ? 'Sydney' : 'Tokyo', hours: '9:00 – 17:00' }
+    { name: currentCity?.id === 'new-york-us' ? 'Paris' : (isSpanish ? 'Nueva York' : 'New York'), hours: '9:00 – 17:00' },
+    { name: currentCity?.id === 'london-gb' ? (isSpanish ? 'Tokio' : 'Tokyo') : (isSpanish ? 'Londres' : 'London'), hours: '9:00 – 17:00' },
+    { name: currentCity?.id === 'tokyo-jp' ? (isSpanish ? 'Sídney' : 'Sydney') : (isSpanish ? 'Tokio' : 'Tokyo'), hours: '9:00 – 17:00' }
   ];
 
   return (
@@ -27,10 +32,10 @@ export function MeetingPlannerCard({ currentCity }: MeetingPlannerCardProps) {
           </div>
           <div>
             <h2 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
-              Meeting Planner
+              {isSpanish ? "Planificador de Reuniones" : "Meeting Planner"}
             </h2>
             <p className="text-[11px] text-slate-400">
-              Find overlapping working hours
+              {isSpanish ? "Horas laborables compartidas" : "Find overlapping working hours"}
             </p>
           </div>
         </div>
@@ -74,14 +79,14 @@ export function MeetingPlannerCard({ currentCity }: MeetingPlannerCardProps) {
       <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800/80 mt-2">
         <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold border border-emerald-200/80 dark:border-emerald-800">
           <Users className="w-3 h-3" />
-          <span>Overlap: 13:00 – 17:00 (4 hours)</span>
+          <span>{isSpanish ? "Solapamiento: 13:00 – 17:00 (4 horas)" : "Overlap: 13:00 – 17:00 (4 hours)"}</span>
         </div>
 
         <Link
-          href="/meeting-planner"
+          href={`${prefix}/meeting-planner`}
           className="inline-flex items-center text-xs font-bold px-3 py-1 rounded-full bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 transition-colors"
         >
-          Plan a meeting
+          {isSpanish ? "Planificar" : "Plan a meeting"}
         </Link>
       </div>
     </div>

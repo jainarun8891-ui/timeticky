@@ -2,6 +2,7 @@
 
 import React, { useMemo } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ArrowLeftRight, ChevronRight } from 'lucide-react';
 import { City, CITIES } from '@/lib/geo/cities';
 import { getCityRootSlug } from '@/lib/geo/city-lookup';
@@ -25,6 +26,10 @@ const GLOBAL_BENCHMARK_HUBS = [
 ];
 
 export function TimeDifferenceCard({ currentCity }: TimeDifferenceCardProps) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   const comparisons = useMemo(() => {
     const now = new Date();
     // Select 6 benchmark hubs that are not the current city
@@ -36,9 +41,21 @@ export function TimeDifferenceCard({ currentCity }: TimeDifferenceCardProps) {
     return targets.map(target => {
       const diff = getTimeDifferenceText(currentCity.timezone, target.timezone, now);
       const isBehind = diff.diffMinutes < 0;
-      const formattedDiff = diff.diffMinutes === 0
-        ? 'Same time'
-        : diff.summary;
+      
+      let formattedDiff: string;
+      if (isSpanish) {
+        if (diff.diffMinutes === 0) {
+          formattedDiff = 'Misma hora';
+        } else {
+          const absMins = Math.abs(diff.diffMinutes);
+          const h = Math.floor(absMins / 60);
+          const m = absMins % 60;
+          const timeDesc = m === 0 ? `${h} h` : `${h} h ${m} min`;
+          formattedDiff = diff.diffMinutes > 0 ? `+${timeDesc} adelantada` : `-${timeDesc} atrasada`;
+        }
+      } else {
+        formattedDiff = diff.diffMinutes === 0 ? 'Same time' : diff.summary;
+      }
 
       return {
         id: target.id,
@@ -46,10 +63,10 @@ export function TimeDifferenceCard({ currentCity }: TimeDifferenceCardProps) {
         countryCode: target.countryCode,
         diff: formattedDiff,
         isBehind,
-        link: `/time-difference/${getCityRootSlug(currentCity)}/${getCityRootSlug(target)}`
+        link: `${prefix}/time-difference/${getCityRootSlug(currentCity)}/${getCityRootSlug(target)}`
       };
     });
-  }, [currentCity]);
+  }, [currentCity, isSpanish, prefix]);
 
   return (
     <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 shadow-sm p-5 flex flex-col justify-between">
@@ -61,10 +78,10 @@ export function TimeDifferenceCard({ currentCity }: TimeDifferenceCardProps) {
           </div>
           <div>
             <h2 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
-              Time Difference
+              {isSpanish ? "Diferencia Horaria" : "Time Difference"}
             </h2>
             <p className="text-[11px] text-slate-400">
-              How does time in {currentCity.name} compare?
+              {isSpanish ? `Comparativa horaria con ${currentCity.name}` : `How does time in ${currentCity.name} compare?`}
             </p>
           </div>
         </div>

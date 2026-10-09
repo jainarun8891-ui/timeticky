@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ExternalLink } from 'lucide-react';
 import { City } from '@/lib/geo/cities';
 import { getCityRootSlug } from '@/lib/geo/city-lookup';
@@ -14,6 +15,10 @@ interface WorldMapCardProps {
 }
 
 export function WorldMapCard({ currentCity, onSelectCity }: WorldMapCardProps) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   return (
     <div className="w-full h-full bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 shadow-sm p-5 flex flex-col justify-between">
       {/* Top Map Graphic */}
@@ -48,9 +53,9 @@ export function WorldMapCard({ currentCity, onSelectCity }: WorldMapCardProps) {
         </div>
 
         <Link
-          href={`/${getCityRootSlug(currentCity)}`}
+          href={`${prefix}/${getCityRootSlug(currentCity)}`}
           className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 transition-colors"
-          title={`View ${currentCity.name} dedicated page`}
+          title={isSpanish ? `Ver página dedicada de ${currentCity.name}` : `View ${currentCity.name} dedicated page`}
         >
           <ExternalLink className="w-4 h-4" />
         </Link>

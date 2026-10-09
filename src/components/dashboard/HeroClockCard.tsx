@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { MapPin, ChevronDown, Check, Search, X } from 'lucide-react';
 import { City, CITIES } from '@/lib/geo/cities';
 import { formatTimeInZone, formatDateInZone, getUtcOffsetString } from '@/lib/time/timezones';
 import { getTimeDetails } from '@/lib/time/engine';
-import { getSyncedDate, syncWithServer, subscribeToClock } from '@/lib/time/sync';
+import { syncWithServer, subscribeToClock } from '@/lib/time/sync';
 import { getCountryFlagEmoji } from '@/lib/geo/flags';
 import { getCityRootSlug } from '@/lib/geo/city-lookup';
 
@@ -17,6 +17,10 @@ interface HeroClockCardProps {
 
 export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   const [activeCity, setActiveCity] = useState<City>(currentCity);
   const [time, setTime] = useState<Date>(new Date());
   const [isCityPickerOpen, setIsCityPickerOpen] = useState(false);
@@ -41,11 +45,15 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
       const current = activeCityRef.current;
       const ts = formatTimeInZone(now, current.timezone, false, true);
       if (typeof document !== 'undefined') {
-        document.title = `${ts} • Time in ${current.name}, ${current.country} • TimeNumbers`;
+        const titleSuffix = isSpanish ? 'TimeNumbers' : 'TimeNumbers';
+        const titlePrefix = isSpanish
+          ? `${ts} • Hora en ${current.name}, ${current.country}`
+          : `${ts} • Time in ${current.name}, ${current.country}`;
+        document.title = `${titlePrefix} • ${titleSuffix}`;
       }
     });
     return unsubscribe;
-  }, []);
+  }, [isSpanish]);
 
   // Click outside listener to reliably close dropdown
   useEffect(() => {
@@ -64,17 +72,17 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
   }, [isCityPickerOpen]);
 
   const handleSelectCity = (c: City) => {
-    // 1. Immediately update active city in local state so name, flag, time, and timezone change with 0ms delay
+    // 1. Immediately update active city in local state
     setActiveCity(c);
     setIsCityPickerOpen(false);
     setSearchQuery('');
 
-    // 2. If parent supplied an onSelectCity callback (like the homepage), call it
+    // 2. If parent supplied an onSelectCity callback, call it
     if (onSelectCity) {
       onSelectCity(c);
     } else {
       // 3. Otherwise, navigate to that city's dedicated canonical URL
-      router.push(`/${getCityRootSlug(c)}`);
+      router.push(`${prefix}/${getCityRootSlug(c)}`);
     }
   };
 
@@ -84,6 +92,24 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
   const details = useMemo(() => {
     return getTimeDetails(activeCity.timezone, time, false);
   }, [activeCity.timezone, time]);
+
+  const localizedDateStr = useMemo(() => {
+    if (isSpanish) {
+      try {
+        const parts = new Intl.DateTimeFormat('es-ES', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: activeCity.timezone
+        }).format(time);
+        return parts.charAt(0).toUpperCase() + parts.slice(1);
+      } catch {
+        return dateStr;
+      }
+    }
+    return dateStr;
+  }, [isSpanish, time, activeCity.timezone, dateStr]);
 
   // Dynamic scenic background based on city (optimized lightweight WebP)
   const bgImage = useMemo(() => {
@@ -122,7 +148,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
 
   return (
     <div className="relative w-full bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 shadow-sm p-6 sm:p-8 min-h-[340px] flex flex-col justify-between">
-      {/* Scenic City Landscape Background (contained so rounded corners clip while dropdown floats above) */}
+      {/* Scenic City Landscape Background */}
       <div className="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none z-0">
         <div
           className="absolute left-0 top-0 bottom-0 w-[42%] bg-cover bg-left transition-all duration-700 opacity-90"
@@ -146,7 +172,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/95 dark:bg-slate-800/95 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-bold shadow-xs border border-slate-200/90 dark:border-slate-700 backdrop-blur-md transition-all hover:scale-102 cursor-pointer"
           >
             <MapPin className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-            <span>Change city</span>
+            <span>{isSpanish ? "Cambiar ciudad" : "Change city"}</span>
             <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isCityPickerOpen ? 'rotate-180' : ''}`} />
           </button>
 
@@ -161,7 +187,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search city or country..."
+                  placeholder={isSpanish ? "Buscar ciudad o país..." : "Search city or country..."}
                   className="w-full pl-8 pr-7 py-1.5 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {searchQuery && (
@@ -178,7 +204,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
               {!searchQuery && (
                 <div className="mb-2 pb-2 border-b border-slate-100 dark:border-slate-800">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1 px-1">
-                    Popular Hubs
+                    {isSpanish ? "Ciudades Populares" : "Popular Hubs"}
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {quickCities.map(qc => (
@@ -206,7 +232,9 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
               <div className="max-h-64 overflow-y-auto space-y-0.5 pr-1">
                 {filteredCities.length === 0 ? (
                   <div className="py-4 text-center text-xs text-slate-400">
-                    No cities matching &ldquo;{searchQuery}&rdquo;
+                    {isSpanish
+                      ? `No se encontraron ciudades que coincidan con "${searchQuery}"`
+                      : `No cities matching "${searchQuery}"`}
                   </div>
                 ) : (
                   filteredCities.map((c) => {
@@ -255,7 +283,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
           <div
             className="flex items-center gap-2 cursor-pointer group"
             onClick={() => setIsCityPickerOpen(!isCityPickerOpen)}
-            title="Click to change city"
+            title={isSpanish ? "Haz clic para cambiar de ciudad" : "Click to change city"}
           >
             <span className="text-2xl leading-none">{getCountryFlagEmoji(activeCity.countryCode)}</span>
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight group-hover:text-blue-600 transition-colors">
@@ -269,18 +297,24 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span>Exact time</span>
+            <span>{isSpanish ? "Hora exacta" : "Exact time"}</span>
           </div>
         </div>
 
         {/* Right: Inspirational quote from reference UI */}
         <div className="hidden lg:block text-right max-w-[210px]">
           <p className="text-xs font-extrabold text-slate-800 dark:text-slate-200 leading-snug">
-            &ldquo;Same planet.<br />A brighter perspective.&rdquo;
+            {isSpanish ? (
+              <>&ldquo;Mismo planeta.<br />Una perspectiva más brillante.&rdquo;</>
+            ) : (
+              <>&ldquo;Same planet.<br />A brighter perspective.&rdquo;</>
+            )}
           </p>
           <div className="w-6 h-0.5 bg-blue-500 my-1.5 ml-auto" />
           <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-relaxed font-medium">
-            Explore time around the world and stay in sync with what matters.
+            {isSpanish
+              ? "Explora la hora en todo el mundo y mantén sincronizado lo que importa."
+              : "Explore time around the world and stay in sync with what matters."}
           </p>
         </div>
       </div>
@@ -292,7 +326,7 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
         </div>
 
         <div className="mt-3 text-base sm:text-lg font-black text-slate-900 dark:text-white" suppressHydrationWarning>
-          {dateStr}
+          {localizedDateStr}
         </div>
 
         <div className="mt-1 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 font-sans flex items-center justify-center gap-2" suppressHydrationWarning>
@@ -300,12 +334,20 @@ export function HeroClockCard({ currentCity, onSelectCity }: HeroClockCardProps)
           <span className="text-slate-300 dark:text-slate-700">&bull;</span>
           <span suppressHydrationWarning>{details.timeZoneAbbr || activeCity.timezone}</span>
           <span className="text-slate-300 dark:text-slate-700">&bull;</span>
-          <span suppressHydrationWarning>{details.isDst ? 'Daylight Saving Time' : 'Standard Time'}</span>
+          <span suppressHydrationWarning>
+            {details.isDst
+              ? (isSpanish ? 'Horario de verano' : 'Daylight Saving Time')
+              : (isSpanish ? 'Hora estándar' : 'Standard Time')}
+          </span>
         </div>
 
         <div className="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Synchronized with authoritative time servers &bull; NTP calibrated</span>
+          <span>
+            {isSpanish
+              ? "Sincronizado con servidores de tiempo autorizados • Calibración NTP"
+              : "Synchronized with authoritative time servers • NTP calibrated"}
+          </span>
         </div>
       </div>
 

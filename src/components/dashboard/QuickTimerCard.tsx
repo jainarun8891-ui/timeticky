@@ -1,9 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { Timer, Clock, Hourglass, Play, Pause, RotateCcw } from 'lucide-react';
 
 export function QuickTimerCard({ className = "" }: { className?: string }) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+
   const [mode, setMode] = useState<'countdown' | 'stopwatch' | 'timer'>('countdown');
   const [h, setH] = useState('00');
   const [m, setM] = useState('25');
@@ -129,10 +133,10 @@ export function QuickTimerCard({ className = "" }: { className?: string }) {
           </div>
           <div>
             <h2 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
-              Timer / Countdown
+              {isSpanish ? "Temporizador / Cuenta Atrás" : "Timer / Countdown"}
             </h2>
             <p className="text-[11px] text-slate-400 font-medium">
-              Stay on track
+              {isSpanish ? "Gestiona tu tiempo" : "Stay on track"}
             </p>
           </div>
         </div>
@@ -142,38 +146,38 @@ export function QuickTimerCard({ className = "" }: { className?: string }) {
           <button
             onClick={() => switchMode('countdown')}
             type="button"
-            className={`flex-1 py-1.5 px-2 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all ${
+            className={`flex-1 py-1.5 px-2 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               mode === 'countdown'
                 ? 'bg-blue-600 text-white shadow-xs font-bold'
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium'
             }`}
           >
             <Timer className="w-3 h-3 shrink-0" />
-            <span>Countdown</span>
+            <span>{isSpanish ? "Cuenta Atrás" : "Countdown"}</span>
           </button>
           <button
             onClick={() => switchMode('stopwatch')}
             type="button"
-            className={`flex-1 py-1.5 px-2 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all ${
+            className={`flex-1 py-1.5 px-2 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               mode === 'stopwatch'
                 ? 'bg-blue-600 text-white shadow-xs font-bold'
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium'
             }`}
           >
             <Clock className="w-3 h-3 shrink-0" />
-            <span>Stopwatch</span>
+            <span>{isSpanish ? "Cronómetro" : "Stopwatch"}</span>
           </button>
           <button
             onClick={() => switchMode('timer')}
             type="button"
-            className={`flex-1 py-1.5 px-2 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all ${
+            className={`flex-1 py-1.5 px-2 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               mode === 'timer'
                 ? 'bg-blue-600 text-white shadow-xs font-bold'
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium'
             }`}
           >
             <Hourglass className="w-3 h-3 shrink-0" />
-            <span>Timer</span>
+            <span>{isSpanish ? "Temporizador" : "Timer"}</span>
           </button>
         </div>
       </div>
@@ -217,8 +221,8 @@ export function QuickTimerCard({ className = "" }: { className?: string }) {
             <button
               onClick={handleReset}
               type="button"
-              title="Reset"
-              className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              title={isSpanish ? "Reiniciar" : "Reset"}
+              className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
@@ -226,7 +230,7 @@ export function QuickTimerCard({ className = "" }: { className?: string }) {
           <button
             onClick={() => setRunning(!running)}
             type="button"
-            className={`px-6 h-9 rounded-xl text-white text-xs font-black shadow-sm transition-all flex items-center justify-center gap-1.5 active:scale-95 ${
+            className={`px-6 h-9 rounded-xl text-white text-xs font-black shadow-sm transition-all flex items-center justify-center gap-1.5 active:scale-95 cursor-pointer ${
               running
                 ? 'bg-amber-500 hover:bg-amber-600'
                 : 'bg-blue-600 hover:bg-blue-500'
@@ -235,12 +239,12 @@ export function QuickTimerCard({ className = "" }: { className?: string }) {
             {running ? (
               <>
                 <Pause className="w-3 h-3 fill-white" />
-                <span>Pause</span>
+                <span>{isSpanish ? "Pausar" : "Pause"}</span>
               </>
             ) : (
               <>
                 <Play className="w-3 h-3 fill-white" />
-                <span>Start</span>
+                <span>{isSpanish ? "Iniciar" : "Start"}</span>
               </>
             )}
           </button>

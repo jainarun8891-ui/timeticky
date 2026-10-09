@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Globe, Plus, Sun, Moon, Clock } from 'lucide-react';
 import { City, CITIES } from '@/lib/geo/cities';
 import { formatTimeInZone } from '@/lib/time/timezones';
@@ -89,6 +90,8 @@ function LandmarkIcon({ id }: { id: string }) {
 }
 
 export function WorldClockStrip({ currentCity, onSelectCity }: WorldClockStripProps) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
   const [now, setNow] = useState(getSyncedDate());
 
   useEffect(() => {
@@ -132,10 +135,10 @@ export function WorldClockStrip({ currentCity, onSelectCity }: WorldClockStripPr
           </div>
           <div>
             <h2 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
-              World Clock
+              {isSpanish ? "Reloj Mundial" : "World Clock"}
             </h2>
             <p className="text-[11px] text-slate-400 font-medium">
-              Local times around the world
+              {isSpanish ? "Horas locales en todo el mundo" : "Local times around the world"}
             </p>
           </div>
         </div>
@@ -145,7 +148,7 @@ export function WorldClockStrip({ currentCity, onSelectCity }: WorldClockStripPr
           className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-bold hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors shadow-2xs"
         >
           <Plus className="w-3 h-3" />
-          <span>Add cities</span>
+          <span>{isSpanish ? "Añadir ciudades" : "Add cities"}</span>
         </button>
       </div>
 
@@ -157,14 +160,14 @@ export function WorldClockStrip({ currentCity, onSelectCity }: WorldClockStripPr
           const isDay = isDaytime(city.timezone);
           const cityDateStr = (() => {
             try {
-              return new Intl.DateTimeFormat('en-US', {
+              return new Intl.DateTimeFormat(isSpanish ? 'es-ES' : 'en-US', {
                 timeZone: city.timezone,
                 weekday: 'short',
                 month: 'short',
                 day: 'numeric'
               }).format(now);
             } catch {
-              return 'Today';
+              return isSpanish ? 'Hoy' : 'Today';
             }
           })();
 
@@ -204,12 +207,12 @@ export function WorldClockStrip({ currentCity, onSelectCity }: WorldClockStripPr
                   {isDay ? (
                     <>
                       <Sun className="w-3 h-3 text-amber-500" />
-                      <span>Day</span>
+                      <span>{isSpanish ? "Día" : "Day"}</span>
                     </>
                   ) : (
                     <>
                       <Moon className="w-3 h-3 text-indigo-400" />
-                      <span>Night</span>
+                      <span>{isSpanish ? "Noche" : "Night"}</span>
                     </>
                   )}
                 </span>

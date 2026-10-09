@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { City } from '@/lib/geo/cities';
 import { COUNTRIES } from '@/lib/geo/countries';
 import { CountryFlag } from '@/components/common/CountryFlag';
@@ -13,6 +14,10 @@ interface CountryInfoCardProps {
 }
 
 export function CountryInfoCard({ currentCity, className = "" }: CountryInfoCardProps) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   // Resolve country metadata dynamically
   const countryCode = currentCity?.countryCode || 'FR';
   const countryData = COUNTRIES[countryCode.toUpperCase()] || {
@@ -57,7 +62,7 @@ export function CountryInfoCard({ currentCity, className = "" }: CountryInfoCard
     }
   })();
 
-  const countryUrl = `/country/${countryData.slug}`;
+  const countryUrl = `${prefix}/country/${countryData.slug}`;
 
   return (
     <div className={`w-full h-full bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 shadow-sm p-5 flex flex-col justify-between ${className}`}>
@@ -67,10 +72,10 @@ export function CountryInfoCard({ currentCity, className = "" }: CountryInfoCard
           <CountryFlag code={countryCode} className="w-6 h-4.5 rounded-[4px]" title={countryData.name} />
           <div>
             <h2 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
-              About {countryData.name}
+              {isSpanish ? `Acerca de ${countryData.name}` : `About ${countryData.name}`}
             </h2>
             <p className="text-[11px] text-slate-400 font-medium">
-              Country information & timezone context
+              {isSpanish ? "Información del país y huso horario" : "Country information & timezone context"}
             </p>
           </div>
         </div>
@@ -94,19 +99,25 @@ export function CountryInfoCard({ currentCity, className = "" }: CountryInfoCard
               </span>
             </div>
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Population</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                {isSpanish ? "Población" : "Population"}
+              </span>
               <span className="font-bold text-slate-900 dark:text-white text-xs truncate block" title={countryData.population}>
                 {countryData.population}
               </span>
             </div>
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Currency</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                {isSpanish ? "Moneda" : "Currency"}
+              </span>
               <span className="font-bold text-slate-900 dark:text-white text-xs truncate block" title={countryData.currency}>
                 {countryData.currency}
               </span>
             </div>
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Timezone</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                {isSpanish ? "Zona horaria" : "Timezone"}
+              </span>
               <span className="font-bold font-mono text-slate-900 dark:text-white text-xs truncate block" title={tzShort}>
                 {tzShort}
               </span>
@@ -119,7 +130,7 @@ export function CountryInfoCard({ currentCity, className = "" }: CountryInfoCard
               href={countryUrl}
               className="inline-flex items-center justify-center text-xs font-bold px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors whitespace-nowrap shadow-2xs"
             >
-              Learn more
+              {isSpanish ? "Saber más" : "Learn more"}
             </Link>
           </div>
         </div>

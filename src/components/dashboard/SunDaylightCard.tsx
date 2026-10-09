@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo } from 'react';
+import { usePathname } from 'next/navigation';
 import { Sun } from 'lucide-react';
 import { City } from '@/lib/geo/cities';
 import { getSunTimes } from '@/lib/astronomy/sun';
@@ -10,6 +11,9 @@ interface SunDaylightCardProps {
 }
 
 export function SunDaylightCard({ currentCity }: SunDaylightCardProps) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+
   const sun = useMemo(() => {
     return getSunTimes(new Date(), currentCity.lat, currentCity.lng, currentCity.timezone);
   }, [currentCity.lat, currentCity.lng, currentCity.timezone]);
@@ -30,10 +34,10 @@ export function SunDaylightCard({ currentCity }: SunDaylightCardProps) {
           </div>
           <div>
             <h2 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
-              Sun & Daylight
+              {isSpanish ? "Sol y Luz Natural" : "Sun & Daylight"}
             </h2>
             <p className="text-[11px] text-slate-400">
-              Sunrise, sunset and solar arc for {currentCity.name}
+              {isSpanish ? `Amanecer, atardecer y arco solar en ${currentCity.name}` : `Sunrise, sunset and solar arc for ${currentCity.name}`}
             </p>
           </div>
         </div>
@@ -67,14 +71,14 @@ export function SunDaylightCard({ currentCity }: SunDaylightCardProps) {
             <span className="text-xs font-black text-slate-900 dark:text-white block font-mono" suppressHydrationWarning>
               {sun.sunrise}
             </span>
-            <span className="text-[10px] text-slate-400">Sunrise</span>
+            <span className="text-[10px] text-slate-400">{isSpanish ? "Amanecer" : "Sunrise"}</span>
           </div>
 
           <div className="absolute bottom-0 right-2 text-center">
             <span className="text-xs font-black text-slate-900 dark:text-white block font-mono" suppressHydrationWarning>
               {sun.sunset}
             </span>
-            <span className="text-[10px] text-slate-400">Sunset</span>
+            <span className="text-[10px] text-slate-400">{isSpanish ? "Atardecer" : "Sunset"}</span>
           </div>
         </div>
       </div>
@@ -85,13 +89,13 @@ export function SunDaylightCard({ currentCity }: SunDaylightCardProps) {
           <span className="text-xs font-black text-slate-900 dark:text-white block font-mono" suppressHydrationWarning>
             {sun.dayLengthFormatted}
           </span>
-          <span className="text-[10px] text-slate-400">Day length</span>
+          <span className="text-[10px] text-slate-400">{isSpanish ? "Horas de luz" : "Day length"}</span>
         </div>
         <div className="text-right">
           <span className="text-xs font-black text-slate-900 dark:text-white block font-mono">
             {sun.dayProgressPercent}%
           </span>
-          <span className="text-[10px] text-slate-400">Day progress</span>
+          <span className="text-[10px] text-slate-400">{isSpanish ? "Progreso solar" : "Day progress"}</span>
         </div>
       </div>
     </div>

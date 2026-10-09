@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Search, X, MapPin, Globe, Clock } from 'lucide-react';
 import { searchCities } from '@/lib/geo/cities';
 import { getCityRootSlug } from '@/lib/geo/city-lookup';
@@ -11,6 +11,10 @@ import { trackSearch, trackSearchResultClick } from '@/lib/analytics/gtag';
 
 export function GlobalSearchBar() {
   const router = useRouter();
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith('/es') ?? false;
+  const prefix = isSpanish ? '/es' : '';
+
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +33,7 @@ export function GlobalSearchBar() {
       id: c.id,
       title: `${c.name}, ${c.country}`,
       subtitle: c.timezone,
-      slug: `/${getCityRootSlug(c)}`,
+      slug: `${prefix}/${getCityRootSlug(c)}`,
       type: 'city'
     }));
 
@@ -40,18 +44,18 @@ export function GlobalSearchBar() {
         id: c.code,
         title: `${c.name} ${c.flag}`,
         subtitle: `Capital: ${c.capital} • ${c.timezones[0]}`,
-        slug: `/country/${c.slug}`,
+        slug: `${prefix}/country/${c.slug}`,
         type: 'country'
       }));
 
     const tzItems = TIMEZONES
-      .filter(t => t.name.toLowerCase().includes(q) || t.shortName.toLowerCase().includes(q) || t.id.toLowerCase().includes(q))
+      .filter(t => t.name.toLowerCase().includes(q) || t.shortName.toLowerCase() === q || t.id.toLowerCase() === q)
       .slice(0, 3)
       .map(t => ({
         id: t.id,
         title: `${t.name} (${t.shortName})`,
         subtitle: t.formattedOffset,
-        slug: `/timezone/${t.shortName.toLowerCase()}`,
+        slug: `${prefix}/timezone/${t.shortName.toLowerCase()}`,
         type: 'timezone'
       }));
 
@@ -66,7 +70,7 @@ export function GlobalSearchBar() {
     }, 800);
 
     return () => clearTimeout(debounceTimer);
-  }, [query]);
+  }, [query, prefix]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -79,6 +83,22 @@ export function GlobalSearchBar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const quickPills = isSpanish
+    ? [
+        { label: 'Nueva York', slug: `${prefix}/new-york` },
+        { label: 'Madrid', slug: `${prefix}/madrid` },
+        { label: 'Tokio', slug: `${prefix}/tokyo` },
+        { label: 'Londres', slug: `${prefix}/london` },
+        { label: 'IST', slug: `${prefix}/timezone/ist` },
+      ]
+    : [
+        { label: 'New York', slug: '/new-york' },
+        { label: 'Tokyo', slug: '/tokyo' },
+        { label: 'London', slug: '/london' },
+        { label: 'IST', slug: '/timezone/ist' },
+        { label: 'PST', slug: '/timezone/pt' },
+      ];
+
   return (
     <div className="relative w-full mb-6">
       <div className="relative flex items-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 px-4 py-3">
@@ -89,7 +109,7 @@ export function GlobalSearchBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.trim() && setIsOpen(results.length > 0)}
-          placeholder="Search for a city, country or timezone..."
+          placeholder={isSpanish ? "Buscar ciudad, país o zona horaria..." : "Search for a city, country or timezone..."}
           className="w-full bg-transparent text-slate-800 dark:text-slate-100 placeholder-slate-400 text-xs sm:text-sm font-medium outline-hidden"
         />
 
@@ -105,26 +125,22 @@ export function GlobalSearchBar() {
 
         {/* Quick Suggestion Pills on Right matching reference image */}
         <div className="hidden md:flex items-center gap-1.5 text-xs text-slate-400 shrink-0">
-          <span className="text-[11px] text-slate-400 font-medium">Try:</span>
-          {['New York', 'Tokyo', 'London', 'IST', 'PST'].map((item) => (
+          <span className="text-[11px] text-slate-400 font-medium">{isSpanish ? 'Prueba:' : 'Try:'}</span>
+          {quickPills.map((item) => (
             <button
-              key={item}
+              key={item.label}
               onClick={() => {
-                let targetSlug = `/${item.toLowerCase().replace(' ', '-')}`;
-                if (item === 'IST') targetSlug = '/timezone/ist';
-                else if (item === 'PST') targetSlug = '/timezone/pt';
-
                 trackSearchResultClick({
-                  title: item,
+                  title: item.label,
                   type: 'quick_pill',
-                  slug: targetSlug
+                  slug: item.slug
                 });
-                router.push(targetSlug);
+                router.push(item.slug);
               }}
               type="button"
               className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              {item},
+              {item.label},
             </button>
           ))}
         </div>
@@ -168,7 +184,7 @@ export function GlobalSearchBar() {
                   </div>
                 </div>
                 <span className="text-[10px] text-slate-400 font-semibold uppercase">
-                  {item.type}
+                  {item.type === 'city' ? (isSpanish ? 'Ciudad' : 'city') : item.type === 'country' ? (isSpanish ? 'País' : 'country') : (isSpanish ? 'Zona' : 'timezone')}
                 </span>
               </li>
             ))}
