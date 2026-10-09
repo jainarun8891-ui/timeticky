@@ -11,8 +11,8 @@ import { ArrowRight, Clock } from 'lucide-react';
 import { TimezoneVsClient } from '@/app/timezone/vs/TimezoneVsClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Comparador de Zonas Horarias — Diferencias Explicadas Sencillamente',
-  'Compara husos horarios cara a cara. Respuestas claras para CST vs EST, PST vs MST, GMT vs UTC, EDT vs EST con relojes en vivo, barra interactiva y ciudades afectadas.',
+  'Comparador de Zonas Horarias — Relojes Cara a Cara en Vivo',
+  'Compara husos horarios cara a cara con relojes sincronizados y deslizador de 24 horas. Respuestas directas para CST vs EST, PST vs MST, GMT vs UTC y más.',
   '/timezone/vs',
   'es'
 );

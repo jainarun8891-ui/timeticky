@@ -8,8 +8,8 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { HoursCalculatorClient } from './HoursCalculatorClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Work Hours & Timesheet Calculator — Free Time Card',
-  'Calculate daily and weekly work hours, lunch break deductions, overtime pay (1.5x), and gross wages. Copy timesheets or export to CSV. Free and private.',
+  'Work Hours Calculator — Time Card & Timesheet Hours (Free)',
+  'Calculate daily and weekly work hours, lunch break deductions, overtime pay (1.5x), and gross wages. Copy timesheets or export to CSV. 100% free and private.',
   '/hours-calculator'
 );
 

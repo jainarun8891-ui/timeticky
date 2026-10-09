@@ -11,8 +11,8 @@ import { ArrowRight, Clock, Sparkles } from 'lucide-react';
 import { TimezoneVsClient } from './TimezoneVsClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Time Zone VS Comparisons — Time Differences Explained Simply',
-  'Compare time zones side by side. Clear answers for CST vs EST, PST vs MST, GMT vs UTC, EDT vs EST, and more with live clocks, interactive sliders, and affected states.',
+  'Time Zone VS Comparisons — Live Side-by-Side Clocks',
+  'Compare time zones side by side with live clocks and 24-hour sliders. Clear answers for CST vs EST, PST vs MST, GMT vs UTC, EDT vs EST, and more.',
   '/timezone/vs'
 );
 

@@ -8,8 +8,8 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { MilitaryTimeClient } from './MilitaryTimeClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Military Time Converter & 24-Hour Clock Chart',
-  'Convert standard 12-hour AM/PM time into military 24-hour time instantly. Includes phonetic pronunciation, simple conversion math tricks, and a printable 0000 to 2400 chart.',
+  'Military Time Converter & 24-Hour Clock Chart (0000–2400)',
+  'Convert 12-hour AM/PM to 24-hour military time instantly. Includes phonetic pronunciation, 2-second conversion math tricks, and a printable 0000 to 2400 chart.',
   '/military-time'
 );
 

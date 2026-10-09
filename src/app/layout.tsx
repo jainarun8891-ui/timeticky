@@ -8,8 +8,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 
 export const metadata: Metadata = {
-  title: "Exact Time Now — What Time Is It Right Now? Live Atomic Clock & World Time",
-  description: "See the exact time right now down to the millisecond. Compare current local time across 500+ world cities, check device clock drift against atomic time, and plan international meetings effortlessly.",
+  title: "Exact Time Now (Live Seconds) — What Time Is It Right Now?",
+  description: "Check the exact time right now down to the millisecond with live running seconds. Compare current local time across 500+ world cities with zero drift.",
   metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: siteConfig.url,

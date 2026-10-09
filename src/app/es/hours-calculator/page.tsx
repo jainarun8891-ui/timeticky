@@ -8,8 +8,8 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { HoursCalculatorClient } from '@/app/hours-calculator/HoursCalculatorClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Calculadora de Horas Trabajadas y Nómina Semanal',
-  'Calcula tus horas trabajadas diarias y semanales con pausas de almuerzo, horas extras (1.5x) y salario bruto. Copia o exporta a CSV gratis y privado.',
+  'Calculadora de Horas de Trabajo — Control Semanal Gratis',
+  'Calcula horas de trabajo semanales, resta descansos de almuerzo, calcula horas extra (1.5x) y salario estimado. Copia o exporta a CSV gratis y 100% privado.',
   '/hours-calculator',
   'es'
 );

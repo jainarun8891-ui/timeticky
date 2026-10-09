@@ -8,8 +8,8 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { BestTimeToCallClient } from './BestTimeToCallClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Best Time to Call Between Cities & Countries — Overlap Calculator',
-  'Find the best time to call someone in another city or country without waking them up. Instant overlapping business and waking hours for international calls.',
+  'Best Time to Call Between Cities: International Calling Window',
+  'Find the best time to call someone in another city or country without waking them up. Instant overlapping business and waking hours for 500+ global cities.',
   '/best-time-to-call'
 );
 

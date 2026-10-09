@@ -8,8 +8,8 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { BestTimeToCallClient } from '@/app/best-time-to-call/BestTimeToCallClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Mejor Hora para Llamar entre Ciudades y Países — Calculadora',
-  'Descubre la mejor hora para llamar a alguien en otra ciudad o país sin despertarle. Horas de solapamiento diurno y laboral para llamadas internacionales.',
+  'Mejor Hora para Llamar entre Países y Ciudades — Horario Ideal',
+  'Descubre la mejor hora para llamar a otro país o ciudad sin despertar a nadie. Ventanas de llamada ideales y horas laborales compartidas para 500+ ciudades.',
   '/best-time-to-call',
   'es'
 );

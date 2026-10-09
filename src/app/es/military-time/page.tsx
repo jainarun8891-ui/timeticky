@@ -8,8 +8,8 @@ import { RelatedLinksHub } from '@/components/common/RelatedLinksHub';
 import { MilitaryTimeClient } from '@/app/military-time/MilitaryTimeClient';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Conversor de Hora Militar a Hora Normal (Reloj de 24 Horas)',
-  'Convierte hora militar de 24 horas a formato 12 horas AM/PM fácilmente. Incluye pronunciación, trucos matemáticos sencillos y tabla completa de 0000 a 2400.',
+  'Conversor de Hora Militar a Normal — Tabla 24 Horas (0000–2400)',
+  'Convierte hora militar de 24 horas a formato normal AM/PM fácilmente. Incluye pronunciación, truco de 2 segundos y tabla completa de 0000 a 2400.',
   '/military-time',
   'es'
 );

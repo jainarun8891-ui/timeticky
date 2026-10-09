@@ -5,8 +5,8 @@ import { EsHomePageClient } from './EsHomePageClient';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = buildPageMetadata(
-  'Hora exacta y reloj mundial online | TimeNumbers',
-  'Consulta la hora actual en ciudades de todo el mundo, convierte zonas horarias y utiliza relojes, temporizadores y herramientas gratuitas.',
+  'Hora Exacta Ahora: ¿Qué Hora Es? Reloj Mundial en Vivo',
+  'Descubre qué hora es ahora mismo con segundos en vivo sincronizados con la hora atómica oficial. Reloj mundial de 500+ ciudades, conversor y herramientas gratis.',
   '/es',
   'es'
 );
