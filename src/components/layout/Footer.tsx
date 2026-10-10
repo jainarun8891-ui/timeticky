@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Globe } from 'lucide-react';
+import { Globe, ExternalLink, Sparkles } from 'lucide-react';
 import { siteConfig } from '@/lib/config/site.config';
 
 export function Footer() {
@@ -172,7 +172,46 @@ export function Footer() {
               <li><Link prefetch={false} href={`${prefix}/data-sources`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Fuentes de Datos' : 'Data Sources'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/privacy`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Política de Privacidad' : 'Privacy Policy'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/terms`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Términos de Servicio' : 'Terms of Service'}</Link></li>
+              <li>
+                <a
+                  href="https://www.bhaktivoice.com"
+                  target="_blank"
+                  rel="noopener"
+                  className="hover:text-orange-600 dark:hover:text-orange-400 transition-colors flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300"
+                  title="BhaktiVoice - Divine Bhajans, Mantras & Spiritual Media"
+                >
+                  <span>BhaktiVoice</span>
+                  <ExternalLink className="w-2.5 h-2.5 text-orange-500" />
+                </a>
+              </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Sister Products & Ecosystem Network (High Authority Dofollow Link) */}
+        <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span>{isSpanish ? 'Nuestros Otros Productos:' : 'Our Other Products:'}</span>
+            </div>
+            <a
+              href="https://www.bhaktivoice.com"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 border border-amber-200/90 dark:border-amber-800/70 text-amber-900 dark:text-amber-200 hover:border-orange-400 dark:hover:border-orange-600 hover:shadow-xs transition-all font-bold group shadow-2xs"
+              title="BhaktiVoice - Divine Bhajans, Mantras, Aartis & Spiritual Audio"
+            >
+              <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+              <span className="font-extrabold text-xs">BhaktiVoice</span>
+              <span className="text-[11px] text-amber-800/80 dark:text-amber-300/80 font-medium hidden md:inline">
+                — Divine Bhajans, Mantras &amp; Spiritual Media
+              </span>
+              <ExternalLink className="w-3.5 h-3.5 text-orange-500 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
+          <div className="text-[11px] text-slate-400 dark:text-slate-500">
+            {isSpanish ? 'Red de Plataformas Digitales' : 'Digital Platform Ecosystem'}
           </div>
         </div>
 
