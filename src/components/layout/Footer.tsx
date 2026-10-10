@@ -80,6 +80,7 @@ export function Footer() {
               {isSpanish ? 'Calculadoras' : 'Calculators'}
             </h5>
             <ul className="space-y-1.5">
+              <li><Link prefetch={false} href={`${prefix}/time-slider`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-blue-600 dark:text-blue-400">{isSpanish ? 'Deslizador Horario 24h' : 'World Time Slider & Scrubber'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/market-hours`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-amber-600 dark:text-amber-400">{isSpanish ? 'Horarios de Bolsas y Forex' : 'Market Hours & Forex Tracker'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/converter`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{isSpanish ? 'Conversor de Zonas' : 'Time Zone Converter'}</Link></li>
               <li><Link prefetch={false} href={`${prefix}/hours-calculator`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-bold text-blue-600 dark:text-blue-400">{isSpanish ? 'Calculadora de Horas' : 'Work Hours Calculator'}</Link></li>

@@ -7,7 +7,7 @@ import {
   Search, Moon, Sun, Globe, ChevronDown, Monitor, SunMedium,
   Phone, Plane, Bell, Users, ArrowLeftRight, Clock, Sunset,
   Sparkles, ArrowRight, Layers, Menu, X, ChevronRight,
-  BookOpen, Newspaper, MapPin, Compass, Calendar, Camera, TrendingUp
+  BookOpen, Newspaper, MapPin, Compass, Calendar, Camera, TrendingUp, Sliders
 } from 'lucide-react';
 import { siteConfig } from '@/lib/config/site.config';
 import { getLocalizedPath } from '@/lib/i18n';
@@ -102,6 +102,7 @@ export function Header() {
   const prefix = isSpanish ? '/es' : '';
 
   const featureTools = isSpanish ? [
+    { name: 'Deslizador Horario Mundial', desc: 'Compara ciudades en una barra 24h', href: '/es/time-slider', icon: Sliders },
     { name: 'Horarios de Bolsas Mundiales', desc: 'NYSE, Londres, Tokio y sesiones Forex', href: '/es/market-hours', icon: TrendingUp },
     { name: 'Calculadora de Ciclos de Sueño', desc: 'Ciclos de 90 min y hora óptima', href: '/es/sleep-calculator', icon: Moon },
     { name: 'Costo de Reuniones en Vivo', desc: 'Gasto por segundo en tiempo real', href: '/es/meeting-cost-calculator', icon: Users },
@@ -130,6 +131,7 @@ export function Header() {
     { name: 'Estudio de Timestamp Unix', desc: 'Conversor epoch y laboratorio 2038', href: '/es/unix-time', icon: Clock },
     { name: 'Reloj Analógico Suizo', desc: 'Esfera con segundero continuo', href: '/es/analog-clock', icon: Clock },
   ] : [
+    { name: 'World Time Slider & Scrubber', desc: 'Visual 24h timeline across multi-cities', href: '/time-slider', icon: Sliders },
     { name: 'Global Market Hours Tracker', desc: 'NYSE, London, Tokyo & Forex sessions', href: '/market-hours', icon: TrendingUp },
     { name: 'Sleep Cycle Calculator', desc: '90-min cycles & optimal bedtimes', href: '/sleep-calculator', icon: Moon },
     { name: 'Meeting Cost Calculator', desc: 'Real-time live dollar burn odometer', href: '/meeting-cost-calculator', icon: Users },

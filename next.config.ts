@@ -83,6 +83,16 @@ const nextConfig: NextConfig = {
         destination: '/converter/:from-to-:to',
         permanent: true,
       },
+      {
+        source: '/time-scrubber',
+        destination: '/time-slider',
+        permanent: true,
+      },
+      {
+        source: '/es/time-scrubber',
+        destination: '/es/time-slider',
+        permanent: true,
+      },
     ];
   },
   async headers() {
