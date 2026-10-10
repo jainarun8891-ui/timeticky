@@ -7,7 +7,7 @@ import {
   Search, Moon, Sun, Globe, ChevronDown, Monitor, SunMedium,
   Phone, Plane, Bell, Users, ArrowLeftRight, Clock, Sunset,
   Sparkles, ArrowRight, Layers, Menu, X, ChevronRight,
-  BookOpen, Newspaper, MapPin, Compass, Calendar, Camera
+  BookOpen, Newspaper, MapPin, Compass, Calendar, Camera, TrendingUp
 } from 'lucide-react';
 import { siteConfig } from '@/lib/config/site.config';
 import { getLocalizedPath } from '@/lib/i18n';
@@ -102,6 +102,7 @@ export function Header() {
   const prefix = isSpanish ? '/es' : '';
 
   const featureTools = isSpanish ? [
+    { name: 'Horarios de Bolsas Mundiales', desc: 'NYSE, Londres, Tokio y sesiones Forex', href: '/es/market-hours', icon: TrendingUp },
     { name: 'Calculadora de Ciclos de Sueño', desc: 'Ciclos de 90 min y hora óptima', href: '/es/sleep-calculator', icon: Moon },
     { name: 'Costo de Reuniones en Vivo', desc: 'Gasto por segundo en tiempo real', href: '/es/meeting-cost-calculator', icon: Users },
     { name: 'La Vida en Semanas Grid', desc: 'Lienzo Memento Mori de 4.160 semanas', href: '/es/life-in-weeks', icon: Calendar },
@@ -129,6 +130,7 @@ export function Header() {
     { name: 'Estudio de Timestamp Unix', desc: 'Conversor epoch y laboratorio 2038', href: '/es/unix-time', icon: Clock },
     { name: 'Reloj Analógico Suizo', desc: 'Esfera con segundero continuo', href: '/es/analog-clock', icon: Clock },
   ] : [
+    { name: 'Global Market Hours Tracker', desc: 'NYSE, London, Tokyo & Forex sessions', href: '/market-hours', icon: TrendingUp },
     { name: 'Sleep Cycle Calculator', desc: '90-min cycles & optimal bedtimes', href: '/sleep-calculator', icon: Moon },
     { name: 'Meeting Cost Calculator', desc: 'Real-time live dollar burn odometer', href: '/meeting-cost-calculator', icon: Users },
     { name: 'Life in Weeks Grid', desc: 'Memento Mori 4,160-week longevity canvas', href: '/life-in-weeks', icon: Calendar },
