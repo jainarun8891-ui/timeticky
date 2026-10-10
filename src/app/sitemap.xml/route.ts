@@ -56,6 +56,8 @@ export async function GET() {
     '/converter/compare/paris/berlin/rome',
     '/converter/compare/madrid/barcelona/valencia',
     '/meeting-planner',
+    '/market-hours',
+    '/time-slider',
     '/meeting-cost-calculator',
     '/overlap-calculator',
     '/jet-lag-calculator',
@@ -272,8 +274,11 @@ export async function GET() {
     if (url.startsWith('/converter') || url.startsWith('/utc-offset')) {
       return '2026-02-20';
     }
+    if (url === '/market-hours' || url === '/time-slider') {
+      return '2026-10-10';
+    }
     if (url === '') {
-      return '2026-04-01';
+      return '2026-10-10';
     }
     return '2026-02-15';
   };
