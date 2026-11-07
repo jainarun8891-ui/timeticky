@@ -68,6 +68,9 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" }
     ]
+  },
+  other: {
+    "google-adsense-account": siteConfig.adsenseClientId || "ca-pub-2885728689787724"
   }
 };
 
@@ -108,6 +111,13 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
+
+        {/* Google AdSense */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsenseClientId || 'ca-pub-2885728689787724'}`}
+          crossOrigin="anonymous"
+        />
         <Script id="gt-theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `(function() {
                 try {
                   var saved = localStorage.getItem('gt_theme');

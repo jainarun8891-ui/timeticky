@@ -12,6 +12,7 @@ export interface SiteConfig {
   defaultLocale: string;
   locales: string[];
   googleAnalyticsId?: string;
+  adsenseClientId?: string;
 }
 
 export const siteConfig: SiteConfig = {
@@ -27,5 +28,6 @@ export const siteConfig: SiteConfig = {
   },
   defaultLocale: "en",
   locales: ["en", "hi", "es", "fr", "de", "ja"],
-  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || "G-P2PKYW5TRP"
+  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || "G-P2PKYW5TRP",
+  adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-2885728689787724"
 };
